@@ -1,0 +1,44 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f4c6dfe3f8c89e409c2203959754e5f, type: 3}
+  m_Name: DefaultStyle
+  m_EditorClassIdentifier: 
+  TextBox: {fileID: 1569672496732268, guid: b7223b010736a1147b1bca9b7cc822c1, type: 2}
+  StatBar: {fileID: 1695047562568162, guid: ae0367fa07c811148a15690c7987be63, type: 2}
+  ButtonIcon: {fileID: 1476253384751636, guid: c9501d60dca04cc4ba5ea54857b414c1, type: 2}
+  ButtonText: {fileID: 1645926303531894, guid: 422f40591775c9b499d67a5473f0ed5c, type: 2}
+  NeutralColor:
+    serializedVersion: 2
+    rgba: 4289769648
+  BridgeColor:
+    serializedVersion: 2
+    rgba: 4292837752
+  TacticalColor:
+    serializedVersion: 2
+    rgba: 4283318717
+  EngineeringColor:
+    serializedVersion: 2
+    rgba: 4287289559
+  ScienceColor:
+    serializedVersion: 2
+    rgba: 4287017596
+  PrimaryUIColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  SecondaryUIColor:
+    serializedVersion: 2
+    rgba: 4278255889
+  StatIncreaseColor:
+    serializedVersion: 2
+    rgba: 4287364864
+  StatDecreaseColor:
+    serializedVersion: 2
+    rgba: 4278190335

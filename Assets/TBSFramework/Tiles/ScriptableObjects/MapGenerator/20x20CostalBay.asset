@@ -1,0 +1,74 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc03847c1ad5b8c4187690f32da14051, type: 3}
+  m_Name: 20x20CostalBay
+  m_EditorClassIdentifier: 
+  width: 20
+  height: 20
+  atlas: {fileID: 11400000, guid: 922081251dba41d43b85034f5ddea963, type: 2}
+  terrainCutoffs:
+  - tileName: Deep Water
+    elevationCutoff: 0
+    moistureCutoff: 0
+  - tileName: Shallow Water
+    elevationCutoff: 38
+    moistureCutoff: 0
+  - tileName: Moor
+    elevationCutoff: 70
+    moistureCutoff: 0
+  - tileName: Plains
+    elevationCutoff: 70
+    moistureCutoff: 34
+  - tileName: Fen
+    elevationCutoff: 70
+    moistureCutoff: 158
+  - tileName: Parkland
+    elevationCutoff: 130
+    moistureCutoff: 67
+  - tileName: Forest
+    elevationCutoff: 152
+    moistureCutoff: 43
+  - tileName: Hills
+    elevationCutoff: 211
+    moistureCutoff: 0
+  - tileName: Wooded Hills
+    elevationCutoff: 211
+    moistureCutoff: 30
+  - tileName: Mountains
+    elevationCutoff: 229
+    moistureCutoff: 0
+  initalElevation: 255
+  initialMoisture: 0
+  antSpawners:
+  - positionX: 0.93
+    positionY: 0.5
+    minLifespan: 4
+    maxLifespan: 6
+    minAntCount: 200
+    maxAntCount: 250
+    minPower: -2
+    maxPower: -1
+    minTurnChance: 0.28
+    maxTurnCHance: 0.89
+    food: 0
+    dieOnBorder: 0
+  - positionX: 0.96
+    positionY: 0.04
+    minLifespan: 6
+    maxLifespan: 8
+    minAntCount: 200
+    maxAntCount: 250
+    minPower: 1
+    maxPower: 2
+    minTurnChance: 0.28
+    maxTurnCHance: 0.89
+    food: 1
+    dieOnBorder: 0
