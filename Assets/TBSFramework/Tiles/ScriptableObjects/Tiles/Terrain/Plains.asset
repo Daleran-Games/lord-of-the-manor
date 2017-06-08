@@ -11,7 +11,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4421c49d986b8274ca747e38fcc37373, type: 3}
   m_Name: Plains
   m_EditorClassIdentifier: 
-  tileName: Plains
   atlasCoord:
     x: 1
     y: 0

@@ -23,7 +23,7 @@ namespace DaleranGames.TBSFramework
         [SerializeField]
         protected AntSpawner[] antSpawners;
 
-        protected TileDatabase tileDB;
+        protected TerrainDatabase tileDB;
         protected bool antsAlive = true;
 
         public override HexCell[,] GenerateMap()
@@ -216,7 +216,7 @@ namespace DaleranGames.TBSFramework
                 if (position.y < cells.GetLength(1)-1)
                     directions.Add(Vector2Int.up);
 
-                int randomIndex = Random.Range(0, directions.Count);
+                int randomIndex = directions.RandomIndex();
 
                 if (!directions.Contains(moveDirection))
                     return directions[randomIndex];

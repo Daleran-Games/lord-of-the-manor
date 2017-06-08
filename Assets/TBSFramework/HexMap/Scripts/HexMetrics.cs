@@ -16,10 +16,9 @@ namespace DaleranGames.TBSFramework
 
         public const float pivotOffset = 0.25f;
 
+        public const float startingZ = 2f;
         public const float zSeperation = 0.1f;
         public const int tileLayers = 18;
-        public const float tileLayerSperations = zSeperation / (2* tileLayers);
-
 
         public static Vector3[] CalculateVerticies(Vector3 pos)
         {

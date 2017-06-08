@@ -9,7 +9,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3a0c5002a4ee763439876086c700fc51, type: 3}
-  m_Name: _TileDatabase
+  m_Name: TerrainDatabase
   m_EditorClassIdentifier: 
   tiles:
   - {fileID: 11400000, guid: 94c05479fed174845bdf26dff6e5b495, type: 2}

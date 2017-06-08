@@ -38,7 +38,8 @@ namespace DaleranGames.TBSFramework
             {
                 for (int x = 0; x < cells.GetLength(0); x++)
                 {
-                    CreateLabel(cells[x, y].Position, "H:" + cells[x, y].Elevation.ToString() + "\n" + "M:" + cells[x, y].Moisture.ToString());
+                    //CreateLabel(cells[x, y].Position, "H:" + cells[x, y].Elevation.ToString() + "\n" + "M:" + cells[x, y].Moisture.ToString());
+                    CreateLabel(cells[x, y].Position, "(" + x + ","+y+")" + "\n" + cells[x, y].Coord.ToString());
                 }
             }
         }

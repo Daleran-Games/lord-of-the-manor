@@ -52,7 +52,7 @@ namespace DaleranGames.TBSFramework
             int vertexIndex = vertices.Count;
             vertices.AddRange(HexMetrics.CalculateVerticies(cell.Position));
             triangles.AddRange(HexMetrics.CalculateTriangles(vertexIndex));
-            uvs.AddRange(atlas.CalculateUVs(cell.HexType.AtlasCoord));
+            uvs.AddRange(atlas.CalculateUVs(cell.HexTerrainType.AtlasCoord));
         }
 
     } 

@@ -19,8 +19,8 @@ namespace DaleranGames.TBSFramework
         public Vector3 Position { get { return position; } protected set { position = value; } }
 
         [SerializeField]
-        TileType hexType;
-        public TileType HexType { get { return hexType; } set { hexType = value; } }
+        TerrainType terrainType;
+        public TerrainType HexTerrainType { get { return terrainType; } set { terrainType = value; } }
 
         [SerializeField]
         [Range(0, 255)]
@@ -46,11 +46,11 @@ namespace DaleranGames.TBSFramework
             Moisture = moisture;
         }
 
-        public HexCell(HexCoordinates coor, Vector3 pos, TileType type)
+        public HexCell(HexCoordinates coor, Vector3 pos, TerrainType type)
         {
             Coord = coor;
             Position = pos;
-            HexType = type;
+            HexTerrainType = type;
         }
 
     }

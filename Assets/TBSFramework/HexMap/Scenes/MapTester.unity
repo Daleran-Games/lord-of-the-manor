@@ -135,7 +135,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0def3d11da39ab44caa0ac9f0ce09a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  generator: {fileID: 11400000, guid: 6117e28fb77211a4c92211cc3d60ed80, type: 2}
+  generator: {fileID: 11400000, guid: f4f750a60ae49324bb22390a51b8c766, type: 2}
+  isMapBuilt: 0
 --- !u!4 &63618575
 Transform:
   m_ObjectHideFlags: 0
@@ -335,11 +336,11 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: b9a07015b9c077247811b451525a83c2, type: 3}
-    m_FontSize: 14
+    m_FontSize: 38
     m_FontStyle: 0
-    m_BestFit: 1
+    m_BestFit: 0
     m_MinSize: 10
-    m_MaxSize: 40
+    m_MaxSize: 45
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -383,7 +384,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.0000019073486, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1068906301
@@ -612,11 +613,11 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: b9a07015b9c077247811b451525a83c2, type: 3}
-    m_FontSize: 14
+    m_FontSize: 38
     m_FontStyle: 0
-    m_BestFit: 1
-    m_MinSize: 10
-    m_MaxSize: 40
+    m_BestFit: 0
+    m_MinSize: 1
+    m_MaxSize: 58
     m_Alignment: 4
     m_AlignByGeometry: 0
     m_RichText: 1
@@ -642,7 +643,6 @@ GameObject:
   - component: {fileID: 1418556151}
   - component: {fileID: 1418556150}
   - component: {fileID: 1418556149}
-  - component: {fileID: 1418556155}
   - component: {fileID: 1418556154}
   m_Layer: 0
   m_Name: Main Camera
@@ -734,28 +734,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pixelsPerUnit: 32
   maxScale: 5
-  moveForce: 35
+  moveSpeed: 10
   orthoSizes: []
---- !u!50 &1418556155
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1418556148}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 10
-  m_AngularDrag: 0.05
-  m_GravityScale: 0
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!1 &1498622599
 GameObject:
   m_ObjectHideFlags: 0

@@ -30,30 +30,26 @@ namespace DaleranGames.TBSFramework
 
         public virtual void SetTileType (HexCell hexCell)
         {
-            TileType type = GameDatabase.Instance.TileDB.GetTile(terrainCutoffs[0].TileName);
+            TerrainType type = GameDatabase.Instance.TileDB.GetTile(terrainCutoffs[0].TileName);
             for (int i=0; i<terrainCutoffs.Length;i++)
             {
                 if (hexCell.Elevation >= terrainCutoffs[i].ElevationCutoff && hexCell.Moisture >= terrainCutoffs[i].MoistureCutoff)
                      type = GameDatabase.Instance.TileDB.GetTile(terrainCutoffs[i].TileName);
             }
-            hexCell.HexType = type;
+            hexCell.HexTerrainType = type;
             //Debug.Log("Setting cell " + hexCell.Position + " to " + type.Name);
         }
 
         protected virtual HexCell CreateCell(int x, int y)
         {
-            Vector3 position;
-            position.x = (x + y * 0.5f - y / 2) * (HexMetrics.innerRadius * 2f);
-            position.y = y * (HexMetrics.outerRadius * 1.5f);
-            position.z = 0f;
-
-            return new HexCell(HexCoordinates.FromOffsetCoordinates(x, y), position);
+            Vector3 position = HexCoordinates.GetUnityPosition(x, y);
+            return new HexCell(HexCoordinates.CartesianToHex(x, y), position);
         }
 
-        protected virtual HexCell CreateCell(int x, int y, TileType type)
+        protected virtual HexCell CreateCell(int x, int y, TerrainType type)
         {
             HexCell newCell = CreateCell(x, y);
-            newCell.HexType = type;
+            newCell.HexTerrainType = type;
 
             return newCell;
         }

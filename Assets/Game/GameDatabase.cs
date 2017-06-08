@@ -12,8 +12,8 @@ namespace DaleranGames.Database
         protected GameDatabase() { }
 
         [SerializeField]
-        TileDatabase tileDB;
-        public TileDatabase TileDB { get { return tileDB; } }
+        TerrainDatabase tileDB;
+        public TerrainDatabase TileDB { get { return tileDB; } }
 
         
     }

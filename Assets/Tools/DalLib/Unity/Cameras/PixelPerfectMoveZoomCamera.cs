@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 namespace DaleranGames.Tools
 {
-    [RequireComponent(typeof(Camera), typeof(Rigidbody2D))]
+    [RequireComponent(typeof(Camera))]
     public class PixelPerfectMoveZoomCamera : MonoBehaviour
     {
         [SerializeField]
@@ -13,10 +13,9 @@ namespace DaleranGames.Tools
         int maxScale = 2;
 
         [SerializeField]
-        float moveForce = 15f;
+        float moveSpeed = 15f;
 
         Camera cam;
-        Rigidbody2D camRB;
         [SerializeField]
         float[] orthoSizes;
         int sizeIndex = 0;
@@ -24,7 +23,6 @@ namespace DaleranGames.Tools
         void Start()
         {
             cam = gameObject.GetRequiredComponent<Camera>();
-            camRB = gameObject.GetRequiredComponent<Rigidbody2D>();
             orthoSizes = BuildSizeArray();
             cam.orthographicSize = orthoSizes[sizeIndex];
 
@@ -35,7 +33,7 @@ namespace DaleranGames.Tools
             if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
             {
                 Vector2 moveDir = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-                camRB.AddForce(moveDir * moveForce);
+                transform.position += (Vector3)moveDir * moveSpeed * Time.deltaTime;
             }
 
 
