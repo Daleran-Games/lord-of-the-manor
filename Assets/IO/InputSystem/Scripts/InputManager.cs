@@ -8,6 +8,13 @@ namespace DaleranGames.IO
     public class InputManager : MonoBehaviour
     {
 
+        public enum MouseButton
+        {
+            LMB = 0,
+            RMB = 1,
+            MMB = 2
+        }
+
         protected InputManager() { }
         public static InputManager Instance = null;
 
@@ -24,9 +31,14 @@ namespace DaleranGames.IO
             }
         }
 
-        public EventKey MenuKey;
-        public EventKey SubmitKey;
-        public EventKey CancelKey;
+        //public EventKey MenuKey;
+        //public EventKey SubmitKey;
+        //public EventKey CancelKey;
+
+        public MouseEvent LMBClick;
+        public MouseEvent RMBClick;
+        public MouseEvent MMBClick;
+
 
         void Awake()
         {
@@ -37,14 +49,23 @@ namespace DaleranGames.IO
 
             DontDestroyOnLoad(gameObject);
 
-            MenuKey = new EventKey("Menu");
-            SubmitKey = new EventKey("Submit");
-            CancelKey = new EventKey("Cancel");
+            //MenuKey = new EventKey("Menu");
+            //SubmitKey = new EventKey("Submit");
+            //CancelKey = new EventKey("Cancel");
 
-    }
+            LMBClick = new MouseEvent(MouseButton.LMB);
+            RMBClick = new MouseEvent(MouseButton.RMB);
+            MMBClick = new MouseEvent(MouseButton.MMB);
+
+        }
 
         private void Update()
         {
+            LMBClick.CheckForClicks();
+            RMBClick.CheckForClicks();
+            MMBClick.CheckForClicks();
+
+            /*
             if (MenuKey.IsPressedOnce() && MenuKey.EventKeyPressed != null)
                 MenuKey.EventKeyPressed();
 
@@ -53,6 +74,8 @@ namespace DaleranGames.IO
 
             if (CancelKey.IsPressedOnce() && CancelKey.EventKeyPressed != null && ControlsLocked == false)
                 CancelKey.EventKeyPressed();
+                */
+
 
         }
 
@@ -145,6 +168,52 @@ namespace DaleranGames.IO
                     return false;
 
             }
+        }
+
+        public class MouseEvent
+        {
+            int button;
+            public Action MouseButtonPressed;
+            public Action MouseButtonUp;
+            public Action MouseButtonDown;
+
+            public MouseEvent(MouseButton button)
+            {
+                this.button = (int)button;
+            }
+
+            public MouseButton GetButtonType()
+            {
+                return (MouseButton)button;
+            }
+
+            public bool IsPressed()
+            {
+                return Input.GetMouseButton(button);
+            }
+
+            public bool IsMouseButtonDown()
+            {
+                return Input.GetMouseButtonDown(button);
+            }
+
+            public bool IsMouseButtonUp()
+            {
+                return Input.GetMouseButtonUp(button);
+            }
+
+            public void CheckForClicks()
+            {
+                if (IsPressed() && MouseButtonPressed != null)
+                    MouseButtonPressed();
+
+                if (IsMouseButtonDown() && MouseButtonDown != null)
+                    MouseButtonDown();
+
+                if (IsMouseButtonUp() && MouseButtonUp != null)
+                    MouseButtonUp();
+            }
+
         }
 
         public class ControlAxis

@@ -56,9 +56,27 @@ namespace DaleranGames.TBSFramework
             Vector3 position;
             position.x = (x + y * 0.5f - y / 2) * (HexMetrics.innerRadius * 2f);
             position.y = y * (HexMetrics.outerRadius * 1.5f);
-            position.z = HexMetrics.startingZ;
+            position.z = 0f;
 
             return position;
+        }
+
+        public static Vector3 GetUnityPosition(int x, int y, float z)
+        {
+            Vector3 position;
+            position.x = (x + y * 0.5f - y / 2) * (HexMetrics.innerRadius * 2f);
+            position.y = y * (HexMetrics.outerRadius * 1.5f);
+            position.z = z;
+
+            return position;
+        }
+
+        public static Vector2Int GetCartesianFromUnity (Vector3 position)
+        {
+            float y = position.y / (HexMetrics.outerRadius * 1.5f);
+
+            return new Vector2Int ( Mathf.RoundToInt((position.x / (HexMetrics.innerRadius * 2f)) - y * 0.5f + y / 2),
+                Mathf.RoundToInt(y));
         }
        
         public override string ToString()

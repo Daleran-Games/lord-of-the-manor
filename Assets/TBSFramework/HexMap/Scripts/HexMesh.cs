@@ -7,14 +7,11 @@ namespace DaleranGames.TBSFramework
     [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
     public class HexMesh : MonoBehaviour
     {
-        [SerializeField]
-        Material hexMeshMaterial;
-        public Material HexMeshMaterial { get { return hexMeshMaterial; } set { hexMeshMaterial = value; } }
-
         Mesh hexMesh;
         List<Vector3> vertices;
         List<int> triangles;
         List<Vector2> uvs;
+        MeshRenderer renderer;
 
         void Awake()
         {
@@ -23,6 +20,8 @@ namespace DaleranGames.TBSFramework
             vertices = new List<Vector3>();
             triangles = new List<int>();
             uvs = new List<Vector2>();
+            renderer = gameObject.GetRequiredComponent<MeshRenderer>();
+
         }
 
         public void BuildMesh(HexCell[,] cells, TileAtlas atlas)
@@ -31,7 +30,7 @@ namespace DaleranGames.TBSFramework
             vertices.Clear();
             triangles.Clear();
             uvs.Clear();
-            HexMeshMaterial = atlas.AtlasMaterial;
+            renderer.material = atlas.SpringAtlas;
 
             for (int y= cells.GetLength(1)-1; y >= 0; y--)
             {
@@ -53,6 +52,11 @@ namespace DaleranGames.TBSFramework
             vertices.AddRange(HexMetrics.CalculateVerticies(cell.Position));
             triangles.AddRange(HexMetrics.CalculateTriangles(vertexIndex));
             uvs.AddRange(atlas.CalculateUVs(cell.HexTerrainType.AtlasCoord));
+        }
+
+        public void SwitchMateiral (Material mat)
+        {
+            renderer.material = mat;
         }
 
     } 

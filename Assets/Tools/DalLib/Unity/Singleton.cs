@@ -12,9 +12,9 @@ namespace DaleranGames.Tools
     public class Singleton<T> : MonoBehaviour where T: MonoBehaviour
     {
 
-        private static T instance;
+        protected static T instance;
 
-        private static object _lock = new object();
+        protected static object _lock = new object();
 
         public static T Instance
         {
@@ -22,9 +22,7 @@ namespace DaleranGames.Tools
             {
                 if (applicationIsQuitting)
                 {
-                    Debug.LogWarning("[Singleton] Instance '" + typeof(T) +
-                        "' already destroyed on application quit." +
-                        " Won't create again - returning null.");
+                    Debug.LogWarning("[Singleton] Instance '" + typeof(T) +  "' already destroyed on application quit. Won't create again - returning null.");
                     return null;
                 }
 
@@ -36,28 +34,13 @@ namespace DaleranGames.Tools
 
                         if (FindObjectsOfType(typeof(T)).Length > 1)
                         {
-                            Debug.LogError("[Singleton] Something went really wrong " +
-                                " - there should never be more than 1 singleton!" +
-                                " Reopening the scene might fix it.");
+                            Debug.LogError("[Singleton] More than one singleton found.");
                             return instance;
                         }
 
                         if (instance == null)
                         {
-                            GameObject singleton = new GameObject();
-                            instance = singleton.AddComponent<T>();
-                            singleton.name = "(singleton) " + typeof(T).ToString();
-
-                            DontDestroyOnLoad(singleton);
-
-                            Debug.Log("[Singleton] An instance of " + typeof(T) +
-                                " is needed in the scene, so '" + singleton +
-                                "' was created with DontDestroyOnLoad.");
-                        }
-                        else
-                        {
-                            Debug.Log("[Singleton] Using instance already created: " +
-                                instance.gameObject.name);
+                            Debug.LogError("[Singleton] An instance of " + typeof(T) + " was requested but none are present in the scene.");
                         }
                     }
 
@@ -75,7 +58,7 @@ namespace DaleranGames.Tools
         ///   even after stopping playing the Application. Really bad!
         /// So, this was made to be sure we're not creating that buggy ghost object.
         /// </summary>
-        public void OnDestroy()
+        protected virtual void OnDestroy()
         {
             applicationIsQuitting = true;
         }

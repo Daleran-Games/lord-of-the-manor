@@ -19,16 +19,17 @@ namespace DaleranGames.TBSFramework
         public Vector3 Position { get { return position; } protected set { position = value; } }
 
         [SerializeField]
+        [ReadOnly]
         TerrainType terrainType;
         public TerrainType HexTerrainType { get { return terrainType; } set { terrainType = value; } }
 
         [SerializeField]
-        [Range(0, 255)]
+        [ReadOnly]
         protected byte elevation = 0;
         public byte Elevation { get { return elevation; } set { elevation = value; } }
 
         [SerializeField]
-        [Range(0, 255)]
+        [ReadOnly]
         protected byte moisture = 0;
         public byte Moisture { get { return moisture; } set { moisture = value; } }
 

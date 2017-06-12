@@ -16,10 +16,11 @@ namespace DaleranGames.TBSFramework
         bool isMapBuilt = false;
         public bool IsMapBuilt {get { return isMapBuilt; } }
 
-        public virtual int GetWidth { get { return cells.GetLength(0) - 1; } }
-        public virtual int GetHeight { get { return cells.GetLength(0) - 1; } }
+        public virtual int Width { get { return cells.GetLength(0) ; } }
+        public virtual int Height { get { return cells.GetLength(0) ; } }
 
         public Action MapGenerationComplete;
+        public Action MeshBuildComplete;
 
         HexMesh hexMesh;
         HexCell[,] cells;
@@ -33,13 +34,14 @@ namespace DaleranGames.TBSFramework
             hexMesh = GetComponentInChildren<HexMesh>();
             overlay = GetComponentInChildren<HexOverlay>();
             tileDB = GameDatabase.Instance.TileDB;
+
+            TurnManager.Instance.TurnChanged += OnTurnChange;
+
         }
 
-        private void Start()
+        private void OnDestroy()
         {
-            cells = Generator.GenerateMap();
-            hexMesh.BuildMesh(cells, Generator.Atlas);
-            overlay.CreateLabels(cells);
+            TurnManager.Instance.TurnChanged -= OnTurnChange;
         }
 
         public virtual HexCell this[int x, int y]
@@ -63,10 +65,35 @@ namespace DaleranGames.TBSFramework
         [ContextMenu("Generate Map")]
         public void GenerateMap ()
         {
-            overlay.DeleteLabels();
             cells = Generator.GenerateMap();
+
+            if (MapGenerationComplete != null)
+                MapGenerationComplete();
+
             hexMesh.BuildMesh(cells, Generator.Atlas);
-            overlay.CreateLabels(cells);
+
+            if (MeshBuildComplete != null)
+                MeshBuildComplete();
+
+            isMapBuilt = true;
+
+        }
+
+        public void SwitchMaterial (Material mat)
+        {
+            hexMesh.SwitchMateiral(mat);
+        }
+
+        void OnTurnChange (BaseTurn newTurn)
+        {
+            if (newTurn is SpringTurn)
+                SwitchMaterial(Generator.Atlas.SpringAtlas);
+            else if (newTurn is SummerTurn)
+                SwitchMaterial(Generator.Atlas.SummerAtlas);
+            else if (newTurn is FallTurn)
+                SwitchMaterial(Generator.Atlas.FallAtlas);
+            else if (newTurn is WinterTurn)
+                SwitchMaterial(Generator.Atlas.WinterAtlas);
         }
 
 

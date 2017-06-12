@@ -10,8 +10,22 @@ namespace DaleranGames.TBSFramework
     {
 
         [SerializeField]
-        Material atlasMaterial;
-        public Material AtlasMaterial { get { return atlasMaterial; } }
+        Material springAtlas;
+        public Material SpringAtlas { get { return springAtlas; } }
+
+        [SerializeField]
+        Material summerAtlas;
+        public Material SummerAtlas { get { return summerAtlas; } }
+
+        [SerializeField]
+        Material fallAtlas;
+        public Material FallAtlas { get { return fallAtlas; } }
+
+        [SerializeField]
+        Material winterAtlas;
+        public Material WinterAtlas { get { return winterAtlas; } }
+
+
 
         [SerializeField]
         int xSize = 32;
@@ -46,9 +60,9 @@ namespace DaleranGames.TBSFramework
         public void Calculate ()
         {
 
-            Debug.Log(AtlasMaterial.mainTexture.width);
-            uvX = (float)XSize / (float)AtlasMaterial.mainTexture.width;
-            uvY = (float)YSize / (float)AtlasMaterial.mainTexture.height;
+            Debug.Log(SpringAtlas.mainTexture.width);
+            uvX = (float)XSize / (float)SpringAtlas.mainTexture.width;
+            uvY = (float)YSize / (float)SpringAtlas.mainTexture.height;
 
             uvXError = UVX / (20 * XSize);
             uvYError = UVY / (20 * YSize);
