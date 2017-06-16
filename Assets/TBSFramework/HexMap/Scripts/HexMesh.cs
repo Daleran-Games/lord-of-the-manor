@@ -11,7 +11,7 @@ namespace DaleranGames.TBSFramework
         List<Vector3> vertices;
         List<int> triangles;
         List<Vector2> uvs;
-        MeshRenderer renderer;
+        MeshRenderer meshRenderer;
 
         void Awake()
         {
@@ -20,7 +20,7 @@ namespace DaleranGames.TBSFramework
             vertices = new List<Vector3>();
             triangles = new List<int>();
             uvs = new List<Vector2>();
-            renderer = gameObject.GetRequiredComponent<MeshRenderer>();
+            meshRenderer = gameObject.GetRequiredComponent<MeshRenderer>();
 
         }
 
@@ -30,7 +30,7 @@ namespace DaleranGames.TBSFramework
             vertices.Clear();
             triangles.Clear();
             uvs.Clear();
-            renderer.material = atlas.SpringAtlas;
+            meshRenderer.material = atlas.SpringAtlas;
 
             for (int y= cells.GetLength(1)-1; y >= 0; y--)
             {
@@ -51,12 +51,12 @@ namespace DaleranGames.TBSFramework
             int vertexIndex = vertices.Count;
             vertices.AddRange(HexMetrics.CalculateVerticies(cell.Position));
             triangles.AddRange(HexMetrics.CalculateTriangles(vertexIndex));
-            uvs.AddRange(atlas.CalculateUVs(cell.HexTerrainType.AtlasCoord));
+            uvs.AddRange(atlas.CalculateUVs(cell.HexLand.HexLandType.AtlasCoord));
         }
 
         public void SwitchMateiral (Material mat)
         {
-            renderer.material = mat;
+            meshRenderer.material = mat;
         }
 
     } 

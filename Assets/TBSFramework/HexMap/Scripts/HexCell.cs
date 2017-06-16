@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -20,39 +21,26 @@ namespace DaleranGames.TBSFramework
 
         [SerializeField]
         [ReadOnly]
-        TerrainType terrainType;
-        public TerrainType HexTerrainType { get { return terrainType; } set { terrainType = value; } }
+        Land land;
+        public Land HexLand { get { return land; } set { land = value; } }
+        public Action<HexCell> LandChanged;
 
         [SerializeField]
         [ReadOnly]
-        protected byte elevation = 0;
-        public byte Elevation { get { return elevation; } set { elevation = value; } }
-
-        [SerializeField]
-        [ReadOnly]
-        protected byte moisture = 0;
-        public byte Moisture { get { return moisture; } set { moisture = value; } }
+        Improvement improvement;
+        public Improvement HexImprovement { get { return improvement;} set { improvement = value; } }
+        public Action<HexCell> ImprovementChanged;
 
         public HexCell(HexCoordinates coor, Vector3 pos)
         {
             Coord = coor;
             Position = pos;
+
+            HexLand = new Land();
+            HexImprovement = new Improvement();
         }
 
-        public HexCell(HexCoordinates coor, Vector3 pos, byte elevation, byte moisture)
-        {
-            Coord = coor;
-            Position = pos;
-            Elevation = elevation;
-            Moisture = moisture;
-        }
 
-        public HexCell(HexCoordinates coor, Vector3 pos, TerrainType type)
-        {
-            Coord = coor;
-            Position = pos;
-            HexTerrainType = type;
-        }
 
     }
 

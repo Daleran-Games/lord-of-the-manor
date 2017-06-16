@@ -12,8 +12,13 @@ namespace DaleranGames.TBSFramework
 
         public Action<BaseTurn> TurnChanged;
 
+        [SerializeField]
         protected int turn = 0;
-        public int Turn { get { return turn; } }
+        public int Turn { get { return turn; } protected set { turn = value; } }
+
+        [SerializeField]
+        protected int year = 687;
+        public int Year { get { return year; } protected set { year = value; } }
 
         [SerializeField]
         BaseTurn currentTurn;
@@ -37,10 +42,10 @@ namespace DaleranGames.TBSFramework
 
         private void Awake()
         {
-            spring = gameObject.GetRequiredComponent<SpringTurn>();
-            summer = gameObject.GetRequiredComponent<SummerTurn>();
-            fall = gameObject.GetRequiredComponent<FallTurn>();
-            winter = gameObject.GetRequiredComponent<WinterTurn>();
+            spring = gameObject.GetComponentInChildren<SpringTurn>();
+            summer = gameObject.GetComponentInChildren<SummerTurn>();
+            fall = gameObject.GetComponentInChildren<FallTurn>();
+            winter = gameObject.GetComponentInChildren<WinterTurn>();
         }
 
         private void OnEnable()
@@ -55,7 +60,7 @@ namespace DaleranGames.TBSFramework
 
         private void Start()
         {
-            currentTurn.enabled = true;
+            ChangeTurn(Spring);
         }
 
         protected override void OnDestroy()
@@ -68,6 +73,10 @@ namespace DaleranGames.TBSFramework
             currentTurn.enabled = false;
             currentTurn = newState;
             currentTurn.enabled = true;
+            Turn++;
+
+            if (newState is SpringTurn)
+                Year++;
 
             if (TurnChanged != null)
                 TurnChanged(newState);
@@ -78,6 +87,20 @@ namespace DaleranGames.TBSFramework
         public void EndTurn()
         {
             CurrentTurn.NextTurn();
+        }
+
+        public static string SeasonString(BaseTurn turn)
+        {
+            if (turn is SpringTurn)
+                return "Spring";
+            else if (turn is SummerTurn)
+                return "Summer";
+            else if (turn is FallTurn)
+                return "Fall";
+            else if (turn is WinterTurn)
+                return "Winter";
+            else
+                return "Error";
         }
 
     }

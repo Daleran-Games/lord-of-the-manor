@@ -1,26 +1,37 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 namespace DaleranGames.Tools
 {
     [RequireComponent(typeof(Camera))]
     public class PixelPerfectMoveZoomCamera : MonoBehaviour
     {
         [SerializeField]
-        int pixelsPerUnit = 32;
+        protected int pixelsPerUnit = 32;
         [SerializeField]
         [Range(1,8)]
-        int maxScale = 2;
+        protected int maxScale = 2;
 
         [SerializeField]
-        float moveSpeed = 15f;
-
-        Camera cam;
+        protected float panSpeed = 15f;
         [SerializeField]
-        float[] orthoSizes;
-        int sizeIndex = 0;
+        protected float panBorderThickness = 20f;
 
-        void Start()
+        [SerializeField]
+        protected Vector2 bottomLeftExtent = Vector2.zero;
+
+        [SerializeField]
+        protected Vector2 topRightExtent = new Vector2(10f, 10f);
+
+        protected Camera cam;
+        [SerializeField]
+        protected float[] orthoSizes;
+        [SerializeField]
+        protected int sizeIndex = 0;
+        public virtual int SizeIndex { get { return sizeIndex; } }
+
+        protected virtual void Start()
         {
             cam = gameObject.GetRequiredComponent<Camera>();
             orthoSizes = BuildSizeArray();
@@ -28,14 +39,25 @@ namespace DaleranGames.Tools
 
         }
 
-        void LateUpdate()
+        protected virtual void LateUpdate()
         {
-            if (Input.GetAxis("Horizontal") != 0 || Input.GetAxis("Vertical") != 0)
-            {
-                Vector2 moveDir = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-                transform.position += (Vector3)moveDir * moveSpeed * Time.deltaTime;
-            }
+            Vector2 moveDir = new Vector2();
 
+            if (Input.GetAxis("Horizontal") > 0 || Input.mousePosition.x > Screen.width - panBorderThickness)
+                moveDir.x = panSpeed;
+            if (Input.GetAxis("Horizontal") < 0 || Input.mousePosition.x < panBorderThickness)
+                moveDir.x = -panSpeed;
+            if (Input.GetAxis("Vertical") > 0 || Input.mousePosition.y > Screen.height - panBorderThickness)
+                moveDir.y = panSpeed;
+            if (Input.GetAxis("Vertical") < 0 || Input.mousePosition.y < panBorderThickness)
+                moveDir.y = -panSpeed;
+
+
+            Vector3 newPosition = transform.position + (Vector3)moveDir.normalized * panSpeed * Time.deltaTime;
+            newPosition.x = Mathf.Clamp(newPosition.x, bottomLeftExtent.x, topRightExtent.x);
+            newPosition.y = Mathf.Clamp(newPosition.y, bottomLeftExtent.y, topRightExtent.y);
+
+            transform.position = newPosition;
 
             if (Input.GetAxis("Mouse ScrollWheel") > 0)
                 ZoomCameraIn();
@@ -43,7 +65,7 @@ namespace DaleranGames.Tools
                 ZoomCameraOut();
         }
 
-        void ZoomCameraIn()
+        protected virtual void ZoomCameraIn()
         {
             if (sizeIndex < maxScale-1)
             {
@@ -52,7 +74,7 @@ namespace DaleranGames.Tools
             }
         }
 
-        void ZoomCameraOut()
+        protected virtual void ZoomCameraOut()
         {
             if (sizeIndex > 0)
             {
@@ -61,12 +83,12 @@ namespace DaleranGames.Tools
             }
         }
 
-        float CalculateOrthographicSize (int scale)
+        protected virtual float CalculateOrthographicSize (int scale)
         {
             return (((float)Screen.height)/((float)scale * (float)pixelsPerUnit)) * 0.5f;
         }
 
-        float[] BuildSizeArray ()
+        protected virtual float[] BuildSizeArray ()
         {
             float[] sizes = new float[maxScale];
 
