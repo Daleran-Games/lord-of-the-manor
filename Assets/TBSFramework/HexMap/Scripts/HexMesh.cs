@@ -13,6 +13,9 @@ namespace DaleranGames.TBSFramework
         List<Vector2> uvs;
         MeshRenderer meshRenderer;
 
+        HexLayers layer;
+        HexLayers Layer { get { return layer; } set { layer = value; } }
+
         void Awake()
         {
             GetComponent<MeshFilter>().mesh = hexMesh = new Mesh();
@@ -52,6 +55,11 @@ namespace DaleranGames.TBSFramework
             vertices.AddRange(HexMetrics.CalculateVerticies(cell.Position));
             triangles.AddRange(HexMetrics.CalculateTriangles(vertexIndex));
             uvs.AddRange(atlas.CalculateUVs(cell.HexLand.HexLandType.AtlasCoord));
+        }
+
+        public void UpdateUV (HexCell cell, TileAtlas atlas)
+        {
+
         }
 
         public void SwitchMateiral (Material mat)

@@ -13,7 +13,7 @@ namespace DaleranGames.UI
 
         [Header("Settings")]
         [SerializeField]
-        Text cellLabel;
+        GameObject cellLabel;
 
         [SerializeField]
         RectTransform overlay;
@@ -67,9 +67,11 @@ namespace DaleranGames.UI
 
         Text CreateLabel(Vector3 position)
         {
-            Text label = Instantiate<Text>(cellLabel);
-            label.rectTransform.SetParent(overlay, false);
-            label.rectTransform.anchoredPosition = new Vector2(position.x, position.y);
+            GameObject go = Instantiate<GameObject>(cellLabel);
+            Text label = go.GetComponentInChildren<Text>();
+            RectTransform rect = go.GetRequiredComponent<RectTransform>();
+            rect.SetParent(overlay, false);
+            rect.anchoredPosition = new Vector2(position.x, position.y);
             label.text = "";
             return label;
         }
@@ -87,6 +89,7 @@ namespace DaleranGames.UI
                         labels[x, y] = CreateLabel(grid[x, y].Position);
                     }
                 }
+                DisplayNone();
                 labelsExsist = true;
             } else
             {
@@ -140,7 +143,7 @@ namespace DaleranGames.UI
                     for (int x = 0; x < grid.Width; x++)
                     {
                         labels[x, y].text = grid[x, y].HexLand.Elevation.ToString();
-                        labels[x, y].fontSize = 9;
+                        labels[x, y].fontSize = 6;
                     }
                 }
 
@@ -164,7 +167,7 @@ namespace DaleranGames.UI
                     for (int x = 0; x < grid.Width; x++)
                     {
                         labels[x, y].text = grid[x, y].HexLand.Moisture.ToString();
-                        labels[x, y].fontSize = 9;
+                        labels[x, y].fontSize = 6;
                     }
                 }
 
@@ -189,7 +192,7 @@ namespace DaleranGames.UI
                     for (int x = 0; x < grid.Width; x++)
                     {
                         labels[x, y].text = grid[x, y].Coord.ToStringOnSeparateLines();
-                        labels[x, y].fontSize = 5;
+                        labels[x, y].fontSize = 4;
                     }
                 }
 
