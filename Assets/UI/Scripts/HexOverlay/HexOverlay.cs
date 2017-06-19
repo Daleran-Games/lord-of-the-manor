@@ -13,41 +13,37 @@ namespace DaleranGames.UI
 
         [Header("Settings")]
         [SerializeField]
-        GameObject cellLabel;
+        Text cellLabel;
 
         [SerializeField]
         RectTransform overlay;
 
-        [SerializeField]
-        [Range (1,16)]
-        int displayRange = 5;
-
         [Header("Overlays")]
         [SerializeField]
-        bool overlayEnabled = false;
+        Overlays current = Overlays.None;
 
         [SerializeField]
-        Sprite elevationIcon;
-        [SerializeField]
-        bool elevationOn = false;
+        Toggle elevationToggle;
 
         [SerializeField]
-        Sprite moistureIcon;
-        [SerializeField]
-        bool moistureOn = false;
-  
-        [SerializeField]
-        Sprite coordinateIcon;
-        [SerializeField]
-        bool coordinateOn = false;
+        Toggle moistureToggle;
 
+        [SerializeField]
+        Toggle coordinateToggle;
 
+        public enum Overlays
+        {
+            None,
+            Elevation,
+            Mositure,
+            Coordinate
+        }
 
         Canvas canvas;
         HexGrid grid;
         HexStrategyCamera camera;
 
-        List<OverlayLabel> labels;
+        Text[,] labels;
 
         bool labelsExsist = false;
         public bool OverlayActive { get { return overlay.gameObject.activeInHierarchy; } }
@@ -58,43 +54,44 @@ namespace DaleranGames.UI
             camera = FindObjectOfType<HexStrategyCamera>();
             canvas = gameObject.GetRequiredComponent<Canvas>();
             grid.MapGenerationComplete += CreateLabels;
-            camera.CameraCellChanged += OnCameraCellChange;
-            labels = new List<OverlayLabel>();
+
+            elevationToggle.onValueChanged.AddListener(DisplayElevation);
+            coordinateToggle.onValueChanged.AddListener(DisplayCoordinates);
+            moistureToggle.onValueChanged.AddListener(DisplayMoisture);
         }
 
         private void OnDestroy()
         {
             grid.MapGenerationComplete -= CreateLabels;
-            camera.CameraCellChanged -= OnCameraCellChange;
         }
 
-        OverlayLabel CreateLabel (Vector3 position)
+        Text CreateLabel(Vector3 position)
         {
-            GameObject label = Instantiate<GameObject>(cellLabel);
-            OverlayLabel overlayLabel = label.GetComponent<OverlayLabel>();
-            overlayLabel.Rect.SetParent(overlay, false);
-            overlayLabel.MoveToPosition(position);
-            return overlayLabel;
+            Text label = Instantiate<Text>(cellLabel);
+            label.rectTransform.SetParent(overlay, false);
+            label.rectTransform.anchoredPosition = new Vector2(position.x, position.y);
+            label.text = "";
+            return label;
         }
-
 
 
         public void CreateLabels ()
         {
-            DeleteLabels();
-
-            for(int q = -displayRange; q <= displayRange; q++)
+            if (!labelsExsist)
             {
-                for (int r = -displayRange; r <= displayRange; r++)
+                labels = new Text[grid.Width, grid.Height];
+                for (int y = 0; y < grid.Height; y++)
                 {
-                    for (int s = -displayRange; s <= displayRange; s++)
-                    {
-                        labels.Add(CreateLabel(HexCoordinates.GetUnityPosition(q, r, s)));
+                    for (int x = 0; x < grid.Width; x++)
+                    {   
+                        labels[x, y] = CreateLabel(grid[x, y].Position);
                     }
                 }
+                labelsExsist = true;
+            } else
+            {
+                UpdateLabels(current);
             }
-
-            labelsExsist = true;
         }
 
         public void DeleteLabels ()
@@ -110,29 +107,103 @@ namespace DaleranGames.UI
                 overlay.gameObject.SetActive(true);
         }
 
-        void OnCameraCellChange(HexCell hex)
+        public void UpdateLabels (Overlays newOverlay)
         {
-            overlay.anchoredPosition = hex.Position;
-            foreach (OverlayLabel ol in labels)
+            switch (newOverlay)
             {
+                case Overlays.Coordinate:
+                    DisplayCoordinates(true);
+                    break;
+                case Overlays.Elevation:
+                    DisplayElevation(true);
+                    break;
+                case Overlays.Mositure:
+                    DisplayMoisture(true);
+                    break;
+                default:
+                    DisplayNone();
+                    break;
+            }
+        }
+
+        void DisplayElevation (bool on)
+        {
+            if (on == true)
+            {
+                current = Overlays.Elevation;
+
+                if (overlay.gameObject.activeInHierarchy == false)
+                    overlay.gameObject.SetActive(true);
+
+                for (int y = 0; y < grid.Height; y++)
+                {
+                    for (int x = 0; x < grid.Width; x++)
+                    {
+                        labels[x, y].text = grid[x, y].HexLand.Elevation.ToString();
+                        labels[x, y].fontSize = 9;
+                    }
+                }
+
+            } else if (on == false)
+            {
+                DisplayNone();
+            }
+        }
+
+        void DisplayMoisture (bool on)
+        {
+            if (on == true)
+            {
+                current = Overlays.Mositure;
+
+                if (overlay.gameObject.activeInHierarchy == false)
+                    overlay.gameObject.SetActive(true);
+
+                for (int y = 0; y < grid.Height; y++)
+                {
+                    for (int x = 0; x < grid.Width; x++)
+                    {
+                        labels[x, y].text = grid[x, y].HexLand.Moisture.ToString();
+                        labels[x, y].fontSize = 9;
+                    }
+                }
 
             }
-
+            else if (on == false)
+            {
+                DisplayNone();
+            }
         }
 
-        void DisplayElevation ()
+        void DisplayCoordinates(bool on)
         {
+            if (on == true)
+            {
+                current = Overlays.Coordinate;
 
+                if (overlay.gameObject.activeInHierarchy == false)
+                    overlay.gameObject.SetActive(true);
+
+                for (int y = 0; y < grid.Height; y++)
+                {
+                    for (int x = 0; x < grid.Width; x++)
+                    {
+                        labels[x, y].text = grid[x, y].Coord.ToStringOnSeparateLines();
+                        labels[x, y].fontSize = 5;
+                    }
+                }
+
+            }
+            else if (on == false)
+            {
+                DisplayNone();
+            }
         }
 
-        void DisplayMoisture ()
+        void DisplayNone()
         {
-
-        }
-
-        void DisplayCoordinates()
-        {
-
+            current = Overlays.None;
+            overlay.gameObject.SetActive(false);
         }
 
 

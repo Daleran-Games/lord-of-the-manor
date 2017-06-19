@@ -10,7 +10,7 @@ namespace DaleranGames.Tools
         [SerializeField]
         protected int pixelsPerUnit = 32;
         [SerializeField]
-        [Range(1,8)]
+        [Range(1, 8)]
         protected int maxScale = 2;
 
         [SerializeField]
@@ -29,7 +29,18 @@ namespace DaleranGames.Tools
         protected float[] orthoSizes;
         [SerializeField]
         protected int sizeIndex = 0;
-        public virtual int SizeIndex { get { return sizeIndex; } }
+        public virtual int SizeIndex
+        {
+            get { return sizeIndex; }
+            protected set
+            {
+                sizeIndex = value;
+
+                if (CameraZoomChange != null)
+                    CameraZoomChange(sizeIndex);
+            }
+        }
+        public event System.Action<int> CameraZoomChange;
 
         protected virtual void Start()
         {
@@ -67,18 +78,18 @@ namespace DaleranGames.Tools
 
         protected virtual void ZoomCameraIn()
         {
-            if (sizeIndex < maxScale-1)
+            if (SizeIndex < maxScale-1)
             {
-                sizeIndex++;
+                SizeIndex++;
                 cam.orthographicSize = orthoSizes[sizeIndex];
             }
         }
 
         protected virtual void ZoomCameraOut()
         {
-            if (sizeIndex > 0)
+            if (SizeIndex > 0)
             {
-                sizeIndex--;
+                SizeIndex--;
                 cam.orthographicSize = orthoSizes[sizeIndex];
             }
         }

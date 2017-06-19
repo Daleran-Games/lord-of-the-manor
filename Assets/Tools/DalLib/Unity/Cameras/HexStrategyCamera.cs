@@ -21,7 +21,8 @@ namespace DaleranGames.Tools
             }
         }
 
-        public System.Action<HexCell> CameraCellChanged;
+        public event System.Action<HexCell> CameraCellChanged;
+
 
         protected virtual void Awake()
         {
@@ -44,7 +45,9 @@ namespace DaleranGames.Tools
                 if (cellCoord.x < grid.Width && cellCoord.y < grid.Height && grid[cellCoord.x, cellCoord.y] != CurrentCell)
                 {
                     CurrentCell = grid[cellCoord.x, cellCoord.y];
-                    CameraCellChanged(CurrentCell);
+
+                    if (CameraCellChanged != null)
+                        CameraCellChanged(CurrentCell);
                 }
 
             }

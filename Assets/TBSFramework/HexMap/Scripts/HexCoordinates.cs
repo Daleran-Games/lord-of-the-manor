@@ -81,7 +81,7 @@ namespace DaleranGames.TBSFramework
        
         public override string ToString()
         {
-            return "(" + Q.ToString() + ", " + R.ToString() + ", " + S.ToString() + ")";
+            return "(" + Q.ToString() + "," + R.ToString() + "," + S.ToString() + ")";
         }
 
         public string ToStringOnSeparateLines()
