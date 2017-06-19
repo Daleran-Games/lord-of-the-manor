@@ -1,13 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DaleranGames.Tools;
 
 namespace DaleranGames.UI
 {
-    public class UIManager : MonoBehaviour
+    public class UIManager : Singleton<UIManager>
     {
         protected UIManager() { }
-        public static UIManager Instance = null;
 
         [SerializeField]
         UIStyle currentUIStlye;
@@ -19,12 +19,7 @@ namespace DaleranGames.UI
 
         void Awake()
         {
-            if (Instance == null)
-                Instance = this;
-            else if (Instance != this)
-                Destroy(gameObject);
 
-            DontDestroyOnLoad(gameObject);
         }
 
     }

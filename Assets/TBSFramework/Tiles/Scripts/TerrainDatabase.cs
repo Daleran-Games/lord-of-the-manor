@@ -10,12 +10,12 @@ namespace DaleranGames.TBSFramework
     {
 
         [SerializeField]
-        List<TerrainType> tiles = new List<TerrainType>();
-        public List<TerrainType> Tiles { get { return tiles; } }
+        List<LandType> tiles = new List<LandType>();
+        public List<LandType> Tiles { get { return tiles; } }
 
-        public TerrainType GetTile(string name)
+        public LandType GetTile(string name)
         {
-            foreach (TerrainType t in tiles)
+            foreach (LandType t in tiles)
             {
                 if (t.Name == name)
                     return t;

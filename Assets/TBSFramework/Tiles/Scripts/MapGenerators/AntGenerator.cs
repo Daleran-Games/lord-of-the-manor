@@ -37,8 +37,8 @@ namespace DaleranGames.TBSFramework
                 for (int x = 0; x < Width; x++)
                 {
                     cells[x, y] = CreateCell(x, y);
-                    cells[x, y].Elevation = InitalElevation;
-                    cells[x, y].Moisture = InitialMoisture;
+                    cells[x, y].HexLand.Elevation = InitalElevation;
+                    cells[x, y].HexLand.Moisture = InitialMoisture;
                 }
             }
 
@@ -165,10 +165,10 @@ namespace DaleranGames.TBSFramework
             {
                 if (food == AntFood.Elevation)
                 {
-                    cells[position.x, position.y].Elevation = (byte) Mathf.Clamp(cells[position.x, position.y].Elevation + power, 0f,255f);
+                    cells[position.x, position.y].HexLand.Elevation = (byte) Mathf.Clamp(cells[position.x, position.y].HexLand.Elevation + power, 0f,255f);
                 } else
                 {
-                    cells[position.x, position.y].Moisture = (byte)Mathf.Clamp(cells[position.x, position.y].Moisture + power, 0f, 255f);            
+                    cells[position.x, position.y].HexLand.Moisture = (byte)Mathf.Clamp(cells[position.x, position.y].HexLand.Moisture + power, 0f, 255f);            
                 }
 
                 lifespan--;

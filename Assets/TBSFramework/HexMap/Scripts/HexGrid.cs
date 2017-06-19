@@ -24,7 +24,6 @@ namespace DaleranGames.TBSFramework
 
         HexMesh hexMesh;
         HexCell[,] cells;
-        HexOverlay overlay;
         TerrainDatabase tileDB;
 
 
@@ -32,7 +31,6 @@ namespace DaleranGames.TBSFramework
         private void Awake()
         {
             hexMesh = GetComponentInChildren<HexMesh>();
-            overlay = GetComponentInChildren<HexOverlay>();
             tileDB = GameDatabase.Instance.TileDB;
 
             TurnManager.Instance.TurnChanged += OnTurnChange;
@@ -76,7 +74,6 @@ namespace DaleranGames.TBSFramework
                 MeshBuildComplete();
 
             isMapBuilt = true;
-
         }
 
         public void SwitchMaterial (Material mat)
