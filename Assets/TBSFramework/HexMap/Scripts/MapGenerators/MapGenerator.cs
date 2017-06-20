@@ -26,32 +26,24 @@ namespace DaleranGames.TBSFramework
         [SerializeField]
         protected TerrainCuttoff[] terrainCutoffs;
 
-        public abstract HexCell[,] GenerateMap();
+        public abstract HexTile[,] GenerateMap();
 
-        public virtual void SetTileType (HexCell hexCell)
+        public virtual void SetTileType (HexTile hexTile)
         {
-            LandType type = GameDatabase.Instance.TileDB.GetTile(terrainCutoffs[0].TileName);
+            LandType type = GameDatabase.Instance.GetDatabaseObject<LandType>(terrainCutoffs[0].TileName);
             for (int i=0; i<terrainCutoffs.Length;i++)
             {
-                if (hexCell.HexLand.Elevation >= terrainCutoffs[i].ElevationCutoff && hexCell.HexLand.Moisture >= terrainCutoffs[i].MoistureCutoff)
-                     type = GameDatabase.Instance.TileDB.GetTile(terrainCutoffs[i].TileName);
+                if (hexTile.Elevation >= terrainCutoffs[i].ElevationCutoff && hexTile.Moisture >= terrainCutoffs[i].MoistureCutoff)
+                     type = GameDatabase.Instance.GetDatabaseObject<LandType>(terrainCutoffs[i].TileName);
             }
-            hexCell.HexLand.HexLandType = type;
+            hexTile.SetToLandType(type);
             //Debug.Log("Setting cell " + hexCell.Position + " to " + type.Name);
         }
 
-        protected virtual HexCell CreateCell(int x, int y)
+        protected virtual HexTile CreateTile(int x, int y)
         {
             Vector3 position = HexCoordinates.GetUnityPosition(x, y);
-            return new HexCell(HexCoordinates.CartesianToHex(x, y), position);
-        }
-
-        protected virtual HexCell CreateCell(int x, int y, LandType type)
-        {
-            HexCell newCell = CreateCell(x, y);
-            newCell.HexLand.HexLandType = type;
-
-            return newCell;
+            return new HexTile(HexCoordinates.CartesianToHex(x, y), position);
         }
 
         [System.Serializable]

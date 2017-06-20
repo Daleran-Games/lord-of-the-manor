@@ -14,7 +14,10 @@ namespace DaleranGames.TBSFramework
         MeshRenderer meshRenderer;
 
         HexLayers layer;
-        HexLayers Layer { get { return layer; } set { layer = value; } }
+        public HexLayers Layer { get { return layer; } protected set { layer = value; } }
+
+        bool meshBuilt = false;
+        public bool MeshBuilt { get { return meshBuilt; }  protected set { meshBuilt = value; } }
 
         void Awake()
         {
@@ -27,19 +30,20 @@ namespace DaleranGames.TBSFramework
 
         }
 
-        public void BuildMesh(HexCell[,] cells, TileAtlas atlas)
+        public void BuildMesh(HexTile[,] tiles, TileAtlas atlas, HexLayers layer)
         {
             hexMesh.Clear();
             vertices.Clear();
             triangles.Clear();
             uvs.Clear();
             meshRenderer.material = atlas.SpringAtlas;
+            Layer = layer;
 
-            for (int y= cells.GetLength(1)-1; y >= 0; y--)
+            for (int y= tiles.GetLength(1)-1; y >= 0; y--)
             {
-                for (int x= cells.GetLength(0)-1; x >= 0; x--)
+                for (int x= tiles.GetLength(0)-1; x >= 0; x--)
                 {
-                    BuildCell(cells[x, y], atlas);
+                    BuildTile(tiles[x, y], atlas, layer);
                 }
             }
 
@@ -47,17 +51,19 @@ namespace DaleranGames.TBSFramework
             hexMesh.triangles = triangles.ToArray();
             hexMesh.uv = uvs.ToArray();
             hexMesh.RecalculateNormals();
+            MeshBuilt = true;
         }
 
-        void BuildCell (HexCell cell, TileAtlas atlas)
+        void BuildTile (HexTile tile, TileAtlas atlas, HexLayers layer)
         {
             int vertexIndex = vertices.Count;
-            vertices.AddRange(HexMetrics.CalculateVerticies(cell.Position));
+            Vector3 tilePosition = new Vector3(tile.Position.x, tile.Position.y, HexMetrics.standardZ);
+            vertices.AddRange(HexMetrics.CalculateVerticies(tile.Position));
             triangles.AddRange(HexMetrics.CalculateTriangles(vertexIndex));
-            uvs.AddRange(atlas.CalculateUVs(cell.HexLand.HexLandType.AtlasCoord));
+            uvs.AddRange(atlas.CalculateUVs(tile.GetAtlasCoordAtLayer(layer)));
         }
 
-        public void UpdateUV (HexCell cell, TileAtlas atlas)
+        public void UpdateUV (HexTile tile, TileAtlas atlas)
         {
 
         }

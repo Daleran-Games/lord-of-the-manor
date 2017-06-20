@@ -51,4 +51,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 290296fa57e6c604f8aaa30990503d51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileDB: {fileID: 11400000, guid: 3b70242941979084397a63dda3c5bab4, type: 2}
+  inputObjects:
+  - {fileID: 11400000, guid: ae3c616aacc49f5478cea3046a491c9b, type: 2}
+  - {fileID: 11400000, guid: fc6433a2dfda8c749a6bfbd3650b6911, type: 2}
+  - {fileID: 11400000, guid: 73985d6f1a7ce334abbc5c4db9d955a0, type: 2}
+  - {fileID: 11400000, guid: 2a7c84fe5b3daac4a983fb911afcfb10, type: 2}
+  - {fileID: 11400000, guid: 33aa9bb21c51aba40a084f738401d954, type: 2}
+  - {fileID: 11400000, guid: e2964277b7555fa46b141e9b469772c2, type: 2}
+  - {fileID: 11400000, guid: 94c05479fed174845bdf26dff6e5b495, type: 2}
+  - {fileID: 11400000, guid: 123de6cc39ca6944abbaf9e08459bb25, type: 2}
+  - {fileID: 11400000, guid: 1b95f6766f600454f812476e9d7a086d, type: 2}
+  - {fileID: 11400000, guid: e6c32bc2553bece40bf64d539167207c, type: 2}

@@ -13,7 +13,7 @@ namespace DaleranGames.UI
 
         [Header("Settings")]
         [SerializeField]
-        GameObject cellLabel;
+        GameObject tileLabel;
 
         [SerializeField]
         RectTransform overlay;
@@ -41,7 +41,7 @@ namespace DaleranGames.UI
 
         Canvas canvas;
         HexGrid grid;
-        HexStrategyCamera camera;
+        HexStrategyCamera hexCam;
 
         Text[,] labels;
 
@@ -51,7 +51,7 @@ namespace DaleranGames.UI
         private void Awake()
         {
             grid = FindObjectOfType<HexGrid>();
-            camera = FindObjectOfType<HexStrategyCamera>();
+            hexCam = FindObjectOfType<HexStrategyCamera>();
             canvas = gameObject.GetRequiredComponent<Canvas>();
             grid.MapGenerationComplete += CreateLabels;
 
@@ -67,7 +67,7 @@ namespace DaleranGames.UI
 
         Text CreateLabel(Vector3 position)
         {
-            GameObject go = Instantiate<GameObject>(cellLabel);
+            GameObject go = Instantiate<GameObject>(tileLabel);
             Text label = go.GetComponentInChildren<Text>();
             RectTransform rect = go.GetRequiredComponent<RectTransform>();
             rect.SetParent(overlay, false);
@@ -142,7 +142,7 @@ namespace DaleranGames.UI
                 {
                     for (int x = 0; x < grid.Width; x++)
                     {
-                        labels[x, y].text = grid[x, y].HexLand.Elevation.ToString();
+                        labels[x, y].text = grid[x, y].Elevation.ToString();
                         labels[x, y].fontSize = 6;
                     }
                 }
@@ -166,7 +166,7 @@ namespace DaleranGames.UI
                 {
                     for (int x = 0; x < grid.Width; x++)
                     {
-                        labels[x, y].text = grid[x, y].HexLand.Moisture.ToString();
+                        labels[x, y].text = grid[x, y].Moisture.ToString();
                         labels[x, y].fontSize = 6;
                     }
                 }

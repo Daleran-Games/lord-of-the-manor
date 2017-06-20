@@ -22,38 +22,35 @@ namespace DaleranGames.TBSFramework
 
         [SerializeField]
         protected AntSpawner[] antSpawners;
-
-        protected TerrainDatabase tileDB;
         protected bool antsAlive = true;
 
-        public override HexCell[,] GenerateMap()
+        public override HexTile[,] GenerateMap()
         {
-            tileDB = GameDatabase.Instance.TileDB;
-            HexCell[,] cells = new HexCell[Width, Height];
+            HexTile[,] tiles = new HexTile[Width, Height];
             List<Ant> activeAnts = new List<Ant>();
 
             for (int y = 0; y < Height; y++)
             {
                 for (int x = 0; x < Width; x++)
                 {
-                    cells[x, y] = CreateCell(x, y);
-                    cells[x, y].HexLand.Elevation = InitalElevation;
-                    cells[x, y].HexLand.Moisture = InitialMoisture;
+                    tiles[x, y] = CreateTile(x, y);
+                    tiles[x, y].Elevation = InitalElevation;
+                    tiles[x, y].Moisture = InitialMoisture;
                 }
             }
 
             SpawnAnts(activeAnts);
-            RunSimulation(activeAnts, cells);
+            RunSimulation(activeAnts, tiles);
 
             for (int y = 0; y < Height; y++)
             {
                 for (int x = 0; x < Width; x++)
                 {
-                    SetTileType(cells[x, y]);
+                    SetTileType(tiles[x, y]);
                 }
             }
 
-            return cells;
+            return tiles;
         }
 
         void SpawnAnts (List<Ant> ants)
@@ -79,23 +76,23 @@ namespace DaleranGames.TBSFramework
             //Debug.Log( antSpawners.Length + " spawners created " + ants.Count + " ants.");
         }
 
-        void RunSimulation (List<Ant> ants, HexCell[,] cells)
+        void RunSimulation (List<Ant> ants, HexTile[,] tiles)
         {
             antsAlive = true;
 
             while (antsAlive)
             {
-                MoveAnts(ants, cells);
+                MoveAnts(ants, tiles);
                 antsAlive = CheckAlive(ants);
             }
         }
 
-        void MoveAnts (List<Ant> ants, HexCell[,] cells)
+        void MoveAnts (List<Ant> ants, HexTile[,] tiles)
         {
             foreach (Ant a in ants)
             {
                 if (a.lifespan > 0)
-                    a.MoveAnt(cells);
+                    a.MoveAnt(tiles);
             }
         }
 
@@ -161,59 +158,59 @@ namespace DaleranGames.TBSFramework
                 dieOnBorder = die;
             }
 
-            public void ModifyCell(HexCell[,] cells)
+            public void ModifyTile(HexTile[,] tile)
             {
                 if (food == AntFood.Elevation)
                 {
-                    cells[position.x, position.y].HexLand.Elevation = (byte) Mathf.Clamp(cells[position.x, position.y].HexLand.Elevation + power, 0f,255f);
+                    tile[position.x, position.y].Elevation = (byte) Mathf.Clamp(tile[position.x, position.y].Elevation + power, 0f,255f);
                 } else
                 {
-                    cells[position.x, position.y].HexLand.Moisture = (byte)Mathf.Clamp(cells[position.x, position.y].HexLand.Moisture + power, 0f, 255f);            
+                    tile[position.x, position.y].Moisture = (byte)Mathf.Clamp(tile[position.x, position.y].Moisture + power, 0f, 255f);            
                 }
 
                 lifespan--;
             }
 
-            public void MoveAnt(HexCell[,] cells)
+            public void MoveAnt(HexTile[,] tile)
             {
-                moveDirection = pickMoveDirection(cells);
+                moveDirection = pickMoveDirection(tile);
                 //Debug.Log("Ant at " + position + " moving " + moveDirection);
                 position += moveDirection;
-                ModifyCell(cells);
+                ModifyTile(tile);
 
-                if (dieOnBorder == true && checkIfAtBorder(cells))
+                if (dieOnBorder == true && checkIfAtBorder(tile))
                 {
                     lifespan = 0;
                 }
             }
 
-            bool checkIfAtBorder (HexCell[,] cells)
+            bool checkIfAtBorder (HexTile[,] tiles)
             {
                 bool border = false;
 
                 if (position.x == 0)
                     border = true;
-                if (position.x == cells.GetLength(0) - 1)
+                if (position.x == tiles.GetLength(0) - 1)
                     border = true;
                 if (position.y == 0)
                     border = true;
-                if (position.y == cells.GetLength(1) - 1)
+                if (position.y == tiles.GetLength(1) - 1)
                     border = true;
 
                 return border;
             }
 
-            Vector2Int pickMoveDirection (HexCell[,] cells)
+            Vector2Int pickMoveDirection (HexTile[,] tile)
             {
                 List<Vector2Int> directions = new List<Vector2Int>();
 
                 if (position.x > 0)
                     directions.Add(Vector2Int.left);
-                if (position.x < cells.GetLength(0)-1)
+                if (position.x < tile.GetLength(0)-1)
                     directions.Add(Vector2Int.right);
                 if (position.y > 0)
                     directions.Add(Vector2Int.down);
-                if (position.y < cells.GetLength(1)-1)
+                if (position.y < tile.GetLength(1)-1)
                     directions.Add(Vector2Int.up);
 
                 int randomIndex = directions.RandomIndex();

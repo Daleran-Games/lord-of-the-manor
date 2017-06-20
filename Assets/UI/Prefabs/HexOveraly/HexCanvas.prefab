@@ -57,7 +57,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 32
+  m_ReferencePixelsPerUnit: 16
   m_ScaleFactor: 1
   m_ReferenceResolution: {x: 800, y: 600}
   m_ScreenMatchMode: 0
@@ -77,8 +77,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0538d2d9bd0b8f040a9570a690fc4c77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cellLabel: {fileID: 114246853949610786, guid: 2108fa7221af3ef4992d5f47359c4152,
-    type: 2}
+  tileLabel: {fileID: 1871666485087216, guid: 7e7df93b6062ace47938e5a7d1c221c3, type: 2}
   overlay: {fileID: 224449453546389780}
   current: 0
   elevationToggle: {fileID: 0}

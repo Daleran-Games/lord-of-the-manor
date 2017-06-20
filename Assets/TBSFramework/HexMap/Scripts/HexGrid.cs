@@ -13,25 +13,28 @@ namespace DaleranGames.TBSFramework
         public MapGenerator Generator { get { return generator; } }
 
         [SerializeField]
-        bool isMapBuilt = false;
-        public bool IsMapBuilt {get { return isMapBuilt; } }
+        bool mapBuilt = false;
+        public bool MapBuilt {get { return mapBuilt; } }
 
-        public virtual int Width { get { return cells.GetLength(0) ; } }
-        public virtual int Height { get { return cells.GetLength(0) ; } }
+        public virtual int Width { get { return tiles.GetLength(0) ; } }
+        public virtual int Height { get { return tiles.GetLength(0) ; } }
 
         public Action MapGenerationComplete;
         public Action MeshBuildComplete;
 
-        HexMesh hexMesh;
-        HexCell[,] cells;
-        TerrainDatabase tileDB;
 
+        [SerializeField]
+        GameObject HexMeshPrefab;
 
+        HexTile[,] tiles;
+
+        Dictionary<HexLayers, HexMesh> meshes;
 
         private void Awake()
         {
-            hexMesh = GetComponentInChildren<HexMesh>();
-            tileDB = GameDatabase.Instance.TileDB;
+            meshes = new Dictionary<HexLayers, HexMesh>();
+
+            InstantiateHexMeshes();
 
             TurnManager.Instance.TurnChanged += OnTurnChange;
 
@@ -42,43 +45,61 @@ namespace DaleranGames.TBSFramework
             TurnManager.Instance.TurnChanged -= OnTurnChange;
         }
 
-        public virtual HexCell this[int x, int y]
+        public virtual HexTile this[int x, int y]
         {
-            get { return cells[x, y]; }
+            get { return tiles[x, y]; }
             set
             {
-                cells[x, y] = value;
+                tiles[x, y] = value;
             }
         }
 
-        public virtual HexCell this[int q, int r, int s]
+        public virtual HexTile this[int q, int r, int s]
         {
-            get { return cells[HexCoordinates.ToCartesianX(q, r), r]; }
+            get { return tiles[HexCoordinates.ToCartesianX(q, r), r]; }
             set
             {
-                cells[HexCoordinates.ToCartesianX(q,r), r] = value;
+                tiles[HexCoordinates.ToCartesianX(q,r), r] = value;
             }
         }
 
         [ContextMenu("Generate Map")]
         public void GenerateMap ()
         {
-            cells = Generator.GenerateMap();
+            tiles = Generator.GenerateMap();
 
             if (MapGenerationComplete != null)
                 MapGenerationComplete();
 
-            hexMesh.BuildMesh(cells, Generator.Atlas);
+            foreach (KeyValuePair<HexLayers, HexMesh> kvp in meshes)
+            {
+                kvp.Value.BuildMesh(tiles, Generator.Atlas, kvp.Key);
+            }
 
             if (MeshBuildComplete != null)
                 MeshBuildComplete();
 
-            isMapBuilt = true;
+            mapBuilt = true;
         }
 
         public void SwitchMaterial (Material mat)
         {
-            hexMesh.SwitchMateiral(mat);
+            foreach (KeyValuePair<HexLayers, HexMesh> kvp in meshes)
+            {
+                kvp.Value.SwitchMateiral(mat);
+            }
+        }
+
+        void InstantiateHexMeshes ()
+        {
+            foreach (HexLayers layer in Enum.GetValues(typeof(HexLayers)))
+            {
+                GameObject mesh = Instantiate(HexMeshPrefab, this.transform);
+                mesh.transform.position = new Vector3(transform.position.x,transform.position.y, layer.ToFloat());
+                HexMesh hexMesh = mesh.GetComponent<HexMesh>();
+                mesh.name = layer.ToString() + "Mesh";
+                meshes.Add(layer, hexMesh);
+            }
         }
 
         void OnTurnChange (BaseTurn newTurn)

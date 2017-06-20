@@ -15,19 +15,19 @@ namespace DaleranGames.IO
         bool mapBuilt = false;
 
         [SerializeField]
-        HexCell currentCell;
-        public HexCell CurrentCell
+        HexTile currentTile;
+        public HexTile CurrentTile
         {
-            get { return currentCell; }
+            get { return currentTile; }
             protected set
             {
-                if (HexCellExited != null && CurrentCell != null)
-                    HexCellExited(CurrentCell);
+                if (HexTileExited != null && CurrentTile != null)
+                    HexTileExited(CurrentTile);
 
-                currentCell = value;
+                currentTile = value;
 
-                if (HexCellEntered != null)
-                    HexCellEntered(CurrentCell);
+                if (HexTileEntered != null)
+                    HexTileEntered(CurrentTile);
             }
         }
 
@@ -35,12 +35,12 @@ namespace DaleranGames.IO
 
         Camera mainCamera;
 
-        public Action<HexCell> HexCellLMBClicked;
-        public Action<HexCell> HexCellRMBClicked;
-        public Action<HexCell> HexCellMMBClicked;
+        public Action<HexTile> HexTileLMBClicked;
+        public Action<HexTile> HexTileRMBClicked;
+        public Action<HexTile> HexTileMMBClicked;
 
-        public Action<HexCell> HexCellEntered;
-        public Action<HexCell> HexCellExited;
+        public Action<HexTile> HexTileEntered;
+        public Action<HexTile> HexTileExited;
 
         private void Awake()
         {
@@ -54,20 +54,20 @@ namespace DaleranGames.IO
             if (mapBuilt)
             {
                 mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
-                Vector2Int cellCoord = HexCoordinates.GetCartesianFromUnity(mousePosition);
+                Vector2Int tileCoord = HexCoordinates.GetCartesianFromUnity(mousePosition);
 
                 //Debug.Log(cellCoord);
 
-                if (cellCoord.x >= 0 && cellCoord.x < grid.Width && cellCoord.y >= 0 && cellCoord.y < grid.Height)
+                if (tileCoord.x >= 0 && tileCoord.x < grid.Width && tileCoord.y >= 0 && tileCoord.y < grid.Height)
                 {
-                    if (grid[cellCoord.x, cellCoord.y] != CurrentCell)
+                    if (grid[tileCoord.x, tileCoord.y] != CurrentTile)
                     {
-                        CurrentCell = grid[cellCoord.x, cellCoord.y];
+                        CurrentTile = grid[tileCoord.x, tileCoord.y];
                     }
                         
                 } else
                 {
-                    CurrentCell = null;
+                    CurrentTile = null;
                 }
 
             }
@@ -86,27 +86,27 @@ namespace DaleranGames.IO
 
         void OnLMBClick ()
         {
-            if (HexCellLMBClicked != null && CurrentCell != null)
+            if (HexTileLMBClicked != null && CurrentTile != null)
             {
-                HexCellLMBClicked(CurrentCell);
+                HexTileLMBClicked(CurrentTile);
             }
             //Debug.Log(CurrentCell.HexTerrainType.Name + " at " + CurrentCell.Coord.ToString() + " left clicked.");
         }
 
         void OnRMBClick()
         {
-            if (HexCellRMBClicked != null && CurrentCell != null)
+            if (HexTileRMBClicked != null && CurrentTile != null)
             {
-                HexCellLMBClicked(CurrentCell);
+                HexTileLMBClicked(CurrentTile);
             }
             //Debug.Log(CurrentCell.HexTerrainType.Name + " at " + CurrentCell.Coord.ToString() + " right clicked.");
         }
 
         void OnMMBClick()
         {
-            if (HexCellMMBClicked != null && CurrentCell != null)
+            if (HexTileMMBClicked != null && CurrentTile != null)
             {
-                HexCellMMBClicked(CurrentCell);
+                HexTileMMBClicked(CurrentTile);
             }
             //Debug.Log(CurrentCell.HexTerrainType.Name + " at " + CurrentCell.Coord.ToString() + " middle clicked.");
         }

@@ -17,7 +17,7 @@ namespace DaleranGames.TBSFramework
         public const float pivotOffset = 0.25f;
 
         public const float zSeperation = 0.1f;
-        public const int tileLayers = 18;
+        public const float standardZ = 0f;
 
         public static Vector3[] CalculateVerticies(Vector3 pos)
         {
@@ -42,6 +42,11 @@ namespace DaleranGames.TBSFramework
             };
 
             return tris;
+        }
+
+        public static float ToFloat(this HexLayers layer)
+        {
+            return (int)layer * HexMetrics.zSeperation;
         }
 
     } 

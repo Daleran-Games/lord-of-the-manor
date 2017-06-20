@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DaleranGames.TBSFramework;
+using DaleranGames.Database;
 
 namespace DaleranGames.Game
 {
@@ -17,6 +18,7 @@ namespace DaleranGames.Game
 
             grid.MeshBuildComplete += OnMapBuildComplete;
 
+            GameDatabase.Instance.InitializeDatabase();
             grid.GenerateMap();
 
         }
