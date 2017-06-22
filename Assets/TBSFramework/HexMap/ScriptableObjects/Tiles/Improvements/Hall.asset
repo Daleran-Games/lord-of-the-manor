@@ -8,10 +8,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4421c49d986b8274ca747e38fcc37373, type: 3}
-  m_Name: Mountains
+  m_Script: {fileID: 11500000, guid: 638bf0264ead2d4418d7e8350fc0fdfc, type: 3}
+  m_Name: Hall
   m_EditorClassIdentifier: 
   atlasCoord:
-    x: 5
-    y: 1
-  clearedTile: None
+    x: 4
+    y: 5
+  validLandToBuild:
+  - Plains
+  - Moor
+  - Hills
+  upgradedImprovement: 

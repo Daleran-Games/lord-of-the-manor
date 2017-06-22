@@ -36,14 +36,14 @@ namespace DaleranGames.TBSFramework
                 if (hexTile.Elevation >= terrainCutoffs[i].ElevationCutoff && hexTile.Moisture >= terrainCutoffs[i].MoistureCutoff)
                      type = GameDatabase.Instance.GetDatabaseObject<LandType>(terrainCutoffs[i].TileName);
             }
-            hexTile.SetToLandType(type);
+            hexTile.Land = type;
             //Debug.Log("Setting cell " + hexCell.Position + " to " + type.Name);
         }
 
-        protected virtual HexTile CreateTile(int x, int y)
+        protected virtual HexTile CreateTile(int x, int y, int id)
         {
             Vector3 position = HexCoordinates.GetUnityPosition(x, y);
-            return new HexTile(HexCoordinates.CartesianToHex(x, y), position);
+            return new HexTile(HexCoordinates.CartesianToHex(x, y), position, id);
         }
 
         [System.Serializable]

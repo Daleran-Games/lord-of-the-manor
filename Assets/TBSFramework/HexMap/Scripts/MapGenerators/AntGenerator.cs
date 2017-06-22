@@ -28,14 +28,16 @@ namespace DaleranGames.TBSFramework
         {
             HexTile[,] tiles = new HexTile[Width, Height];
             List<Ant> activeAnts = new List<Ant>();
+            int id = 0;
 
             for (int y = 0; y < Height; y++)
             {
                 for (int x = 0; x < Width; x++)
                 {
-                    tiles[x, y] = CreateTile(x, y);
+                    tiles[x, y] = CreateTile(x, y, id);
                     tiles[x, y].Elevation = InitalElevation;
                     tiles[x, y].Moisture = InitialMoisture;
+                    id++;
                 }
             }
 

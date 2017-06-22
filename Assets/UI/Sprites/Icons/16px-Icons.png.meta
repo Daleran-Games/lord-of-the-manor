@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 5acd613e5fec0d44f8ec865d7b10df87
-timeCreated: 1497578691
+timeCreated: 1498078538
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -28,6 +28,7 @@ TextureImporter:
     21300042: 16px-Icons_21
     21300044: 16px-Icons_22
     21300046: 16px-Icons_23
+    21300048: 16px-Icons_24
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -362,7 +363,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -375,7 +376,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -388,7 +389,7 @@ TextureImporter:
         width: 16
         height: 16
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
@@ -397,6 +398,19 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 16
+        y: 96
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: 16px-Icons_24
+      rect:
+        serializedVersion: 2
+        x: 32
         y: 96
         width: 16
         height: 16

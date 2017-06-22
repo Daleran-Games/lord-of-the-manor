@@ -8,7 +8,6 @@ namespace DaleranGames.TBSFramework
     [CreateAssetMenu(fileName = "NewTileAtlas", menuName = "DaleranGames/TBS/Tile Atlas", order = 0)]
     public class TileAtlas : ScriptableObject
     {
-
         [SerializeField]
         Material springAtlas;
         public Material SpringAtlas { get { return springAtlas; } }

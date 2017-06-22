@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Name: Shallow Water
   m_EditorClassIdentifier: 
   atlasCoord:
-    x: 10
-    y: 0
+    x: 12
+    y: 1
+  clearedTile: None

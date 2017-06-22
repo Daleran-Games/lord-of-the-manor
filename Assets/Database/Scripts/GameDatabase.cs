@@ -43,7 +43,7 @@ namespace DaleranGames.Database
                     return obj;
                 }
             }
-            Debug.LogError("Database Error: " + name + " requested but not found.");
+            //Debug.LogError("Database Error: " + name + " requested but not found.");
             return null;
         }
 
@@ -58,7 +58,7 @@ namespace DaleranGames.Database
                     return obj;
                 }
             }
-            Debug.LogError("Database Error: " + name + " requested but not found.");
+            //Debug.LogError("Database Error: " + name + " requested but not found.");
             return null;
         }
 

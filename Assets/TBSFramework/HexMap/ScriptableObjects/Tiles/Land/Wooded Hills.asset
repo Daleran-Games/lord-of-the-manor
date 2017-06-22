@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Name: Wooded Hills
   m_EditorClassIdentifier: 
   atlasCoord:
-    x: 5
-    y: 0
+    x: 4
+    y: 1
+  clearedTile: Hills

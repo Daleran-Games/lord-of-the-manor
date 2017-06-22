@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Name: Parkland
   m_EditorClassIdentifier: 
   atlasCoord:
-    x: 2
-    y: 0
+    x: 1
+    y: 1
+  clearedTile: Plains

@@ -61,7 +61,7 @@ MonoBehaviour:
     food: 0
     dieOnBorder: 0
   - positionX: 0.96
-    positionY: 0.04
+    positionY: 0.03
     minLifespan: 14
     maxLifespan: 18
     minAntCount: 400

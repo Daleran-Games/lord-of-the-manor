@@ -6,26 +6,49 @@ using System;
 
 namespace DaleranGames.TBSFramework
 {
-    [CreateAssetMenu(fileName = "NewLandType", menuName = "DaleranGames/TBS/Land Type", order = 0)]
+    [CreateAssetMenu(fileName = "NewLandType", menuName = "DaleranGames/TBS/Tile Types/Land Type", order = 0)]
     public class LandType : TileType
     {
         [SerializeField]
-        Vector2Int atlasCoord = new Vector2Int(0, 0);
+        protected Vector2Int atlasCoord = new Vector2Int(0, 0);
 
-        public override KeyValuePair<HexLayers, Vector2Int>[] Graphics
+        [SerializeField]
+        protected string clearedTile = "None";
+
+        public override void OnActivation(HexTile tile)
         {
-            get
-            {
-                return new KeyValuePair<HexLayers, Vector2Int>[] { new KeyValuePair<HexLayers, Vector2Int>( HexLayers.Land,atlasCoord)};
-            }
+            base.OnActivation(tile);
+            tile.AddGraphic(HexLayers.Land, atlasCoord);
         }
 
-        public override Vector2Int GetGraphicsAtLayer(HexLayers layer)
+        public override void OnGameStart(HexTile tile)
         {
-            if (layer == HexLayers.Land)
-                return atlasCoord;
 
-            return Vector2Int.zero;
         }
+
+        public override void OnTurnChange(BaseTurn turn, HexTile tile)
+        {
+
+        }
+
+        public override void OnDeactivation(HexTile tile)
+        {
+            tile.RemoveGraphic(HexLayers.Land);
+        }
+
+        public virtual void ClearTile (HexTile tile)
+        {
+            if (clearedTile != "None")
+                tile.Land = GameDatabase.Instance.GetDatabaseObject<LandType>(clearedTile);
+        }
+
+        public virtual bool CanClear()
+        {
+            if (clearedTile != "None")
+                return true;
+            else
+                return false;
+        }
+
     }
 }

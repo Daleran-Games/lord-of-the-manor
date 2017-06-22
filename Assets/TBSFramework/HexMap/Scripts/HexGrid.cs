@@ -73,7 +73,7 @@ namespace DaleranGames.TBSFramework
 
             foreach (KeyValuePair<HexLayers, HexMesh> kvp in meshes)
             {
-                kvp.Value.BuildMesh(tiles, Generator.Atlas, kvp.Key);
+                kvp.Value.BuildMesh(tiles, kvp.Key);
             }
 
             if (MeshBuildComplete != null)

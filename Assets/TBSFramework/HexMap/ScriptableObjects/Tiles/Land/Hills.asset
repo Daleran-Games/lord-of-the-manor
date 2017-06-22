@@ -12,5 +12,6 @@ MonoBehaviour:
   m_Name: Hills
   m_EditorClassIdentifier: 
   atlasCoord:
-    x: 4
-    y: 0
+    x: 3
+    y: 1
+  clearedTile: None

@@ -108,21 +108,21 @@ MonoBehaviour:
   pixelsPerUnit: 32
   maxScale: 5
   panSpeed: 15
-  panBorderThickness: 20
+  panBorderThickness: 5
   bottomLeftExtent: {x: 0, y: 0}
   topRightExtent: {x: 10, y: 10}
   orthoSizes: []
-  currentCell:
+  sizeIndex: 0
+  currentTile:
+    id: 0
     coord:
       r: 0
       q: 0
     position: {x: 0, y: 0, z: 0}
-    land:
-      landType: {fileID: 0}
-      elevation: 0
-      moisture: 0
-    improvement:
-      improvementType: {fileID: 0}
+    elevation: 0
+    moisture: 0
+    land: {fileID: 0}
+    improvement: {fileID: 0}
 --- !u!124 &124389363194275244
 Behaviour:
   m_ObjectHideFlags: 1
