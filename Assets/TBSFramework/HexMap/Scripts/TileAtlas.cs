@@ -8,6 +8,7 @@ namespace DaleranGames.TBSFramework
     [CreateAssetMenu(fileName = "NewTileAtlas", menuName = "DaleranGames/TBS/Tile Atlas", order = 0)]
     public class TileAtlas : ScriptableObject
     {
+        [Header("Season Atlases")]
         [SerializeField]
         Material springAtlas;
         public Material SpringAtlas { get { return springAtlas; } }
@@ -25,9 +26,9 @@ namespace DaleranGames.TBSFramework
         public Material WinterAtlas { get { return winterAtlas; } }
 
 
-
+        [Header("UV Settings")]
         [SerializeField]
-        int xSize = 32;
+        int xSize = 48;
         public int XSize { get { return xSize; } }
 
         [SerializeField]
@@ -50,6 +51,19 @@ namespace DaleranGames.TBSFramework
         float uvYError = 0.01f;
         public float UVYError { get { return uvYError; } }
 
+        [SerializeField]
+        float errorMultiplier = 20f;
+        public float ErrorMultiplier { get { return errorMultiplier; } }
+
+        float singliePixelinUnity = 0f;
+        public float SinglePixelInUnity { get { return singliePixelinUnity; } }
+
+        
+        [Header("UI Atlas")]
+        [SerializeField]
+        Material uiAtlas;
+        public Material UIAtlas { get { return uiAtlas; } }
+
         private void Awake()
         {
             Calculate();
@@ -63,8 +77,10 @@ namespace DaleranGames.TBSFramework
             uvX = (float)XSize / (float)SpringAtlas.mainTexture.width;
             uvY = (float)YSize / (float)SpringAtlas.mainTexture.height;
 
-            uvXError = UVX / (20 * XSize);
-            uvYError = UVY / (20 * YSize);
+            uvXError = UVX / (errorMultiplier * XSize);
+            uvYError = UVY / (errorMultiplier * YSize);
+
+            singliePixelinUnity = HexMetrics.xTileSize / xSize;
         }
 
         public Vector2[] CalculateUVs (Vector2Int coord)

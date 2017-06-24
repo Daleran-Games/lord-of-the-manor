@@ -8,7 +8,6 @@ using DaleranGames.Tools;
 
 namespace DaleranGames.IO
 {
-    [RequireComponent(typeof(MeshFilter), typeof(MeshRenderer))]
     public class HexCursor : Singleton<HexCursor>
     {
         protected HexCursor( ) { }
@@ -20,10 +19,16 @@ namespace DaleranGames.IO
             White,
             Positive,
             Negative,
-            Clear
+            Clear,
+            Cross
         }
 
         [SerializeField]
+        GameObject HexQuadPrefab;
+
+        [Header("Cursor Modes")]
+        [SerializeField]
+        [ReadOnly]
         HexCursorMode hexCursorMode = HexCursorMode.Ring;
         public HexCursorMode CursorMode
         {
@@ -34,31 +39,35 @@ namespace DaleranGames.IO
                 {
                     case HexCursorMode.Ring:
                         hexCursorMode = value;
-                        SetCursor(ring, true);
+                        SetSelectionCursor(ring);
                         break;
                     case HexCursorMode.Dark:
                         hexCursorMode = value;
-                        SetCursor(dark, true);
+                        SetSelectionCursor(dark);
                         break;
                     case HexCursorMode.White:
                         hexCursorMode = value;
-                        SetCursor(white, true);
+                        SetSelectionCursor(white);
                         break;
                     case HexCursorMode.Positive:
                         hexCursorMode = value;
-                        SetCursor(positive, true);
+                        SetSelectionCursor(positive);
                         break;
                     case HexCursorMode.Negative:
                         hexCursorMode = value;
-                        SetCursor(negative, true);
+                        SetSelectionCursor(negative);
                         break;
                     case HexCursorMode.Clear:
                         hexCursorMode = value;
-                        SetCursor(Vector2Int.zero, true);
+                        SetSelectionCursor(Vector2Int.zero);
+                        break;
+                    case HexCursorMode.Cross:
+                        hexCursorMode = value;
+                        SetSelectionCursor(cross);
                         break;
                     default:
                         hexCursorMode = HexCursorMode.Clear;
-                        SetCursor(Vector2Int.zero, true);
+                        SetSelectionCursor(Vector2Int.zero);
                         break;
 
                 }
@@ -67,19 +76,31 @@ namespace DaleranGames.IO
 
         [SerializeField]
         [ReadOnly]
-        Vector2Int cursorIcon = Vector2Int.zero;
-        public Vector2Int CursorIcon
+        Vector2Int cursorUIIcon = Vector2Int.zero;
+        public Vector2Int CursorUIIcon
         {
-            get { return cursorIcon; }
+            get { return cursorUIIcon; }
             set
             {
-                cursorIcon = value;
-                SetCursor(cursorIcon, false);
+                cursorUIIcon = value;
+                SetUIIconCursor(cursorUIIcon);
             }
         }
 
-        [Header("Selection Tiles")]
+        [SerializeField]
+        [ReadOnly]
+        Vector2Int cursorTerrainIcon = Vector2Int.zero;
+        public Vector2Int CursorTerrainIcon
+        {
+            get { return cursorTerrainIcon; }
+            set
+            {
+                cursorTerrainIcon = value;
+                SetTerrainIconCursor(cursorTerrainIcon);
+            }
+        }
 
+        [Header("Cursor Mode UVs")]
         [SerializeField]
         Vector2Int ring;
 
@@ -95,8 +116,11 @@ namespace DaleranGames.IO
         [SerializeField]
         Vector2Int negative;
 
+        [SerializeField]
+        Vector2Int cross;
 
-        [Header("Selection Tiles")]
+
+        [Header("Current Tile")]
         [SerializeField]
         [ReadOnly]
         HexTile currentTile;
@@ -122,11 +146,10 @@ namespace DaleranGames.IO
         bool mapBuilt = false;
 
         TileAtlas atlas;
-        Mesh cursorMesh;
-        MeshRenderer meshRenderer;
-        List<Vector3> vertices;
-        List<int> triangles;
-        List<Vector2> uvs;
+
+        HexQuad highlightQuad;
+        HexQuad uiIconQuad;
+        HexQuad terrainIconQuad;
 
 
         public Action<HexTile> HexTileLMBClicked;
@@ -142,17 +165,9 @@ namespace DaleranGames.IO
             grid.MapGenerationComplete += OnMapGenerationComplete;
             mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetRequiredComponent<Camera>();
             atlas = grid.Generator.Atlas;
-            meshRenderer = gameObject.GetOrAddComponent<MeshRenderer>();
-            meshRenderer.material = atlas.SpringAtlas;
 
-            //cursor = GameObject.FindObjectOfType<MouseCursor>();
-
-            GetComponent<MeshFilter>().mesh = cursorMesh = new Mesh();
-            vertices = new List<Vector3>();
-            triangles = new List<int>();
-            uvs = new List<Vector2>();
-
-            BuildMesh();
+            BuildQuads();
+            CursorMode = HexCursorMode.Ring;
 
         }
 
@@ -170,7 +185,7 @@ namespace DaleranGames.IO
                     if (grid[tileCoord.x, tileCoord.y] != CurrentTile)
                     {
                         CurrentTile = grid[tileCoord.x, tileCoord.y];
-                        transform.position = CurrentTile.Position;
+                        transform.position = new Vector3(CurrentTile.Position.x,CurrentTile.Position.y,transform.position.z);
                         //cursor.ToggleCursor(false);
                     }
                         
@@ -201,14 +216,14 @@ namespace DaleranGames.IO
             {
                     HexTileLMBClicked(CurrentTile);
             }
-            //Debug.Log(CurrentCell.HexTerrainType.Name + " at " + CurrentCell.Coord.ToString() + " left clicked.");
+            //Debug.Log(CurrentTile.Land.name + " at " + CurrentTile.Coord.ToString() + " left clicked.");
         }
 
         void OnRMBClick()
         {
             if (HexTileRMBClicked != null && CurrentTile != null && !EventSystem.current.IsPointerOverGameObject())
             {
-                    HexTileLMBClicked(CurrentTile);
+                    HexTileRMBClicked(CurrentTile);
             }
             //Debug.Log(CurrentCell.HexTerrainType.Name + " at " + CurrentCell.Coord.ToString() + " right clicked.");
         }
@@ -244,50 +259,46 @@ namespace DaleranGames.IO
                 return false;
         }
 
-        void BuildMesh()
+        void BuildQuads()
         {
-            cursorMesh.Clear();
-            vertices.Clear();
-            triangles.Clear();
-            uvs.Clear();
-            cursorMesh.MarkDynamic();
 
-            Vector3 selectionPos = transform.position + new Vector3(0f, 0f, -9.1f);
-            Vector3 iconPos = transform.position + new Vector3(0f, 0f, -9.2f);
+            Vector3 selectionPos = transform.position + new Vector3(0f, 0f, -9.3f);
+            Vector3 uiIconPos = transform.position + new Vector3(0f, 0f, -9.2f);
+            Vector3 terrainIconPos = transform.position + new Vector3(0f, 0f, -9.1f);
 
-            vertices.AddRange(HexMetrics.CalculateVerticies(iconPos));
-            vertices.AddRange(HexMetrics.CalculateVerticies(selectionPos));
-
-            triangles.AddRange(HexMetrics.CalculateTriangles(0));
-            triangles.AddRange(HexMetrics.CalculateTriangles(4));
-
-            uvs.AddRange(atlas.CalculateUVs(Vector2Int.zero));
-            uvs.AddRange(atlas.CalculateUVs(ring));
+            highlightQuad = InstantiateHexQuad(selectionPos, atlas.UIAtlas);
+            uiIconQuad = InstantiateHexQuad(uiIconPos, atlas.UIAtlas);
+            terrainIconQuad = InstantiateHexQuad(terrainIconPos, atlas.SpringAtlas);
 
 
-            cursorMesh.vertices = vertices.ToArray();
-            cursorMesh.triangles = triangles.ToArray();
-            cursorMesh.uv = uvs.ToArray();
-            cursorMesh.RecalculateNormals();
 
         }
 
-        void SetCursor (Vector2Int coord, bool cursorOrIcon)
+        HexQuad InstantiateHexQuad(Vector3 position, Material mat)
         {
-            Vector2[] newUV = atlas.CalculateUVs(coord);
-            int i = 0;
+            GameObject mesh = Instantiate(HexQuadPrefab, this.transform);
+            HexQuad hexQuad = mesh.GetComponent<HexQuad>();
+            hexQuad.BuildQuad(position, atlas, mat);
 
-            if (cursorOrIcon == true)
-                i = 4;
-
-            uvs[i] = newUV[0];
-            uvs[i + 1] = newUV[1];
-            uvs[i + 2] = newUV[2];
-            uvs[i + 3] = newUV[3];
-            cursorMesh.uv = uvs.ToArray();
+            return hexQuad;
         }
 
-       
+        void SetSelectionCursor (Vector2Int coord)
+        {
+            highlightQuad.SetUV(coord);
+        }
+
+        void SetUIIconCursor (Vector2Int coord)
+        {
+            uiIconQuad.SetUV(coord);
+        }
+
+        void SetTerrainIconCursor(Vector2Int coord)
+        {
+            terrainIconQuad.SetUV(coord);
+        }
+
+
     }
 }
 

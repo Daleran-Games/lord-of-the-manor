@@ -92,24 +92,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e612f276491d1d488b1a31a91442725, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  HexQuadPrefab: {fileID: 1846544400079652, guid: 9a802a2b65af7964fb6722ee64c70b13,
+    type: 2}
   hexCursorMode: 0
-  cursorIcon:
+  cursorUIIcon:
+    x: 0
+    y: 0
+  cursorTerrainIcon:
     x: 0
     y: 0
   ring:
     x: 1
     y: 0
   dark:
-    x: 2
-    y: 0
-  white:
     x: 5
     y: 0
+  white:
+    x: 4
+    y: 0
   positive:
-    x: 3
+    x: 2
     y: 0
   negative:
-    x: 4
+    x: 3
     y: 0
   currentTile:
     id: 0

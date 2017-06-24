@@ -8,16 +8,19 @@ namespace DaleranGames.TBSFramework
         public const float innerRadius = 0.5f;
         public const float outerRadius = innerRadius;
 
-        public const float xTileSize = 1f;
+        public const float xTileSize = 1.5f;
         public const float xHalfTileSize = xTileSize / 2f;
 
         public const float yTileSize = 1.5f;
         public const float yHalfTileSize = yTileSize / 2f;
 
-        public const float pivotOffset = 0.25f;
+        public const float pivotOffset = 0f;
 
-        public const float zSeperation = 0.1f;
-        public const float standardZ = 0f;
+        public const float tileSperation = 0.1f;
+        public const float startingZ = 995;
+        public const float layerSeperation = tileSperation / maxLayers;
+        public const float maxLayers = 100f;
+
 
         public static Vector3[] CalculateVerticies(Vector3 pos)
         {
@@ -46,7 +49,12 @@ namespace DaleranGames.TBSFramework
 
         public static float ToFloat(this HexLayers layer)
         {
-            return (int)layer * HexMetrics.zSeperation;
+            return (int)layer * layerSeperation;
+        }
+
+        public static Vector3 ToVector3 (this HexLayers layer)
+        {
+            return new Vector3(0f, 0f, layer.ToFloat());
         }
 
     } 

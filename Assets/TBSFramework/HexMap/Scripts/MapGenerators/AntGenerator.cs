@@ -29,15 +29,17 @@ namespace DaleranGames.TBSFramework
             HexTile[,] tiles = new HexTile[Width, Height];
             List<Ant> activeAnts = new List<Ant>();
             int id = 0;
+            float z = HexMetrics.startingZ;
 
-            for (int y = 0; y < Height; y++)
+            for (int y = Height - 1; y >= 0; y--)
             {
-                for (int x = 0; x < Width; x++)
+                for (int x = Width - 1; x >= 0; x--)
                 {
-                    tiles[x, y] = CreateTile(x, y, id);
+                    tiles[x, y] = CreateTile(x, y, id,z);
                     tiles[x, y].Elevation = InitalElevation;
                     tiles[x, y].Moisture = InitialMoisture;
                     id++;
+                    z -= HexMetrics.tileSperation;
                 }
             }
 
@@ -108,6 +110,13 @@ namespace DaleranGames.TBSFramework
             }
             return check;
 
+        }
+
+        void CarveRiver ()
+        {
+            //TODO Add a river ant that runs after the other ants and carves rivers
+            //Derrives from normal ant and can move from higher to lower cells or vice versa. It also can eat or grow height
+            //Runs after the man simuatlion.
         }
 
 

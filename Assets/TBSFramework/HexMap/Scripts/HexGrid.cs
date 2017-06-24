@@ -16,6 +16,9 @@ namespace DaleranGames.TBSFramework
         bool mapBuilt = false;
         public bool MapBuilt {get { return mapBuilt; } }
 
+        [SerializeField]
+        List<HexLayers> UILayers;
+
         public virtual int Width { get { return tiles.GetLength(0) ; } }
         public virtual int Height { get { return tiles.GetLength(0) ; } }
 
@@ -33,8 +36,6 @@ namespace DaleranGames.TBSFramework
         private void Awake()
         {
             meshes = new Dictionary<HexLayers, HexMesh>();
-
-            InstantiateHexMeshes();
 
             TurnManager.Instance.TurnChanged += OnTurnChange;
 
@@ -63,9 +64,24 @@ namespace DaleranGames.TBSFramework
             }
         }
 
-        [ContextMenu("Generate Map")]
+        public HexMesh GetHexMeshAtLayer (HexLayers layer)
+        {
+            HexMesh output = null;
+            if (meshes.TryGetValue(layer, out output))
+            {
+                return output;
+            }
+                
+
+            return null;
+                
+        }
+
         public void GenerateMap ()
         {
+            gameObject.transform.ClearChildren();
+            meshes.Clear();
+            InstantiateHexMeshes();
             tiles = Generator.GenerateMap();
 
             if (MapGenerationComplete != null)
@@ -73,20 +89,26 @@ namespace DaleranGames.TBSFramework
 
             foreach (KeyValuePair<HexLayers, HexMesh> kvp in meshes)
             {
-                kvp.Value.BuildMesh(tiles, kvp.Key);
+                if (UILayers.Contains(kvp.Key))
+                    kvp.Value.BuildMesh(tiles, kvp.Key, Generator.Atlas, true);
+                else
+                    kvp.Value.BuildMesh(tiles, kvp.Key, Generator.Atlas, false);
             }
 
             if (MeshBuildComplete != null)
                 MeshBuildComplete();
 
             mapBuilt = true;
+            //Debug.Log(HexTile.MaxID);
+
         }
 
         public void SwitchMaterial (Material mat)
         {
             foreach (KeyValuePair<HexLayers, HexMesh> kvp in meshes)
             {
-                kvp.Value.SwitchMateiral(mat);
+                if (!kvp.Value.UIMesh)
+                    kvp.Value.SwitchMateiral(mat);
             }
         }
 
@@ -95,7 +117,7 @@ namespace DaleranGames.TBSFramework
             foreach (HexLayers layer in Enum.GetValues(typeof(HexLayers)))
             {
                 GameObject mesh = Instantiate(HexMeshPrefab, this.transform);
-                mesh.transform.position = new Vector3(transform.position.x,transform.position.y, layer.ToFloat());
+                mesh.transform.position = this.transform.position;
                 HexMesh hexMesh = mesh.GetComponent<HexMesh>();
                 mesh.name = layer.ToString() + "Mesh";
                 meshes.Add(layer, hexMesh);

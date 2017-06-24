@@ -26,7 +26,7 @@ namespace DaleranGames.UI
 
             mouse.HexTileLMBClicked += OnLeftTileClick;
             InputManager.Instance.RMBClick.MouseButtonUp += OnRightClick;
-            mouse.CursorIcon = Vector2Int.zero;
+            mouse.CursorUIIcon = Vector2Int.zero;
 
             mouse.HexTileEntered += OnTileEnter;
 

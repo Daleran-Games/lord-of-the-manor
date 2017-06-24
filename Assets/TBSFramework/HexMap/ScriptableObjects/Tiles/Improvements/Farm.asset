@@ -15,6 +15,6 @@ MonoBehaviour:
     x: 0
     y: 5
   validLandToBuild:
-  - Plains
-  - Moor
-  upgradedImprovement: 
+  - {fileID: 11400000, guid: ae3c616aacc49f5478cea3046a491c9b, type: 2}
+  - {fileID: 11400000, guid: 33aa9bb21c51aba40a084f738401d954, type: 2}
+  upgradedImprovement: {fileID: 0}

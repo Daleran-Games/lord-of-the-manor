@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 224711020017935284}
   - component: {fileID: 223462771652192210}
   - component: {fileID: 114449703633759142}
-  - component: {fileID: 114969045187356140}
   - component: {fileID: 114495311475936062}
   m_Layer: 0
   m_Name: HexCanvas
@@ -83,22 +82,6 @@ MonoBehaviour:
   elevationToggle: {fileID: 0}
   moistureToggle: {fileID: 0}
   coordinateToggle: {fileID: 0}
---- !u!114 &114969045187356140
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1464162386249222}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1301386320, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!223 &223462771652192210
 Canvas:
   m_ObjectHideFlags: 1

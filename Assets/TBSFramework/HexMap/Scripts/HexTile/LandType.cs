@@ -11,9 +11,11 @@ namespace DaleranGames.TBSFramework
     {
         [SerializeField]
         protected Vector2Int atlasCoord = new Vector2Int(0, 0);
+        public Vector2Int LandIcon { get { return atlasCoord; } }
 
         [SerializeField]
-        protected string clearedTile = "None";
+        protected LandType clearedLand;
+        public LandType ClearedLand { get { return clearedLand; } }
 
         public override void OnActivation(HexTile tile)
         {
@@ -38,13 +40,13 @@ namespace DaleranGames.TBSFramework
 
         public virtual void ClearTile (HexTile tile)
         {
-            if (clearedTile != "None")
-                tile.Land = GameDatabase.Instance.GetDatabaseObject<LandType>(clearedTile);
+            if (ClearedLand != null)
+                tile.Land = ClearedLand;
         }
 
         public virtual bool CanClear()
         {
-            if (clearedTile != "None")
+            if (ClearedLand != null)
                 return true;
             else
                 return false;

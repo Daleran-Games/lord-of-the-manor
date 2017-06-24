@@ -14,10 +14,11 @@ namespace DaleranGames.TBSFramework
         public virtual Vector2Int IconGraphic {  get { return atlasCoord; } }
 
         [SerializeField]
-        protected List<string> validLandToBuild;
+        protected List<LandType> validLandToBuild;
 
         [SerializeField]
-        protected string upgradedImprovement;
+        protected ImprovementType upgradedImprovement;
+        public ImprovementType UpgradedImprovement { get { return upgradedImprovement; } }
        
         public override void OnActivation(HexTile tile)
         {
@@ -43,10 +44,24 @@ namespace DaleranGames.TBSFramework
 
         public virtual bool CheckIfCanBuild (HexTile tile)
         {
-            if (validLandToBuild.Contains(tile.Land.name) && tile.Improvement == null)
+            if (validLandToBuild.Contains(tile.Land) && tile.Improvement == null)
                 return true;
 
             return false;
+        }
+
+        public virtual bool CheckIfCanUpgrade()
+        {
+            if (UpgradedImprovement!= null)
+                return true;
+
+            return false;
+        }
+
+        public virtual void Upgrade(HexTile tile)
+        {
+            if (UpgradedImprovement != null)
+                tile.Improvement = UpgradedImprovement;
         }
 
     }

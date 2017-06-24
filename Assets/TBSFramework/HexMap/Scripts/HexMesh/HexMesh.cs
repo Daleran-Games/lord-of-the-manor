@@ -8,46 +8,50 @@ namespace DaleranGames.TBSFramework
     public class HexMesh : MonoBehaviour
     {
         Mesh hexMesh;
-        List<Vector3> vertices;
-        List<int> triangles;
-        List<Vector2> uvs;
+        List<Vector3> verticieBuffer;
+        List<int> triangleBuffer;
+        List<Vector2> uvBuffer;
         MeshRenderer meshRenderer;
-        TileAtlas atlas;
+        TileAtlas meshAtlas;
 
-        [SerializeField]
-        HexLayers layer;
-        public HexLayers Layer { get { return layer; } protected set { layer = value; } }
+        HexLayers hexLayer;
+        public HexLayers Layer { get { return hexLayer; } protected set { hexLayer = value; } }
 
         [SerializeField]
         bool meshBuilt = false;
         public bool MeshBuilt { get { return meshBuilt; }  protected set { meshBuilt = value; } }
 
+        [SerializeField]
+        bool uiMesh = false;
+        public bool UIMesh { get { return uiMesh; } set { uiMesh = value; } }
+
         void Awake()
         {
             GetComponent<MeshFilter>().mesh = hexMesh = new Mesh();
             hexMesh.name = "HexMesh";
-            vertices = new List<Vector3>();
-            triangles = new List<int>();
-            uvs = new List<Vector2>();
+            verticieBuffer = new List<Vector3>();
+            triangleBuffer = new List<int>();
+            uvBuffer = new List<Vector2>();
             meshRenderer = gameObject.GetRequiredComponent<MeshRenderer>();
-            atlas = gameObject.GetComponentInParent<HexGrid>().Generator.Atlas;
 
         }
 
-        private void OnDestroy()
-        {
-
-        }
-
-        public void BuildMesh(HexTile[,] tiles, HexLayers layer)
+        public void BuildMesh(HexTile[,] tiles, HexLayers lay, TileAtlas atlas, bool ui)
         {
             hexMesh.Clear();
-            vertices.Clear();
-            triangles.Clear();
-            uvs.Clear();
+            verticieBuffer.Clear();
+            triangleBuffer.Clear();
+            uvBuffer.Clear();
             hexMesh.MarkDynamic();
-            meshRenderer.material = atlas.SpringAtlas;
-            Layer = layer;
+            meshAtlas = atlas;
+            UIMesh = ui;
+
+            if (UIMesh)
+                meshRenderer.material = meshAtlas.UIAtlas;
+            else
+                meshRenderer.material = meshAtlas.SpringAtlas;
+
+            Layer = lay;
 
             for (int y= tiles.GetLength(1)-1; y >= 0; y--)
             {
@@ -57,38 +61,70 @@ namespace DaleranGames.TBSFramework
                 }
             }
 
-            hexMesh.vertices = vertices.ToArray();
-            hexMesh.triangles = triangles.ToArray();
-            hexMesh.uv = uvs.ToArray();
+            hexMesh.vertices = verticieBuffer.ToArray();
+            hexMesh.triangles = triangleBuffer.ToArray();
+            hexMesh.uv = uvBuffer.ToArray();
             hexMesh.RecalculateNormals();
             MeshBuilt = true;
         }
 
         void BuildTile (HexTile tile)
         {
-            int vertexIndex = vertices.Count;
-            Vector3 tilePosition = new Vector3(tile.Position.x, tile.Position.y, HexMetrics.standardZ);
-            vertices.AddRange(HexMetrics.CalculateVerticies(tile.Position));
-            triangles.AddRange(HexMetrics.CalculateTriangles(vertexIndex));
-            uvs.AddRange(atlas.CalculateUVs(tile.GetGraphicsAtLayer(Layer)));
-            tile.TileGraphicsChange += UpdateUV;
+            int vertexIndex = verticieBuffer.Count;
+
+            verticieBuffer.AddRange(HexMetrics.CalculateVerticies(tile.Position + Layer.ToVector3()));
+            triangleBuffer.AddRange(HexMetrics.CalculateTriangles(vertexIndex));
+            uvBuffer.AddRange(meshAtlas.CalculateUVs(tile.GetGraphicsAtLayer(Layer)));
+            tile.TileGraphicsChange += ImmediateUpdateUV;
         }
 
-        public void UpdateUV (HexTile tile)
+        public void ImmediateUpdateUV (HexTile tile, HexLayers layer)
         {
-
-            Vector2Int newCoord = tile.GetGraphicsAtLayer(Layer);
-            Vector2[] newUV = atlas.CalculateUVs(newCoord);
-            //Debug.Log("Updating " + Layer.ToString() + " to " + newCoord.ToString());
-            int i = (HexTile.MaxID - tile.ID) * 4;
-            //Debug.Log("Max: " + HexTile.MaxID + " ID: " + tile.ID + " Estimate: "+i);
-          
-            uvs[i] = newUV[0];
-            uvs[i+1] = newUV[1];
-            uvs[i+2] = newUV[2];
-            uvs[i+3] = newUV[3];
-            hexMesh.uv = uvs.ToArray();
+            if (layer == Layer)
+            {
+                Vector2Int newCoord = tile.GetGraphicsAtLayer(Layer);
+                ImmediateUpdateUV(tile,layer, newCoord);
+            }
         }
+
+        public void ImmediateUpdateUV(HexTile tile, HexLayers layer, Vector2Int coord)
+        {
+            if (layer == Layer)
+            {
+                Vector2[] newUV = meshAtlas.CalculateUVs(coord);
+                //Debug.Log("Updating " + Layer.ToString() + " to " + newCoord.ToString());
+                int i = tile.ID * 4;
+                //Debug.Log("Max: " + HexTile.MaxID + " ID: " + tile.ID + " Estimate: "+i);
+
+                uvBuffer[i] = newUV[0];
+                uvBuffer[i + 1] = newUV[1];
+                uvBuffer[i + 2] = newUV[2];
+                uvBuffer[i + 3] = newUV[3];
+                hexMesh.uv = uvBuffer.ToArray();
+            }
+        }
+
+        public void UpdateUVBuffer(HexTile tile, HexLayers layer, Vector2Int coord)
+        {
+            if (layer == Layer)
+            {
+                Vector2[] newUV = meshAtlas.CalculateUVs(coord);
+                //Debug.Log("Updating " + Layer.ToString() + " to " + newCoord.ToString());
+                int i = tile.ID * 4;
+                //Debug.Log("Max: " + HexTile.MaxID + " ID: " + tile.ID + " Estimate: "+i);
+
+                uvBuffer[i] = newUV[0];
+                uvBuffer[i + 1] = newUV[1];
+                uvBuffer[i + 2] = newUV[2];
+                uvBuffer[i + 3] = newUV[3];
+            }
+        }
+
+        public void CommitUVBuffer ()
+        {
+            hexMesh.uv = uvBuffer.ToArray();
+        }
+
 
         public void SwitchMateiral (Material mat)
         {

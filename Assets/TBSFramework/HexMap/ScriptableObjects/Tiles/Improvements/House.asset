@@ -12,10 +12,11 @@ MonoBehaviour:
   m_Name: House
   m_EditorClassIdentifier: 
   atlasCoord:
-    x: 6
+    x: 5
     y: 5
   validLandToBuild:
-  - Plains
-  - Moor
-  - Hills
-  upgradedImprovement: Hall
+  - {fileID: 11400000, guid: 33aa9bb21c51aba40a084f738401d954, type: 2}
+  - {fileID: 11400000, guid: ae3c616aacc49f5478cea3046a491c9b, type: 2}
+  - {fileID: 11400000, guid: 2a7c84fe5b3daac4a983fb911afcfb10, type: 2}
+  upgradedImprovement: {fileID: 11400000, guid: 02db1f1f4d8626e4c8a492bff984a2d2,
+    type: 2}

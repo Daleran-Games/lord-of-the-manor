@@ -51,6 +51,11 @@ namespace DaleranGames.TBSFramework
         protected byte moisture = 0;
         public byte Moisture { get { return moisture; } set { moisture = value; } }
 
+        [SerializeField]
+        [ReadOnly]
+        protected Household owner;
+        public Household Owner { get { return owner; } set { owner = value; } }
+
         #endregion
 
         #region Tile Components
@@ -69,9 +74,6 @@ namespace DaleranGames.TBSFramework
 
                 if (land != null)
                     land.OnActivation(this);
-
-                if (TileGraphicsChange != null)
-                    TileGraphicsChange(this);
             }
         }
 
@@ -89,9 +91,6 @@ namespace DaleranGames.TBSFramework
 
                 if (improvement != null)
                     improvement.OnActivation(this);
-
-                if (TileGraphicsChange != null)
-                    TileGraphicsChange(this);
             }
         }
 
@@ -128,7 +127,7 @@ namespace DaleranGames.TBSFramework
 
         #region Graphics
 
-        public Action<HexTile> TileGraphicsChange;
+        public Action<HexTile, HexLayers> TileGraphicsChange;
         protected Dictionary<HexLayers, Vector2Int> graphics;
 
         public Vector2Int GetGraphicsAtLayer(HexLayers layer)
@@ -142,11 +141,19 @@ namespace DaleranGames.TBSFramework
                 return graphic;
         }
 
+        public bool ContainsGraphic (HexLayers layer)
+        {
+            return graphics.ContainsKey(layer);
+        }
+
         public void AddGraphic (HexLayers layer, Vector2Int coord)
         {
             if (!graphics.ContainsKey(layer))
             {
                 graphics.Add(layer, coord);
+
+                if (TileGraphicsChange != null)
+                    TileGraphicsChange(this, layer);
             }
         }
 
@@ -155,6 +162,9 @@ namespace DaleranGames.TBSFramework
             if (graphics.ContainsKey(layer))
             {
                 graphics.Remove(layer);
+
+                if (TileGraphicsChange != null)
+                    TileGraphicsChange(this, layer);
             }
         }
 

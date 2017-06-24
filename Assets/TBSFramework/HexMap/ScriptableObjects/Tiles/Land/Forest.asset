@@ -14,4 +14,4 @@ MonoBehaviour:
   atlasCoord:
     x: 2
     y: 1
-  clearedTile: Moor
+  clearedLand: {fileID: 11400000, guid: 33aa9bb21c51aba40a084f738401d954, type: 2}

@@ -32,7 +32,7 @@ namespace DaleranGames.UI
             InputManager.Instance.RMBClick.MouseButtonUp += OnRightClick;
             typeToBuild = GameDatabase.Instance.GetDatabaseObject<ImprovementType>(improvementName);
 
-            mouse.CursorIcon = typeToBuild.IconGraphic;
+            mouse.CursorUIIcon = typeToBuild.IconGraphic;
             mouse.HexTileEntered += OnTileEnter;
 
             if (typeToBuild.CheckIfCanBuild(mouse.CurrentTile))
@@ -44,7 +44,6 @@ namespace DaleranGames.UI
 
         void OnTileEnter (HexTile tile)
         {
-
             if (typeToBuild.CheckIfCanBuild(tile))
                 mouse.CursorMode = HexCursor.HexCursorMode.Positive;
             else
@@ -62,7 +61,7 @@ namespace DaleranGames.UI
         void OnRightClick ()
         {
             buildMode = false;
-            mouse.CursorIcon = Vector2Int.zero;
+            mouse.CursorUIIcon = Vector2Int.zero;
             mouse.CursorMode = HexCursor.HexCursorMode.Ring;
             typeToBuild = null;
             mouse.HexTileLMBClicked -= OnLeftTileClick;

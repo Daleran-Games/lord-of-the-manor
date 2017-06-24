@@ -30,6 +30,8 @@ namespace DaleranGames.TBSFramework
 
         public virtual void SetTileType (HexTile hexTile)
         {
+            //TODO make the tile types have a bounding box or perhaps a rect instead.
+
             LandType type = GameDatabase.Instance.GetDatabaseObject<LandType>(terrainCutoffs[0].TileName);
             for (int i=0; i<terrainCutoffs.Length;i++)
             {
@@ -40,9 +42,9 @@ namespace DaleranGames.TBSFramework
             //Debug.Log("Setting cell " + hexCell.Position + " to " + type.Name);
         }
 
-        protected virtual HexTile CreateTile(int x, int y, int id)
+        protected virtual HexTile CreateTile(int x, int y, int id, float z)
         {
-            Vector3 position = HexCoordinates.GetUnityPosition(x, y);
+            Vector3 position = HexCoordinates.GetUnityPosition(x, y, z);
             return new HexTile(HexCoordinates.CartesianToHex(x, y), position, id);
         }
 

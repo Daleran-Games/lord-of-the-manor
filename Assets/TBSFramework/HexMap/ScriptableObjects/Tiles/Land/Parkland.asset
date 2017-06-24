@@ -14,4 +14,4 @@ MonoBehaviour:
   atlasCoord:
     x: 1
     y: 1
-  clearedTile: Plains
+  clearedLand: {fileID: 11400000, guid: ae3c616aacc49f5478cea3046a491c9b, type: 2}

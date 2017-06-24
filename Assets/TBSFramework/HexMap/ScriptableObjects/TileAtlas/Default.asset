@@ -15,9 +15,11 @@ MonoBehaviour:
   summerAtlas: {fileID: 2100000, guid: bf567643757370d49a10213468d3054a, type: 2}
   fallAtlas: {fileID: 2100000, guid: 9aab37b89fa17984a91b667982c57261, type: 2}
   winterAtlas: {fileID: 2100000, guid: 84276af0439a43a478a4495bf3120033, type: 2}
-  xSize: 32
+  xSize: 48
   ySize: 48
-  uvX: 0.03125
+  uvX: 0.046875
   uvY: 0.046875
   uvXError: 0.000048828126
   uvYError: 0.000048828126
+  errorMultiplier: 20
+  uiAtlas: {fileID: 2100000, guid: 4f71a08c2465c0d4fad49fdb8139c413, type: 2}

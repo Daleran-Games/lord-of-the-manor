@@ -3,12 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DaleranGames.Tools;
+using DaleranGames.TBSFramework;
 
 namespace DaleranGames.Game
 {
     public class GameManager : Singleton<GameManager>
     {
         protected GameManager ( ) { }
+
+        [SerializeField]
+        Household playerHousehold;
+        public Household PlayerHouseHold { get { return playerHousehold; } }
 
         public Action<GameState> StateChanged;
 
@@ -47,6 +52,8 @@ namespace DaleranGames.Game
 
             LoadScene.enabled = false;
             Play.enabled = false;
+
+            playerHousehold = new Household();
         }
 
         private void OnEnable()
