@@ -13,15 +13,13 @@ namespace UnityEngine
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
-   
-                //get the name before it's gone
-                name = property.displayName;
 
-                //get the X and Y values
-                property.Next(true);
-                x = property.Copy();
-                property.Next(true);
-                y = property.Copy();
+
+            //get the name before it's gone
+            name = property.displayName;
+
+            x = property.FindPropertyRelative("x");
+            y = property.FindPropertyRelative("y");
 
 
             Rect contentPosition = EditorGUI.PrefixLabel(position, new GUIContent(name));

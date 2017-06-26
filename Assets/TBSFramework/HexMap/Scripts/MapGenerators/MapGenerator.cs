@@ -33,6 +33,7 @@ namespace DaleranGames.TBSFramework
             //TODO make the tile types have a bounding box or perhaps a rect instead.
 
             LandType type = GameDatabase.Instance.GetDatabaseObject<LandType>(terrainCutoffs[0].TileName);
+            TerrainCuttoff initial = TerrainCuttoff.zero;
             for (int i=0; i<terrainCutoffs.Length;i++)
             {
                 if (hexTile.Elevation >= terrainCutoffs[i].ElevationCutoff && hexTile.Moisture >= terrainCutoffs[i].MoistureCutoff)
@@ -45,7 +46,7 @@ namespace DaleranGames.TBSFramework
         protected virtual HexTile CreateTile(int x, int y, int id, float z)
         {
             Vector3 position = HexCoordinates.GetUnityPosition(x, y, z);
-            return new HexTile(HexCoordinates.CartesianToHex(x, y), position, id);
+            return new HexTile(HexCoordinates.CartesianToHex(x, y), position, id, Atlas);
         }
 
         [System.Serializable]
@@ -65,6 +66,15 @@ namespace DaleranGames.TBSFramework
             [Range(0, 255)]
             protected byte moistureCutoff = 0;
             public byte MoistureCutoff { get { return moistureCutoff; }  }
+
+            public static TerrainCuttoff zero = new TerrainCuttoff("Deep Water", 0, 0);
+
+            public TerrainCuttoff(string landName, byte elevation, byte moisture)
+            {
+                tileName = landName;
+                elevationCutoff = elevation;
+                moistureCutoff = moisture;
+            }
 
         }
 

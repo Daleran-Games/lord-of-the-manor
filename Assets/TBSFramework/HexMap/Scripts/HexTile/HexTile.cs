@@ -10,7 +10,7 @@ namespace DaleranGames.TBSFramework
     [System.Serializable]
     public class HexTile : IDisposable
     {
-        public HexTile(HexCoordinates coor, Vector3 pos, int id)
+        public HexTile(HexCoordinates coor, Vector3 pos, int id, TileAtlas atlas)
         {
             Coord = coor;
             Position = pos;
@@ -18,6 +18,10 @@ namespace DaleranGames.TBSFramework
             MaxID = id;
 
             graphics = new Dictionary<HexLayers, Vector2Int>();
+            this.atlas = atlas;
+
+            uiMeshData = new MeshData();
+            tileMeshData = new MeshData();
 
             TurnManager.Instance.TurnChanged += OnTurnChange;
             GameManager.Instance.StateChanged += OnGameStart;
@@ -53,8 +57,8 @@ namespace DaleranGames.TBSFramework
 
         [SerializeField]
         [ReadOnly]
-        protected Household owner;
-        public Household Owner { get { return owner; } set { owner = value; } }
+        protected Clan owner;
+        public Clan Owner { get { return owner; } set { owner = value; } }
 
         #endregion
 
@@ -127,8 +131,45 @@ namespace DaleranGames.TBSFramework
 
         #region Graphics
 
-        public Action<HexTile, HexLayers> TileGraphicsChange;
+
+
+        public Action<HexTile> TileGraphicsChange;
+        public Action<HexTile> UIGraphicsChange;
         protected Dictionary<HexLayers, Vector2Int> graphics;
+
+        TileAtlas atlas;
+        bool uiMeshDirty = true;
+        bool tileMeshDirty = true;
+
+        MeshData uiMeshData;
+        public MeshData UIMeshData
+        {
+            get
+            {
+                if (uiMeshDirty)
+                {
+                    uiMeshData = GenerateNewUIMeshData();
+                    uiMeshDirty = false;
+                }
+
+                return uiMeshData;
+            }
+        }
+
+        MeshData tileMeshData;
+        public MeshData TileMeshData
+        {
+            get
+            {
+                if (tileMeshDirty)
+                {
+                    tileMeshData = GenerateNewTileMeshData();
+                    tileMeshDirty = false;
+                }
+
+                return tileMeshData;
+            }
+        }
 
         public Vector2Int GetGraphicsAtLayer(HexLayers layer)
         {
@@ -137,8 +178,9 @@ namespace DaleranGames.TBSFramework
             {
                 //Debug.Log("Cell#" + ID + " graphic: " + graphic + " layer " + layer.ToString());
                 return graphic;
-            } else
-                return graphic;
+            }
+            else
+                throw new NullReferenceException("Tile Error: Attempted getting graphics at layer where none exsists.");
         }
 
         public bool ContainsGraphic (HexLayers layer)
@@ -151,9 +193,8 @@ namespace DaleranGames.TBSFramework
             if (!graphics.ContainsKey(layer))
             {
                 graphics.Add(layer, coord);
+                GraphicsChange(layer);
 
-                if (TileGraphicsChange != null)
-                    TileGraphicsChange(this, layer);
             }
         }
 
@@ -162,15 +203,70 @@ namespace DaleranGames.TBSFramework
             if (graphics.ContainsKey(layer))
             {
                 graphics.Remove(layer);
-
-                if (TileGraphicsChange != null)
-                    TileGraphicsChange(this, layer);
+                GraphicsChange(layer);
             }
         }
 
         public void ClearGraphics ()
         {
             graphics.Clear();
+
+            uiMeshDirty = true;
+            tileMeshDirty = true;
+
+            if (UIGraphicsChange != null)
+                UIGraphicsChange(this);
+
+            if (TileGraphicsChange != null)
+                TileGraphicsChange(this);
+        }
+
+        void GraphicsChange(HexLayers layer)
+        {
+            if (layer.IsUILayer() && UIGraphicsChange != null)
+            {
+                uiMeshDirty = true;
+                UIGraphicsChange(this);
+            }
+            else if (!layer.IsUILayer() && TileGraphicsChange != null)
+            {
+                tileMeshDirty = true;
+                TileGraphicsChange(this);
+            }
+        }
+
+        MeshData GenerateNewUIMeshData ()
+        {
+            MeshData newData = new MeshData();
+            foreach (KeyValuePair<HexLayers,Vector2Int> kvp in graphics)
+            {
+                if(kvp.Key.IsUILayer() && kvp.Value != Vector2Int.zero)
+                {
+                    int vertIndex = newData.verticies.Count;
+                    newData.verticies.AddRange(HexMetrics.CalculateVerticies(kvp.Key.GetSpecialOffset(Position)));
+                    newData.triangles.AddRange(HexMetrics.CalculateTriangles(vertIndex));
+                    newData.uvs.AddRange(atlas.CalculateUVs(kvp.Value));
+                }
+
+            }
+            return newData;
+        }
+
+        MeshData GenerateNewTileMeshData()
+        {
+            MeshData newData = new MeshData();
+            foreach (KeyValuePair<HexLayers, Vector2Int> kvp in graphics)
+            {
+                if (!kvp.Key.IsUILayer() && kvp.Value != Vector2Int.zero)
+                {
+                    int vertIndex = newData.verticies.Count;
+                    newData.verticies.AddRange(HexMetrics.CalculateVerticies(kvp.Key.GetSpecialOffset(Position)));
+                    newData.triangles.AddRange(HexMetrics.CalculateTriangles(vertIndex));
+                    newData.uvs.AddRange(atlas.CalculateUVs(kvp.Value));
+                }
+
+            }
+            return newData;
         }
 
         #endregion

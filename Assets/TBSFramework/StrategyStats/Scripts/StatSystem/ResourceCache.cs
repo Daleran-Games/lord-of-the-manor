@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Happiness : MonoBehaviour {
+public class ResourceCache : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {

@@ -38,10 +38,10 @@ namespace DaleranGames.UI
 
         TileAtlas atlas;
 
-        HexMesh iconMesh;
-        HexMesh digit1;
-        HexMesh digit2;
-        HexMesh digit3;
+        //HexMesh iconMesh;
+        //HexMesh digit1;
+        //HexMesh digit2;
+        //HexMesh digit3;
 
         Dictionary<int, int[]> lookupTable;
 
@@ -49,7 +49,7 @@ namespace DaleranGames.UI
         void Awake()
         {
             grid = gameObject.GetRequiredComponent<HexGrid>();
-            grid.MeshBuildComplete += OnMeshGenrationComplete;
+            //grid.MeshBuildComplete += OnMeshGenrationComplete;
             lookupTable = new Dictionary<int, int[]>();
 
             BuildLookupTable();
@@ -57,9 +57,10 @@ namespace DaleranGames.UI
 
         private void OnDestroy()
         {
-            grid.MeshBuildComplete -= OnMeshGenrationComplete;
+            //grid.MeshBuildComplete -= OnMeshGenrationComplete;
         }
 
+        /*
         void OnMeshGenrationComplete()
         {
             atlas = grid.Generator.Atlas;
@@ -79,7 +80,7 @@ namespace DaleranGames.UI
             digit2.transform.Translate(new Vector3(0f, -0.0625f, 0f));
             digit3.transform.Translate(new Vector3(0.3125f, -0.0625f, 0f));
 
-            /*
+
             SetLabelNunmber(grid[0, 0], -152);
             SetLabelNunmber(grid[0, 1], -52);
             SetLabelNunmber(grid[0, 2], -4);
@@ -87,12 +88,18 @@ namespace DaleranGames.UI
             SetLabelNunmber(grid[0, 4], 26);
             SetLabelNunmber(grid[0, 5], 576);
             SetLabelNunmber(grid[0, 6], 1087);
-            */
-        }
 
+        }
+        */
         public void SetLabelIcon (HexTile tile, Vector2Int coord)
         {
-            iconMesh.UpdateUVBuffer(tile, HexLayers.OverlayIcon, coord);
+            //iconMesh.UpdateUVBuffer(tile, HexLayers.OverlayIcon, coord);
+            tile.AddGraphic(HexLayers.OverlayIcon, coord);
+        }
+
+        public void ClearLabelIcon(HexTile tile)
+        {
+            tile.RemoveGraphic(HexLayers.OverlayIcon);
         }
 
         public void SetLabelNunmber (HexTile tile, int number)
@@ -104,19 +111,29 @@ namespace DaleranGames.UI
             else
             {
                 Vector2Int[] coords = GetDigitCoordArray(number);
-                digit1.UpdateUVBuffer(tile, HexLayers.OverlayDigit1, coords[0]);
-                digit2.UpdateUVBuffer(tile, HexLayers.OverlayDigit2, coords[1]);
-                digit3.UpdateUVBuffer(tile, HexLayers.OverlayDigit3, coords[2]);
+
+                tile.AddGraphic(HexLayers.OverlayDigit1, coords[0]);
+                tile.AddGraphic(HexLayers.OverlayDigit2, coords[1]);
+                tile.AddGraphic(HexLayers.OverlayDigit3, coords[2]);
+
+                //digit1.UpdateUVBuffer(tile, HexLayers.OverlayDigit1, coords[0]);
+                //digit2.UpdateUVBuffer(tile, HexLayers.OverlayDigit2, coords[1]);
+                //digit3.UpdateUVBuffer(tile, HexLayers.OverlayDigit3, coords[2]);
             }
         }
 
         public void ClearLabelNunmber(HexTile tile)
         {
-            digit1.UpdateUVBuffer(tile, HexLayers.OverlayDigit1, Vector2Int.zero);
-            digit2.UpdateUVBuffer(tile, HexLayers.OverlayDigit2, Vector2Int.zero);
-            digit3.UpdateUVBuffer(tile, HexLayers.OverlayDigit3, Vector2Int.zero);
+            tile.RemoveGraphic(HexLayers.OverlayDigit1);
+            tile.RemoveGraphic(HexLayers.OverlayDigit2);
+            tile.RemoveGraphic(HexLayers.OverlayDigit3);
+
+            //digit1.UpdateUVBuffer(tile, HexLayers.OverlayDigit1, Vector2Int.zero);
+            //digit2.UpdateUVBuffer(tile, HexLayers.OverlayDigit2, Vector2Int.zero);
+            //digit3.UpdateUVBuffer(tile, HexLayers.OverlayDigit3, Vector2Int.zero);
         }
 
+        /*
         public void CommitUVChanges ()
         {
             iconMesh.CommitUVBuffer();
@@ -124,7 +141,7 @@ namespace DaleranGames.UI
             digit2.CommitUVBuffer();
             digit3.CommitUVBuffer();
         }
-
+        */
 
         Vector2Int[] GetDigitCoordArray (int number)
         {

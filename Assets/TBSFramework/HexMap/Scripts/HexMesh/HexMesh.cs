@@ -25,6 +25,9 @@ namespace DaleranGames.TBSFramework
         bool uiMesh = false;
         public bool UIMesh { get { return uiMesh; } set { uiMesh = value; } }
 
+        [SerializeField]
+        bool isDirty = false;
+
         void Awake()
         {
             GetComponent<MeshFilter>().mesh = hexMesh = new Mesh();
@@ -75,32 +78,15 @@ namespace DaleranGames.TBSFramework
             verticieBuffer.AddRange(HexMetrics.CalculateVerticies(tile.Position + Layer.ToVector3()));
             triangleBuffer.AddRange(HexMetrics.CalculateTriangles(vertexIndex));
             uvBuffer.AddRange(meshAtlas.CalculateUVs(tile.GetGraphicsAtLayer(Layer)));
-            tile.TileGraphicsChange += ImmediateUpdateUV;
+            //tile.TileGraphicsChange += UpdateUVBuffer;
         }
 
-        public void ImmediateUpdateUV (HexTile tile, HexLayers layer)
+        public void UpdateUVBuffer (HexTile tile, HexLayers layer)
         {
             if (layer == Layer)
             {
                 Vector2Int newCoord = tile.GetGraphicsAtLayer(Layer);
-                ImmediateUpdateUV(tile,layer, newCoord);
-            }
-        }
-
-        public void ImmediateUpdateUV(HexTile tile, HexLayers layer, Vector2Int coord)
-        {
-            if (layer == Layer)
-            {
-                Vector2[] newUV = meshAtlas.CalculateUVs(coord);
-                //Debug.Log("Updating " + Layer.ToString() + " to " + newCoord.ToString());
-                int i = tile.ID * 4;
-                //Debug.Log("Max: " + HexTile.MaxID + " ID: " + tile.ID + " Estimate: "+i);
-
-                uvBuffer[i] = newUV[0];
-                uvBuffer[i + 1] = newUV[1];
-                uvBuffer[i + 2] = newUV[2];
-                uvBuffer[i + 3] = newUV[3];
-                hexMesh.uv = uvBuffer.ToArray();
+                UpdateUVBuffer(tile,layer, newCoord);
             }
         }
 
@@ -117,12 +103,20 @@ namespace DaleranGames.TBSFramework
                 uvBuffer[i + 1] = newUV[1];
                 uvBuffer[i + 2] = newUV[2];
                 uvBuffer[i + 3] = newUV[3];
+                isDirty = true;
             }
+        }
+
+        private void LateUpdate()
+        {
+            if (isDirty)
+                CommitUVBuffer();
         }
 
         public void CommitUVBuffer ()
         {
             hexMesh.uv = uvBuffer.ToArray();
+            isDirty = false;
         }
 
 

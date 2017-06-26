@@ -5,11 +5,9 @@ using UnityEngine;
 namespace DaleranGames.TBSFramework
 {
     [System.Serializable]
-    public class Household
+    public class Unit
     {
-
 
 
     }
 }
-

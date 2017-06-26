@@ -12,8 +12,8 @@ namespace DaleranGames.Game
         protected GameManager ( ) { }
 
         [SerializeField]
-        Household playerHousehold;
-        public Household PlayerHouseHold { get { return playerHousehold; } }
+        Clan playerClan;
+        public Clan PlayerClan { get { return playerClan; } }
 
         public Action<GameState> StateChanged;
 
@@ -53,7 +53,7 @@ namespace DaleranGames.Game
             LoadScene.enabled = false;
             Play.enabled = false;
 
-            playerHousehold = new Household();
+            playerClan = new Clan();
         }
 
         private void OnEnable()

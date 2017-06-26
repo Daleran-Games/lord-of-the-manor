@@ -21,6 +21,9 @@ namespace DaleranGames.TBSFramework
         public const float layerSeperation = tileSperation / maxLayers;
         public const float maxLayers = 100f;
 
+        public const int xChunkSize = 8;
+        public const int yChunkSize = 8;
+
 
         public static Vector3[] CalculateVerticies(Vector3 pos)
         {
@@ -55,6 +58,42 @@ namespace DaleranGames.TBSFramework
         public static Vector3 ToVector3 (this HexLayers layer)
         {
             return new Vector3(0f, 0f, layer.ToFloat());
+        }
+
+        public static bool IsUILayer (this HexLayers layer)
+        {
+            switch(layer)
+            {
+                case HexLayers.Fog:
+                    return true;
+                case HexLayers.OverlayIcon:
+                    return true;
+                case HexLayers.OverlayDigit1:
+                    return true;
+                case HexLayers.OverlayDigit2:
+                    return true;
+                case HexLayers.OverlayDigit3:
+                    return true;
+                default:
+                    return false;
+            }
+        }
+
+        public static Vector3 GetSpecialOffset (this HexLayers layer, Vector3 position)
+        {
+            switch (layer)
+            {
+                case HexLayers.OverlayIcon:
+                    return position + new Vector3(0f, 0.375f, 0f);
+                case HexLayers.OverlayDigit1:
+                    return position + new Vector3(-0.3125f, -0.0625f, 0f);
+                case HexLayers.OverlayDigit2:
+                    return position + new Vector3(0f, -0.0625f, 0f);
+                case HexLayers.OverlayDigit3:
+                    return position + new Vector3(0.3125f, -0.0625f, 0f);
+                default:
+                    return position;
+            }
         }
 
     } 

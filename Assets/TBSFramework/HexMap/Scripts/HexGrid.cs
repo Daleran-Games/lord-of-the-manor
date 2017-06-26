@@ -31,19 +31,18 @@ namespace DaleranGames.TBSFramework
 
         HexTile[,] tiles;
 
-        Dictionary<HexLayers, HexMesh> meshes;
+        Dictionary<Vector2Int,HexMeshChunk> uiMeshes;
+        Dictionary<Vector2Int, HexMeshChunk> terrainMeshes;
 
         private void Awake()
         {
-            meshes = new Dictionary<HexLayers, HexMesh>();
-
-            TurnManager.Instance.TurnChanged += OnTurnChange;
-
+            uiMeshes = new Dictionary<Vector2Int, HexMeshChunk>();
+            terrainMeshes = new Dictionary<Vector2Int, HexMeshChunk>();
         }
 
         private void OnDestroy()
         {
-            TurnManager.Instance.TurnChanged -= OnTurnChange;
+   
         }
 
         public virtual HexTile this[int x, int y]
@@ -64,36 +63,37 @@ namespace DaleranGames.TBSFramework
             }
         }
 
-        public HexMesh GetHexMeshAtLayer (HexLayers layer)
+        public HexMeshChunk GetUIMesh (Vector2Int chunkID)
         {
-            HexMesh output = null;
-            if (meshes.TryGetValue(layer, out output))
+            HexMeshChunk output = null;
+            if (uiMeshes.TryGetValue(chunkID, out output))
             {
                 return output;
             }
-                
+            return null;    
+        }
 
+        public HexMeshChunk GetTerrainMesh(Vector2Int chunkID)
+        {
+            HexMeshChunk output = null;
+            if (terrainMeshes.TryGetValue(chunkID, out output))
+            {
+                return output;
+            }
             return null;
-                
         }
 
         public void GenerateMap ()
         {
             gameObject.transform.ClearChildren();
-            meshes.Clear();
-            InstantiateHexMeshes();
+            uiMeshes.Clear();
+            terrainMeshes.Clear();
             tiles = Generator.GenerateMap();
 
             if (MapGenerationComplete != null)
                 MapGenerationComplete();
 
-            foreach (KeyValuePair<HexLayers, HexMesh> kvp in meshes)
-            {
-                if (UILayers.Contains(kvp.Key))
-                    kvp.Value.BuildMesh(tiles, kvp.Key, Generator.Atlas, true);
-                else
-                    kvp.Value.BuildMesh(tiles, kvp.Key, Generator.Atlas, false);
-            }
+            InstantiateMeshChunks();
 
             if (MeshBuildComplete != null)
                 MeshBuildComplete();
@@ -103,37 +103,38 @@ namespace DaleranGames.TBSFramework
 
         }
 
-        public void SwitchMaterial (Material mat)
+        void InstantiateMeshChunks ()
         {
-            foreach (KeyValuePair<HexLayers, HexMesh> kvp in meshes)
-            {
-                if (!kvp.Value.UIMesh)
-                    kvp.Value.SwitchMateiral(mat);
-            }
-        }
+            int chunkRows;
+            int chunkColumns;
 
-        void InstantiateHexMeshes ()
-        {
-            foreach (HexLayers layer in Enum.GetValues(typeof(HexLayers)))
-            {
-                GameObject mesh = Instantiate(HexMeshPrefab, this.transform);
-                mesh.transform.position = this.transform.position;
-                HexMesh hexMesh = mesh.GetComponent<HexMesh>();
-                mesh.name = layer.ToString() + "Mesh";
-                meshes.Add(layer, hexMesh);
-            }
-        }
+            chunkColumns = (Width / HexMetrics.xChunkSize);
+            chunkRows = (Height / HexMetrics.yChunkSize);
 
-        void OnTurnChange (BaseTurn newTurn)
-        {
-            if (newTurn is SpringTurn)
-                SwitchMaterial(Generator.Atlas.SpringAtlas);
-            else if (newTurn is SummerTurn)
-                SwitchMaterial(Generator.Atlas.SummerAtlas);
-            else if (newTurn is FallTurn)
-                SwitchMaterial(Generator.Atlas.FallAtlas);
-            else if (newTurn is WinterTurn)
-                SwitchMaterial(Generator.Atlas.WinterAtlas);
+            if (Width % HexMetrics.xChunkSize != 0)
+                chunkColumns++;
+
+            if (Height % HexMetrics.yChunkSize != 0)
+                chunkRows++;
+
+            for (int y=0; y < chunkRows; y++)
+            {
+                for (int x=0; x < chunkColumns; x++)
+                {
+                    Vector2Int chunkID = new Vector2Int(x, y);
+                    GameObject newTerrainChunk = new GameObject("Terrain Chunk " + chunkID);
+                    newTerrainChunk.transform.SetParent(this.transform);
+                    HexMeshChunk terrainScript = newTerrainChunk.GetOrAddComponent<HexMeshChunk>();
+                    terrainScript.BuildMesh(chunkID, false);
+                    terrainMeshes.Add(chunkID, terrainScript);
+
+                    GameObject newUIChunk = new GameObject("UI Chunk " + chunkID);
+                    newUIChunk.transform.SetParent(this.transform);
+                    HexMeshChunk uiScript = newUIChunk.GetOrAddComponent<HexMeshChunk>();
+                    uiScript.BuildMesh(chunkID, false);
+                    uiMeshes.Add(chunkID, terrainScript);
+                }
+            }
         }
 
 
