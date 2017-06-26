@@ -53,8 +53,8 @@ namespace DaleranGames.TBSFramework
 
         [SerializeField]
         [ReadOnly]
-        protected Household owner;
-        public Household Owner { get { return owner; } set { owner = value; } }
+        protected Clan owner;
+        public Clan Owner { get { return owner; } set { owner = value; } }
 
         #endregion
 

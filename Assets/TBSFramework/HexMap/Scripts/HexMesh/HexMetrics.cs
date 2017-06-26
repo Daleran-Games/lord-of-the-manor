@@ -21,6 +21,9 @@ namespace DaleranGames.TBSFramework
         public const float layerSeperation = tileSperation / maxLayers;
         public const float maxLayers = 100f;
 
+        public const float xChunkSize = 8;
+        public const float yChunkSize = 8;
+
 
         public static Vector3[] CalculateVerticies(Vector3 pos)
         {

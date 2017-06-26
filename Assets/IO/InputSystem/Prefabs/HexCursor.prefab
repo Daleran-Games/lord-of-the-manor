@@ -55,7 +55,7 @@ MeshRenderer:
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
   m_Materials:
-  - {fileID: 2100000, guid: dc53c3d326eeeb240a288abf5f29a1ad, type: 2}
+  - {fileID: 2100000, guid: 4f71a08c2465c0d4fad49fdb8139c413, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -116,6 +116,9 @@ MonoBehaviour:
   negative:
     x: 3
     y: 0
+  cross:
+    x: 7
+    y: 0
   currentTile:
     id: 0
     coord:
@@ -124,5 +127,13 @@ MonoBehaviour:
     position: {x: 0, y: 0, z: 0}
     elevation: 0
     moisture: 0
+    owner:
+      tenets: []
+      testStat:
+        _type: 0
+        _value: 0
+      test2:
+        x: 0
+        y: 0
     land: {fileID: 0}
     improvement: {fileID: 0}

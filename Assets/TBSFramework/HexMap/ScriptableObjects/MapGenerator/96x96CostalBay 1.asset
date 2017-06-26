@@ -36,15 +36,24 @@ MonoBehaviour:
   - tileName: Forest
     elevationCutoff: 175
     moistureCutoff: 56
+  - tileName: Moor Hills
+    elevationCutoff: 211
+    moistureCutoff: 0
   - tileName: Hills
     elevationCutoff: 211
-    moistureCutoff: 0
+    moistureCutoff: 30
   - tileName: Wooded Hills
     elevationCutoff: 211
-    moistureCutoff: 30
-  - tileName: Mountains
+    moistureCutoff: 57
+  - tileName: Moor Mountains
     elevationCutoff: 229
     moistureCutoff: 0
+  - tileName: Mountains
+    elevationCutoff: 229
+    moistureCutoff: 40
+  - tileName: Wooded Mountains
+    elevationCutoff: 229
+    moistureCutoff: 92
   initalElevation: 255
   initialMoisture: 0
   antSpawners:

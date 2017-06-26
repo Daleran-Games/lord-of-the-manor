@@ -85,7 +85,7 @@ namespace UnityEngine
         {
             unchecked
             {
-                return (x * 397) ^ y;
+                return (x.GetHashCode()) ^ y.GetHashCode();
             }
         }
 
@@ -107,6 +107,16 @@ namespace UnityEngine
         public static Vector2Int operator -(Vector2Int l, Vector2Int r)
         {
             return new Vector2Int(l.x - r.x, l.y - r.y);
+        }
+
+        public static Vector2Int operator *(Vector2Int l, int r)
+        {
+            return new Vector2Int(l.x * r, l.y * r);
+        }
+
+        public static Vector2Int operator /(Vector2Int l, int r)
+        {
+            return new Vector2Int(l.x / r, l.y / r);
         }
 
         public static bool operator > (Vector2Int l, Vector2Int r)

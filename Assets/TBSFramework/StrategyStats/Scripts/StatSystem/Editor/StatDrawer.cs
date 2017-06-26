@@ -1,25 +1,28 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 using UnityEditor;
 
-namespace UnityEngine
+namespace DaleranGames.TBSFramework
 {
-   [CustomPropertyDrawer(typeof(Vector2Int))]
-    public class Vector2IntDrawer : PropertyDrawer
+    [CustomPropertyDrawer(typeof(Stat))]
+    public class StatDrawer : PropertyDrawer
     {
 
-        SerializedProperty x, y;
+        SerializedProperty t, v;
         string name;
 
+       
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
         {
 
-
+            
             //get the name before it's gone
             name = property.displayName;
 
-            x = property.FindPropertyRelative("x");
-            y = property.FindPropertyRelative("y");
+            t = property.FindPropertyRelative("_type");
+            v = property.FindPropertyRelative("_value");
 
 
             Rect contentPosition = EditorGUI.PrefixLabel(position, new GUIContent(name));
@@ -37,29 +40,23 @@ namespace UnityEngine
             GUI.skin.label.padding = new RectOffset(3, 3, 6, 6);
 
             //show the X and Y from the point
-            EditorGUIUtility.labelWidth = 14f;
+            EditorGUIUtility.labelWidth = 40f;
             contentPosition.width *= 0.5f;
             EditorGUI.indentLevel = 0;
 
             // Begin/end property & change check make each field
             // behave correctly when multi-object editing.
-            EditorGUI.BeginProperty(contentPosition, label, x);
+            EditorGUI.BeginProperty(contentPosition, label, t);
             {
-                EditorGUI.BeginChangeCheck();
-                int newVal = EditorGUI.IntField(contentPosition, new GUIContent("X"), x.intValue);
-                if (EditorGUI.EndChangeCheck())
-                    x.intValue = newVal;
+                EditorGUI.PropertyField(contentPosition, t, new GUIContent("Type"));
             }
             EditorGUI.EndProperty();
 
             contentPosition.x += half;
 
-            EditorGUI.BeginProperty(contentPosition, label, y);
+            EditorGUI.BeginProperty(contentPosition, label, v);
             {
-                EditorGUI.BeginChangeCheck();
-                int newVal = EditorGUI.IntField(contentPosition, new GUIContent("Y"), y.intValue);
-                if (EditorGUI.EndChangeCheck())
-                    y.intValue = newVal;
+                EditorGUI.PropertyField(contentPosition, v, new GUIContent("Value"));
             }
             EditorGUI.EndProperty();
 
@@ -72,5 +69,3 @@ namespace UnityEngine
 
     }
 }
-
-
