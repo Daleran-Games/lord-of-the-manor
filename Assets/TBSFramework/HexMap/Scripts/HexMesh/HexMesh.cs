@@ -78,7 +78,7 @@ namespace DaleranGames.TBSFramework
             verticieBuffer.AddRange(HexMetrics.CalculateVerticies(tile.Position + Layer.ToVector3()));
             triangleBuffer.AddRange(HexMetrics.CalculateTriangles(vertexIndex));
             uvBuffer.AddRange(meshAtlas.CalculateUVs(tile.GetGraphicsAtLayer(Layer)));
-            tile.TileGraphicsChange += UpdateUVBuffer;
+            //tile.TileGraphicsChange += UpdateUVBuffer;
         }
 
         public void UpdateUVBuffer (HexTile tile, HexLayers layer)

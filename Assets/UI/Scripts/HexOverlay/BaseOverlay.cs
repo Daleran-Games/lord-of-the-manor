@@ -68,7 +68,7 @@ namespace DaleranGames.UI
                 for (int x = 0; x < grid.Width; x++)
                 {
                     overlay.ClearLabelNunmber(grid[x, y]);
-                    overlay.SetLabelIcon(grid[x, y],Vector2Int.zero);
+                    overlay.ClearLabelIcon(grid[x, y]);
                 }
             }
             //overlay.CommitUVChanges();

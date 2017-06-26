@@ -46,7 +46,7 @@ namespace DaleranGames.TBSFramework
         protected virtual HexTile CreateTile(int x, int y, int id, float z)
         {
             Vector3 position = HexCoordinates.GetUnityPosition(x, y, z);
-            return new HexTile(HexCoordinates.CartesianToHex(x, y), position, id);
+            return new HexTile(HexCoordinates.CartesianToHex(x, y), position, id, Atlas);
         }
 
         [System.Serializable]

@@ -27,10 +27,21 @@ namespace DaleranGames.TBSFramework
         public static MeshData operator +(MeshData l,MeshData r)
         {
             MeshData newData = new MeshData(l.verticies, l.triangles, l.uvs);
+            int count = l.verticies.Count;
             newData.verticies.AddRange(r.verticies);
-            newData.triangles.AddRange(r.triangles);
+            for (int i=0; i < r.triangles.Count; i++)
+            {
+                newData.triangles.Add(r.triangles[i] + count);
+            }
             newData.uvs.AddRange(r.uvs);
             return newData;
+        }
+
+        public void Clear()
+        {
+            triangles.Clear();
+            verticies.Clear();
+            uvs.Clear();
         }
     }
 }
