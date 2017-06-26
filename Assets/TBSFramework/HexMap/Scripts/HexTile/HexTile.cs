@@ -55,11 +55,6 @@ namespace DaleranGames.TBSFramework
         protected byte moisture = 0;
         public byte Moisture { get { return moisture; } set { moisture = value; } }
 
-        [SerializeField]
-        [ReadOnly]
-        protected Clan owner;
-        public Clan Owner { get { return owner; } set { owner = value; } }
-
         #endregion
 
         #region Tile Components
@@ -80,6 +75,8 @@ namespace DaleranGames.TBSFramework
                     land.OnActivation(this);
             }
         }
+
+
 
         [SerializeField]
         protected ImprovementType improvement;
@@ -260,7 +257,7 @@ namespace DaleranGames.TBSFramework
                 if (!kvp.Key.IsUILayer() && kvp.Value != Vector2Int.zero)
                 {
                     int vertIndex = newData.verticies.Count;
-                    newData.verticies.AddRange(HexMetrics.CalculateVerticies(kvp.Key.GetSpecialOffset(Position)));
+                    newData.verticies.AddRange(HexMetrics.CalculateVerticies(Position + kvp.Key.ToVector3()));
                     newData.triangles.AddRange(HexMetrics.CalculateTriangles(vertIndex));
                     newData.uvs.AddRange(atlas.CalculateUVs(kvp.Value));
                 }

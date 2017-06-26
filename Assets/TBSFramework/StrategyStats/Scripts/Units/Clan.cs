@@ -11,10 +11,9 @@ namespace DaleranGames.TBSFramework
         Unit playerUnit;
         [SerializeField]
         List<Unit> tenets;
-        [SerializeField]
-        Stat testStat;
-        [SerializeField]
-        Vector2Int test2;
+
+
+
 
     }
 }

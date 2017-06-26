@@ -2,15 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StatCache : MonoBehaviour {
+namespace DaleranGames.TBSFramework
+{
+    [System.Serializable]
+    public class StatCache
+    {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    }
 }

@@ -131,7 +131,7 @@ namespace DaleranGames.TBSFramework
                     GameObject newUIChunk = new GameObject("UI Chunk " + chunkID);
                     newUIChunk.transform.SetParent(this.transform);
                     HexMeshChunk uiScript = newUIChunk.GetOrAddComponent<HexMeshChunk>();
-                    uiScript.BuildMesh(chunkID, false);
+                    uiScript.BuildMesh(chunkID, true);
                     uiMeshes.Add(chunkID, terrainScript);
                 }
             }

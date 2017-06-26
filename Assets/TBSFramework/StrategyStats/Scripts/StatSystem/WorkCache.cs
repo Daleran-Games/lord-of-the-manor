@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WorkCache : MonoBehaviour {
+namespace DaleranGames.TBSFramework
+{
+    [System.Serializable]
+    public class WorkCache 
+    {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+
+    }
 }

@@ -8,6 +8,12 @@ namespace DaleranGames.TBSFramework
         public const float innerRadius = 0.5f;
         public const float outerRadius = innerRadius;
 
+        public const float gridWidth = innerRadius * 2f;
+        public const float gridHeight = outerRadius * 1.5f;
+        public const float hexPointHeight = outerRadius / 2;
+        public const float hexSlope = hexPointHeight /innerRadius;
+
+
         public const float xTileSize = 1.5f;
         public const float xHalfTileSize = xTileSize / 2f;
 
@@ -17,7 +23,7 @@ namespace DaleranGames.TBSFramework
         public const float pivotOffset = 0f;
 
         public const float tileSperation = 0.1f;
-        public const float startingZ = 995;
+        public const float startingZ = 1;
         public const float layerSeperation = tileSperation / maxLayers;
         public const float maxLayers = 100f;
 
@@ -52,7 +58,7 @@ namespace DaleranGames.TBSFramework
 
         public static float ToFloat(this HexLayers layer)
         {
-            return (int)layer * layerSeperation;
+            return (int)layer * -layerSeperation;
         }
 
         public static Vector3 ToVector3 (this HexLayers layer)

@@ -31,15 +31,15 @@ namespace DaleranGames.TBSFramework
             int id = 0;
             float z = HexMetrics.startingZ;
 
-            for (int y = Height - 1; y >= 0; y--)
+            for (int y = 0; y < Height ; y++)
             {
-                for (int x = Width - 1; x >= 0; x--)
+                for (int x = 0; x < Width ; x++)
                 {
                     tiles[x, y] = CreateTile(x, y, id,z);
                     tiles[x, y].Elevation = InitalElevation;
                     tiles[x, y].Moisture = InitialMoisture;
                     id++;
-                    z -= HexMetrics.tileSperation;
+                    z += HexMetrics.tileSperation;
                 }
             }
 

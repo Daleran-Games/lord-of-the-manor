@@ -57,10 +57,10 @@ namespace DaleranGames.TBSFramework
         }
 
         public static Vector3 GetUnityPosition(int x, int y, float z)
-        {
+        { 
             Vector3 position;
-            position.x = (x + y * 0.5f - y / 2) * (HexMetrics.innerRadius * 2f);
-            position.y = y * (HexMetrics.outerRadius * 1.5f);
+            position.x = (x + y * 0.5f - y / 2) * (HexMetrics.gridWidth);
+            position.y = y * (HexMetrics.gridHeight);
             position.z = z;
 
             return position;
@@ -68,10 +68,27 @@ namespace DaleranGames.TBSFramework
 
         public static Vector2Int GetCartesianFromUnity (Vector3 position)
         {
-            float y = position.y / (HexMetrics.outerRadius * 1.5f);
+            float y = position.y / (HexMetrics.gridHeight) - ((HexMetrics.gridHeight) /6f);
+            int _y = Mathf.RoundToInt(y);
+            float x = (position.x / (HexMetrics.gridWidth)) - y * 0.5f + y / 2;
+            int _x = Mathf.RoundToInt(x);
 
-            return new Vector2Int ( Mathf.RoundToInt((position.x / (HexMetrics.innerRadius * 2f)) - y * 0.5f + y / 2),
-                Mathf.RoundToInt(y));
+            Vector2 relativePoint = position - GetUnityPosition(_x, _y, position.z);
+
+            if (relativePoint.y > (-HexMetrics.hexSlope * relativePoint.x) + HexMetrics.hexPointHeight)
+            {
+                _y++;
+                if (MathExtensions.IsOdd(_y))
+                    _x--;
+            } else if (relativePoint.y > (HexMetrics.hexSlope * relativePoint.x) - HexMetrics.hexPointHeight)
+            {
+                _y++;
+                if (MathExtensions.IsOdd(_y))
+                    _x++;
+            }
+
+            return new Vector2Int(_x, _y);
+
         }
        
         public override string ToString()
