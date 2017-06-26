@@ -58,7 +58,7 @@ namespace DaleranGames.UI
                     SetLabel(grid[x, y]);
                 }
             }
-            overlay.CommitUVChanges();
+            //overlay.CommitUVChanges();
         }
 
         protected virtual void ClearLabels()
@@ -71,7 +71,7 @@ namespace DaleranGames.UI
                     overlay.SetLabelIcon(grid[x, y],Vector2Int.zero);
                 }
             }
-            overlay.CommitUVChanges();
+            //overlay.CommitUVChanges();
         }
 
     }

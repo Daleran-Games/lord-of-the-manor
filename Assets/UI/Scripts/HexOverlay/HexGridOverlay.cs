@@ -117,6 +117,7 @@ namespace DaleranGames.UI
             digit3.UpdateUVBuffer(tile, HexLayers.OverlayDigit3, Vector2Int.zero);
         }
 
+        /*
         public void CommitUVChanges ()
         {
             iconMesh.CommitUVBuffer();
@@ -124,7 +125,7 @@ namespace DaleranGames.UI
             digit2.CommitUVBuffer();
             digit3.CommitUVBuffer();
         }
-
+        */
 
         Vector2Int[] GetDigitCoordArray (int number)
         {

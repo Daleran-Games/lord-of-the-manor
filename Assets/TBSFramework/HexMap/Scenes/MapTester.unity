@@ -2850,8 +2850,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   icon:
-    x: 0
-    y: 0
+    x: 12
+    y: 1
 --- !u!1 &1276682393
 GameObject:
   m_ObjectHideFlags: 0
