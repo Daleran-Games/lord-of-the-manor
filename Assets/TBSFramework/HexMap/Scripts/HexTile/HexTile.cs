@@ -18,6 +18,7 @@ namespace DaleranGames.TBSFramework
             MaxID = id;
 
             graphics = new Dictionary<HexLayers, Vector2Int>();
+            stats = new Dictionary<StatType, int>();
             this.atlas = atlas;
 
             uiMeshData = new MeshData();
@@ -126,6 +127,45 @@ namespace DaleranGames.TBSFramework
 
         #endregion
 
+        #region TileStats
+
+        Dictionary<StatType, int> stats;
+
+        public int GetStat(StatType type)
+        {
+            int statValue;
+            if (stats.TryGetValue(type, out statValue))
+            {
+                return statValue;
+            }
+            else
+                throw new NullReferenceException("Tile Error: Attempted getting stat where none exsists.");
+        }
+
+        public bool ContainsStat (StatType type)
+        {
+            return stats.ContainsKey(type);
+        }
+
+        public void AddStat (Stat stat)
+        {
+            if(ContainsStat(stat.Type))
+            {
+                
+            } else
+                stats.Add(stat.Type, stat.Value);
+        }
+
+        public void RemoveStat (Stat stat)
+        {
+            if (ContainsStat(stat.Type))
+            {
+
+            }
+        }
+
+        #endregion
+
         #region Graphics
 
 
@@ -170,7 +210,7 @@ namespace DaleranGames.TBSFramework
 
         public Vector2Int GetGraphicsAtLayer(HexLayers layer)
         {
-            Vector2Int graphic = Vector2Int.zero;
+            Vector2Int graphic;
             if (graphics.TryGetValue(layer, out graphic))
             {
                 //Debug.Log("Cell#" + ID + " graphic: " + graphic + " layer " + layer.ToString());

@@ -73,20 +73,21 @@ namespace DaleranGames.TBSFramework
             float x = (position.x / (HexMetrics.gridWidth)) - y * 0.5f + y / 2;
             int _x = Mathf.RoundToInt(x);
 
-            Vector2 relativePoint = position - GetUnityPosition(_x, _y, position.z);
+            bool rowIsOdd = _y % 2 == 1;
+            Vector3 relPoint = position - GetUnityPosition(_x, _y, position.z);
 
-            if (relativePoint.y > (-HexMetrics.hexSlope * relativePoint.x) + HexMetrics.hexPointHeight)
+
+            if (relPoint.y > (HexMetrics.hexSlope * relPoint.x) + HexMetrics.outerRadius)
             {
                 _y++;
-                if (MathExtensions.IsOdd(_y))
+                if (!rowIsOdd)
                     _x--;
-            } else if (relativePoint.y > (HexMetrics.hexSlope * relativePoint.x) - HexMetrics.hexPointHeight)
+            } else if (relPoint.y > (-HexMetrics.hexSlope * relPoint.x) + HexMetrics.outerRadius)
             {
                 _y++;
-                if (MathExtensions.IsOdd(_y))
+                if (rowIsOdd)
                     _x++;
             }
-
             return new Vector2Int(_x, _y);
 
         }

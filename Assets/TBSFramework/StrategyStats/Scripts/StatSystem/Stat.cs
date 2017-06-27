@@ -125,6 +125,31 @@ namespace DaleranGames.TBSFramework
             return new Stat(l.Type, l.Value % r);
         }
 
+        public static Stat operator +(Stat l, Stat r)
+        {
+            return new Stat(l.Type, l.Value + r.Value);
+        }
+
+        public static Stat operator -(Stat l, Stat r)
+        {
+            return new Stat(l.Type, l.Value - r.Value);
+        }
+
+        public static Stat operator *(Stat l, Stat r)
+        {
+            return new Stat(l.Type, l.Value * r.Value);
+        }
+
+        public static Stat operator /(Stat l, Stat r)
+        {
+            return new Stat(l.Type, l.Value / r.Value);
+        }
+
+        public static Stat operator %(Stat l, Stat r)
+        {
+            return new Stat(l.Type, l.Value % r.Value);
+        }
+
         public static Stat operator ++(Stat s)
         {
             return new Stat(s.Type, s.Value +1);
