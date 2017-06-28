@@ -200,7 +200,15 @@ namespace DaleranGames.TBSFramework
             return l.Value.CompareTo(r) <= 0;
         }
 
+        public static implicit operator int(Stat s)
+        {
+            return s.Value;
+        }
 
+        public static implicit operator StatType(Stat s)
+        {
+            return s.Type;
+        }
     }
 }
 

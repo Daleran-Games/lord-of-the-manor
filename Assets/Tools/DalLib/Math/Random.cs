@@ -9,6 +9,7 @@ namespace DaleranGames
 
         private static readonly System.Random seedGenerator = new System.Random();
         public static int seed = seedGenerator.Next();
+        //public static int seed = 5;
         public static int Seed
         {
             get { return seed; }

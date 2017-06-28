@@ -7,12 +7,14 @@ namespace DaleranGames.TBSFramework
 {
     public enum StatType
     {
-        Food,
-        Wood,
-        Stone,
-        Coins,
-        Work,
-        Happiness
+        None = 0,
+        Food = 1,
+        Wood = 2,
+        Stone = 3,
+        Coins = 4,
+        Work = 5,
+        Happiness = 6,
+        Population = 7
     }
 }
 

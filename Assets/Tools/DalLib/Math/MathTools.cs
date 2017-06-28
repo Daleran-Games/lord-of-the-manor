@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace DaleranGames
 {
-    public static class Math
+    public static class MathTools
     {
         /// <summary>
         /// Casts a Vector2 to a Point

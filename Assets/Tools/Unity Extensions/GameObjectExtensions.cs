@@ -73,7 +73,7 @@ namespace UnityEngine
         public static float GetMaxDimmensionFromSprite(this SpriteRenderer renderer)
         {
             Vector3 maxSpritePoint = renderer.bounds.extents;
-            return Math.GetMaxAbsoluteDimmension(maxSpritePoint);
+            return MathTools.GetMaxAbsoluteDimmension(maxSpritePoint);
 
         }
 
