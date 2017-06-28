@@ -1,10 +1,9 @@
 ﻿using UnityEngine;
 using System.Linq;
-using DaleranGames;
 
-namespace UnityEngine
+namespace DaleranGames
 {
-    public static class MathExtensions
+    public static class Math
     {
         /// <summary>
         /// Casts a Vector2 to a Point
@@ -56,16 +55,12 @@ namespace UnityEngine
             return roots;
         }
 
-        public static bool RandomBool ()
+        public static bool IsOdd (int number)
         {
-            if (Random.value >= 0.5f)
-            {
-                return true;
-            }
-            return false;
+            return number % 2 == 0;
         }
 
-        public static float ClampPositive (float number)
+        public static float ClampPositive(float number)
         {
             if (number < 0f)
                 return 0f;
@@ -73,12 +68,22 @@ namespace UnityEngine
                 return number;
         }
 
-        public static bool IsOdd (int number)
+        public static int ClampPositive(int number)
         {
-            if (number % 2 == 0)
-                return false;
+            if (number < 0)
+                return 0;
             else
-                return true;
+                return number;
+        }
+
+        public static int Clamp (int value, int min, int max)
+        {
+            if (value < min)
+                return min;
+            else if (value > max)
+                return max;
+            else
+                return value;
         }
 
     }

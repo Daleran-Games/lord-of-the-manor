@@ -178,10 +178,10 @@ namespace DaleranGames.Tools
 
         void OnValidate()
         {
-            maxCameraHalfWidth = Math.Max(maxCameraHalfWidth, 0.01f);
-            maxCameraHalfHeight = Math.Max(maxCameraHalfHeight, 0.01f);
-            targetCameraHalfWidth = Math.Max(targetCameraHalfWidth, 0.01f);
-            targetCameraHalfHeight = Math.Max(targetCameraHalfHeight, 0.01f);
+            maxCameraHalfWidth = System.Math.Max(maxCameraHalfWidth, 0.01f);
+            maxCameraHalfHeight = System.Math.Max(maxCameraHalfHeight, 0.01f);
+            targetCameraHalfWidth = System.Math.Max(targetCameraHalfWidth, 0.01f);
+            targetCameraHalfHeight = System.Math.Max(targetCameraHalfHeight, 0.01f);
             adjustCameraFOV();
         }
 

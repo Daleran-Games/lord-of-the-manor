@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace DaleranGames.Tools
+namespace DaleranGames
 {
     /// <summary>
     /// Be aware this will not prevent a non singleton constructor

@@ -2,11 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace UnityEngine
+namespace DaleranGames
 {
-    public static class StringRichTextUtilities 
+    public static class RichText 
     {
-
         public static string BoldString (string str)
         {
             return "<b>" + str + "</b>";

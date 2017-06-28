@@ -70,6 +70,7 @@ namespace DaleranGames.Game
 
         protected override void OnDestroy()
         {
+            base.OnDestroy();
             LoadScene.StateDisabled -= OnMapGenerationComplete;
         }
 

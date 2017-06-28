@@ -62,7 +62,7 @@ namespace DaleranGames.TBSFramework
             ants.Clear();
             for (int i = 0; i < antSpawners.Length; i++)
             {
-                int antsToSpawn = Random.Range(antSpawners[i].minAntCount, antSpawners[i].maxAntCount);
+                int antsToSpawn = Random.Int(antSpawners[i].minAntCount, antSpawners[i].maxAntCount);
                 Vector2Int spawnPoint = new Vector2Int((int)((float)Width * antSpawners[i].positionX), (int)((float)Height * antSpawners[i].positionY));
 
                 for (int j =0; j < antsToSpawn; j++)
@@ -70,9 +70,9 @@ namespace DaleranGames.TBSFramework
                     int minLife = (int)((float)Width * antSpawners[i].minLifespan);
                     int maxLife = (int)((float)Width * antSpawners[i].maxLifespan);
 
-                    int life = Random.Range(minLife, maxLife );
-                    int power = Random.Range(antSpawners[i].minPower, antSpawners[i].maxPower);
-                    float turn = Random.Range(antSpawners[i].minTurnChance, antSpawners[i].maxTurnCHance);
+                    int life = Random.Int(minLife, maxLife );
+                    int power = Random.Int(antSpawners[i].minPower, antSpawners[i].maxPower);
+                    float turn = Random.Float(antSpawners[i].minTurnChance, antSpawners[i].maxTurnCHance);
 
                     ants.Add(new Ant(spawnPoint, life, power, antSpawners[i].food, turn, antSpawners[i].dieOnBorder));
                 }
@@ -228,7 +228,7 @@ namespace DaleranGames.TBSFramework
 
                 if (!directions.Contains(moveDirection))
                     return directions[randomIndex];
-                else if (Random.Range(0f, 1f) < turnChance)
+                else if (Random.Float01() < turnChance)
                     return directions[randomIndex];
                 else
                     return moveDirection;
