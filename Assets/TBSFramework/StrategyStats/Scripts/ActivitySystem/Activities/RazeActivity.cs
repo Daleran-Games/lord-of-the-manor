@@ -11,9 +11,9 @@ namespace DaleranGames.TBSFramework
     {
         protected TileGraphic icon;
 
-        public RazeActivity(string name, int id)
+        public RazeActivity(RazeActivity activity, int id)
         {
-            this.name = name;
+            name = activity.Name;
             this.id = id;
         }
 

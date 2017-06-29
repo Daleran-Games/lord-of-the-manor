@@ -21,17 +21,16 @@ namespace DaleranGames.Database
         public override Database<Activity> GenerateDatabase()
         {
             Database<Activity> newDB = new Database<Activity>();
-            int id = 0;
-            newDB.Add(new LandClearingActivity(landClearing.Name, id));
+            newDB.Add(new LandClearingActivity(landClearing, id));
             id++;
-            newDB.Add(new RazeActivity(raze.Name, id));
+            newDB.Add(new RazeActivity(raze, id));
             id++;
-            newDB.Add(new UpgradeActivity(upgrade.Name, id));
+            newDB.Add(new UpgradeActivity(upgrade, id));
             id++;
 
             for (int i = 0; i < builds.Length; i++)
             {
-                newDB.Add(new BuildActivity(builds[i].Name,id,builds[i].ImprovementName));
+                newDB.Add(new BuildActivity(builds[i],id));
                 id++;
             }
 

@@ -10,6 +10,8 @@ namespace DaleranGames.Database
         string filePath;
         protected string FilePath { get { return Application.dataPath + filePath; } }
 
+        protected int id = 0;
+
         public abstract Database<T> GenerateDatabase();
 
         public virtual void InitializeDatabase(Database<T> newDB)

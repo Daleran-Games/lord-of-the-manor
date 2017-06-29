@@ -17,7 +17,8 @@ namespace DaleranGames.Database
             Database<LandType> newDB = new Database<LandType>();
             for (int i = 0; i < lands.Length; i++)
             {
-                newDB.Add(new LandType(lands[i].Name, i, lands[i].IconName, lands[i].ClearedLandName ,lands[i].Clearable));
+                newDB.Add(new LandType(lands[i], id));
+                id++;
             }
 
 

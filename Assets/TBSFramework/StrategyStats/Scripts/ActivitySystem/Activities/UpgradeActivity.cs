@@ -7,9 +7,9 @@ namespace DaleranGames.TBSFramework
     [System.Serializable]
     public class UpgradeActivity : Activity
     {
-        public UpgradeActivity(string name, int id)
+        public UpgradeActivity(UpgradeActivity activity, int id)
         {
-            this.name = name;
+            name = activity.Name;
             this.id = id;
         }
 

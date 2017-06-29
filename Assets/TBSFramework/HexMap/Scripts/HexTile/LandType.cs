@@ -21,13 +21,13 @@ namespace DaleranGames.TBSFramework
         protected LandType clearedLand;
         public LandType ClearedLand { get { return clearedLand; } }
 
-        public LandType(string name, int id, string iconName, string cleared, bool canClear)
+        public LandType(LandType type, int id)
         {
-            this.name = name;
+            name = type.Name;
             this.id = id;
-            clearable = canClear;
-            this.iconName = iconName;
-            this.clearedLandName = cleared;
+            clearable = type.Clearable;
+            iconName = type.IconName;
+            clearedLandName = type.ClearedLandName;
         }
 
         public override void OnDatabaseInitialization()

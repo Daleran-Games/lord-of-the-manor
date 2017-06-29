@@ -8,9 +8,9 @@ namespace DaleranGames.TBSFramework
     [System.Serializable]
     public class LandClearingActivity : Activity
     {
-        public LandClearingActivity(string name, int id)
+        public LandClearingActivity(LandClearingActivity activity, int id)
         {
-            this.name = name;
+            name = activity.Name;
             this.id = id;
         }
 

@@ -16,11 +16,11 @@ namespace DaleranGames.TBSFramework
         [System.NonSerialized]
         ImprovementType improvement;
 
-        public BuildActivity(string name, int id, string impName)
+        public BuildActivity(BuildActivity activity, int id)
         {
-            this.name = name;
+            name = activity.Name;
             this.id = id;
-            improvementName = impName;
+            improvementName = activity.improvementName;
         }
 
         protected override void Awake()

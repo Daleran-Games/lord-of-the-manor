@@ -26,14 +26,14 @@ namespace DaleranGames.TBSFramework
         protected ImprovementType upgradedImprovement;
         public ImprovementType UpgradedImprovement { get { return upgradedImprovement; } }
 
-        public ImprovementType(string name, int id, string iconName,List<string> lands, string upgrade, bool canUpgrade)
+        public ImprovementType(ImprovementType type,int id)
         {
-            this.name = name;
+            name = type.Name;
             this.id = id;
-            upgradeable = canUpgrade;
-            this.iconName = iconName;
-            upgradeName = upgrade;
-            validLand = lands;
+            upgradeable = type.Upgradeable;
+            iconName = type.IconName;
+            upgradeName = type.UpgradeName;
+            validLand = type.ValidLand;
         }
 
         public override void OnDatabaseInitialization()
