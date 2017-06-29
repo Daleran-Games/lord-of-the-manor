@@ -50,9 +50,9 @@ namespace DaleranGames.TBSFramework
                 for (int x = minTile.x; x <= maxTile.x; x++)
                 {
                     if (UIMesh)
-                        grid[x, y].UIGraphicsChange -= OnTileChange;
+                        grid[x, y].UIGraphics.GraphicsChanged -= OnTileChange;
                     else
-                        grid[x, y].TileGraphicsChange -= OnTileChange;
+                        grid[x, y].TerrainGraphics.GraphicsChanged -= OnTileChange;
                 }
             }
         }
@@ -93,13 +93,9 @@ namespace DaleranGames.TBSFramework
                 for (int x = minTile.x; x <= maxTile.x; x++)
                 {
                     if (UIMesh)
-                    {
-                        grid[x, y].UIGraphicsChange += OnTileChange;
-                    }
+                        grid[x, y].UIGraphics.GraphicsChanged -= OnTileChange;
                     else
-                    {
-                        grid[x, y].TileGraphicsChange += OnTileChange;
-                    }
+                        grid[x, y].TerrainGraphics.GraphicsChanged -= OnTileChange;
                 }
             }
 
@@ -116,9 +112,9 @@ namespace DaleranGames.TBSFramework
                 for (int x = minTile.x; x <= maxTile.x; x++)
                 {
                     if (UIMesh)
-                        meshData += grid[x, y].UIMeshData;
+                        meshData += grid[x, y].UIGraphics.MeshData;
                     else
-                        meshData += grid[x, y].TileMeshData;
+                        meshData += grid[x, y].TerrainGraphics.MeshData;
                 }
             }
 
@@ -129,7 +125,7 @@ namespace DaleranGames.TBSFramework
 
         }
 
-        void OnTileChange(HexTile tile)
+        void OnTileChange()
         {
             enabled = true;
         }

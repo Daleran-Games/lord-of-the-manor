@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DaleranGames.TBSFramework;
+using DaleranGames.Database;
 
 namespace DaleranGames.UI
 {
@@ -16,20 +17,28 @@ namespace DaleranGames.UI
         protected Toggle overlayToggle;
 
         [SerializeField]
-        protected Vector2Int icon = Vector2Int.zero;
+        protected string iconName;
+        protected TileGraphic icon = TileGraphic.clear;
 
         protected virtual void Awake()
         {
             grid = FindObjectOfType<HexGrid>();
             overlay = FindObjectOfType<HexGridOverlay>();
             overlayToggle = gameObject.GetRequiredComponent<Toggle>();
-
+            GameDatabase.Instance.DatabasesInitialized += OnDatabaseInitialized;
             overlayToggle.onValueChanged.AddListener(DisplayOveraly);
+
         }
 
         protected virtual void OnDestroy()
         {
             overlayToggle.onValueChanged.RemoveListener(DisplayOveraly);
+            GameDatabase.Instance.DatabasesInitialized -= OnDatabaseInitialized;
+        }
+
+        protected virtual void OnDatabaseInitialized()
+        {
+            icon = GameDatabase.Instance.TileGraphics.Get(iconName);
         }
 
         protected abstract void SetLabel(HexTile tile);

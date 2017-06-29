@@ -6,8 +6,10 @@ using DaleranGames.Database;
 
 namespace DaleranGames.TBSFramework
 {
-    public class HexGrid : MonoBehaviour
+    public class HexGrid : Singleton<HexGrid>
     {
+        protected HexGrid() { }
+
         [SerializeField]
         MapGenerator generator;
         public MapGenerator Generator { get { return generator; } }
@@ -17,7 +19,7 @@ namespace DaleranGames.TBSFramework
         public bool MapBuilt {get { return mapBuilt; } }
 
         [SerializeField]
-        List<HexLayers> UILayers;
+        List<TileLayers> UILayers;
 
         public virtual int Width { get { return tiles.GetLength(0) ; } }
         public virtual int Height { get { return tiles.GetLength(0) ; } }

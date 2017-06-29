@@ -11,4 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c97cddc0afcc76b4bbd5cb79a29d39ee, type: 3}
   m_Name: BuildHouse
   m_EditorClassIdentifier: 
-  improvement: {fileID: 11400000, guid: 1c5d6d04c353f7741bc8afb6b8c15f7f, type: 2}
+  improvementName: Tent

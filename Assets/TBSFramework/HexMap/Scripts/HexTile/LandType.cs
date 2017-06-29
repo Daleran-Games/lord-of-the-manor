@@ -6,26 +6,48 @@ using System;
 
 namespace DaleranGames.TBSFramework
 {
-    [CreateAssetMenu(fileName = "NewLandType", menuName = "DaleranGames/TBS/Tile Types/Land Type", order = 0)]
+    [System.Serializable]
     public class LandType : TileType
     {
         [SerializeField]
-        protected Vector2Int atlasCoord = new Vector2Int(0, 0);
-        public Vector2Int LandIcon { get { return atlasCoord; } }
+        protected bool clearable = false;
+        public bool Clearable { get { return clearable; } }
 
         [SerializeField]
+        protected string clearedLandName;
+        public string ClearedLandName { get { return clearedLandName; } }
+
         protected LandType clearedLand;
         public LandType ClearedLand { get { return clearedLand; } }
+
+        public LandType(string name, int id, string iconName, string cleared, bool canClear)
+        {
+            this.name = name;
+            this.id = id;
+            clearable = canClear;
+            this.iconName = iconName;
+            this.clearedLandName = cleared;
+        }
+
+        public override void OnDatabaseInitialization()
+        {
+
+            base.OnDatabaseInitialization();
+
+            if (clearable)
+                clearedLand = GameDatabase.Instance.LandTiles.Get(clearedLandName);
+
+        }
 
         public override void OnActivation(HexTile tile)
         {
             base.OnActivation(tile);
-            tile.AddGraphic(HexLayers.Land, atlasCoord);
+            tile.TerrainGraphics.Add(TileLayers.Land, iconGraphic);
         }
 
         public override void OnGameStart(HexTile tile)
         {
-
+            base.OnGameStart(tile);
         }
 
         public override void OnTurnChange(BaseTurn turn, HexTile tile)
@@ -35,21 +57,13 @@ namespace DaleranGames.TBSFramework
 
         public override void OnDeactivation(HexTile tile)
         {
-            tile.RemoveGraphic(HexLayers.Land);
+            tile.TerrainGraphics.Remove(TileLayers.Land);
         }
 
         public virtual void ClearTile (HexTile tile)
         {
-            if (ClearedLand != null)
+            if (ClearedLand != null && clearable)
                 tile.Land = ClearedLand;
-        }
-
-        public virtual bool CanClear()
-        {
-            if (ClearedLand != null)
-                return true;
-            else
-                return false;
         }
 
     }

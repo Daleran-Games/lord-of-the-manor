@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using DaleranGames.TBSFramework;
-using DaleranGames.Tools;
+using DaleranGames.Database;
 
 namespace DaleranGames.IO
 {
@@ -59,7 +59,7 @@ namespace DaleranGames.IO
                         break;
                     case HexCursorMode.Clear:
                         hexCursorMode = value;
-                        SetSelectionCursor(Vector2Int.zero);
+                        SetSelectionCursor(TileGraphic.clear);
                         break;
                     case HexCursorMode.Cross:
                         hexCursorMode = value;
@@ -67,7 +67,7 @@ namespace DaleranGames.IO
                         break;
                     default:
                         hexCursorMode = HexCursorMode.Clear;
-                        SetSelectionCursor(Vector2Int.zero);
+                        SetSelectionCursor(TileGraphic.clear);
                         break;
 
                 }
@@ -76,8 +76,8 @@ namespace DaleranGames.IO
 
         [SerializeField]
         [ReadOnly]
-        Vector2Int cursorUIIcon = Vector2Int.zero;
-        public Vector2Int CursorUIIcon
+        TileGraphic cursorUIIcon = TileGraphic.clear;
+        public TileGraphic CursorUIIcon
         {
             get { return cursorUIIcon; }
             set
@@ -89,8 +89,8 @@ namespace DaleranGames.IO
 
         [SerializeField]
         [ReadOnly]
-        Vector2Int cursorTerrainIcon = Vector2Int.zero;
-        public Vector2Int CursorTerrainIcon
+        TileGraphic cursorTerrainIcon = TileGraphic.clear;
+        public TileGraphic CursorTerrainIcon
         {
             get { return cursorTerrainIcon; }
             set
@@ -100,24 +100,30 @@ namespace DaleranGames.IO
             }
         }
 
-        [Header("Cursor Mode UVs")]
+        [Header("Cursor Modes")]
         [SerializeField]
-        Vector2Int ring;
+        string ringName = "UI Cursor Ring";
+        TileGraphic ring;
 
         [SerializeField]
-        Vector2Int dark;
+        string darkName = "UI Cursor Dark";
+        TileGraphic dark;
 
         [SerializeField]
-        Vector2Int white;
+        string whiteName = "UI Cursor White";
+        TileGraphic white;
 
         [SerializeField]
-        Vector2Int positive;
+        string positiveName = "UI Cursor Positive";
+        TileGraphic positive;
 
         [SerializeField]
-        Vector2Int negative;
+        string negativeName = "UI Cursor Negative";
+        TileGraphic negative;
 
         [SerializeField]
-        Vector2Int cross;
+        string crossName = "UI Cursor Cross";
+        TileGraphic cross;
 
 
         [Header("Current Tile")]
@@ -165,9 +171,9 @@ namespace DaleranGames.IO
             grid.MapGenerationComplete += OnMapGenerationComplete;
             mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetRequiredComponent<Camera>();
             atlas = grid.Generator.Atlas;
+            GameDatabase.Instance.DatabasesInitialized += OnDatabaseComplete;
 
             BuildQuads();
-            CursorMode = HexCursorMode.Ring;
 
         }
 
@@ -208,6 +214,19 @@ namespace DaleranGames.IO
             InputManager.Instance.LMBClick.MouseButtonUp -= OnLMBClick;
             InputManager.Instance.RMBClick.MouseButtonUp -= OnRMBClick;
             InputManager.Instance.MMBClick.MouseButtonUp -= OnMMBClick;
+            GameDatabase.Instance.DatabasesInitialized -= OnDatabaseComplete;
+        }
+
+        void OnDatabaseComplete()
+        {
+            ring = GameDatabase.Instance.TileGraphics.Get(ringName);
+            dark = GameDatabase.Instance.TileGraphics.Get(darkName);
+            white = GameDatabase.Instance.TileGraphics.Get(whiteName);
+            positive = GameDatabase.Instance.TileGraphics.Get(positiveName);
+            negative = GameDatabase.Instance.TileGraphics.Get(negativeName);
+            cross = GameDatabase.Instance.TileGraphics.Get(crossName);
+
+            CursorMode = HexCursorMode.Ring;
         }
 
         void OnLMBClick ()
@@ -283,19 +302,19 @@ namespace DaleranGames.IO
             return hexQuad;
         }
 
-        void SetSelectionCursor (Vector2Int coord)
+        void SetSelectionCursor (TileGraphic graphic)
         {
-            highlightQuad.SetUV(coord);
+            highlightQuad.SetUV(graphic.AtlasCoord);
         }
 
-        void SetUIIconCursor (Vector2Int coord)
+        void SetUIIconCursor (TileGraphic graphic)
         {
-            uiIconQuad.SetUV(coord);
+            uiIconQuad.SetUV(graphic.AtlasCoord);
         }
 
-        void SetTerrainIconCursor(Vector2Int coord)
+        void SetTerrainIconCursor(TileGraphic graphic)
         {
-            terrainIconQuad.SetUV(coord);
+            terrainIconQuad.SetUV(graphic.AtlasCoord);
         }
 
 

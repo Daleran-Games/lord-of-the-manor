@@ -1,4 +1,4 @@
-﻿public enum HexLayers
+﻿public enum TileLayers
 {
     Fog = 7,
     OverlayIcon = 6,

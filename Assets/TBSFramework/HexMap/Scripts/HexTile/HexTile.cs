@@ -10,19 +10,19 @@ namespace DaleranGames.TBSFramework
     [System.Serializable]
     public class HexTile : IDisposable
     {
-        public HexTile(HexCoordinates coor, Vector3 pos, int id, TileAtlas atlas)
+        public HexTile(HexCoordinates coor, Vector2Int gcoord, Vector3 pos, int id, TileAtlas atlas)
         {
-            Coord = coor;
+            HexPosition = coor;
             Position = pos;
+            GridPosition = gcoord;
             ID = id;
             MaxID = id;
-
-            graphics = new Dictionary<HexLayers, Vector2Int>();
+            
             stats = new Dictionary<StatType, int>();
             this.atlas = atlas;
 
-            uiMeshData = new MeshData();
-            tileMeshData = new MeshData();
+            UIGraphics = new TileGraphics(atlas, Position);
+            TerrainGraphics = new TileGraphics(atlas, Position);
 
             TurnManager.Instance.TurnChanged += OnTurnChange;
             GameManager.Instance.StateChanged += OnGameStart;
@@ -38,8 +38,13 @@ namespace DaleranGames.TBSFramework
 
         [SerializeField]
         [ReadOnly]
-        protected HexCoordinates coord;
-        public HexCoordinates Coord { get { return coord; } protected set { coord = value; } }
+        protected HexCoordinates hexPosition;
+        public HexCoordinates HexPosition { get { return hexPosition; } protected set { hexPosition = value; } }
+
+        [SerializeField]
+        [ReadOnly]
+        protected Vector2Int gridPos;
+        public Vector2Int GridPosition { get { return gridPos; } protected set { gridPos = value; } }
 
         [SerializeField]
         [ReadOnly]
@@ -95,17 +100,6 @@ namespace DaleranGames.TBSFramework
                     improvement.OnActivation(this);
             }
         }
-
-        protected TileComponent component;
-        public virtual TileComponent HexComponent
-        {
-            get { return component; }
-            set
-            {
-                component = value;
-            }
-        }
-
 
         void OnTurnChange(BaseTurn turn)
         {
@@ -168,143 +162,10 @@ namespace DaleranGames.TBSFramework
 
         #region Graphics
 
-
-
-        public Action<HexTile> TileGraphicsChange;
-        public Action<HexTile> UIGraphicsChange;
-        protected Dictionary<HexLayers, Vector2Int> graphics;
-
         TileAtlas atlas;
-        bool uiMeshDirty = true;
-        bool tileMeshDirty = true;
+        public TileGraphics UIGraphics;
+        public TileGraphics TerrainGraphics;
 
-        MeshData uiMeshData;
-        public MeshData UIMeshData
-        {
-            get
-            {
-                if (uiMeshDirty)
-                {
-                    uiMeshData = GenerateNewUIMeshData();
-                    uiMeshDirty = false;
-                }
-
-                return uiMeshData;
-            }
-        }
-
-        MeshData tileMeshData;
-        public MeshData TileMeshData
-        {
-            get
-            {
-                if (tileMeshDirty)
-                {
-                    tileMeshData = GenerateNewTileMeshData();
-                    tileMeshDirty = false;
-                }
-
-                return tileMeshData;
-            }
-        }
-
-        public Vector2Int GetGraphicsAtLayer(HexLayers layer)
-        {
-            Vector2Int graphic;
-            if (graphics.TryGetValue(layer, out graphic))
-            {
-                //Debug.Log("Cell#" + ID + " graphic: " + graphic + " layer " + layer.ToString());
-                return graphic;
-            }
-            else
-                throw new NullReferenceException("Tile Error: Attempted getting graphics at layer where none exsists.");
-        }
-
-        public bool ContainsGraphic (HexLayers layer)
-        {
-            return graphics.ContainsKey(layer);
-        }
-
-        public void AddGraphic (HexLayers layer, Vector2Int coord)
-        {
-            if (!graphics.ContainsKey(layer))
-            {
-                graphics.Add(layer, coord);
-                GraphicsChange(layer);
-
-            }
-        }
-
-        public void RemoveGraphic (HexLayers layer)
-        {
-            if (graphics.ContainsKey(layer))
-            {
-                graphics.Remove(layer);
-                GraphicsChange(layer);
-            }
-        }
-
-        public void ClearGraphics ()
-        {
-            graphics.Clear();
-
-            uiMeshDirty = true;
-            tileMeshDirty = true;
-
-            if (UIGraphicsChange != null)
-                UIGraphicsChange(this);
-
-            if (TileGraphicsChange != null)
-                TileGraphicsChange(this);
-        }
-
-        void GraphicsChange(HexLayers layer)
-        {
-            if (layer.IsUILayer() && UIGraphicsChange != null)
-            {
-                uiMeshDirty = true;
-                UIGraphicsChange(this);
-            }
-            else if (!layer.IsUILayer() && TileGraphicsChange != null)
-            {
-                tileMeshDirty = true;
-                TileGraphicsChange(this);
-            }
-        }
-
-        MeshData GenerateNewUIMeshData ()
-        {
-            MeshData newData = new MeshData();
-            foreach (KeyValuePair<HexLayers,Vector2Int> kvp in graphics)
-            {
-                if(kvp.Key.IsUILayer() && kvp.Value != Vector2Int.zero)
-                {
-                    int vertIndex = newData.verticies.Count;
-                    newData.verticies.AddRange(HexMetrics.CalculateVerticies(kvp.Key.GetSpecialOffset(Position)));
-                    newData.triangles.AddRange(HexMetrics.CalculateTriangles(vertIndex));
-                    newData.uvs.AddRange(atlas.CalculateUVs(kvp.Value));
-                }
-
-            }
-            return newData;
-        }
-
-        MeshData GenerateNewTileMeshData()
-        {
-            MeshData newData = new MeshData();
-            foreach (KeyValuePair<HexLayers, Vector2Int> kvp in graphics)
-            {
-                if (!kvp.Key.IsUILayer() && kvp.Value != Vector2Int.zero)
-                {
-                    int vertIndex = newData.verticies.Count;
-                    newData.verticies.AddRange(HexMetrics.CalculateVerticies(Position + kvp.Key.ToVector3()));
-                    newData.triangles.AddRange(HexMetrics.CalculateTriangles(vertIndex));
-                    newData.uvs.AddRange(atlas.CalculateUVs(kvp.Value));
-                }
-
-            }
-            return newData;
-        }
 
         #endregion
 
@@ -320,7 +181,8 @@ namespace DaleranGames.TBSFramework
                 {
                     TurnManager.Instance.TurnChanged -= OnTurnChange;
                     GameManager.Instance.StateChanged -= OnGameStart;
-                    TileGraphicsChange = null;
+                    UIGraphics = null;
+                    TerrainGraphics = null;
                     Land.OnDeactivation(this);
                     Improvement.OnDeactivation(this);
                 }

@@ -8,6 +8,8 @@ namespace DaleranGames.TBSFramework
     [CreateAssetMenu(fileName = "NewTileAtlas", menuName = "DaleranGames/TBS/Tile Atlas", order = 0)]
     public class TileAtlas : ScriptableObject
     {
+
+
         [Header("Season Atlases")]
         [SerializeField]
         Material springAtlas;
@@ -34,6 +36,10 @@ namespace DaleranGames.TBSFramework
         [SerializeField]
         int ySize = 48;
         public int YSize { get { return ySize; } }
+
+        [SerializeField]
+        int ppu = 32;
+        public int PPU { get { return ppu; } }
 
         [SerializeField]
         float uvX = 0.1f;
@@ -95,6 +101,33 @@ namespace DaleranGames.TBSFramework
 
             return uvs;
         }
+
+        public Sprite GenerateSpriteOfType (TileGraphic.GraphicType type, Vector2Int coord, Vector2 size)
+        {
+            switch(type)
+            {
+                case TileGraphic.GraphicType.Terrain:
+                    return GenerateSprite(coord, SpringAtlas, size);
+                case TileGraphic.GraphicType.UI:
+                    return GenerateSprite(coord, UIAtlas, size);
+                default:
+                    throw new KeyNotFoundException("No atlas of the type: " + type.ToString());
+            }
+        }
+
+        public Sprite GenerateSprite(Vector2Int coord, Material mat)
+        {
+            return GenerateSprite(coord, mat, new Vector2(xSize, ySize));
+        }
+
+        public Sprite GenerateSprite(Vector2Int coord, Material mat, Vector2 cropToSize)
+        {
+            int texWidth = mat.mainTexture.width;
+            int texHeight = mat.mainTexture.height;
+            Rect bounds = new Rect(coord.x * xSize, coord.y * ySize + ySize, cropToSize.x,cropToSize.y);
+            return Sprite.Create((Texture2D)mat.mainTexture, bounds, new Vector2(0.5f, 0.5f), PPU, 1, SpriteMeshType.FullRect);
+        }
+
 
     }
 }

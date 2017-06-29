@@ -10,16 +10,27 @@ namespace DaleranGames.TBSFramework
     public class BuildActivity : Activity
     {
         [SerializeField]
+        string improvementName;
         ImprovementType improvement;
 
-        public override Vector2Int GetTerrainIcon(HexTile tile)
+        protected override void Awake()
+        {
+            base.Awake();
+        }
+
+        public override void OnDatabaseInitialization()
+        {
+            improvement = GameDatabase.Instance.Improvements.Get(improvementName);
+        }
+
+        public override TileGraphic GetTerrainIcon(HexTile tile)
         {
             return improvement.IconGraphic;
         }
 
-        public override Vector2Int GetUIIcon(HexTile tile)
+        public override TileGraphic GetUIIcon(HexTile tile)
         {
-            return Vector2Int.zero;
+            return TileGraphic.clear;
         }
 
         public override bool IsActivityValid(HexTile tile)

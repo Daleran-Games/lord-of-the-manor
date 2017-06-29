@@ -62,8 +62,8 @@ namespace DaleranGames.TBSFramework
         {
             activeMode = false;
             currentActivity = null;
-            mouse.CursorUIIcon = Vector2Int.zero;
-            mouse.CursorTerrainIcon = Vector2Int.zero;
+            mouse.CursorUIIcon = TileGraphic.clear;
+            mouse.CursorTerrainIcon = TileGraphic.clear;
             mouse.CursorMode = HexCursor.HexCursorMode.Ring;
             mouse.HexTileLMBClicked -= OnLeftTileClick;
             mouse.HexTileEntered -= OnTileEnter;

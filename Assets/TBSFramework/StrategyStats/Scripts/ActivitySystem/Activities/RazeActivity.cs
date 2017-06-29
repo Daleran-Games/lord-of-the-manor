@@ -2,22 +2,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DaleranGames.Database;
 
 namespace DaleranGames.TBSFramework
 {
     [CreateAssetMenu(fileName = "NewRazeActivity", menuName = "DaleranGames/TBS/Activities/Raze", order = 0)]
     public class RazeActivity : Activity
     {
-        public override Vector2Int GetTerrainIcon(HexTile tile)
+        protected TileGraphic icon;
+
+        protected override void Awake()
         {
-            return Vector2Int.zero;
+            base.Awake();
         }
 
-        public override Vector2Int GetUIIcon(HexTile tile)
+        public override void OnDatabaseInitialization()
         {
-            return new Vector2Int(7, 0);
+            icon = GameDatabase.Instance.TileGraphics.Get("UI Cursor Cross");
         }
 
+        public override TileGraphic GetTerrainIcon(HexTile tile)
+        {
+            return TileGraphic.clear;
+        }
+
+        public override TileGraphic GetUIIcon(HexTile tile)
+        {
+            return icon;
+        }
 
         public override bool IsActivityValid(HexTile tile)
         {

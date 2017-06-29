@@ -21,6 +21,7 @@ namespace DaleranGames.TBSFramework
         public byte InitialMoisture { get { return initialMoisture; } }
 
         [SerializeField]
+        [Reorderable]
         protected AntSpawner[] antSpawners;
         protected bool antsAlive = true;
 

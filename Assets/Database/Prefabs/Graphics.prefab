@@ -1,0 +1,235 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 1480241239155656}
+  m_IsPrefabParent: 1
+--- !u!1 &1480241239155656
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4751810614763318}
+  - component: {fileID: 114419864316798906}
+  m_Layer: 0
+  m_Name: Graphics
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4751810614763318
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1480241239155656}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114419864316798906
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1480241239155656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2a5cf7170034b74d9cf5d90a8948453, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  filePath: 
+  landGraphics:
+  - name: Plains
+    atlasCoord:
+      x: 0
+      y: 1
+  - name: Parkland
+    atlasCoord:
+      x: 1
+      y: 1
+  - name: Forest
+    atlasCoord:
+      x: 2
+      y: 1
+  - name: Hills
+    atlasCoord:
+      x: 3
+      y: 1
+  - name: Wooded Hills
+    atlasCoord:
+      x: 4
+      y: 1
+  - name: Mountains
+    atlasCoord:
+      x: 5
+      y: 1
+  - name: Wooded Mountains
+    atlasCoord:
+      x: 6
+      y: 1
+  - name: Moor
+    atlasCoord:
+      x: 7
+      y: 1
+  - name: Moor Hills
+    atlasCoord:
+      x: 8
+      y: 1
+  - name: Moor Mountains
+    atlasCoord:
+      x: 9
+      y: 1
+  - name: Fen
+    atlasCoord:
+      x: 10
+      y: 1
+  - name: Deep Water
+    atlasCoord:
+      x: 11
+      y: 1
+  - name: Shallow Water
+    atlasCoord:
+      x: 12
+      y: 1
+  improvementGraphics:
+  - name: Farm Sowing
+    atlasCoord:
+      x: 0
+      y: 5
+  - name: Farm Growing
+    atlasCoord:
+      x: 1
+      y: 5
+  - name: Farm Harvest
+    atlasCoord:
+      x: 2
+      y: 5
+  - name: Farm Fallow
+    atlasCoord:
+      x: 3
+      y: 5
+  - name: Hall
+    atlasCoord:
+      x: 4
+      y: 5
+  - name: Large House
+    atlasCoord:
+      x: 5
+      y: 5
+  - name: Roundhouse
+    atlasCoord:
+      x: 6
+      y: 5
+  - name: Small House
+    atlasCoord:
+      x: 7
+      y: 5
+  - name: Tent
+    atlasCoord:
+      x: 8
+      y: 5
+  textGraphics:
+  - name: UI Text Zero
+    atlasCoord:
+      x: 0
+      y: 6
+  - name: UI Text One
+    atlasCoord:
+      x: 1
+      y: 6
+  - name: UI Text Two
+    atlasCoord:
+      x: 2
+      y: 6
+  - name: UI Text Three
+    atlasCoord:
+      x: 3
+      y: 6
+  - name: UI Text Four
+    atlasCoord:
+      x: 4
+      y: 6
+  - name: UI Text Five
+    atlasCoord:
+      x: 5
+      y: 6
+  - name: UI Text Six
+    atlasCoord:
+      x: 6
+      y: 6
+  - name: UI Text Seven
+    atlasCoord:
+      x: 7
+      y: 6
+  - name: UI Text Eight
+    atlasCoord:
+      x: 8
+      y: 6
+  - name: UI Text Nine
+    atlasCoord:
+      x: 9
+      y: 6
+  - name: UI Text Dash
+    atlasCoord:
+      x: 10
+      y: 6
+  - name: UI Text Plus
+    atlasCoord:
+      x: 11
+      y: 6
+  uiIcons:
+  - name: UI Icon Mountain
+    atlasCoord:
+      x: 11
+      y: 1
+  - name: UI Icon Drop
+    atlasCoord:
+      x: 12
+      y: 1
+  cursors:
+  - name: UI Cursor Ring
+    atlasCoord:
+      x: 1
+      y: 0
+  - name: UI Cursor Positive
+    atlasCoord:
+      x: 2
+      y: 0
+  - name: UI Cursor Negative
+    atlasCoord:
+      x: 3
+      y: 0
+  - name: UI Cursor White
+    atlasCoord:
+      x: 4
+      y: 0
+  - name: UI Cursor Dark
+    atlasCoord:
+      x: 5
+      y: 0
+  - name: UI Cursor Fog
+    atlasCoord:
+      x: 6
+      y: 0
+  - name: UI Cursor Cross
+    atlasCoord:
+      x: 7
+      y: 0
+  - name: UI Cursor Highlight
+    atlasCoord:
+      x: 8
+      y: 0

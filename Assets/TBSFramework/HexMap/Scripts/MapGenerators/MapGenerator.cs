@@ -24,6 +24,7 @@ namespace DaleranGames.TBSFramework
         public virtual TileAtlas Atlas { get { return atlas; } }
 
         [SerializeField]
+        [Reorderable]
         protected TerrainCuttoff[] terrainCutoffs;
 
         public abstract HexTile[,] GenerateMap();
@@ -32,12 +33,12 @@ namespace DaleranGames.TBSFramework
         {
             //TODO make the tile types have a bounding box or perhaps a rect instead.
 
-            LandType type = GameDatabase.Instance.GetDatabaseObject<LandType>(terrainCutoffs[0].TileName);
+            LandType type = GameDatabase.Instance.LandTiles.Get(terrainCutoffs[0].TileName);
             TerrainCuttoff initial = TerrainCuttoff.zero;
             for (int i=0; i<terrainCutoffs.Length;i++)
             {
                 if (hexTile.Elevation >= terrainCutoffs[i].ElevationCutoff && hexTile.Moisture >= terrainCutoffs[i].MoistureCutoff)
-                     type = GameDatabase.Instance.GetDatabaseObject<LandType>(terrainCutoffs[i].TileName);
+                     type = GameDatabase.Instance.LandTiles.Get(terrainCutoffs[i].TileName);
             }
             hexTile.Land = type;
             //Debug.Log("Setting cell " + hexCell.Position + " to " + type.Name);
@@ -46,7 +47,7 @@ namespace DaleranGames.TBSFramework
         protected virtual HexTile CreateTile(int x, int y, int id, float z)
         {
             Vector3 position = HexCoordinates.GetUnityPosition(x, y, z);
-            return new HexTile(HexCoordinates.CartesianToHex(x, y), position, id, Atlas);
+            return new HexTile(HexCoordinates.CartesianToHex(x, y), new Vector2Int(x,y),position, id, Atlas);
         }
 
         [System.Serializable]

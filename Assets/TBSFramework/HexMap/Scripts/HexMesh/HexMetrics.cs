@@ -56,51 +56,53 @@ namespace DaleranGames.TBSFramework
             return tris;
         }
 
-        public static float ToFloat(this HexLayers layer)
+        public static float ToFloat(this TileLayers layer)
         {
             return (int)layer * -layerSeperation;
         }
 
-        public static Vector3 ToVector3 (this HexLayers layer)
+        public static Vector3 ToVector3 (this TileLayers layer)
         {
             return new Vector3(0f, 0f, layer.ToFloat());
         }
 
-        public static bool IsUILayer (this HexLayers layer)
+        public static bool IsUILayer (this TileLayers layer)
         {
             switch(layer)
             {
-                case HexLayers.Fog:
+                case TileLayers.Fog:
                     return true;
-                case HexLayers.OverlayIcon:
+                case TileLayers.OverlayIcon:
                     return true;
-                case HexLayers.OverlayDigit1:
+                case TileLayers.OverlayDigit1:
                     return true;
-                case HexLayers.OverlayDigit2:
+                case TileLayers.OverlayDigit2:
                     return true;
-                case HexLayers.OverlayDigit3:
+                case TileLayers.OverlayDigit3:
                     return true;
                 default:
                     return false;
             }
         }
 
-        public static Vector3 GetSpecialOffset (this HexLayers layer, Vector3 position)
+        public static Vector3 ToVector3WithOffset (this TileLayers layer, Vector3 position)
         {
+            Vector3 zOffset = layer.ToVector3();
             switch (layer)
             {
-                case HexLayers.OverlayIcon:
-                    return position + new Vector3(0f, 0.375f, 0f);
-                case HexLayers.OverlayDigit1:
-                    return position + new Vector3(-0.3125f, -0.0625f, 0f);
-                case HexLayers.OverlayDigit2:
-                    return position + new Vector3(0f, -0.0625f, 0f);
-                case HexLayers.OverlayDigit3:
-                    return position + new Vector3(0.3125f, -0.0625f, 0f);
+                case TileLayers.OverlayIcon:
+                    return position + new Vector3(0f, 0.375f, 0f) + zOffset;
+                case TileLayers.OverlayDigit1:
+                    return position + new Vector3(-0.3125f, -0.0625f, 0f) + zOffset;
+                case TileLayers.OverlayDigit2:
+                    return position + new Vector3(0f, -0.0625f, 0f) + zOffset;
+                case TileLayers.OverlayDigit3:
+                    return position + new Vector3(0.3125f, -0.0625f, 0f) + zOffset;
                 default:
-                    return position;
+                    return position + zOffset;
             }
         }
+
 
     } 
 }

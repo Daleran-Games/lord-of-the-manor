@@ -8,22 +8,27 @@ namespace DaleranGames.TBSFramework
     [CreateAssetMenu(fileName = "NewLandClearingActivity", menuName = "DaleranGames/TBS/Activities/Clear Land", order = 0)]
     public class LandClearingActivity : Activity
     {
-        public override Vector2Int GetTerrainIcon(HexTile tile)
+        protected override void Awake()
         {
-            if (tile.Land.CanClear())
-                return tile.Land.ClearedLand.LandIcon;
-            else
-                return Vector2Int.zero;
+            base.Awake();
         }
 
-        public override Vector2Int GetUIIcon(HexTile tile)
+        public override TileGraphic GetTerrainIcon(HexTile tile)
         {
-            return Vector2Int.zero;
+            if (tile.Land.Clearable)
+                return tile.Land.ClearedLand.IconGraphic;
+            else
+                return TileGraphic.clear;
+        }
+
+        public override TileGraphic GetUIIcon(HexTile tile)
+        {
+            return TileGraphic.clear;
         }
 
         public override bool IsActivityValid(HexTile tile)
         {
-            return tile.Land.CanClear();
+            return tile.Land.Clearable;
         }
 
         public override void DoActivityOnTile(HexTile tile)

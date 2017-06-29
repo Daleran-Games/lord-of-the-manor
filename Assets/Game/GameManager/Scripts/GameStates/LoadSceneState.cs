@@ -18,7 +18,7 @@ namespace DaleranGames.Game
 
             grid.MeshBuildComplete += OnMapBuildComplete;
 
-            GameDatabase.Instance.InitializeDatabase();
+            GameDatabase.Instance.InitializeDatabases();
             grid.GenerateMap();
 
         }

@@ -11,66 +11,35 @@ namespace DaleranGames.Database
 
         protected GameDatabase() { }
 
-        [SerializeField]
-        ScriptableObject[] inputObjects;
+        public System.Action DatabasesInitialized;
 
-        Dictionary<string, ScriptableObject> stringDict;
-        Dictionary<int, ScriptableObject> intDict;
+        public Database<TileGraphic> TileGraphics;
+        public Database<LandType> LandTiles;
+        public Database<ImprovementType> Improvements;
 
-        public System.Action DatabaseInitialized;
-
-
-        public void InitializeDatabase()
+        public void InitializeDatabases()
         {
-            stringDict = new Dictionary<string, ScriptableObject>();
-            intDict = new Dictionary<int, ScriptableObject>();
-            for (int i=0; i < inputObjects.Length; i++)
-            {
-                stringDict.Add(inputObjects[i].name, inputObjects[i]);
-                intDict.Add(inputObjects[i].GetInstanceID(), inputObjects[i]);
-            }
+            TileGraphics = GetComponentInChildren<GraphicsDatabaseLoader>().GenerateDatabase();
+            Debug.Log("Initialized graphics");
+            LandTiles = GetComponentInChildren<LandDatabaseLoader>().GenerateDatabase();
+            Debug.Log("Initialized land tiles");
+            Improvements = GetComponentInChildren<ImprovementsDatabaseLoader>().GenerateDatabase();
+            Debug.Log("Initialized improvements");
+
+            GetComponentInChildren<GraphicsDatabaseLoader>().InitializeDatabase(TileGraphics);
+            GetComponentInChildren<LandDatabaseLoader>().InitializeDatabase(LandTiles);
+            GetComponentInChildren<ImprovementsDatabaseLoader>().InitializeDatabase(Improvements);
+
+            Debug.Log("Initialized databases");
+
+            if (DatabasesInitialized != null)
+                DatabasesInitialized();
 
         }
 
-        public T GetDatabaseObject<T> (string name) where T : ScriptableObject
+        protected override void OnDestroy()
         {
-            ScriptableObject fetchedObject;
-            if(stringDict.TryGetValue(name, out fetchedObject))
-            {
-                T obj = fetchedObject as T;
-                if (obj != null)
-                {
-                    return obj;
-                }
-            }
-            //Debug.LogError("Database Error: " + name + " requested but not found.");
-            return null;
-        }
-
-        public T GetDatabaseObject<T>(int id) where T : ScriptableObject
-        {
-            ScriptableObject fetchedObject;
-            if (intDict.TryGetValue(id, out fetchedObject))
-            {
-                T obj = fetchedObject as T;
-                if (obj != null)
-                {
-                    return obj;
-                }
-            }
-            //Debug.LogError("Database Error: " + name + " requested but not found.");
-            return null;
-        }
-
-        public int LookupID (string name)
-        {
-            ScriptableObject fetchedObject;
-            if (stringDict.TryGetValue(name, out fetchedObject))
-            {
-                return fetchedObject.GetInstanceID();
-            }
-            Debug.LogError("Database Error: " + name + " is not in database and does not have an id.");
-            return 0;
+            base.OnDestroy();
         }
 
     }

@@ -11,4 +11,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c97cddc0afcc76b4bbd5cb79a29d39ee, type: 3}
   m_Name: BuildFarm
   m_EditorClassIdentifier: 
-  improvement: {fileID: 11400000, guid: 5ad98fcc8dee42447b63c70c0389f1b7, type: 2}
+  improvementName: Farm Sowing

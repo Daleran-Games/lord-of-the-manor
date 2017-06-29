@@ -8,6 +8,11 @@ namespace DaleranGames.TBSFramework
     public class UpgradeActivity : Activity
     {
 
+        protected override void Awake()
+        {
+            base.Awake();
+        }
+
         public override void DoActivityOnTile(HexTile tile)
         {
             if (tile.Improvement != null)
@@ -17,24 +22,24 @@ namespace DaleranGames.TBSFramework
         public override bool IsActivityValid(HexTile tile)
         {
             if (tile.Improvement != null)
-                return tile.Improvement.CheckIfCanUpgrade();
+                return tile.Improvement.Upgradeable;
 
             return false;
         }
 
-        public override Vector2Int GetTerrainIcon(HexTile tile)
+        public override TileGraphic GetTerrainIcon(HexTile tile)
         {
             if (tile.Improvement !=null)
             {
-                if (tile.Improvement.CheckIfCanUpgrade())
+                if (tile.Improvement.Upgradeable)
                     return tile.Improvement.UpgradedImprovement.IconGraphic;
             }
-            return Vector2Int.zero;
+            return TileGraphic.clear;
         }
 
-        public override Vector2Int GetUIIcon(HexTile tile)
+        public override TileGraphic GetUIIcon(HexTile tile)
         {
-            return Vector2Int.zero;
+            return TileGraphic.clear;
         }
 
     }

@@ -191,7 +191,7 @@ namespace DaleranGames.UI
                 {
                     for (int x = 0; x < grid.Width; x++)
                     {
-                        labels[x, y].text = grid[x, y].Coord.ToStringOnSeparateLines();
+                        labels[x, y].text = grid[x, y].HexPosition.ToStringOnSeparateLines();
                         labels[x, y].fontSize = 4;
                     }
                 }

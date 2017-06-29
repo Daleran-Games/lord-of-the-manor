@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DaleranGames.TBSFramework;
+using DaleranGames.Database;
 
 namespace DaleranGames.UI
 {
@@ -10,38 +11,43 @@ namespace DaleranGames.UI
 
         [Header("Numbers")]
         [SerializeField]
-        Vector2Int zero;
+        string zeroKey = "UI Text Zero";
+        TileGraphic zero;
         [SerializeField]
-        Vector2Int one;
+        string oneKey = "UI Text One";
+        TileGraphic one;
         [SerializeField]
-        Vector2Int two;
+        string twoKey = "UI Text Two";
+        TileGraphic two;
         [SerializeField]
-        Vector2Int three;
+        string threeKey = "UI Text Three";
+        TileGraphic three;
         [SerializeField]
-        Vector2Int four;
+        string fourKey = "UI Text Four";
+        TileGraphic four;
         [SerializeField]
-        Vector2Int five;
+        string fiveKey = "UI Text Five";
+        TileGraphic five;
         [SerializeField]
-        Vector2Int six;
+        string sixKey = "UI Text Six";
+        TileGraphic six;
         [SerializeField]
-        Vector2Int seven;
+        string sevenKey = "UI Text Seven";
+        TileGraphic seven;
         [SerializeField]
-        Vector2Int eight;
+        string eightKey = "UI Text Eight";
+        TileGraphic eight;
         [SerializeField]
-        Vector2Int nine;
+        string nineKey = "UI Text Nine";
+        TileGraphic nine;
         [SerializeField]
-        Vector2Int dash;
+        string dashKey = "UI Text Dash";
+        TileGraphic dash;
         [SerializeField]
-        Vector2Int plus;
+        string plusKey = "UI Text Plus";
+        TileGraphic plus;
 
         HexGrid grid;
-
-        TileAtlas atlas;
-
-        //HexMesh iconMesh;
-        //HexMesh digit1;
-        //HexMesh digit2;
-        //HexMesh digit3;
 
         Dictionary<int, int[]> lookupTable;
 
@@ -49,7 +55,7 @@ namespace DaleranGames.UI
         void Awake()
         {
             grid = gameObject.GetRequiredComponent<HexGrid>();
-            //grid.MeshBuildComplete += OnMeshGenrationComplete;
+            grid.MeshBuildComplete += OnMeshGenrationComplete;
             lookupTable = new Dictionary<int, int[]>();
 
             BuildLookupTable();
@@ -57,49 +63,35 @@ namespace DaleranGames.UI
 
         private void OnDestroy()
         {
-            //grid.MeshBuildComplete -= OnMeshGenrationComplete;
+            grid.MeshBuildComplete -= OnMeshGenrationComplete;
         }
 
-        /*
+
         void OnMeshGenrationComplete()
         {
-            atlas = grid.Generator.Atlas;
-
-            iconMesh = grid.GetHexMeshAtLayer(HexLayers.OverlayIcon);
-            digit1 = grid.GetHexMeshAtLayer(HexLayers.OverlayDigit1);
-            digit2 = grid.GetHexMeshAtLayer(HexLayers.OverlayDigit2);
-            digit3 = grid.GetHexMeshAtLayer(HexLayers.OverlayDigit3);
-
-            //Vector3 iconPosition = new Vector3(iconMesh.transform.position.x,iconMesh.transform.position.y + (12* atlas.SinglePixelInUnity), iconMesh.transform.position.z);
-            //Vector3 digit1Position = new Vector3(digit1.transform.position.x - (10 * atlas.SinglePixelInUnity), digit1.transform.position.y - (2 * atlas.SinglePixelInUnity), digit1.transform.position.z);
-            //Vector3 digit2Position = new Vector3(digit2.transform.position.x, digit2.transform.position.y - (2 * atlas.SinglePixelInUnity), digit3.transform.position.z);
-            //Vector3 digit3Position = new Vector3(digit3.transform.position.x + (10 * atlas.SinglePixelInUnity), digit3.transform.position.y - (2 * atlas.SinglePixelInUnity), digit3.transform.position.z);
-
-            iconMesh.transform.Translate(new Vector3(0f,0.375f,0f));
-            digit1.transform.Translate(new Vector3(-0.3125f, -0.0625f, 0f));
-            digit2.transform.Translate(new Vector3(0f, -0.0625f, 0f));
-            digit3.transform.Translate(new Vector3(0.3125f, -0.0625f, 0f));
-
-
-            SetLabelNunmber(grid[0, 0], -152);
-            SetLabelNunmber(grid[0, 1], -52);
-            SetLabelNunmber(grid[0, 2], -4);
-            SetLabelNunmber(grid[0, 3], 7);
-            SetLabelNunmber(grid[0, 4], 26);
-            SetLabelNunmber(grid[0, 5], 576);
-            SetLabelNunmber(grid[0, 6], 1087);
-
+            zero = GameDatabase.Instance.TileGraphics.Get(zeroKey);
+            one = GameDatabase.Instance.TileGraphics.Get(oneKey);
+            two = GameDatabase.Instance.TileGraphics.Get(twoKey);
+            three = GameDatabase.Instance.TileGraphics.Get(threeKey);
+            four = GameDatabase.Instance.TileGraphics.Get(fourKey);
+            five = GameDatabase.Instance.TileGraphics.Get(fiveKey);
+            six = GameDatabase.Instance.TileGraphics.Get(sixKey);
+            seven = GameDatabase.Instance.TileGraphics.Get(sevenKey);
+            eight = GameDatabase.Instance.TileGraphics.Get(eightKey);
+            nine = GameDatabase.Instance.TileGraphics.Get(nineKey);
+            dash = GameDatabase.Instance.TileGraphics.Get(dashKey);
+            plus = GameDatabase.Instance.TileGraphics.Get(plusKey);
         }
-        */
-        public void SetLabelIcon (HexTile tile, Vector2Int coord)
+
+        public void SetLabelIcon (HexTile tile, TileGraphic graphic)
         {
             //iconMesh.UpdateUVBuffer(tile, HexLayers.OverlayIcon, coord);
-            tile.AddGraphic(HexLayers.OverlayIcon, coord);
+            tile.UIGraphics.Add(TileLayers.OverlayIcon, graphic);
         }
 
         public void ClearLabelIcon(HexTile tile)
         {
-            tile.RemoveGraphic(HexLayers.OverlayIcon);
+            tile.UIGraphics.Remove(TileLayers.OverlayIcon);
         }
 
         public void SetLabelNunmber (HexTile tile, int number)
@@ -110,42 +102,56 @@ namespace DaleranGames.UI
                 Debug.LogError("HexGridOverlay: Trying to set to a number over 999");
             else
             {
-                Vector2Int[] coords = GetDigitCoordArray(number);
+                TileGraphic[] graphics = GetDigitCoordArray(number);
 
-                tile.AddGraphic(HexLayers.OverlayDigit1, coords[0]);
-                tile.AddGraphic(HexLayers.OverlayDigit2, coords[1]);
-                tile.AddGraphic(HexLayers.OverlayDigit3, coords[2]);
+                SetDigit1(tile, graphics[0]);
+                SetDigit2(tile, graphics[1]);
+                SetDigit2(tile, graphics[2]);
 
-                //digit1.UpdateUVBuffer(tile, HexLayers.OverlayDigit1, coords[0]);
-                //digit2.UpdateUVBuffer(tile, HexLayers.OverlayDigit2, coords[1]);
-                //digit3.UpdateUVBuffer(tile, HexLayers.OverlayDigit3, coords[2]);
             }
         }
 
         public void ClearLabelNunmber(HexTile tile)
         {
-            tile.RemoveGraphic(HexLayers.OverlayDigit1);
-            tile.RemoveGraphic(HexLayers.OverlayDigit2);
-            tile.RemoveGraphic(HexLayers.OverlayDigit3);
+            ClearDigit1(tile);
+            ClearDigit2(tile);
+            ClearDigit3(tile);
 
-            //digit1.UpdateUVBuffer(tile, HexLayers.OverlayDigit1, Vector2Int.zero);
-            //digit2.UpdateUVBuffer(tile, HexLayers.OverlayDigit2, Vector2Int.zero);
-            //digit3.UpdateUVBuffer(tile, HexLayers.OverlayDigit3, Vector2Int.zero);
         }
 
-        /*
-        public void CommitUVChanges ()
+        public void SetDigit1(HexTile tile, TileGraphic graphic)
         {
-            iconMesh.CommitUVBuffer();
-            digit1.CommitUVBuffer();
-            digit2.CommitUVBuffer();
-            digit3.CommitUVBuffer();
+            tile.UIGraphics.Add(TileLayers.OverlayDigit1, graphic);
         }
-        */
 
-        Vector2Int[] GetDigitCoordArray (int number)
+        public void ClearDigit1(HexTile tile)
         {
-            Vector2Int[] output = { Vector2Int.zero, Vector2Int.zero, Vector2Int.zero };
+            tile.UIGraphics.Remove(TileLayers.OverlayDigit1);
+        }
+
+        public void SetDigit2(HexTile tile, TileGraphic graphic)
+        {
+            tile.UIGraphics.Add(TileLayers.OverlayDigit2, graphic);
+        }
+
+        public void ClearDigit2(HexTile tile)
+        {
+            tile.UIGraphics.Remove(TileLayers.OverlayDigit2);
+        }
+
+        public void SetDigit3(HexTile tile, TileGraphic graphic)
+        {
+            tile.UIGraphics.Add(TileLayers.OverlayDigit3, graphic);
+        }
+
+        public void ClearDigit3(HexTile tile)
+        {
+            tile.UIGraphics.Remove(TileLayers.OverlayDigit3);
+        }
+
+        TileGraphic[] GetDigitCoordArray (int number)
+        {
+            TileGraphic[] output = { TileGraphic.clear, TileGraphic.clear, TileGraphic.clear };
 
             if (number < -99)
                 Debug.LogError("HexGridOverlay: Trying to set to a number less than -99");
@@ -198,7 +204,7 @@ namespace DaleranGames.UI
             return output;
         }
 
-        Vector2Int ParseDigit(int digit)
+        TileGraphic ParseDigit(int digit)
         {
             switch (digit)
             {
@@ -223,7 +229,7 @@ namespace DaleranGames.UI
                 case 9:
                     return nine;
                 default:
-                    return Vector2Int.zero;
+                    return TileGraphic.clear;
             }
         }
 
