@@ -36,15 +36,19 @@ namespace DaleranGames.UI
         TileGraphic seven;
         [SerializeField]
         string eightKey = "UI Text Eight";
+        [SerializeField]
         TileGraphic eight;
         [SerializeField]
         string nineKey = "UI Text Nine";
+        [SerializeField]
         TileGraphic nine;
         [SerializeField]
         string dashKey = "UI Text Dash";
+        [SerializeField]
         TileGraphic dash;
         [SerializeField]
         string plusKey = "UI Text Plus";
+        [SerializeField]
         TileGraphic plus;
 
         HexGrid grid;
@@ -106,7 +110,7 @@ namespace DaleranGames.UI
 
                 SetDigit1(tile, graphics[0]);
                 SetDigit2(tile, graphics[1]);
-                SetDigit2(tile, graphics[2]);
+                SetDigit3(tile, graphics[2]);
 
             }
         }
@@ -116,12 +120,24 @@ namespace DaleranGames.UI
             ClearDigit1(tile);
             ClearDigit2(tile);
             ClearDigit3(tile);
-
         }
 
         public void SetDigit1(HexTile tile, TileGraphic graphic)
         {
+            ClearDigit1(tile);
             tile.UIGraphics.Add(TileLayers.OverlayDigit1, graphic);
+        }
+
+        public void SetDigit2(HexTile tile, TileGraphic graphic)
+        {
+            ClearDigit2(tile);
+            tile.UIGraphics.Add(TileLayers.OverlayDigit2, graphic);
+        }
+
+        public void SetDigit3(HexTile tile, TileGraphic graphic)
+        {
+            ClearDigit3(tile);
+            tile.UIGraphics.Add(TileLayers.OverlayDigit3, graphic);
         }
 
         public void ClearDigit1(HexTile tile)
@@ -129,19 +145,9 @@ namespace DaleranGames.UI
             tile.UIGraphics.Remove(TileLayers.OverlayDigit1);
         }
 
-        public void SetDigit2(HexTile tile, TileGraphic graphic)
-        {
-            tile.UIGraphics.Add(TileLayers.OverlayDigit2, graphic);
-        }
-
         public void ClearDigit2(HexTile tile)
         {
             tile.UIGraphics.Remove(TileLayers.OverlayDigit2);
-        }
-
-        public void SetDigit3(HexTile tile, TileGraphic graphic)
-        {
-            tile.UIGraphics.Add(TileLayers.OverlayDigit3, graphic);
         }
 
         public void ClearDigit3(HexTile tile)

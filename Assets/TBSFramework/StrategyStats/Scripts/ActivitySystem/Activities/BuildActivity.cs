@@ -6,12 +6,22 @@ using DaleranGames.Database;
 
 namespace DaleranGames.TBSFramework
 {
-    [CreateAssetMenu(fileName = "NewBuildActivity", menuName = "DaleranGames/TBS/Activities/Build", order = 0)]
+    [System.Serializable]
     public class BuildActivity : Activity
     {
         [SerializeField]
-        string improvementName;
+        protected string improvementName;
+        public string ImprovementName { get { return improvementName; } }
+
+        [System.NonSerialized]
         ImprovementType improvement;
+
+        public BuildActivity(string name, int id, string impName)
+        {
+            this.name = name;
+            this.id = id;
+            improvementName = impName;
+        }
 
         protected override void Awake()
         {

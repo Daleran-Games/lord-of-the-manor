@@ -55,44 +55,44 @@ MonoBehaviour:
   improvements:
   - name: Farm Sowing
     iconName: Farm Sowing
-    validLandToBuildNames:
+    validLand:
     - Plains
     - Moor
     upgradeable: 0
     upgradeName: 
   - name: Farm Growing
     iconName: Farm Growing
-    validLandToBuildNames:
+    validLand:
     - Plains
     - Moor
     upgradeable: 0
     upgradeName: 
   - name: Farm Harvest
     iconName: Farm Harvest
-    validLandToBuildNames:
+    validLand:
     - Plains
     - Moor
     upgradeable: 0
     upgradeName: 
   - name: Farm Fallow
     iconName: Farm Fallow
-    validLandToBuildNames:
+    validLand:
     - Plains
     - Moor
     upgradeable: 0
     upgradeName: 
   - name: Hall
     iconName: Hall
-    validLandToBuildNames:
+    validLand:
     - Plains
     - Moor
     - Hills
-    - Moor Hills
+    - Moor Hill
     upgradeable: 0
     upgradeName: 
   - name: Large House
     iconName: Large House
-    validLandToBuildNames:
+    validLand:
     - Plains
     - Moor
     - Hills
@@ -101,7 +101,7 @@ MonoBehaviour:
     upgradeName: Hall
   - name: Roundhouse
     iconName: Roundhouse
-    validLandToBuildNames:
+    validLand:
     - Plains
     - Moor
     - Hills
@@ -110,7 +110,7 @@ MonoBehaviour:
     upgradeName: Large House
   - name: Small House
     iconName: Small House
-    validLandToBuildNames:
+    validLand:
     - Plains
     - Moor
     - Hills
@@ -119,10 +119,10 @@ MonoBehaviour:
     upgradeName: Roundhouse
   - name: Tent
     iconName: Tent
-    validLandToBuildNames:
+    validLand:
     - Plains
+    - Moor Hills
     - Moor
     - Hills
-    - Moor Hills
     upgradeable: 1
     upgradeName: Small House

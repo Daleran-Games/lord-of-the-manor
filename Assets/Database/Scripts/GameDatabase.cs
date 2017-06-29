@@ -16,19 +16,24 @@ namespace DaleranGames.Database
         public Database<TileGraphic> TileGraphics;
         public Database<LandType> LandTiles;
         public Database<ImprovementType> Improvements;
+        public Database<Activity> Activities;
 
         public void InitializeDatabases()
         {
             TileGraphics = GetComponentInChildren<GraphicsDatabaseLoader>().GenerateDatabase();
-            Debug.Log("Initialized graphics");
+            Debug.Log("Built graphics");
             LandTiles = GetComponentInChildren<LandDatabaseLoader>().GenerateDatabase();
-            Debug.Log("Initialized land tiles");
+            Debug.Log("Built land tiles");
             Improvements = GetComponentInChildren<ImprovementsDatabaseLoader>().GenerateDatabase();
-            Debug.Log("Initialized improvements");
+            Debug.Log("Built improvements");
+            Activities = GetComponentInChildren<ActivityDatabaseLoader>().GenerateDatabase();
+            Debug.Log("Built activities");
 
             GetComponentInChildren<GraphicsDatabaseLoader>().InitializeDatabase(TileGraphics);
             GetComponentInChildren<LandDatabaseLoader>().InitializeDatabase(LandTiles);
             GetComponentInChildren<ImprovementsDatabaseLoader>().InitializeDatabase(Improvements);
+            GetComponentInChildren<ActivityDatabaseLoader>().InitializeDatabase(Activities);
+
 
             Debug.Log("Initialized databases");
 

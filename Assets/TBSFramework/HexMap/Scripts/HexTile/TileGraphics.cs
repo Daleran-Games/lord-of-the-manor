@@ -8,7 +8,9 @@ namespace DaleranGames.TBSFramework
     [System.Serializable]
     public class TileGraphics
     {
+        [SerializeField]
         TileAtlas atlas;
+        [SerializeField]
         bool meshDirty = true;
         Vector3 tilePosition = Vector3.zero;
 
@@ -42,10 +44,12 @@ namespace DaleranGames.TBSFramework
         public MeshData GenerateNewMeshData()
         {
             MeshData newData = new MeshData();
+            //Debug.Log("Generating new mesh data for tile at " + tilePosition);
             foreach (KeyValuePair<TileLayers, TileGraphic> kvp in graphics)
             {
                 if (kvp.Value.AtlasCoord != Vector2Int.zero)
                 {
+                    //Debug.Log("Creating graphic " + kvp.Value.Name + " at position " + tilePosition);
                     int vertIndex = newData.verticies.Count;
                     newData.verticies.AddRange(HexMetrics.CalculateVerticies(kvp.Key.ToVector3WithOffset(tilePosition)));
                     newData.triangles.AddRange(HexMetrics.CalculateTriangles(vertIndex));
@@ -55,7 +59,6 @@ namespace DaleranGames.TBSFramework
             return newData;
         }
 
-
         public bool Contains(TileLayers layer)
         {
             return graphics.ContainsKey(layer);
@@ -63,13 +66,18 @@ namespace DaleranGames.TBSFramework
 
         public void Add(TileLayers layer, TileGraphic graphic)
         {
-            if (graphics.ContainsKey(layer))
+            if (graphic.AtlasCoord != Vector2Int.zero)
             {
-                Debug.LogWarning("Tile at " + layer + " already has a graphic");
-                graphics.Remove(layer);
+                if (graphics.ContainsKey(layer))
+                {
+                    Debug.LogWarning("Tile at " + layer + " already has a graphic");
+                    graphics.Remove(layer);
+                }
+
+                //Debug.Log("Adding " + graphic.Name);
+                graphics.Add(layer, graphic);
+                Changed();
             }
-            graphics.Add(layer, graphic);
-            Changed();
         }
 
         public void Remove(TileLayers layer)

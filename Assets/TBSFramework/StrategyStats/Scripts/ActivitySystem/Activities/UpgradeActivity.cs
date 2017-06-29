@@ -4,9 +4,14 @@ using UnityEngine;
 
 namespace DaleranGames.TBSFramework
 {
-    [CreateAssetMenu(fileName = "NewUpgradeActivity", menuName = "DaleranGames/TBS/Activities/Upgrade", order = 0)]
+    [System.Serializable]
     public class UpgradeActivity : Activity
     {
+        public UpgradeActivity(string name, int id)
+        {
+            this.name = name;
+            this.id = id;
+        }
 
         protected override void Awake()
         {

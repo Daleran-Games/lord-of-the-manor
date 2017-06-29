@@ -13,18 +13,21 @@ namespace DaleranGames.TBSFramework
         protected string name;
         public  virtual string Name { get { return name; } }
 
+        [System.NonSerialized]
         protected int id;
         public virtual int ID { get { return id; } }
 
         [SerializeField]
         protected string iconName;
         public string IconName { get { return iconName; } }
+
+        [System.NonSerialized]
         protected TileGraphic iconGraphic;
         public TileGraphic IconGraphic { get { return iconGraphic; } }
 
         public virtual void OnDatabaseInitialization()
         {
-            Debug.Log("Create tile icon " + iconName);
+            //Debug.Log("Create tile icon " + iconName);
             iconGraphic = GameDatabase.Instance.TileGraphics.Get(iconName);
         }
 
@@ -50,6 +53,8 @@ namespace DaleranGames.TBSFramework
         {
 
         }
+
+        public abstract string ToJson();
     
     }
 }

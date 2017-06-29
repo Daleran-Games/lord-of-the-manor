@@ -17,6 +17,7 @@ namespace DaleranGames.TBSFramework
         protected string clearedLandName;
         public string ClearedLandName { get { return clearedLandName; } }
 
+        [System.NonSerialized]
         protected LandType clearedLand;
         public LandType ClearedLand { get { return clearedLand; } }
 
@@ -64,6 +65,11 @@ namespace DaleranGames.TBSFramework
         {
             if (ClearedLand != null && clearable)
                 tile.Land = ClearedLand;
+        }
+
+        public override string ToJson()
+        {
+            return JsonUtility.ToJson(this, true);
         }
 
     }

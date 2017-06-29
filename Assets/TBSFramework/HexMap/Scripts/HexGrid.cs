@@ -18,18 +18,11 @@ namespace DaleranGames.TBSFramework
         bool mapBuilt = false;
         public bool MapBuilt {get { return mapBuilt; } }
 
-        [SerializeField]
-        List<TileLayers> UILayers;
-
         public virtual int Width { get { return tiles.GetLength(0) ; } }
         public virtual int Height { get { return tiles.GetLength(0) ; } }
 
         public Action MapGenerationComplete;
         public Action MeshBuildComplete;
-
-
-        [SerializeField]
-        GameObject HexMeshPrefab;
 
         HexTile[,] tiles;
 
@@ -42,9 +35,9 @@ namespace DaleranGames.TBSFramework
             terrainMeshes = new Dictionary<Vector2Int, HexMeshChunk>();
         }
 
-        private void OnDestroy()
+        protected override void OnDestroy()
         {
-   
+            base.OnDestroy();
         }
 
         public virtual HexTile this[int x, int y]

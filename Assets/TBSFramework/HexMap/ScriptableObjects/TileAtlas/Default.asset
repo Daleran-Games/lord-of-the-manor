@@ -17,6 +17,7 @@ MonoBehaviour:
   winterAtlas: {fileID: 2100000, guid: 84276af0439a43a478a4495bf3120033, type: 2}
   xSize: 48
   ySize: 48
+  ppu: 32
   uvX: 0.046875
   uvY: 0.046875
   uvXError: 0.000048828126

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DaleranGames.IO;
+using DaleranGames.Database;
 
 namespace DaleranGames.TBSFramework
 {
@@ -22,15 +23,18 @@ namespace DaleranGames.TBSFramework
             mouse = GameObject.FindObjectOfType<HexCursor>();
         }
 
-        public void EnterActivityMode (Activity activity)
+        public void EnterActivityMode (string activityName)
         {
-            activeMode = true;
-            lastClickTime = Time.time;
-            currentActivity = activity;
-            mouse.HexTileLMBClicked += OnLeftTileClick;
-            mouse.HexTileEntered += OnTileEnter;
-            InputManager.Instance.RMBClick.MouseButtonUp += OnRightClick;
-            UpdateCursor(mouse.CurrentTile);
+            currentActivity = GameDatabase.Instance.Activities.Get(activityName);
+            if (currentActivity != null)
+            {
+                activeMode = true;
+                lastClickTime = Time.time;
+                mouse.HexTileLMBClicked += OnLeftTileClick;
+                mouse.HexTileEntered += OnTileEnter;
+                InputManager.Instance.RMBClick.MouseButtonUp += OnRightClick;
+                UpdateCursor(mouse.CurrentTile);
+            }
 
         }
 

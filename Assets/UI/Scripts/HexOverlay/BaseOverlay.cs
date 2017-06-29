@@ -18,7 +18,8 @@ namespace DaleranGames.UI
 
         [SerializeField]
         protected string iconName;
-        protected TileGraphic icon = TileGraphic.clear;
+        [SerializeField]
+        protected TileGraphic icon;
 
         protected virtual void Awake()
         {

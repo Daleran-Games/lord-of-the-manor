@@ -5,9 +5,15 @@ using UnityEngine;
 
 namespace DaleranGames.TBSFramework
 {
-    [CreateAssetMenu(fileName = "NewLandClearingActivity", menuName = "DaleranGames/TBS/Activities/Clear Land", order = 0)]
+    [System.Serializable]
     public class LandClearingActivity : Activity
     {
+        public LandClearingActivity(string name, int id)
+        {
+            this.name = name;
+            this.id = id;
+        }
+
         protected override void Awake()
         {
             base.Awake();

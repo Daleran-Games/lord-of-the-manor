@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DaleranGames.Database;
+using System;
 
 namespace DaleranGames.TBSFramework
 {
@@ -18,6 +19,7 @@ namespace DaleranGames.TBSFramework
         protected string name;
         public string Name { get {return name; } }
 
+        [System.NonSerialized]
         protected int id;
         public int ID { get { return id; } }
 
@@ -60,5 +62,15 @@ namespace DaleranGames.TBSFramework
 
         public static TileGraphic clear = new TileGraphic("Clear", -1, Vector2Int.zero);
 
+
+        public void OnDatabaseInitialization()
+        {
+
+        }
+
+        public string ToJson()
+        {
+            return JsonUtility.ToJson(this, true);
+        }
     }
 }

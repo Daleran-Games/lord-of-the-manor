@@ -6,10 +6,16 @@ using DaleranGames.Database;
 
 namespace DaleranGames.TBSFramework
 {
-    [CreateAssetMenu(fileName = "NewRazeActivity", menuName = "DaleranGames/TBS/Activities/Raze", order = 0)]
+    [System.Serializable]
     public class RazeActivity : Activity
     {
         protected TileGraphic icon;
+
+        public RazeActivity(string name, int id)
+        {
+            this.name = name;
+            this.id = id;
+        }
 
         protected override void Awake()
         {

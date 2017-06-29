@@ -93,9 +93,9 @@ namespace DaleranGames.TBSFramework
                 for (int x = minTile.x; x <= maxTile.x; x++)
                 {
                     if (UIMesh)
-                        grid[x, y].UIGraphics.GraphicsChanged -= OnTileChange;
+                        grid[x, y].UIGraphics.GraphicsChanged += OnTileChange;
                     else
-                        grid[x, y].TerrainGraphics.GraphicsChanged -= OnTileChange;
+                        grid[x, y].TerrainGraphics.GraphicsChanged += OnTileChange;
                 }
             }
 

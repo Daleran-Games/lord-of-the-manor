@@ -24,12 +24,5 @@ namespace DaleranGames.Database
             return newDB;
         }
 
-        public override void InitializeDatabase(Database<LandType> newDB)
-        {
-            foreach (KeyValuePair<int, LandType> kvp in newDB.Dict)
-            {
-                kvp.Value.OnDatabaseInitialization();
-            }
-        }
     }
 }
