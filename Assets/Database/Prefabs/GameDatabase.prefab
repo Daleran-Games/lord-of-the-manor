@@ -27,6 +27,86 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1174540528712988
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4291809723297290}
+  - component: {fileID: 114124378636906966}
+  m_Layer: 0
+  m_Name: Activities
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1228374808359944
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4608254646293702}
+  - component: {fileID: 114924648615565522}
+  m_Layer: 0
+  m_Name: Sprites
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1673275281193154
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4301331344583644}
+  - component: {fileID: 114976322424964180}
+  m_Layer: 0
+  m_Name: Land
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1759016061261510
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4537059626334126}
+  - component: {fileID: 114124488243389464}
+  m_Layer: 0
+  m_Name: Graphics
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1971649253243252
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4252828912427830}
+  - component: {fileID: 114484710512102636}
+  m_Layer: 0
+  m_Name: Improvements
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!4 &4233381359388290
 Transform:
   m_ObjectHideFlags: 1
@@ -36,10 +116,437 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 4537059626334126}
+  - {fileID: 4252828912427830}
+  - {fileID: 4301331344583644}
+  - {fileID: 4291809723297290}
+  - {fileID: 4608254646293702}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4252828912427830
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1971649253243252}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4233381359388290}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4291809723297290
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1174540528712988}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4233381359388290}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4301331344583644
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1673275281193154}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4233381359388290}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4537059626334126
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1759016061261510}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4233381359388290}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4608254646293702
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1228374808359944}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4233381359388290}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &114124378636906966
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1174540528712988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 497bd10b1068a764e822bb9195ddcbf2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  filePath: 
+  landClearing:
+    name: Clear
+  raze:
+    name: Raze
+  upgrade:
+    name: Upgrade
+  builds:
+  - name: Build Dwelling
+    improvementName: Tent
+  - name: Build Farm
+    improvementName: Farm Sowing
+--- !u!114 &114124488243389464
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1759016061261510}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2a5cf7170034b74d9cf5d90a8948453, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  filePath: 
+  landGraphics:
+  - name: Plains
+    atlasCoord:
+      x: 0
+      y: 1
+    spriteName: 
+  - name: Parkland
+    atlasCoord:
+      x: 1
+      y: 1
+    spriteName: 
+  - name: Forest
+    atlasCoord:
+      x: 2
+      y: 1
+    spriteName: 
+  - name: Hills
+    atlasCoord:
+      x: 3
+      y: 1
+    spriteName: 
+  - name: Wooded Hills
+    atlasCoord:
+      x: 4
+      y: 1
+    spriteName: 
+  - name: Mountains
+    atlasCoord:
+      x: 5
+      y: 1
+    spriteName: 
+  - name: Wooded Mountains
+    atlasCoord:
+      x: 6
+      y: 1
+    spriteName: 
+  - name: Moor
+    atlasCoord:
+      x: 7
+      y: 1
+    spriteName: 
+  - name: Moor Hills
+    atlasCoord:
+      x: 8
+      y: 1
+    spriteName: 
+  - name: Moor Mountains
+    atlasCoord:
+      x: 9
+      y: 1
+    spriteName: 
+  - name: Fen
+    atlasCoord:
+      x: 10
+      y: 1
+    spriteName: 
+  - name: Deep Water
+    atlasCoord:
+      x: 11
+      y: 1
+    spriteName: 
+  - name: Shallow Water
+    atlasCoord:
+      x: 12
+      y: 1
+    spriteName: 
+  improvementGraphics:
+  - name: Farm Sowing
+    atlasCoord:
+      x: 0
+      y: 5
+    spriteName: 
+  - name: Farm Growing
+    atlasCoord:
+      x: 1
+      y: 5
+    spriteName: 
+  - name: Farm Harvest
+    atlasCoord:
+      x: 2
+      y: 5
+    spriteName: 
+  - name: Farm Fallow
+    atlasCoord:
+      x: 3
+      y: 5
+    spriteName: 
+  - name: Hall
+    atlasCoord:
+      x: 4
+      y: 5
+    spriteName: 
+  - name: Large House
+    atlasCoord:
+      x: 5
+      y: 5
+    spriteName: 
+  - name: Roundhouse
+    atlasCoord:
+      x: 6
+      y: 5
+    spriteName: 
+  - name: Small House
+    atlasCoord:
+      x: 7
+      y: 5
+    spriteName: 
+  - name: Tent
+    atlasCoord:
+      x: 8
+      y: 5
+    spriteName: 
+  textGraphics:
+  - name: UI Text Zero
+    atlasCoord:
+      x: 0
+      y: 6
+    spriteName: 
+  - name: UI Text One
+    atlasCoord:
+      x: 1
+      y: 6
+    spriteName: 
+  - name: UI Text Two
+    atlasCoord:
+      x: 2
+      y: 6
+    spriteName: 
+  - name: UI Text Three
+    atlasCoord:
+      x: 3
+      y: 6
+    spriteName: 
+  - name: UI Text Four
+    atlasCoord:
+      x: 4
+      y: 6
+    spriteName: 
+  - name: UI Text Five
+    atlasCoord:
+      x: 5
+      y: 6
+    spriteName: 
+  - name: UI Text Six
+    atlasCoord:
+      x: 6
+      y: 6
+    spriteName: 
+  - name: UI Text Seven
+    atlasCoord:
+      x: 7
+      y: 6
+    spriteName: 
+  - name: UI Text Eight
+    atlasCoord:
+      x: 8
+      y: 6
+    spriteName: 
+  - name: UI Text Nine
+    atlasCoord:
+      x: 9
+      y: 6
+    spriteName: 
+  - name: UI Text Dash
+    atlasCoord:
+      x: 10
+      y: 6
+    spriteName: 
+  - name: UI Text Plus
+    atlasCoord:
+      x: 11
+      y: 6
+    spriteName: 
+  uiIcons:
+  - name: UI Icon Mountain
+    atlasCoord:
+      x: 11
+      y: 1
+    spriteName: 
+  - name: UI Icon Drop
+    atlasCoord:
+      x: 12
+      y: 1
+    spriteName: 
+  cursors:
+  - name: UI Cursor Ring
+    atlasCoord:
+      x: 1
+      y: 0
+    spriteName: 
+  - name: UI Cursor Positive
+    atlasCoord:
+      x: 2
+      y: 0
+    spriteName: 
+  - name: UI Cursor Negative
+    atlasCoord:
+      x: 3
+      y: 0
+    spriteName: 
+  - name: UI Cursor White
+    atlasCoord:
+      x: 4
+      y: 0
+    spriteName: 
+  - name: UI Cursor Dark
+    atlasCoord:
+      x: 5
+      y: 0
+    spriteName: 
+  - name: UI Cursor Fog
+    atlasCoord:
+      x: 6
+      y: 0
+    spriteName: 
+  - name: UI Cursor Cross
+    atlasCoord:
+      x: 7
+      y: 0
+    spriteName: 
+  - name: UI Cursor Highlight
+    atlasCoord:
+      x: 8
+      y: 0
+    spriteName: 
+--- !u!114 &114484710512102636
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1971649253243252}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ad935d5704897048a37f0d77cd0ea17, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  filePath: 
+  improvements:
+  - name: Farm Sowing
+    iconName: Farm Sowing
+    validLand:
+    - Plains
+    - Moor
+    upgradeable: 0
+    upgradeName: 
+  - name: Farm Growing
+    iconName: Farm Growing
+    validLand:
+    - Plains
+    - Moor
+    upgradeable: 0
+    upgradeName: 
+  - name: Farm Harvest
+    iconName: Farm Harvest
+    validLand:
+    - Plains
+    - Moor
+    upgradeable: 0
+    upgradeName: 
+  - name: Farm Fallow
+    iconName: Farm Fallow
+    validLand:
+    - Plains
+    - Moor
+    upgradeable: 0
+    upgradeName: 
+  - name: Hall
+    iconName: Hall
+    validLand:
+    - Plains
+    - Moor
+    - Hills
+    - Moor Hill
+    upgradeable: 0
+    upgradeName: 
+  - name: Large House
+    iconName: Large House
+    validLand:
+    - Plains
+    - Moor
+    - Hills
+    - Moor Hills
+    upgradeable: 1
+    upgradeName: Hall
+  - name: Roundhouse
+    iconName: Roundhouse
+    validLand:
+    - Plains
+    - Moor
+    - Hills
+    - Moor Hills
+    upgradeable: 1
+    upgradeName: Large House
+  - name: Small House
+    iconName: Small House
+    validLand:
+    - Plains
+    - Moor
+    - Hills
+    - Moor Hills
+    upgradeable: 1
+    upgradeName: Roundhouse
+  - name: Tent
+    iconName: Tent
+    validLand:
+    - Plains
+    - Moor Hills
+    - Moor
+    - Hills
+    upgradeable: 1
+    upgradeName: Small House
+--- !u!114 &114924648615565522
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1228374808359944}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1dda9025de255d4196bb642712a44a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114942424369461018
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -51,23 +558,69 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 290296fa57e6c604f8aaa30990503d51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inputObjects:
-  - {fileID: 11400000, guid: ae3c616aacc49f5478cea3046a491c9b, type: 2}
-  - {fileID: 11400000, guid: fc6433a2dfda8c749a6bfbd3650b6911, type: 2}
-  - {fileID: 11400000, guid: 73985d6f1a7ce334abbc5c4db9d955a0, type: 2}
-  - {fileID: 11400000, guid: 2a7c84fe5b3daac4a983fb911afcfb10, type: 2}
-  - {fileID: 11400000, guid: 33aa9bb21c51aba40a084f738401d954, type: 2}
-  - {fileID: 11400000, guid: e2964277b7555fa46b141e9b469772c2, type: 2}
-  - {fileID: 11400000, guid: 94c05479fed174845bdf26dff6e5b495, type: 2}
-  - {fileID: 11400000, guid: 123de6cc39ca6944abbaf9e08459bb25, type: 2}
-  - {fileID: 11400000, guid: 1b95f6766f600454f812476e9d7a086d, type: 2}
-  - {fileID: 11400000, guid: e6c32bc2553bece40bf64d539167207c, type: 2}
-  - {fileID: 11400000, guid: 02db1f1f4d8626e4c8a492bff984a2d2, type: 2}
-  - {fileID: 11400000, guid: 5ad98fcc8dee42447b63c70c0389f1b7, type: 2}
-  - {fileID: 11400000, guid: ff9f5986c8549d54ab847fd85790cc4b, type: 2}
-  - {fileID: 11400000, guid: e7d19e3a86be07b499c88fe6bc974962, type: 2}
-  - {fileID: 11400000, guid: df02f60e602343946be30686039452f0, type: 2}
-  - {fileID: 11400000, guid: 1c5d6d04c353f7741bc8afb6b8c15f7f, type: 2}
-  - {fileID: 11400000, guid: e2202c956cf55114ca2ac229cb80babc, type: 2}
-  - {fileID: 11400000, guid: 89d8ed0988b9fd04b99e744ba8993f48, type: 2}
-  - {fileID: 11400000, guid: f19976095ff574c41b3f365299c6ae0d, type: 2}
+  Atlas: {fileID: 11400000, guid: 922081251dba41d43b85034f5ddea963, type: 2}
+--- !u!114 &114976322424964180
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1673275281193154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15cbe7e10f21c8241b174157283faa41, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  filePath: 
+  lands:
+  - name: Plains
+    iconName: Plains
+    clearable: 0
+    clearedLandName: 
+  - name: Parkland
+    iconName: Parkland
+    clearable: 1
+    clearedLandName: Plains
+  - name: Forest
+    iconName: Forest
+    clearable: 1
+    clearedLandName: Moor
+  - name: Hills
+    iconName: Hills
+    clearable: 0
+    clearedLandName: 
+  - name: Wooded Hills
+    iconName: Wooded Hills
+    clearable: 1
+    clearedLandName: Hills
+  - name: Mountains
+    iconName: Mountains
+    clearable: 0
+    clearedLandName: 
+  - name: Wooded Mountains
+    iconName: Wooded Mountains
+    clearable: 1
+    clearedLandName: Mountains
+  - name: Moor
+    iconName: Moor
+    clearable: 0
+    clearedLandName: 
+  - name: Moor Hills
+    iconName: Moor Hills
+    clearable: 0
+    clearedLandName: 
+  - name: Moor Mountains
+    iconName: Moor Mountains
+    clearable: 0
+    clearedLandName: 
+  - name: Fen
+    iconName: Fen
+    clearable: 0
+    clearedLandName: 
+  - name: Deep Water
+    iconName: Deep Water
+    clearable: 0
+    clearedLandName: 
+  - name: Shallow Water
+    iconName: Shallow Water
+    clearable: 0
+    clearedLandName: 

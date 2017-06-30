@@ -27,27 +27,16 @@ namespace DaleranGames.TBSFramework
         protected Vector2Int atlasCoord;
         public Vector2Int AtlasCoord { get { return atlasCoord; } }
 
-        //[SerializeField]
-        //protected GraphicType type;
-        //public GraphicType Type { get { return type; } }
-
-        /*
         [SerializeField]
-        protected Vector2 spriteSize;
-        public Vector2 SpriteSize { get { return spriteSize; } }
-
-        protected Sprite sprite;
-        public Sprite Sprite { get { return sprite; } }
-        */
+        protected string spriteName;
+        public string SpriteName { get { return spriteName; } }
 
         public TileGraphic(string name, int id, Vector2Int coord)
         {
             this.name = name;
             this.id = id;
             this.atlasCoord = coord;
-            //this.type = type;
-            //this.sprite = sprite;
-            //this.spriteSize = spriteSize;
+
         }
 
         public TileGraphic(TileGraphic graphic, int id)
@@ -55,9 +44,8 @@ namespace DaleranGames.TBSFramework
             name = graphic.Name;
             this.id = id;
             atlasCoord = graphic.AtlasCoord;
-            //type = graphic.Type;
-            //spriteSize = graphic.SpriteSize;
-            //sprite = atlas.GenerateSpriteOfType(Type, AtlasCoord, SpriteSize);
+            spriteName = graphic.spriteName;
+
         }
 
         public static TileGraphic clear = new TileGraphic("Clear", -1, Vector2Int.zero);

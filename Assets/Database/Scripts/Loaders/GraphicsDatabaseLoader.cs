@@ -27,7 +27,6 @@ namespace DaleranGames.Database
         public override Database<TileGraphic> GenerateDatabase()
         {
             Database<TileGraphic> newDB = new Database<TileGraphic>();
-            int id = 0;
             for(int i=0; i < landGraphics.Length; i++ )
             {
                 newDB.Add(new TileGraphic(landGraphics[i], id));

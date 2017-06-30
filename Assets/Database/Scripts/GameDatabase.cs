@@ -13,6 +13,8 @@ namespace DaleranGames.Database
 
         public System.Action DatabasesInitialized;
 
+        public TileAtlas Atlas;
+        public Dictionary<string, Sprite> Sprites;
         public Database<TileGraphic> TileGraphics;
         public Database<LandType> LandTiles;
         public Database<ImprovementType> Improvements;
@@ -28,6 +30,7 @@ namespace DaleranGames.Database
             Debug.Log("Built improvements");
             Activities = GetComponentInChildren<ActivityDatabaseLoader>().GenerateDatabase();
             Debug.Log("Built activities");
+
 
             GetComponentInChildren<GraphicsDatabaseLoader>().InitializeDatabase(TileGraphics);
             GetComponentInChildren<LandDatabaseLoader>().InitializeDatabase(LandTiles);
