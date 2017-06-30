@@ -79,7 +79,7 @@ namespace DaleranGames.TBSFramework
         public void Calculate ()
         {
 
-            Debug.Log(SpringAtlas.mainTexture.width);
+            //Debug.Log(SpringAtlas.mainTexture.width);
             uvX = (float)XSize / (float)SpringAtlas.mainTexture.width;
             uvY = (float)YSize / (float)SpringAtlas.mainTexture.height;
 
@@ -126,6 +126,13 @@ namespace DaleranGames.TBSFramework
             int texHeight = mat.mainTexture.height;
             Rect bounds = new Rect(coord.x * xSize, coord.y * ySize + ySize, cropToSize.x,cropToSize.y);
             return Sprite.Create((Texture2D)mat.mainTexture, bounds, new Vector2(0.5f, 0.5f), PPU, 1, SpriteMeshType.FullRect);
+        }
+
+        public Vector2Int GetCoordFromRect (Rect spriteRect)
+        {
+            int x = (int)((spriteRect.center.x - ((float)xSize / 2f)) / (float)xSize);
+            int y = (int)((spriteRect.center.y - ((float)ySize / 2f)) / (float)ySize);
+            return new Vector2Int(x, y);
         }
 
 

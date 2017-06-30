@@ -52,42 +52,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a792f8702481cd42b48bf13a49ba5a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  zero:
-    x: 0
-    y: 6
-  one:
-    x: 1
-    y: 6
-  two:
-    x: 2
-    y: 6
-  three:
-    x: 3
-    y: 6
-  four:
-    x: 4
-    y: 6
-  five:
-    x: 5
-    y: 6
-  six:
-    x: 6
-    y: 6
-  seven:
-    x: 7
-    y: 6
-  eight:
-    x: 8
-    y: 6
-  nine:
-    x: 9
-    y: 6
-  dash:
-    x: 10
-    y: 6
-  plus:
-    x: 11
-    y: 6
+  zeroKey: UIAtlas_Text_0
+  oneKey: UIAtlas_Text_1
+  twoKey: UIAtlas_Text_2
+  threeKey: UIAtlas_Text_3
+  fourKey: UIAtlas_Text_4
+  fiveKey: UIAtlas_Text_5
+  sixKey: UIAtlas_Text_6
+  sevenKey: UIAtlas_Text_7
+  eightKey: UIAtlas_Text_8
+  nineKey: UIAtlas_Text_9
+  dashKey: UIAtlas_Text_-
+  plusKey: UIAtlas_Text_+
 --- !u!114 &114714607593139692
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -101,6 +77,3 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   generator: {fileID: 11400000, guid: f4f750a60ae49324bb22390a51b8c766, type: 2}
   mapBuilt: 0
-  UILayers: fafffffffbfffffffcfffffffdffffff
-  HexMeshPrefab: {fileID: 1687581138982752, guid: a0112fc0e1252764f809bb401934494e,
-    type: 2}

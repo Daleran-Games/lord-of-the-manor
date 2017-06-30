@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 2cd13286f6099a242a1fd4a55f0bfb71
-timeCreated: 1498769384
+timeCreated: 1498825047
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -42,14 +42,33 @@ TextureImporter:
     21300070: UIAtlas_Icon_Summer
     21300072: UIAtlas_Icon_Fall
     21300074: UIAtlas_Icon_Winter
-    21300076: UIAtlas_Ring
-    21300078: UIAtlas_Positive
-    21300080: UIAtlas_Negative
-    21300082: UIAtlas_Light
-    21300084: UIAtlas_Dark
-    21300086: UIAtlas_Fog
+    21300076: UIAtlas_Cursor_Ring
+    21300078: UIAtlas_Cursor_Positive
+    21300080: UIAtlas_Cursor_Negative
+    21300082: UIAtlas_Cursor_Light
+    21300084: UIAtlas_Cursor_Dark
+    21300086: UIAtlas_Cursor_Fog
     21300088: UIAtlas_Text_+
-    21300090: UIAtlas_Cross
+    21300090: UIAtlas_Cursor_Cross
+    21300092: UIAtlas_Cursor_Highlight
+    21300094: UIAtlas_Icon_PlayerTerritory
+    21300096: UIAtlas_Icon_CommonForest
+    21300098: UIAtlas_Icon_CommonPasture
+    21300100: UIAtlas_Icon_HousingArea
+    21300102: UIAtlas_Icon_VassalTerritory
+    21300104: UIAtlas_Icon_Cancel
+    21300106: UIAtlas_Icon_FarmingTools
+    21300108: UIAtlas_Icon_ExtractionTools
+    21300110: UIAtlas_Icon_HammerTool
+    21300112: UIAtlas_Icon_AnvilTool
+    21300114: UIAtlas_Highlight_Ring
+    21300116: UIAtlas_Highlight_Positive
+    21300118: UIAtlas_Highlight_Negative
+    21300120: UIAtlas_Highlight_Light
+    21300122: UIAtlas_Highlight_Dark
+    21300124: UIAtlas_Highlight_Fog
+    21300126: UIAtlas_Highlight_Cross
+    21300128: UIAtlas_Highlight_White
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -584,20 +603,20 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Ring
+      name: UIAtlas_Highlight_Ring
       rect:
         serializedVersion: 2
-        x: 56
-        y: 8
-        width: 32
-        height: 32
+        x: 54
+        y: 6
+        width: 36
+        height: 36
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Positive
+      name: UIAtlas_Highlight_Positive
       rect:
         serializedVersion: 2
         x: 104
@@ -610,7 +629,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Negative
+      name: UIAtlas_Highlight_Negative
       rect:
         serializedVersion: 2
         x: 152
@@ -623,7 +642,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Light
+      name: UIAtlas_Highlight_Light
       rect:
         serializedVersion: 2
         x: 200
@@ -636,7 +655,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Dark
+      name: UIAtlas_Highlight_Dark
       rect:
         serializedVersion: 2
         x: 248
@@ -649,7 +668,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Fog
+      name: UIAtlas_Highlight_Fog
       rect:
         serializedVersion: 2
         x: 296
@@ -675,7 +694,7 @@ TextureImporter:
       outline: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Cross
+      name: UIAtlas_Highlight_Cross
       rect:
         serializedVersion: 2
         x: 344
@@ -683,7 +702,150 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UIAtlas_Highlight_White
+      rect:
+        serializedVersion: 2
+        x: 392
+        y: 8
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UIAtlas_Icon_PlayerTerritory
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 440
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UIAtlas_Icon_CommonForest
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 440
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UIAtlas_Icon_CommonPasture
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 440
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UIAtlas_Icon_HousingArea
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 440
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UIAtlas_Icon_VassalTerritory
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 440
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UIAtlas_Icon_Cancel
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 392
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UIAtlas_Icon_FarmingTools
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 392
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UIAtlas_Icon_ExtractionTools
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 394
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UIAtlas_Icon_HammerTool
+      rect:
+        serializedVersion: 2
+        x: 153
+        y: 394
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UIAtlas_Icon_AnvilTool
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 394
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       tessellationDetail: 0

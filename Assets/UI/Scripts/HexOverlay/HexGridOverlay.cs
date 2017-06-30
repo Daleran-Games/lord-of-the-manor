@@ -11,48 +11,43 @@ namespace DaleranGames.UI
 
         [Header("Numbers")]
         [SerializeField]
-        string zeroKey = "UI Text Zero";
+        string zeroKey;
         TileGraphic zero;
         [SerializeField]
-        string oneKey = "UI Text One";
+        string oneKey;
         TileGraphic one;
         [SerializeField]
-        string twoKey = "UI Text Two";
+        string twoKey;
         TileGraphic two;
         [SerializeField]
-        string threeKey = "UI Text Three";
+        string threeKey;
         TileGraphic three;
         [SerializeField]
-        string fourKey = "UI Text Four";
+        string fourKey;
         TileGraphic four;
         [SerializeField]
-        string fiveKey = "UI Text Five";
+        string fiveKey;
         TileGraphic five;
         [SerializeField]
-        string sixKey = "UI Text Six";
+        string sixKey;
         TileGraphic six;
         [SerializeField]
-        string sevenKey = "UI Text Seven";
+        string sevenKey;
         TileGraphic seven;
         [SerializeField]
-        string eightKey = "UI Text Eight";
-        [SerializeField]
+        string eightKey;
         TileGraphic eight;
         [SerializeField]
-        string nineKey = "UI Text Nine";
-        [SerializeField]
+        string nineKey;
         TileGraphic nine;
         [SerializeField]
-        string dashKey = "UI Text Dash";
-        [SerializeField]
+        string dashKey;
         TileGraphic dash;
         [SerializeField]
-        string plusKey = "UI Text Plus";
-        [SerializeField]
+        string plusKey;
         TileGraphic plus;
 
         HexGrid grid;
-
         Dictionary<int, int[]> lookupTable;
 
         // Use this for initialization

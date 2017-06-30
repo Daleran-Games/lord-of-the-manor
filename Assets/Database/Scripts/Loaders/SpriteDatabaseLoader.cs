@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 #if UNITY_EDITOR
+using System.IO;
 using UnityEditor;
 #endif
 
@@ -13,7 +14,11 @@ namespace DaleranGames.Database
         [Reorderable]
         protected List<Sprite> sprites;
         [SerializeField]
-        protected string spriteFilePath = "Assets/Graphics/Sprites";
+        protected string uiSpriteFilePath = "Assets/Graphics/Sprites/UIAtlas.png";
+        [SerializeField]
+        protected string springSpriteFilePath = "Assets/Graphics/Sprites/SpringAtlas.png";
+        [SerializeField]
+        protected string refTextFilePath = "Assets/Graphics/Sprites/SpriteNames.txt";
 
         public Dictionary<string, Sprite> GetSpriteDictionary ()
         {
@@ -21,7 +26,10 @@ namespace DaleranGames.Database
 
             if (sprites != null)
             {
-
+                foreach(Sprite s in sprites)
+                {
+                    dict.Add(s.name, s);
+                }
             }
 
             return dict;
@@ -31,6 +39,30 @@ namespace DaleranGames.Database
         [ContextMenu("Load Sprites")]
         public void LoadSpritesFromFolder()
         {
+            List<Sprite> newSprites = new List<Sprite>();
+            Object[] ui = AssetDatabase.LoadAllAssetsAtPath(uiSpriteFilePath);
+            Object[] spr = AssetDatabase.LoadAllAssetsAtPath(springSpriteFilePath);
+            Object[] objs = new Object[ui.Length + spr.Length];
+            System.Array.Copy(ui, objs, ui.Length);
+            System.Array.Copy(spr, 0, objs, ui.Length, spr.Length);
+
+            StreamWriter writer = new StreamWriter(refTextFilePath, false);
+            writer.WriteLine("Sprite Names");
+            writer.WriteLine("");
+
+            for (int i = 0; i < objs.Length; i++)
+            {
+                if (objs[i] as Sprite != null)
+                {
+                    Sprite sprite = objs[i] as Sprite;
+                    newSprites.Add(sprite);
+                    writer.WriteLine(sprite.name);
+                }
+            }
+
+            writer.Close();
+
+            sprites = newSprites;
 
         }
         #endif

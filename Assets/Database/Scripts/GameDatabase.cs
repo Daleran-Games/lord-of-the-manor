@@ -13,7 +13,9 @@ namespace DaleranGames.Database
 
         public System.Action DatabasesInitialized;
 
-        public TileAtlas Atlas;
+        [SerializeField]
+        protected TileAtlas atlas;
+        public TileAtlas Atlas { get { return atlas; } }
         public Dictionary<string, Sprite> Sprites;
         public Database<TileGraphic> TileGraphics;
         public Database<LandType> LandTiles;
@@ -22,6 +24,7 @@ namespace DaleranGames.Database
 
         public void InitializeDatabases()
         {
+            Sprites = GetComponentInChildren<SpriteDatabaseLoader>().GetSpriteDictionary();
             TileGraphics = GetComponentInChildren<GraphicsDatabaseLoader>().GenerateDatabase();
             Debug.Log("Built graphics");
             LandTiles = GetComponentInChildren<LandDatabaseLoader>().GenerateDatabase();

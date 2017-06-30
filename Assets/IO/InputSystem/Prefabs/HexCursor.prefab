@@ -96,44 +96,46 @@ MonoBehaviour:
     type: 2}
   hexCursorMode: 0
   cursorUIIcon:
-    x: 0
-    y: 0
+    name: Clear
+    atlasCoord:
+      x: 0
+      y: 0
   cursorTerrainIcon:
-    x: 0
-    y: 0
-  ring:
-    x: 1
-    y: 0
-  dark:
-    x: 5
-    y: 0
-  white:
-    x: 4
-    y: 0
-  positive:
-    x: 2
-    y: 0
-  negative:
-    x: 3
-    y: 0
-  cross:
-    x: 7
-    y: 0
+    name: Clear
+    atlasCoord:
+      x: 0
+      y: 0
+  ringName: UIAtlas_Highlight_Ring
+  darkName: UIAtlas_Highlight_Dark
+  whiteName: UIAtlas_Highlight_ White
+  positiveName: UIAtlas_Highlight_Positive
+  negativeName: UIAtlas_Highlight_Negative
+  crossName: UIAtlas_Highlight_Cross
   currentTile:
     id: 0
-    coord:
+    hexPosition:
       r: 0
       q: 0
+    gridPos:
+      x: 0
+      y: 0
     position: {x: 0, y: 0, z: 0}
     elevation: 0
     moisture: 0
-    owner:
-      tenets: []
-      testStat:
-        _type: 0
-        _value: 0
-      test2:
-        x: 0
-        y: 0
-    land: {fileID: 0}
-    improvement: {fileID: 0}
+    land:
+      name: 
+      iconName: 
+      clearable: 0
+      clearedLandName: 
+    improvement:
+      name: 
+      iconName: 
+      validLand: []
+      upgradeable: 0
+      upgradeName: 
+    UIGraphics:
+      atlas: {fileID: 0}
+      meshDirty: 0
+    TerrainGraphics:
+      atlas: {fileID: 0}
+      meshDirty: 0
