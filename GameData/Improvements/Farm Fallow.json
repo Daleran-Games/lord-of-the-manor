@@ -1,0 +1,11 @@
+{
+    "name": "Farm Fallow",
+    "type": "DaleranGames.TBSFramework.ImprovementType",
+    "iconName": "Spring_I_FarmFallow",
+    "validLand": [
+        "Plains",
+        "Moor"
+    ],
+    "upgradeable": false,
+    "upgradeName": ""
+}

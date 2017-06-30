@@ -1,0 +1,5 @@
+{
+    "name": "Build Dwelling",
+    "type": "DaleranGames.TBSFramework.BuildActivity",
+    "improvementName": "Tent"
+}

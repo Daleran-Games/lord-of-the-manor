@@ -1,0 +1,8 @@
+{
+    "name": "UIAtlas_Icon_Hunting",
+    "type": "DaleranGames.TBSFramework.TileGraphic",
+    "atlasCoord": {
+        "x": 5,
+        "y": 1
+    }
+}

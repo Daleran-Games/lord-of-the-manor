@@ -41,5 +41,11 @@ namespace DaleranGames.TBSFramework
         {
             tile.Land.ClearTile(tile);
         }
+
+        public override string ToJson()
+        {
+            this.type = this.ToString();
+            return JsonUtility.ToJson(this, true);
+        }
     }
 }

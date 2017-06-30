@@ -51,38 +51,43 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5ad935d5704897048a37f0d77cd0ea17, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  filePath: 
+  jsonFilePath: Improvements
   improvements:
   - name: Farm Sowing
-    iconName: Farm Sowing
+    type: DaleranGames.TBSFramework.ImprovementType
+    iconName: Spring_I_FarmSowing
     validLand:
     - Plains
     - Moor
     upgradeable: 0
     upgradeName: 
   - name: Farm Growing
-    iconName: Farm Growing
+    type: DaleranGames.TBSFramework.ImprovementType
+    iconName: Spring_I_FarmGrowing
     validLand:
     - Plains
     - Moor
     upgradeable: 0
     upgradeName: 
   - name: Farm Harvest
-    iconName: Farm Harvest
+    type: DaleranGames.TBSFramework.ImprovementType
+    iconName: Spring_I_FarmHarvest
     validLand:
     - Plains
     - Moor
     upgradeable: 0
     upgradeName: 
   - name: Farm Fallow
-    iconName: Farm Fallow
+    type: DaleranGames.TBSFramework.ImprovementType
+    iconName: Spring_I_FarmFallow
     validLand:
     - Plains
     - Moor
     upgradeable: 0
     upgradeName: 
   - name: Hall
-    iconName: Hall
+    type: DaleranGames.TBSFramework.ImprovementType
+    iconName: Spring_I_Hall
     validLand:
     - Plains
     - Moor
@@ -91,7 +96,8 @@ MonoBehaviour:
     upgradeable: 0
     upgradeName: 
   - name: Large House
-    iconName: Large House
+    type: DaleranGames.TBSFramework.ImprovementType
+    iconName: Spring_I_LargeHouse
     validLand:
     - Plains
     - Moor
@@ -100,7 +106,8 @@ MonoBehaviour:
     upgradeable: 1
     upgradeName: Hall
   - name: Roundhouse
-    iconName: Roundhouse
+    type: DaleranGames.TBSFramework.ImprovementType
+    iconName: Spring_I_RoundHouse
     validLand:
     - Plains
     - Moor
@@ -109,7 +116,8 @@ MonoBehaviour:
     upgradeable: 1
     upgradeName: Large House
   - name: Small House
-    iconName: Small House
+    type: DaleranGames.TBSFramework.ImprovementType
+    iconName: Spring_I_SmallHouse
     validLand:
     - Plains
     - Moor
@@ -118,7 +126,8 @@ MonoBehaviour:
     upgradeable: 1
     upgradeName: Roundhouse
   - name: Tent
-    iconName: Tent
+    type: DaleranGames.TBSFramework.ImprovementType
+    iconName: Spring_I_Tent
     validLand:
     - Plains
     - Moor Hills

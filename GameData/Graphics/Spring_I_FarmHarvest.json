@@ -1,0 +1,8 @@
+{
+    "name": "Spring_I_FarmHarvest",
+    "type": "DaleranGames.TBSFramework.TileGraphic",
+    "atlasCoord": {
+        "x": 2,
+        "y": 5
+    }
+}

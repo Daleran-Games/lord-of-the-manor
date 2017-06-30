@@ -51,27 +51,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 497bd10b1068a764e822bb9195ddcbf2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  filePath: 
+  jsonFilePath: Activities
   landClearing:
     name: Clear
+    type: DaleranGames.TBSFramework.LandClearingActivity
   raze:
     name: Raze
+    type: DaleranGames.TBSFramework.RazeActivity
   upgrade:
     name: Upgrade
+    type: DaleranGames.TBSFramework.UpgradeActivity
   builds:
   - name: Build Dwelling
+    type: DaleranGames.TBSFramework.BuildActivity
     improvementName: Tent
-    improvement:
-      name: 
-      iconName: 
-      validLand: []
-      upgradeable: 0
-      upgradeName: 
   - name: Build Farm
+    type: DaleranGames.TBSFramework.BuildActivity
     improvementName: Farm Sowing
-    improvement:
-      name: 
-      iconName: 
-      validLand: []
-      upgradeable: 0
-      upgradeName: 

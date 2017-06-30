@@ -1,8 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-#if UNITY_EDITOR
 using System.IO;
+#if UNITY_EDITOR
 using UnityEditor;
 #endif
 
@@ -13,6 +13,8 @@ namespace DaleranGames.Database
         [SerializeField]
         [Reorderable]
         protected List<Sprite> sprites;
+
+
         [SerializeField]
         protected string uiSpriteFilePath = "Assets/Graphics/Sprites/UIAtlas.png";
         [SerializeField]

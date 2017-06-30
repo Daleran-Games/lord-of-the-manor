@@ -1,0 +1,821 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 2019389346, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
+  m_Name: UIAtlas
+  m_EditorClassIdentifier: 
+  hashCode: 249796887
+  material: {fileID: 21761418103573066}
+  materialHashCode: 0
+  spriteSheet: {fileID: 2800000, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  spriteInfoList:
+  - id: 0
+    x: 54
+    y: 6
+    width: 36
+    height: 36
+    xOffset: -18
+    yOffset: 18
+    xAdvance: 36
+    scale: 1
+    name: UIAtlas_Highlight_Ring
+    hashCode: -1776410475
+    unicode: 0
+    pivot: {x: -18, y: 18}
+    sprite: {fileID: 21300114, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 1
+    x: 8
+    y: 440
+    width: 32
+    height: 32
+    xOffset: -16
+    yOffset: 16
+    xAdvance: 32
+    scale: 1
+    name: UIAtlas_Icon_PlayerTerritory
+    hashCode: -239714809
+    unicode: 0
+    pivot: {x: -16, y: 16}
+    sprite: {fileID: 21300094, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 2
+    x: 56
+    y: 440
+    width: 32
+    height: 32
+    xOffset: -16
+    yOffset: 16
+    xAdvance: 32
+    scale: 1
+    name: UIAtlas_Icon_CommonForest
+    hashCode: -915829592
+    unicode: 0
+    pivot: {x: -16, y: 16}
+    sprite: {fileID: 21300096, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 3
+    x: 104
+    y: 440
+    width: 32
+    height: 32
+    xOffset: -16
+    yOffset: 16
+    xAdvance: 32
+    scale: 1
+    name: UIAtlas_Icon_CommonPasture
+    hashCode: 2019915237
+    unicode: 0
+    pivot: {x: -16, y: 16}
+    sprite: {fileID: 21300098, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 4
+    x: 152
+    y: 440
+    width: 32
+    height: 32
+    xOffset: -16
+    yOffset: 16
+    xAdvance: 32
+    scale: 1
+    name: UIAtlas_Icon_HousingArea
+    hashCode: 480053514
+    unicode: 0
+    pivot: {x: -16, y: 16}
+    sprite: {fileID: 21300100, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 5
+    x: 200
+    y: 440
+    width: 32
+    height: 32
+    xOffset: -16
+    yOffset: 16
+    xAdvance: 32
+    scale: 1
+    name: UIAtlas_Icon_VassalTerritory
+    hashCode: -217836754
+    unicode: 0
+    pivot: {x: -16, y: 16}
+    sprite: {fileID: 21300102, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 6
+    x: 104
+    y: 394
+    width: 32
+    height: 32
+    xOffset: -16
+    yOffset: 16
+    xAdvance: 32
+    scale: 1
+    name: UIAtlas_Icon_ExtractionTools
+    hashCode: -1360162958
+    unicode: 0
+    pivot: {x: -16, y: 16}
+    sprite: {fileID: 21300108, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 7
+    x: 153
+    y: 394
+    width: 32
+    height: 32
+    xOffset: -16
+    yOffset: 16
+    xAdvance: 32
+    scale: 1
+    name: UIAtlas_Icon_HammerTool
+    hashCode: -1048312486
+    unicode: 0
+    pivot: {x: -16, y: 16}
+    sprite: {fileID: 21300110, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 8
+    x: 200
+    y: 394
+    width: 32
+    height: 32
+    xOffset: -16
+    yOffset: 16
+    xAdvance: 32
+    scale: 1
+    name: UIAtlas_Icon_AnvilTool
+    hashCode: -388709416
+    unicode: 0
+    pivot: {x: -16, y: 16}
+    sprite: {fileID: 21300112, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 9
+    x: 8
+    y: 392
+    width: 32
+    height: 32
+    xOffset: -16
+    yOffset: 16
+    xAdvance: 32
+    scale: 1
+    name: UIAtlas_Icon_Cancel
+    hashCode: 627431706
+    unicode: 0
+    pivot: {x: -16, y: 16}
+    sprite: {fileID: 21300104, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 10
+    x: 56
+    y: 392
+    width: 32
+    height: 32
+    xOffset: -16
+    yOffset: 16
+    xAdvance: 32
+    scale: 1
+    name: UIAtlas_Icon_FarmingTools
+    hashCode: 443515151
+    unicode: 0
+    pivot: {x: -16, y: 16}
+    sprite: {fileID: 21300106, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 11
+    x: 20
+    y: 307
+    width: 8
+    height: 10
+    xOffset: -4
+    yOffset: 5
+    xAdvance: 8
+    scale: 1
+    name: UIAtlas_Text_0
+    hashCode: -1620845798
+    unicode: 0
+    pivot: {x: -4, y: 5}
+    sprite: {fileID: 21300000, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 12
+    x: 68
+    y: 307
+    width: 8
+    height: 10
+    xOffset: -4
+    yOffset: 5
+    xAdvance: 8
+    scale: 1
+    name: UIAtlas_Text_1
+    hashCode: -1620845797
+    unicode: 0
+    pivot: {x: -4, y: 5}
+    sprite: {fileID: 21300002, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 13
+    x: 116
+    y: 307
+    width: 8
+    height: 10
+    xOffset: -4
+    yOffset: 5
+    xAdvance: 8
+    scale: 1
+    name: UIAtlas_Text_2
+    hashCode: -1620845800
+    unicode: 0
+    pivot: {x: -4, y: 5}
+    sprite: {fileID: 21300004, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 14
+    x: 164
+    y: 307
+    width: 8
+    height: 10
+    xOffset: -4
+    yOffset: 5
+    xAdvance: 8
+    scale: 1
+    name: UIAtlas_Text_3
+    hashCode: -1620845799
+    unicode: 0
+    pivot: {x: -4, y: 5}
+    sprite: {fileID: 21300006, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 15
+    x: 212
+    y: 307
+    width: 8
+    height: 10
+    xOffset: -4
+    yOffset: 5
+    xAdvance: 8
+    scale: 1
+    name: UIAtlas_Text_4
+    hashCode: -1620845794
+    unicode: 0
+    pivot: {x: -4, y: 5}
+    sprite: {fileID: 21300008, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 16
+    x: 260
+    y: 307
+    width: 8
+    height: 10
+    xOffset: -4
+    yOffset: 5
+    xAdvance: 8
+    scale: 1
+    name: UIAtlas_Text_5
+    hashCode: -1620845793
+    unicode: 0
+    pivot: {x: -4, y: 5}
+    sprite: {fileID: 21300010, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 17
+    x: 308
+    y: 307
+    width: 8
+    height: 10
+    xOffset: -4
+    yOffset: 5
+    xAdvance: 8
+    scale: 1
+    name: UIAtlas_Text_6
+    hashCode: -1620845796
+    unicode: 0
+    pivot: {x: -4, y: 5}
+    sprite: {fileID: 21300012, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 18
+    x: 356
+    y: 307
+    width: 8
+    height: 10
+    xOffset: -4
+    yOffset: 5
+    xAdvance: 8
+    scale: 1
+    name: UIAtlas_Text_7
+    hashCode: -1620845795
+    unicode: 0
+    pivot: {x: -4, y: 5}
+    sprite: {fileID: 21300014, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 19
+    x: 404
+    y: 307
+    width: 8
+    height: 10
+    xOffset: -4
+    yOffset: 5
+    xAdvance: 8
+    scale: 1
+    name: UIAtlas_Text_8
+    hashCode: -1620845806
+    unicode: 0
+    pivot: {x: -4, y: 5}
+    sprite: {fileID: 21300016, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 20
+    x: 452
+    y: 307
+    width: 8
+    height: 10
+    xOffset: -4
+    yOffset: 5
+    xAdvance: 8
+    scale: 1
+    name: UIAtlas_Text_9
+    hashCode: -1620845805
+    unicode: 0
+    pivot: {x: -4, y: 5}
+    sprite: {fileID: 21300018, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 21
+    x: 500
+    y: 307
+    width: 8
+    height: 10
+    xOffset: -4
+    yOffset: 5
+    xAdvance: 8
+    scale: 1
+    name: UIAtlas_Text_-
+    hashCode: -1620845817
+    unicode: 0
+    pivot: {x: -4, y: 5}
+    sprite: {fileID: 21300020, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 22
+    x: 548
+    y: 307
+    width: 8
+    height: 10
+    xOffset: -4
+    yOffset: 5
+    xAdvance: 8
+    scale: 1
+    name: UIAtlas_Text_+
+    hashCode: -1620845823
+    unicode: 0
+    pivot: {x: -4, y: 5}
+    sprite: {fileID: 21300088, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 23
+    x: 16
+    y: 112
+    width: 16
+    height: 16
+    xOffset: -8
+    yOffset: 8
+    xAdvance: 16
+    scale: 1
+    name: UIAtlas_Icon_Gear
+    hashCode: -741026547
+    unicode: 0
+    pivot: {x: -8, y: 8}
+    sprite: {fileID: 21300022, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 24
+    x: 64
+    y: 112
+    width: 16
+    height: 16
+    xOffset: -8
+    yOffset: 8
+    xAdvance: 16
+    scale: 1
+    name: UIAtlas_Icon_Menu
+    hashCode: -741246289
+    unicode: 0
+    pivot: {x: -8, y: 8}
+    sprite: {fileID: 21300024, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 25
+    x: 112
+    y: 112
+    width: 16
+    height: 16
+    xOffset: -8
+    yOffset: 8
+    xAdvance: 16
+    scale: 1
+    name: UIAtlas_Icon_Zone
+    hashCode: -741711614
+    unicode: 0
+    pivot: {x: -8, y: 8}
+    sprite: {fileID: 21300034, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 26
+    x: 160
+    y: 112
+    width: 16
+    height: 16
+    xOffset: -8
+    yOffset: 8
+    xAdvance: 16
+    scale: 1
+    name: UIAtlas_Icon_YellowBox
+    hashCode: 609538157
+    unicode: 0
+    pivot: {x: -8, y: 8}
+    sprite: {fileID: 21300028, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 27
+    x: 208
+    y: 112
+    width: 16
+    height: 16
+    xOffset: -8
+    yOffset: 8
+    xAdvance: 16
+    scale: 1
+    name: UIAtlas_Icon_RedBox
+    hashCode: 40867546
+    unicode: 0
+    pivot: {x: -8, y: 8}
+    sprite: {fileID: 21300030, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 28
+    x: 256
+    y: 112
+    width: 16
+    height: 16
+    xOffset: -8
+    yOffset: 8
+    xAdvance: 16
+    scale: 1
+    name: UIAtlas_Icon_BlueBox
+    hashCode: 239449175
+    unicode: 0
+    pivot: {x: -8, y: 8}
+    sprite: {fileID: 21300032, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 29
+    x: 16
+    y: 64
+    width: 16
+    height: 16
+    xOffset: -8
+    yOffset: 8
+    xAdvance: 16
+    scale: 1
+    name: UIAtlas_Icon_Food
+    hashCode: -741001282
+    unicode: 0
+    pivot: {x: -8, y: 8}
+    sprite: {fileID: 21300038, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 30
+    x: 64
+    y: 64
+    width: 16
+    height: 16
+    xOffset: -8
+    yOffset: 8
+    xAdvance: 16
+    scale: 1
+    name: UIAtlas_Icon_Wood
+    hashCode: -741607857
+    unicode: 0
+    pivot: {x: -8, y: 8}
+    sprite: {fileID: 21300040, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 31
+    x: 112
+    y: 64
+    width: 16
+    height: 16
+    xOffset: -8
+    yOffset: 8
+    xAdvance: 16
+    scale: 1
+    name: UIAtlas_Icon_Stone
+    hashCode: 1302221247
+    unicode: 0
+    pivot: {x: -8, y: 8}
+    sprite: {fileID: 21300042, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 32
+    x: 160
+    y: 64
+    width: 16
+    height: 16
+    xOffset: -8
+    yOffset: 8
+    xAdvance: 16
+    scale: 1
+    name: UIAtlas_Icon_Coins
+    hashCode: 1320173060
+    unicode: 0
+    pivot: {x: -8, y: 8}
+    sprite: {fileID: 21300044, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 33
+    x: 208
+    y: 64
+    width: 16
+    height: 16
+    xOffset: -8
+    yOffset: 8
+    xAdvance: 16
+    scale: 1
+    name: UIAtlas_Icon_Herd
+    hashCode: -741350457
+    unicode: 0
+    pivot: {x: -8, y: 8}
+    sprite: {fileID: 21300046, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 34
+    x: 256
+    y: 64
+    width: 16
+    height: 16
+    xOffset: -8
+    yOffset: 8
+    xAdvance: 16
+    scale: 1
+    name: UIAtlas_Icon_Hunting
+    hashCode: -821880677
+    unicode: 0
+    pivot: {x: -8, y: 8}
+    sprite: {fileID: 21300048, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 35
+    x: 304
+    y: 64
+    width: 16
+    height: 16
+    xOffset: -8
+    yOffset: 8
+    xAdvance: 16
+    scale: 1
+    name: UIAtlas_Icon_Hammer
+    hashCode: 128480066
+    unicode: 0
+    pivot: {x: -8, y: 8}
+    sprite: {fileID: 21300050, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 36
+    x: 400
+    y: 64
+    width: 16
+    height: 16
+    xOffset: -8
+    yOffset: 8
+    xAdvance: 16
+    scale: 1
+    name: UIAtlas_Icon_Weapons
+    hashCode: -661330739
+    unicode: 0
+    pivot: {x: -8, y: 8}
+    sprite: {fileID: 21300054, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 37
+    x: 448
+    y: 64
+    width: 16
+    height: 16
+    xOffset: -8
+    yOffset: 8
+    xAdvance: 16
+    scale: 1
+    name: UIAtlas_Icon_Shield
+    hashCode: 544323
+    unicode: 0
+    pivot: {x: -8, y: 8}
+    sprite: {fileID: 21300056, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 38
+    x: 496
+    y: 64
+    width: 16
+    height: 16
+    xOffset: -8
+    yOffset: 8
+    xAdvance: 16
+    scale: 1
+    name: UIAtlas_Icon_Tower
+    hashCode: 1290967399
+    unicode: 0
+    pivot: {x: -8, y: 8}
+    sprite: {fileID: 21300058, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 39
+    x: 544
+    y: 64
+    width: 16
+    height: 16
+    xOffset: -8
+    yOffset: 8
+    xAdvance: 16
+    scale: 1
+    name: UIAtlas_Icon_Mountain
+    hashCode: -149291465
+    unicode: 0
+    pivot: {x: -8, y: 8}
+    sprite: {fileID: 21300060, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 40
+    x: 592
+    y: 64
+    width: 16
+    height: 16
+    xOffset: -8
+    yOffset: 8
+    xAdvance: 16
+    scale: 1
+    name: UIAtlas_Icon_Drop
+    hashCode: -741220555
+    unicode: 0
+    pivot: {x: -8, y: 8}
+    sprite: {fileID: 21300062, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 41
+    x: 640
+    y: 64
+    width: 16
+    height: 16
+    xOffset: -8
+    yOffset: 8
+    xAdvance: 16
+    scale: 1
+    name: UIAtlas_Icon_Compass
+    hashCode: -1141182612
+    unicode: 0
+    pivot: {x: -8, y: 8}
+    sprite: {fileID: 21300064, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 42
+    x: 688
+    y: 64
+    width: 16
+    height: 16
+    xOffset: -8
+    yOffset: 8
+    xAdvance: 16
+    scale: 1
+    name: UIAtlas_Icon_MoveSpeed
+    hashCode: 2050659114
+    unicode: 0
+    pivot: {x: -8, y: 8}
+    sprite: {fileID: 21300066, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 43
+    x: 737
+    y: 64
+    width: 16
+    height: 16
+    xOffset: -8
+    yOffset: 8
+    xAdvance: 16
+    scale: 1
+    name: UIAtlas_Icon_Spring
+    hashCode: 28167213
+    unicode: 0
+    pivot: {x: -8, y: 8}
+    sprite: {fileID: 21300068, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 44
+    x: 784
+    y: 64
+    width: 16
+    height: 16
+    xOffset: -8
+    yOffset: 8
+    xAdvance: 16
+    scale: 1
+    name: UIAtlas_Icon_Summer
+    hashCode: 15682925
+    unicode: 0
+    pivot: {x: -8, y: 8}
+    sprite: {fileID: 21300070, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 45
+    x: 832
+    y: 64
+    width: 16
+    height: 16
+    xOffset: -8
+    yOffset: 8
+    xAdvance: 16
+    scale: 1
+    name: UIAtlas_Icon_Fall
+    hashCode: -740990757
+    unicode: 0
+    pivot: {x: -8, y: 8}
+    sprite: {fileID: 21300072, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 46
+    x: 880
+    y: 64
+    width: 16
+    height: 16
+    xOffset: -8
+    yOffset: 8
+    xAdvance: 16
+    scale: 1
+    name: UIAtlas_Icon_Winter
+    hashCode: -163893169
+    unicode: 0
+    pivot: {x: -8, y: 8}
+    sprite: {fileID: 21300074, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 47
+    x: 352
+    y: 63
+    width: 16
+    height: 16
+    xOffset: -8
+    yOffset: 8
+    xAdvance: 16
+    scale: 1
+    name: UIAtlas_Icon_House
+    hashCode: 1305457976
+    unicode: 0
+    pivot: {x: -8, y: 8}
+    sprite: {fileID: 21300052, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 48
+    x: 104
+    y: 8
+    width: 32
+    height: 32
+    xOffset: -16
+    yOffset: 16
+    xAdvance: 32
+    scale: 1
+    name: UIAtlas_Highlight_Positive
+    hashCode: 2002127852
+    unicode: 0
+    pivot: {x: -16, y: 16}
+    sprite: {fileID: 21300116, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 49
+    x: 152
+    y: 8
+    width: 32
+    height: 32
+    xOffset: -16
+    yOffset: 16
+    xAdvance: 32
+    scale: 1
+    name: UIAtlas_Highlight_Negative
+    hashCode: -1642211036
+    unicode: 0
+    pivot: {x: -16, y: 16}
+    sprite: {fileID: 21300118, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 50
+    x: 200
+    y: 8
+    width: 32
+    height: 32
+    xOffset: -16
+    yOffset: 16
+    xAdvance: 32
+    scale: 1
+    name: UIAtlas_Highlight_Light
+    hashCode: 1490978745
+    unicode: 0
+    pivot: {x: -16, y: 16}
+    sprite: {fileID: 21300120, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 51
+    x: 248
+    y: 8
+    width: 32
+    height: 32
+    xOffset: -16
+    yOffset: 16
+    xAdvance: 32
+    scale: 1
+    name: UIAtlas_Highlight_Dark
+    hashCode: -1777204517
+    unicode: 0
+    pivot: {x: -16, y: 16}
+    sprite: {fileID: 21300122, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 52
+    x: 296
+    y: 8
+    width: 32
+    height: 32
+    xOffset: -16
+    yOffset: 16
+    xAdvance: 32
+    scale: 1
+    name: UIAtlas_Highlight_Fog
+    hashCode: -444303639
+    unicode: 0
+    pivot: {x: -16, y: 16}
+    sprite: {fileID: 21300124, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 53
+    x: 344
+    y: 8
+    width: 32
+    height: 32
+    xOffset: -16
+    yOffset: 16
+    xAdvance: 32
+    scale: 1
+    name: UIAtlas_Highlight_Cross
+    hashCode: 1490614329
+    unicode: 0
+    pivot: {x: -16, y: 16}
+    sprite: {fileID: 21300126, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  - id: 54
+    x: 392
+    y: 8
+    width: 32
+    height: 32
+    xOffset: -16
+    yOffset: 16
+    xAdvance: 32
+    scale: 1
+    name: UIAtlas_Highlight_White
+    hashCode: 1504339968
+    unicode: 0
+    pivot: {x: -16, y: 16}
+    sprite: {fileID: 21300128, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  fallbackSpriteAssets: []
+--- !u!21 &21761418103573066
+Material:
+  serializedVersion: 6
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_Name: TextMeshPro/Sprite
+  m_Shader: {fileID: 4800000, guid: 3a1c68c8292caf046bd21158886c5e40, type: 3}
+  m_ShaderKeywords: 
+  m_LightmapFlags: 4
+  m_EnableInstancingVariants: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _MainTex:
+        m_Texture: {fileID: 2800000, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Floats:
+    - _ColorMask: 15
+    - _Stencil: 0
+    - _StencilComp: 8
+    - _StencilOp: 0
+    - _StencilReadMask: 255
+    - _StencilWriteMask: 255
+    - _UseUIAlphaClip: 0
+    m_Colors:
+    - _ClipRect: {r: -32767, g: -32767, b: 32767, a: 32767}
+    - _Color: {r: 1, g: 1, b: 1, a: 1}

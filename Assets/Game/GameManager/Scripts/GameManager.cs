@@ -53,7 +53,7 @@ namespace DaleranGames.Game
             LoadScene.enabled = false;
             Play.enabled = false;
 
-            playerClan = new Clan();
+            playerClan = new Clan("Player");
         }
 
         private void OnEnable()

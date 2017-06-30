@@ -1,0 +1,7 @@
+{
+    "name": "Wooded Mountains",
+    "type": "DaleranGames.TBSFramework.LandType",
+    "iconName": "Spring_L_WoodedMountains",
+    "clearable": true,
+    "clearedLandName": "Mountains"
+}

@@ -1,0 +1,8 @@
+{
+    "name": "UIAtlas_Icon_BlueBox",
+    "type": "DaleranGames.TBSFramework.TileGraphic",
+    "atlasCoord": {
+        "x": 5,
+        "y": 2
+    }
+}

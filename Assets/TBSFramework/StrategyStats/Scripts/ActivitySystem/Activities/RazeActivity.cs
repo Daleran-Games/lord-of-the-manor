@@ -24,7 +24,7 @@ namespace DaleranGames.TBSFramework
 
         public override void OnDatabaseInitialization()
         {
-            icon = GameDatabase.Instance.TileGraphics.Get("UI Cursor Cross");
+            icon = GameDatabase.Instance.TileGraphics.Get("UIAtlas_Highlight_Cross");
         }
 
         public override TileGraphic GetTerrainIcon(HexTile tile)
@@ -48,6 +48,12 @@ namespace DaleranGames.TBSFramework
         public override void DoActivityOnTile(HexTile tile)
         {
             tile.Improvement = null;
+        }
+
+        public override string ToJson()
+        {
+            this.type = this.ToString();
+            return JsonUtility.ToJson(this, true);
         }
     }
 }

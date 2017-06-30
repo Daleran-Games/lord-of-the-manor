@@ -19,6 +19,11 @@ namespace DaleranGames.TBSFramework
         protected string name;
         public string Name { get {return name; } }
 
+        [SerializeField]
+        [HideInInspector]
+        protected string type = "TileGraphic";
+        public string Type { get { return type; } }
+
         [System.NonSerialized]
         protected int id;
         public int ID { get { return id; } }
@@ -52,6 +57,7 @@ namespace DaleranGames.TBSFramework
 
         public string ToJson()
         {
+            this.type = this.ToString();
             return JsonUtility.ToJson(this, true);
         }
     }

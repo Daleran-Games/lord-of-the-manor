@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DaleranGames.TBSFramework;
 using System;
+using System.IO;
 
 namespace DaleranGames.Database
 {
@@ -15,14 +16,27 @@ namespace DaleranGames.Database
         public override Database<ImprovementType> GenerateDatabase()
         {
             Database<ImprovementType> newDB = new Database<ImprovementType>();
-            for (int i = 0; i < improvements.Length; i++)
+            string[] files = Directory.GetFiles(JSONFilePath, "*.json", SearchOption.TopDirectoryOnly);
+
+            for (int i = 0; i <files.Length; i++)
             {
-                newDB.Add(new ImprovementType(improvements[i],id));
+                string jsonString = File.ReadAllText(files[i]);
+                newDB.Add(new ImprovementType(JsonUtility.FromJson<ImprovementType>(jsonString), id));
                 id++;
             }
             //Debug.Log("Improvment types types created");
             return newDB;
 
+        }
+
+        public override void BuildJSONFiles()
+        {
+            Directory.CreateDirectory(JSONFilePath);
+
+            for (int i = 0; i < improvements.Length; i++)
+            {
+                File.WriteAllText(JSONFilePath + improvements[i].Name + ".json", improvements[i].ToJson());
+            }
         }
 
 

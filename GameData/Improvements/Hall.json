@@ -1,0 +1,13 @@
+{
+    "name": "Hall",
+    "type": "DaleranGames.TBSFramework.ImprovementType",
+    "iconName": "Spring_I_Hall",
+    "validLand": [
+        "Plains",
+        "Moor",
+        "Hills",
+        "Moor Hill"
+    ],
+    "upgradeable": false,
+    "upgradeName": ""
+}

@@ -27,7 +27,19 @@ namespace DaleranGames
         {
             lock(syncLock)
             {
-                if (random.NextDouble() >= 0.5)
+                if (random.NextDouble() <= 0.5)
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
+
+        public static bool Bool(float chance)
+        {
+            lock (syncLock)
+            {
+                if (random.NextDouble() <= chance)
                 {
                     return true;
                 }

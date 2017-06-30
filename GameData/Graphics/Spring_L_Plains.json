@@ -1,0 +1,8 @@
+{
+    "name": "Spring_L_Plains",
+    "type": "DaleranGames.TBSFramework.TileGraphic",
+    "atlasCoord": {
+        "x": 0,
+        "y": 1
+    }
+}

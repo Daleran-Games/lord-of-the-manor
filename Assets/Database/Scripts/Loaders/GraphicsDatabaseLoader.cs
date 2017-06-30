@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DaleranGames.TBSFramework;
-#if UNITY_EDITOR
 using System.IO;
+#if UNITY_EDITOR
 using UnityEditor;
 #endif
 
@@ -14,32 +14,26 @@ namespace DaleranGames.Database
         [SerializeField]
         protected string terrainSpriteFilePath = "Assets/Graphics/Sprites/SpringAtlas.png";
         [SerializeField]
-        protected string terRefFilePath = "Assets/Graphics/Sprites/SpringNames.txt";
-        [SerializeField]
-        [Reorderable]
-        protected TileGraphic[] terrainGraphics;
-        [SerializeField]
         protected string uiSpriteFilePath = "Assets/Graphics/Sprites/UIAtlas.png";
         [SerializeField]
-        protected string uiRefFilePath = "Assets/Graphics/Sprites/UINames.txt";
+        protected string graphicRefFilePath = "Assets/Graphics/Sprites/GraphicNames.txt";
         [SerializeField]
         [Reorderable]
-        protected TileGraphic[] uiIcons;
+        protected TileGraphic[] graphics;
 
 
         public override Database<TileGraphic> GenerateDatabase()
         {
             Database<TileGraphic> newDB = new Database<TileGraphic>();
-            for(int i=0; i < terrainGraphics.Length; i++ )
+            string[] files = Directory.GetFiles(JSONFilePath, "*.json",SearchOption.TopDirectoryOnly);
+
+            for(int i=0; i < files.Length; i++ )
             {
-                newDB.Add(new TileGraphic(terrainGraphics[i], id));
+                string jsonString = File.ReadAllText(files[i]);
+                newDB.Add(new TileGraphic(JsonUtility.FromJson<TileGraphic>(jsonString), id));
                 id++;
             }
-            for (int i = 0; i < uiIcons.Length; i++)
-            {
-                newDB.Add(new TileGraphic(uiIcons[i], id));
-                id++;
-            }
+
             return newDB;
         }
 
@@ -48,56 +42,44 @@ namespace DaleranGames.Database
 
         }
 
-#if UNITY_EDITOR
-        [ContextMenu("Build Terrain Graphics")]
-        public void LoadTerrainGraphicsFromFolder()
+        public override void BuildJSONFiles()
         {
-            List<TileGraphic> newGraphics = new List<TileGraphic>();
-            Object[] sprites = AssetDatabase.LoadAllAssetsAtPath(terrainSpriteFilePath);
-            //Debug.Log("Found " + sprites.Length + " objects");
+            Directory.CreateDirectory(JSONFilePath);
 
-            StreamWriter writer = new StreamWriter(terRefFilePath, false);
-            writer.WriteLine("Terrain Graphic Names");
-            writer.WriteLine("");
-
-            for (int i = 0; i < sprites.Length; i++)
+            for (int i=0; i<graphics.Length;i++)
             {
-                if (sprites[i] as Sprite != null)
-                {
-                    Sprite sprite = sprites[i] as Sprite;
-                    newGraphics.Add(new TileGraphic(sprite.name, -2, GameDatabase.Instance.Atlas.GetCoordFromRect(sprite.rect)));
-                    writer.WriteLine(sprite.name);
-                }
+                File.WriteAllText(JSONFilePath + graphics[i].Name + ".json", graphics[i].ToJson());
             }
-
-            writer.Close();
-
-            terrainGraphics = newGraphics.ToArray();
         }
 
-        [ContextMenu("Build UI Graphics")]
+#if UNITY_EDITOR
+        [ContextMenu("Build Graphics")]
         public void LoadUIGraphicsFromFolder()
         {
             List<TileGraphic> newGraphics = new List<TileGraphic>();
-            Object[] sprites = AssetDatabase.LoadAllAssetsAtPath(uiSpriteFilePath);
-            //Debug.Log("Found " + sprites.Length + " objects");
 
-            StreamWriter writer = new StreamWriter(uiRefFilePath, false);
-            writer.WriteLine("UI Graphic Names");
+            Object[] ui = AssetDatabase.LoadAllAssetsAtPath(uiSpriteFilePath);
+            Object[] spr = AssetDatabase.LoadAllAssetsAtPath(terrainSpriteFilePath);
+            Object[] objs = new Object[ui.Length + spr.Length];
+            System.Array.Copy(ui, objs, ui.Length);
+            System.Array.Copy(spr, 0, objs, ui.Length, spr.Length);
+
+            StreamWriter writer = new StreamWriter(graphicRefFilePath, false);
+            writer.WriteLine("Graphic Names");
             writer.WriteLine("");
 
-            for (int i=0; i< sprites.Length;i++)
+            for (int i=0; i< objs.Length;i++)
             {
-                if (sprites[i] as Sprite != null)
+                if (objs[i] as Sprite != null)
                 {
-                    Sprite sprite = sprites[i] as Sprite;
+                    Sprite sprite = objs[i] as Sprite;
                     newGraphics.Add(new TileGraphic(sprite.name, -2, GameDatabase.Instance.Atlas.GetCoordFromRect(sprite.rect)));
                     writer.WriteLine(sprite.name);
                 }
             }
             writer.Close();
 
-            uiIcons = newGraphics.ToArray();
+            graphics = newGraphics.ToArray();
         }
 #endif
     }

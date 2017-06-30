@@ -1,14 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.IO;
 
 namespace DaleranGames.Database
 {
     public abstract class DatabaseLoader<T> : MonoBehaviour where T: IDatabaseObject
     {
         [SerializeField]
-        string filePath;
-        protected string FilePath { get { return Application.dataPath + filePath; } }
+        string jsonFilePath;
+        protected string JSONFilePath { get { return "GameData/"+jsonFilePath + "/"; } }
 
         protected int id = 0;
 
@@ -20,6 +21,12 @@ namespace DaleranGames.Database
             {
                 kvp.Value.OnDatabaseInitialization();
             }
+        }
+
+        [ContextMenu("Build JSON Files")]
+        public virtual void BuildJSONFiles ()
+        {
+
         }
 
     }

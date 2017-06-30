@@ -6,20 +6,37 @@ using DaleranGames.Database;
 namespace DaleranGames.TBSFramework
 {
     [System.Serializable]
-    public abstract class Activity : IDatabaseObject
+    public class Activity : IDatabaseObject
     {
         [SerializeField]
         protected string name;
         public virtual string Name { get { return name; } }
 
+        [SerializeField]
+        [HideInInspector]
+        protected string type = "Activity";
+        public string Type { get { return type; } }
+
         [System.NonSerialized]
         protected int id;
         public virtual int ID { get { return id; } }
 
-        public abstract void DoActivityOnTile(HexTile tile);
-        public abstract bool IsActivityValid(HexTile tile);
-        public abstract TileGraphic GetUIIcon(HexTile tile);
-        public abstract TileGraphic GetTerrainIcon(HexTile tile);
+        public virtual void DoActivityOnTile(HexTile tile)
+        {
+
+        }
+        public virtual bool IsActivityValid(HexTile tile)
+        {
+            return false;
+        }
+        public virtual TileGraphic GetUIIcon(HexTile tile)
+        {
+            return TileGraphic.clear;
+        }
+        public virtual TileGraphic GetTerrainIcon(HexTile tile)
+        {
+            return TileGraphic.clear;
+        }
 
         protected virtual void Awake()
         {
@@ -31,8 +48,9 @@ namespace DaleranGames.TBSFramework
 
         }
 
-        public string ToJson()
+        public virtual string ToJson()
         {
+            this.type = this.ToString();
             return JsonUtility.ToJson(this, true);
         }
     }

@@ -8,6 +8,7 @@ namespace DaleranGames.TBSFramework
     [System.Serializable]
     public class ResourceCache 
     {
+        [SerializeField]
         protected StatType type;
         public StatType Type
         {
@@ -17,7 +18,7 @@ namespace DaleranGames.TBSFramework
                 type = value;
             }
         }
-
+        [SerializeField]
         protected bool accumulate = true;
         public bool Accumulate
         {
@@ -27,19 +28,23 @@ namespace DaleranGames.TBSFramework
                 accumulate = value;
             }
         }
-
+        [SerializeField]
         protected int amount = 0;
         public Action<int> AmountChanged;
         public int Amount
         {
             get { return amount; }
-            protected set
+            set
             {
                 amount = MathTools.Clamp(value, 0, Max);
+
+                if (AmountChanged != null)
+                    AmountChanged(amount);
             }
         }
-
+        [SerializeField]
         protected int max = 0;
+        public Action<int> MaxChanged;
         public int Max
         {
             get { return max; }
@@ -49,14 +54,24 @@ namespace DaleranGames.TBSFramework
 
                 if (value < Amount)
                     Amount = value;
+
+                if (MaxChanged != null)
+                    MaxChanged(max);
             }
         }
-
+        [SerializeField]
         protected int rate = 0;
+        public Action<int> RateChanged;
         public int Rate
         {
             get { return rate; }
-            protected set { rate = value; }
+            set
+            {
+                rate = value;
+
+                if (RateChanged != null)
+                    RateChanged(rate);
+            }
         }
 
         public ResourceCache (StatType type, int initialAmt, int initialMax, bool accumulate)

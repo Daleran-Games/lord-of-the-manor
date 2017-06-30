@@ -47,5 +47,11 @@ namespace DaleranGames.TBSFramework
             return TileGraphic.clear;
         }
 
+        public override string ToJson()
+        {
+            this.type = this.ToString();
+            return JsonUtility.ToJson(this, true);
+        }
+
     }
 }

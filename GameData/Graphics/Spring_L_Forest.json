@@ -1,0 +1,8 @@
+{
+    "name": "Spring_L_Forest",
+    "type": "DaleranGames.TBSFramework.TileGraphic",
+    "atlasCoord": {
+        "x": 2,
+        "y": 1
+    }
+}

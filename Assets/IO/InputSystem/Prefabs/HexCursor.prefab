@@ -107,7 +107,7 @@ MonoBehaviour:
       y: 0
   ringName: UIAtlas_Highlight_Ring
   darkName: UIAtlas_Highlight_Dark
-  whiteName: UIAtlas_Highlight_ White
+  whiteName: UIAtlas_Highlight_White
   positiveName: UIAtlas_Highlight_Positive
   negativeName: UIAtlas_Highlight_Negative
   crossName: UIAtlas_Highlight_Cross

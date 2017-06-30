@@ -40,7 +40,7 @@ namespace DaleranGames.TBSFramework
             hexMesh.MarkDynamic();
 
         }
-
+        /*
         private void OnDestroy()
         {
             TurnManager.Instance.TurnChanged -= OnTurnChange;
@@ -56,7 +56,7 @@ namespace DaleranGames.TBSFramework
                 }
             }
         }
-
+        */
         public void BuildMesh(Vector2Int chunk, bool ui)
         {
             UIMesh = ui;

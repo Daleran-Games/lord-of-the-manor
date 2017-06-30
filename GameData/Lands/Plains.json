@@ -1,0 +1,7 @@
+{
+    "name": "Plains",
+    "type": "DaleranGames.TBSFramework.LandType",
+    "iconName": "Spring_L_Plains",
+    "clearable": false,
+    "clearedLandName": ""
+}

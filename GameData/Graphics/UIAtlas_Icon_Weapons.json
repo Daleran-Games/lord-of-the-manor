@@ -1,0 +1,8 @@
+{
+    "name": "UIAtlas_Icon_Weapons",
+    "type": "DaleranGames.TBSFramework.TileGraphic",
+    "atlasCoord": {
+        "x": 8,
+        "y": 1
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "name": "Spring_L_MoorMountains",
+    "type": "DaleranGames.TBSFramework.TileGraphic",
+    "atlasCoord": {
+        "x": 9,
+        "y": 1
+    }
+}

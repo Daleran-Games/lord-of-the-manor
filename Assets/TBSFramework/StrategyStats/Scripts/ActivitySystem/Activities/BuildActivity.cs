@@ -53,6 +53,10 @@ namespace DaleranGames.TBSFramework
             tile.Improvement = improvement;
         }
 
-
+        public override string ToJson()
+        {
+            this.type = this.ToString();
+            return JsonUtility.ToJson(this, true);
+        }
     }
 }
