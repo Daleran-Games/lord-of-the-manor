@@ -27,25 +27,56 @@ namespace DaleranGames.TBSFramework
 
         public override HexTile[,] GenerateMap()
         {
+
+
             HexTile[,] tiles = new HexTile[Width, Height];
             List<Ant> activeAnts = new List<Ant>();
             int id = 0;
             float z = HexMetrics.startingZ;
 
+            //DEBUG
+            System.Diagnostics.Stopwatch timer = new System.Diagnostics.Stopwatch();
+            timer.Start();
+            //ENDDEBUG
+
             for (int y = 0; y < Height ; y++)
             {
                 for (int x = 0; x < Width ; x++)
                 {
+
                     tiles[x, y] = CreateTile(x, y, id,z);
                     tiles[x, y].Elevation = InitalElevation;
                     tiles[x, y].Moisture = InitialMoisture;
                     id++;
                     z += HexMetrics.tileSperation;
+
+
                 }
             }
+            //DEBUG
+            timer.Stop();
+            Debug.Log("MAP GEN: Tile Set Up Time: " + timer.ElapsedMilliseconds + " ms");
+            timer = new System.Diagnostics.Stopwatch();
+            timer.Start();
+            //ENDDEBUG
 
             SpawnAnts(activeAnts);
+
+            //DEBUG
+            timer.Stop();
+            Debug.Log("MAP GEN: Ant Spawn Time: " + timer.ElapsedMilliseconds + " ms");
+            timer = new System.Diagnostics.Stopwatch();
+            timer.Start();
+            //ENDDEBUG
+
             RunSimulation(activeAnts, tiles);
+
+            //DEBUG
+            timer.Stop();
+            Debug.Log("MAP GEN: Ant Simulation Time: " + timer.ElapsedMilliseconds + " ms");
+            timer = new System.Diagnostics.Stopwatch();
+            timer.Start();
+            //ENDDEBUG
 
             for (int y = 0; y < Height; y++)
             {
@@ -54,6 +85,11 @@ namespace DaleranGames.TBSFramework
                     SetTileType(tiles[x, y]);
                 }
             }
+
+            //DEBUG
+            timer.Stop();
+            Debug.Log("MAP GEN: Set Tile Time: " + timer.ElapsedMilliseconds + " ms");
+            //ENDDEBUG
 
             return tiles;
         }

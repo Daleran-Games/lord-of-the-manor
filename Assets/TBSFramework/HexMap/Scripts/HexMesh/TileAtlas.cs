@@ -130,8 +130,8 @@ namespace DaleranGames.TBSFramework
 
         public Vector2Int GetCoordFromRect (Rect spriteRect)
         {
-            int x = (int)((spriteRect.center.x - ((float)xSize / 2f)) / (float)xSize);
-            int y = (int)((spriteRect.center.y - ((float)ySize / 2f)) / (float)ySize);
+            int x = Mathf.RoundToInt((spriteRect.center.x - ((float)xSize / 2f)) / (float)xSize);
+            int y = Mathf.RoundToInt((spriteRect.center.y - ((float)ySize / 2f)) / (float)ySize);
             return new Vector2Int(x, y);
         }
 

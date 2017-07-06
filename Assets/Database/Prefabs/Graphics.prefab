@@ -56,16 +56,76 @@ MonoBehaviour:
   uiSpriteFilePath: Assets/Graphics/Sprites/UIAtlas.png
   graphicRefFilePath: Assets/Graphics/Sprites/GraphicNames.txt
   graphics:
+  - name: UIAtlas_Highlight_Cross
+    type: DaleranGames.TBSFramework.TileGraphic
+    atlasCoord:
+      x: 7
+      y: 0
+  - name: UIAtlas_Highlight_Dark
+    type: DaleranGames.TBSFramework.TileGraphic
+    atlasCoord:
+      x: 5
+      y: 0
+  - name: UIAtlas_Highlight_Fog
+    type: DaleranGames.TBSFramework.TileGraphic
+    atlasCoord:
+      x: 6
+      y: 0
+  - name: UIAtlas_Highlight_Light
+    type: DaleranGames.TBSFramework.TileGraphic
+    atlasCoord:
+      x: 4
+      y: 0
+  - name: UIAtlas_Highlight_Negative
+    type: DaleranGames.TBSFramework.TileGraphic
+    atlasCoord:
+      x: 3
+      y: 0
+  - name: UIAtlas_Highlight_Positive
+    type: DaleranGames.TBSFramework.TileGraphic
+    atlasCoord:
+      x: 2
+      y: 0
+  - name: UIAtlas_Highlight_Ring
+    type: DaleranGames.TBSFramework.TileGraphic
+    atlasCoord:
+      x: 1
+      y: 0
+  - name: UIAtlas_Highlight_White
+    type: DaleranGames.TBSFramework.TileGraphic
+    atlasCoord:
+      x: 8
+      y: 0
+  - name: UIAtlas_Icon_AnvilTool
+    type: DaleranGames.TBSFramework.TileGraphic
+    atlasCoord:
+      x: 4
+      y: 8
   - name: UIAtlas_Icon_BlueBox
     type: DaleranGames.TBSFramework.TileGraphic
     atlasCoord:
       x: 5
       y: 2
+  - name: UIAtlas_Icon_Cancel
+    type: DaleranGames.TBSFramework.TileGraphic
+    atlasCoord:
+      x: 0
+      y: 8
   - name: UIAtlas_Icon_Coins
     type: DaleranGames.TBSFramework.TileGraphic
     atlasCoord:
       x: 3
       y: 1
+  - name: UIAtlas_Icon_CommonForest
+    type: DaleranGames.TBSFramework.TileGraphic
+    atlasCoord:
+      x: 1
+      y: 9
+  - name: UIAtlas_Icon_CommonPasture
+    type: DaleranGames.TBSFramework.TileGraphic
+    atlasCoord:
+      x: 2
+      y: 9
   - name: UIAtlas_Icon_Compass
     type: DaleranGames.TBSFramework.TileGraphic
     atlasCoord:
@@ -76,11 +136,21 @@ MonoBehaviour:
     atlasCoord:
       x: 12
       y: 1
+  - name: UIAtlas_Icon_ExtractionTools
+    type: DaleranGames.TBSFramework.TileGraphic
+    atlasCoord:
+      x: 2
+      y: 8
   - name: UIAtlas_Icon_Fall
     type: DaleranGames.TBSFramework.TileGraphic
     atlasCoord:
       x: 17
       y: 1
+  - name: UIAtlas_Icon_FarmingTools
+    type: DaleranGames.TBSFramework.TileGraphic
+    atlasCoord:
+      x: 1
+      y: 8
   - name: UIAtlas_Icon_Food
     type: DaleranGames.TBSFramework.TileGraphic
     atlasCoord:
@@ -96,6 +166,11 @@ MonoBehaviour:
     atlasCoord:
       x: 6
       y: 1
+  - name: UIAtlas_Icon_HammerTool
+    type: DaleranGames.TBSFramework.TileGraphic
+    atlasCoord:
+      x: 3
+      y: 8
   - name: UIAtlas_Icon_Herd
     type: DaleranGames.TBSFramework.TileGraphic
     atlasCoord:
@@ -105,7 +180,12 @@ MonoBehaviour:
     type: DaleranGames.TBSFramework.TileGraphic
     atlasCoord:
       x: 7
-      y: 0
+      y: 1
+  - name: UIAtlas_Icon_HousingArea
+    type: DaleranGames.TBSFramework.TileGraphic
+    atlasCoord:
+      x: 3
+      y: 9
   - name: UIAtlas_Icon_Hunting
     type: DaleranGames.TBSFramework.TileGraphic
     atlasCoord:
@@ -126,6 +206,11 @@ MonoBehaviour:
     atlasCoord:
       x: 14
       y: 1
+  - name: UIAtlas_Icon_PlayerTerritory
+    type: DaleranGames.TBSFramework.TileGraphic
+    atlasCoord:
+      x: 0
+      y: 9
   - name: UIAtlas_Icon_RedBox
     type: DaleranGames.TBSFramework.TileGraphic
     atlasCoord:
@@ -156,6 +241,11 @@ MonoBehaviour:
     atlasCoord:
       x: 10
       y: 1
+  - name: UIAtlas_Icon_VassalTerritory
+    type: DaleranGames.TBSFramework.TileGraphic
+    atlasCoord:
+      x: 4
+      y: 9
   - name: UIAtlas_Icon_Weapons
     type: DaleranGames.TBSFramework.TileGraphic
     atlasCoord:
@@ -241,96 +331,6 @@ MonoBehaviour:
     atlasCoord:
       x: 9
       y: 6
-  - name: UIAtlas_Icon_AnvilTool
-    type: DaleranGames.TBSFramework.TileGraphic
-    atlasCoord:
-      x: 4
-      y: 8
-  - name: UIAtlas_Icon_Cancel
-    type: DaleranGames.TBSFramework.TileGraphic
-    atlasCoord:
-      x: 0
-      y: 8
-  - name: UIAtlas_Icon_CommonForest
-    type: DaleranGames.TBSFramework.TileGraphic
-    atlasCoord:
-      x: 1
-      y: 9
-  - name: UIAtlas_Icon_CommonPasture
-    type: DaleranGames.TBSFramework.TileGraphic
-    atlasCoord:
-      x: 2
-      y: 9
-  - name: UIAtlas_Icon_ExtractionTools
-    type: DaleranGames.TBSFramework.TileGraphic
-    atlasCoord:
-      x: 2
-      y: 8
-  - name: UIAtlas_Icon_FarmingTools
-    type: DaleranGames.TBSFramework.TileGraphic
-    atlasCoord:
-      x: 1
-      y: 8
-  - name: UIAtlas_Icon_HammerTool
-    type: DaleranGames.TBSFramework.TileGraphic
-    atlasCoord:
-      x: 3
-      y: 8
-  - name: UIAtlas_Icon_HousingArea
-    type: DaleranGames.TBSFramework.TileGraphic
-    atlasCoord:
-      x: 3
-      y: 9
-  - name: UIAtlas_Icon_PlayerTerritory
-    type: DaleranGames.TBSFramework.TileGraphic
-    atlasCoord:
-      x: 0
-      y: 9
-  - name: UIAtlas_Icon_VassalTerritory
-    type: DaleranGames.TBSFramework.TileGraphic
-    atlasCoord:
-      x: 4
-      y: 9
-  - name: UIAtlas_Highlight_Cross
-    type: DaleranGames.TBSFramework.TileGraphic
-    atlasCoord:
-      x: 7
-      y: 0
-  - name: UIAtlas_Highlight_Dark
-    type: DaleranGames.TBSFramework.TileGraphic
-    atlasCoord:
-      x: 5
-      y: 0
-  - name: UIAtlas_Highlight_Fog
-    type: DaleranGames.TBSFramework.TileGraphic
-    atlasCoord:
-      x: 6
-      y: 0
-  - name: UIAtlas_Highlight_Light
-    type: DaleranGames.TBSFramework.TileGraphic
-    atlasCoord:
-      x: 4
-      y: 0
-  - name: UIAtlas_Highlight_Negative
-    type: DaleranGames.TBSFramework.TileGraphic
-    atlasCoord:
-      x: 3
-      y: 0
-  - name: UIAtlas_Highlight_Positive
-    type: DaleranGames.TBSFramework.TileGraphic
-    atlasCoord:
-      x: 2
-      y: 0
-  - name: UIAtlas_Highlight_Ring
-    type: DaleranGames.TBSFramework.TileGraphic
-    atlasCoord:
-      x: 1
-      y: 0
-  - name: UIAtlas_Highlight_White
-    type: DaleranGames.TBSFramework.TileGraphic
-    atlasCoord:
-      x: 8
-      y: 0
   - name: Spring_I_FarmFallow
     type: DaleranGames.TBSFramework.TileGraphic
     atlasCoord:
@@ -359,7 +359,7 @@ MonoBehaviour:
   - name: Spring_I_LargeHouse
     type: DaleranGames.TBSFramework.TileGraphic
     atlasCoord:
-      x: 4
+      x: 5
       y: 5
   - name: Spring_I_RoundHouse
     type: DaleranGames.TBSFramework.TileGraphic
@@ -374,7 +374,7 @@ MonoBehaviour:
   - name: Spring_I_Tent
     type: DaleranGames.TBSFramework.TileGraphic
     atlasCoord:
-      x: 7
+      x: 8
       y: 5
   - name: Spring_L_DeepWater
     type: DaleranGames.TBSFramework.TileGraphic

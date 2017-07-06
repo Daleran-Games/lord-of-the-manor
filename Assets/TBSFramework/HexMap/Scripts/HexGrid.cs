@@ -18,8 +18,8 @@ namespace DaleranGames.TBSFramework
         bool mapBuilt = false;
         public bool MapBuilt {get { return mapBuilt; } }
 
-        public virtual int Width { get { return tiles.GetLength(0) ; } }
-        public virtual int Height { get { return tiles.GetLength(0) ; } }
+        public virtual int Width { get { return Generator.Width ; } }
+        public virtual int Height { get { return Generator.Height ; } }
 
         public Action MapGenerationComplete;
         public Action MeshBuildComplete;
@@ -83,12 +83,25 @@ namespace DaleranGames.TBSFramework
             gameObject.transform.ClearChildren();
             uiMeshes.Clear();
             terrainMeshes.Clear();
+
+            System.Diagnostics.Stopwatch timer = new System.Diagnostics.Stopwatch();
+            timer.Start();
+
             tiles = Generator.GenerateMap();
+
+            timer.Stop();
+            Debug.Log("MAP GEN: Total Time: " + timer.ElapsedMilliseconds + " ms");
 
             if (MapGenerationComplete != null)
                 MapGenerationComplete();
 
+            timer = new System.Diagnostics.Stopwatch();
+            timer.Start();
+
             InstantiateMeshChunks();
+
+            timer.Stop();
+            Debug.Log("MESH: Building Time: " + timer.ElapsedMilliseconds + " ms");
 
             if (MeshBuildComplete != null)
                 MeshBuildComplete();

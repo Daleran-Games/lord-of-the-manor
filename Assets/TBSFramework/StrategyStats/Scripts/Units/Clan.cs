@@ -12,7 +12,7 @@ namespace DaleranGames.TBSFramework
         public float GrowthRate = 0.025f;
 
         public int FoodPerPop = 1;
-        int lastRate = 0;
+        int foodDeficit;
 
         public int WoodPerPopInWinter = -1;
         public int WorkerPerPop = 6;
@@ -50,8 +50,10 @@ namespace DaleranGames.TBSFramework
             int FoodUseNextTurn = Population.Amount * FoodPerPop;
             Food.Rate += FoodUseNextTurn;
 
-            if (Food.Amount  < FoodUseNextTurn + Food.Rate)
-                Population.Rate -= FoodUseNextTurn - Food.Rate;
+            int workNextTurn = Population.Amount * WorkerPerPop;
+            Work.Rate += workNextTurn;
+
+
         }
 
         #region IDisposable Support

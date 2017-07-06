@@ -10,6 +10,7 @@ namespace DaleranGames.TBSFramework
     [System.Serializable]
     public class HexTile : IDisposable
     {
+
         public HexTile(HexCoordinates coor, Vector2Int gcoord, Vector3 pos, int id, TileAtlas atlas)
         {
             HexPosition = coor;
@@ -18,7 +19,7 @@ namespace DaleranGames.TBSFramework
             ID = id;
             MaxID = id;
             
-            stats = new Dictionary<StatType, int>();
+            //stats = new Dictionary<StatType, int>();
             this.atlas = atlas;
 
             UIGraphics = new TileGraphics(atlas, Position);
@@ -122,7 +123,7 @@ namespace DaleranGames.TBSFramework
         #endregion
 
         #region TileStats
-
+        /*
         Dictionary<StatType, int> stats;
 
         public int GetStat(StatType type)
@@ -157,7 +158,7 @@ namespace DaleranGames.TBSFramework
 
             }
         }
-
+        */
         #endregion
 
         #region Graphics

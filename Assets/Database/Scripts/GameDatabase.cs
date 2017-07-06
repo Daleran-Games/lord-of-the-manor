@@ -22,17 +22,21 @@ namespace DaleranGames.Database
         public Database<ImprovementType> Improvements;
         public Database<Activity> Activities;
 
+        private void Awake()
+        {
+            DontDestroyOnLoad(this);
+        }
+
         public void InitializeDatabases()
         {
+            System.Diagnostics.Stopwatch timer = new System.Diagnostics.Stopwatch();
+            timer.Start();
+
             Sprites = GetComponentInChildren<SpriteDatabaseLoader>().GetSpriteDictionary();
             TileGraphics = GetComponentInChildren<GraphicsDatabaseLoader>().GenerateDatabase();
-            Debug.Log("Built graphics");
             LandTiles = GetComponentInChildren<LandDatabaseLoader>().GenerateDatabase();
-            Debug.Log("Built land tiles");
             Improvements = GetComponentInChildren<ImprovementsDatabaseLoader>().GenerateDatabase();
-            Debug.Log("Built improvements");
             Activities = GetComponentInChildren<ActivityDatabaseLoader>().GenerateDatabase();
-            Debug.Log("Built activities");
 
 
             GetComponentInChildren<GraphicsDatabaseLoader>().InitializeDatabase(TileGraphics);
@@ -41,7 +45,8 @@ namespace DaleranGames.Database
             GetComponentInChildren<ActivityDatabaseLoader>().InitializeDatabase(Activities);
 
 
-            Debug.Log("Initialized databases");
+            timer.Stop();
+            Debug.Log("DATABASE: Initialization Time: " + timer.ElapsedMilliseconds + " ms");
 
             if (DatabasesInitialized != null)
                 DatabasesInitialized();

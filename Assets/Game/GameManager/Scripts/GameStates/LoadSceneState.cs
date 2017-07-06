@@ -18,8 +18,14 @@ namespace DaleranGames.Game
 
             grid.MeshBuildComplete += OnMapBuildComplete;
 
+            System.Diagnostics.Stopwatch timer = new System.Diagnostics.Stopwatch();
+            timer.Start();
+
             GameDatabase.Instance.InitializeDatabases();
             grid.GenerateMap();
+
+            timer.Stop();
+            Debug.Log("TOTAL LOAD: Time: " + timer.ElapsedMilliseconds + " ms");
 
         }
 
