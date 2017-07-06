@@ -1,0 +1,11 @@
+{
+    "name": "Farm Growing",
+    "type": "DaleranGames.TBSFramework.ImprovementType",
+    "iconName": "Spring_I_FarmGrowing",
+    "validLand": [
+        "Plains",
+        "Moor"
+    ],
+    "upgradeable": false,
+    "upgradeName": ""
+}

@@ -1,0 +1,8 @@
+{
+    "name": "UIAtlas_Highlight_Positive",
+    "type": "DaleranGames.TBSFramework.TileGraphic",
+    "atlasCoord": {
+        "x": 2,
+        "y": 0
+    }
+}

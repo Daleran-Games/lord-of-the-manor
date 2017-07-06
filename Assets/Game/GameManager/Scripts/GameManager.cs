@@ -3,12 +3,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DaleranGames.Tools;
+using DaleranGames.TBSFramework;
 
 namespace DaleranGames.Game
 {
     public class GameManager : Singleton<GameManager>
     {
         protected GameManager ( ) { }
+
+        [SerializeField]
+        Clan playerClan;
+        public Clan PlayerClan { get { return playerClan; } }
 
         public Action<GameState> StateChanged;
 
@@ -47,6 +52,8 @@ namespace DaleranGames.Game
 
             LoadScene.enabled = false;
             Play.enabled = false;
+
+            playerClan = new Clan("Player");
         }
 
         private void OnEnable()
@@ -63,6 +70,7 @@ namespace DaleranGames.Game
 
         protected override void OnDestroy()
         {
+            base.OnDestroy();
             LoadScene.StateDisabled -= OnMapGenerationComplete;
         }
 

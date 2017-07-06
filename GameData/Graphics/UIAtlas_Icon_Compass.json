@@ -1,0 +1,8 @@
+{
+    "name": "UIAtlas_Icon_Compass",
+    "type": "DaleranGames.TBSFramework.TileGraphic",
+    "atlasCoord": {
+        "x": 13,
+        "y": 1
+    }
+}

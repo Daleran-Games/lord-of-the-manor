@@ -1,0 +1,7 @@
+{
+    "name": "Moor",
+    "type": "DaleranGames.TBSFramework.LandType",
+    "iconName": "Spring_L_Moor",
+    "clearable": false,
+    "clearedLandName": ""
+}

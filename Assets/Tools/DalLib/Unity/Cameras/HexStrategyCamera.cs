@@ -10,18 +10,18 @@ namespace DaleranGames.Tools
         HexGrid grid;
 
         [SerializeField]
-        HexCell currentCell;
-        public HexCell CurrentCell
+        HexTile currentTile;
+        public HexTile CurrentTile
         {
-            get { return currentCell; }
+            get { return currentTile; }
             protected set
             {
-                currentCell = value;
+                currentTile = value;
 
             }
         }
 
-        public event System.Action<HexCell> CameraCellChanged;
+        public event System.Action<HexTile> CameraTileChanged;
 
 
         protected virtual void Awake()
@@ -39,15 +39,15 @@ namespace DaleranGames.Tools
         {
             base.LateUpdate();
 
-            if (grid.IsMapBuilt)
+            if (grid.MapBuilt)
             {
-                Vector2Int cellCoord = HexCoordinates.GetCartesianFromUnity(transform.position);
-                if (cellCoord.x < grid.Width && cellCoord.y < grid.Height && grid[cellCoord.x, cellCoord.y] != CurrentCell)
+                Vector2Int tileCoord = HexCoordinates.GetCartesianFromUnity(transform.position);
+                if (tileCoord.x < grid.Width && tileCoord.y < grid.Height && grid[tileCoord.x, tileCoord.y] != CurrentTile)
                 {
-                    CurrentCell = grid[cellCoord.x, cellCoord.y];
+                    CurrentTile = grid[tileCoord.x, tileCoord.y];
 
-                    if (CameraCellChanged != null)
-                        CameraCellChanged(CurrentCell);
+                    if (CameraTileChanged != null)
+                        CameraTileChanged(CurrentTile);
                 }
 
             }

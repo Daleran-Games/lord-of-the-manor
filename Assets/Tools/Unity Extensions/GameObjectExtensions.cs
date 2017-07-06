@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using DaleranGames;
 
 namespace UnityEngine
 {
@@ -72,7 +73,7 @@ namespace UnityEngine
         public static float GetMaxDimmensionFromSprite(this SpriteRenderer renderer)
         {
             Vector3 maxSpritePoint = renderer.bounds.extents;
-            return MathExtensions.GetMaxAbsoluteDimmension(maxSpritePoint);
+            return MathTools.GetMaxAbsoluteDimmension(maxSpritePoint);
 
         }
 

@@ -1,0 +1,7 @@
+{
+    "name": "Fen",
+    "type": "DaleranGames.TBSFramework.LandType",
+    "iconName": "Spring_L_Fen",
+    "clearable": false,
+    "clearedLandName": ""
+}

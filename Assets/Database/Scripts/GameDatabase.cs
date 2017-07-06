@@ -11,11 +11,53 @@ namespace DaleranGames.Database
 
         protected GameDatabase() { }
 
-        [SerializeField]
-        TerrainDatabase tileDB;
-        public TerrainDatabase TileDB { get { return tileDB; } }
+        public System.Action DatabasesInitialized;
 
-        
+        [SerializeField]
+        protected TileAtlas atlas;
+        public TileAtlas Atlas { get { return atlas; } }
+        public Dictionary<string, Sprite> Sprites;
+        public Database<TileGraphic> TileGraphics;
+        public Database<LandType> LandTiles;
+        public Database<ImprovementType> Improvements;
+        public Database<Activity> Activities;
+
+        private void Awake()
+        {
+            DontDestroyOnLoad(this);
+        }
+
+        public void InitializeDatabases()
+        {
+            System.Diagnostics.Stopwatch timer = new System.Diagnostics.Stopwatch();
+            timer.Start();
+
+            Sprites = GetComponentInChildren<SpriteDatabaseLoader>().GetSpriteDictionary();
+            TileGraphics = GetComponentInChildren<GraphicsDatabaseLoader>().GenerateDatabase();
+            LandTiles = GetComponentInChildren<LandDatabaseLoader>().GenerateDatabase();
+            Improvements = GetComponentInChildren<ImprovementsDatabaseLoader>().GenerateDatabase();
+            Activities = GetComponentInChildren<ActivityDatabaseLoader>().GenerateDatabase();
+
+
+            GetComponentInChildren<GraphicsDatabaseLoader>().InitializeDatabase(TileGraphics);
+            GetComponentInChildren<LandDatabaseLoader>().InitializeDatabase(LandTiles);
+            GetComponentInChildren<ImprovementsDatabaseLoader>().InitializeDatabase(Improvements);
+            GetComponentInChildren<ActivityDatabaseLoader>().InitializeDatabase(Activities);
+
+
+            timer.Stop();
+            Debug.Log("DATABASE: Initialization Time: " + timer.ElapsedMilliseconds + " ms");
+
+            if (DatabasesInitialized != null)
+                DatabasesInitialized();
+
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
+        }
+
     }
 }
 

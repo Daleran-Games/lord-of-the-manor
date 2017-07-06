@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DaleranGames.TBSFramework;
+using TMPro;
 
 namespace DaleranGames.UI
 {
@@ -10,10 +11,10 @@ namespace DaleranGames.UI
     {
 
         [SerializeField]
-        protected Text turn;
+        protected TextMeshProUGUI turn;
 
         [SerializeField]
-        protected Text year;
+        protected TextMeshProUGUI year;
 
         [SerializeField]
         protected Image yearIcon;

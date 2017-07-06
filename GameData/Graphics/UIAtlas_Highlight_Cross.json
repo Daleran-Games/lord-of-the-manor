@@ -1,0 +1,8 @@
+{
+    "name": "UIAtlas_Highlight_Cross",
+    "type": "DaleranGames.TBSFramework.TileGraphic",
+    "atlasCoord": {
+        "x": 7,
+        "y": 0
+    }
+}

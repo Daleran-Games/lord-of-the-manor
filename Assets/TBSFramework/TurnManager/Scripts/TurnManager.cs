@@ -65,7 +65,7 @@ namespace DaleranGames.TBSFramework
 
         protected override void OnDestroy()
         {
-
+            base.OnDestroy();
         }
 
         public void ChangeTurn(BaseTurn newState)

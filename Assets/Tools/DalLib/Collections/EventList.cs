@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace DaleranGames.Tools
+namespace DaleranGames
 {
     [System.Serializable]
     public class EventList<T> : IList<T>

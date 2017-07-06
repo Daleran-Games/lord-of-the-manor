@@ -1,0 +1,8 @@
+{
+    "name": "UIAtlas_Highlight_Ring",
+    "type": "DaleranGames.TBSFramework.TileGraphic",
+    "atlasCoord": {
+        "x": 1,
+        "y": 0
+    }
+}

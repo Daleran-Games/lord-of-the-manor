@@ -1,0 +1,8 @@
+{
+    "name": "Spring_I_FarmFallow",
+    "type": "DaleranGames.TBSFramework.TileGraphic",
+    "atlasCoord": {
+        "x": 3,
+        "y": 5
+    }
+}

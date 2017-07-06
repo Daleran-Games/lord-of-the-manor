@@ -1,0 +1,8 @@
+{
+    "name": "Spring_L_WoodedHills",
+    "type": "DaleranGames.TBSFramework.TileGraphic",
+    "atlasCoord": {
+        "x": 4,
+        "y": 1
+    }
+}

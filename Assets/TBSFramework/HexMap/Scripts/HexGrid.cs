@@ -6,91 +6,143 @@ using DaleranGames.Database;
 
 namespace DaleranGames.TBSFramework
 {
-    public class HexGrid : MonoBehaviour
+    public class HexGrid : Singleton<HexGrid>
     {
+        protected HexGrid() { }
+
         [SerializeField]
         MapGenerator generator;
         public MapGenerator Generator { get { return generator; } }
 
         [SerializeField]
-        bool isMapBuilt = false;
-        public bool IsMapBuilt {get { return isMapBuilt; } }
+        bool mapBuilt = false;
+        public bool MapBuilt {get { return mapBuilt; } }
 
-        public virtual int Width { get { return cells.GetLength(0) ; } }
-        public virtual int Height { get { return cells.GetLength(0) ; } }
+        public virtual int Width { get { return Generator.Width ; } }
+        public virtual int Height { get { return Generator.Height ; } }
 
         public Action MapGenerationComplete;
         public Action MeshBuildComplete;
 
-        HexMesh hexMesh;
-        HexCell[,] cells;
-        TerrainDatabase tileDB;
+        HexTile[,] tiles;
 
-
+        Dictionary<Vector2Int,HexMeshChunk> uiMeshes;
+        Dictionary<Vector2Int, HexMeshChunk> terrainMeshes;
 
         private void Awake()
         {
-            hexMesh = GetComponentInChildren<HexMesh>();
-            tileDB = GameDatabase.Instance.TileDB;
-
-            TurnManager.Instance.TurnChanged += OnTurnChange;
-
+            uiMeshes = new Dictionary<Vector2Int, HexMeshChunk>();
+            terrainMeshes = new Dictionary<Vector2Int, HexMeshChunk>();
         }
 
-        private void OnDestroy()
+        protected override void OnDestroy()
         {
-            TurnManager.Instance.TurnChanged -= OnTurnChange;
+            base.OnDestroy();
         }
 
-        public virtual HexCell this[int x, int y]
+        public virtual HexTile this[int x, int y]
         {
-            get { return cells[x, y]; }
+            get { return tiles[x, y]; }
             set
             {
-                cells[x, y] = value;
+                tiles[x, y] = value;
             }
         }
 
-        public virtual HexCell this[int q, int r, int s]
+        public virtual HexTile this[int q, int r, int s]
         {
-            get { return cells[HexCoordinates.ToCartesianX(q, r), r]; }
+            get { return tiles[HexCoordinates.ToCartesianX(q, r), r]; }
             set
             {
-                cells[HexCoordinates.ToCartesianX(q,r), r] = value;
+                tiles[HexCoordinates.ToCartesianX(q,r), r] = value;
             }
         }
 
-        [ContextMenu("Generate Map")]
+        public HexMeshChunk GetUIMesh (Vector2Int chunkID)
+        {
+            HexMeshChunk output = null;
+            if (uiMeshes.TryGetValue(chunkID, out output))
+            {
+                return output;
+            }
+            return null;    
+        }
+
+        public HexMeshChunk GetTerrainMesh(Vector2Int chunkID)
+        {
+            HexMeshChunk output = null;
+            if (terrainMeshes.TryGetValue(chunkID, out output))
+            {
+                return output;
+            }
+            return null;
+        }
+
         public void GenerateMap ()
         {
-            cells = Generator.GenerateMap();
+            gameObject.transform.ClearChildren();
+            uiMeshes.Clear();
+            terrainMeshes.Clear();
+
+            System.Diagnostics.Stopwatch timer = new System.Diagnostics.Stopwatch();
+            timer.Start();
+
+            tiles = Generator.GenerateMap();
+
+            timer.Stop();
+            Debug.Log("MAP GEN: Total Time: " + timer.ElapsedMilliseconds + " ms");
 
             if (MapGenerationComplete != null)
                 MapGenerationComplete();
 
-            hexMesh.BuildMesh(cells, Generator.Atlas);
+            timer = new System.Diagnostics.Stopwatch();
+            timer.Start();
+
+            InstantiateMeshChunks();
+
+            timer.Stop();
+            Debug.Log("MESH: Building Time: " + timer.ElapsedMilliseconds + " ms");
 
             if (MeshBuildComplete != null)
                 MeshBuildComplete();
 
-            isMapBuilt = true;
+            mapBuilt = true;
+            //Debug.Log(HexTile.MaxID);
+
         }
 
-        public void SwitchMaterial (Material mat)
+        void InstantiateMeshChunks ()
         {
-            hexMesh.SwitchMateiral(mat);
-        }
+            int chunkRows;
+            int chunkColumns;
 
-        void OnTurnChange (BaseTurn newTurn)
-        {
-            if (newTurn is SpringTurn)
-                SwitchMaterial(Generator.Atlas.SpringAtlas);
-            else if (newTurn is SummerTurn)
-                SwitchMaterial(Generator.Atlas.SummerAtlas);
-            else if (newTurn is FallTurn)
-                SwitchMaterial(Generator.Atlas.FallAtlas);
-            else if (newTurn is WinterTurn)
-                SwitchMaterial(Generator.Atlas.WinterAtlas);
+            chunkColumns = (Width / HexMetrics.xChunkSize);
+            chunkRows = (Height / HexMetrics.yChunkSize);
+
+            if (Width % HexMetrics.xChunkSize != 0)
+                chunkColumns++;
+
+            if (Height % HexMetrics.yChunkSize != 0)
+                chunkRows++;
+
+            for (int y=0; y < chunkRows; y++)
+            {
+                for (int x=0; x < chunkColumns; x++)
+                {
+                    Vector2Int chunkID = new Vector2Int(x, y);
+                    GameObject newTerrainChunk = new GameObject("Terrain Chunk " + chunkID);
+                    newTerrainChunk.transform.SetParent(this.transform);
+                    HexMeshChunk terrainScript = newTerrainChunk.GetOrAddComponent<HexMeshChunk>();
+                    terrainScript.BuildMesh(chunkID, false);
+                    terrainMeshes.Add(chunkID, terrainScript);
+
+                    GameObject newUIChunk = new GameObject("UI Chunk " + chunkID);
+                    newUIChunk.transform.SetParent(this.transform);
+                    HexMeshChunk uiScript = newUIChunk.GetOrAddComponent<HexMeshChunk>();
+                    uiScript.BuildMesh(chunkID, true);
+                    uiMeshes.Add(chunkID, terrainScript);
+                }
+            }
         }
 
 

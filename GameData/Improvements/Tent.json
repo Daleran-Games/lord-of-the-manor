@@ -1,0 +1,13 @@
+{
+    "name": "Tent",
+    "type": "DaleranGames.TBSFramework.ImprovementType",
+    "iconName": "Spring_I_Tent",
+    "validLand": [
+        "Plains",
+        "Moor Hills",
+        "Moor",
+        "Hills"
+    ],
+    "upgradeable": true,
+    "upgradeName": "Small House"
+}

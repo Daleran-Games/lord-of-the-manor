@@ -76,6 +76,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94f1231d05bc82246bc994cddc088bae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerClan:
+    tenets: []
+    testStat:
+      _type: 2
+      _value: 15
+    test2:
+      _x: 0
+      _y: 0
   currentState: {fileID: 0}
   loadScene: {fileID: 0}
   play: {fileID: 0}
