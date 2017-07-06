@@ -4,11 +4,13 @@ using UnityEngine;
 
 namespace DaleranGames.TBSFramework
 {
-    [System.Serializable]
-    public class Unit
+    public enum HexDirections
     {
-        protected Ranks rank;
-        public Ranks Rank { get { return rank; } }
-
+        E=0,
+        SE=1,
+        SW=2,
+        W=3,
+        NW=4,
+        NE=5
     }
 }

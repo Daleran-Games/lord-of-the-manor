@@ -5,10 +5,9 @@ using UnityEngine;
 namespace DaleranGames.TBSFramework
 {
     [System.Serializable]
-    public class Unit
+    public class Group
     {
-        protected Ranks rank;
-        public Ranks Rank { get { return rank; } }
+
 
     }
 }

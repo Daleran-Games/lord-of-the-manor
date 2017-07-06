@@ -8,15 +8,46 @@ namespace DaleranGames.TBSFramework
     [System.Serializable]
     public struct Stat : IFormattable, IEquatable<Stat>, IComparable<Stat>, IComparable
     {
+        public enum Category
+        {
+            None = 0,
+            FoodYield = 1,
+            WoodYield = 2,
+            StoneYield = 3,
+            GoldYield = 4,
+            MovementCost = 5,
+            DefenseBonus = 6,
+            ActionPoints = 7,
+            AttackPerPop = 8,
+            Attack = 9,
+            DefensePerPop = 10,
+            Defense = 11,
+            BirthRate = 12,
+            DeathRate = 13,
+            FoodPerPopPerTurn = 14,
+            WoodPerPopPerWinter = 16,
+            FoodPerAnimalPerWinter = 17,
+            LivestockBirthRate = 18,
+            LivestockDeathRate = 19,
+            LivestockFoodYield = 20,
+            LivestockGoldYield = 21,
+            LivestockGoldOnSlaughter = 22,
+            LivestockFoodOnSlaughter = 23,
+            MaxFoodStorage = 24,
+            MaxWoodStorage = 25,
+            MaxStoneStorage = 26
+        }
+
+
         [SerializeField]
-        StatType _type;
+        Category _type;
         [SerializeField]
         int _value;
 
-        public StatType Type { get { return _type; } }
+        public Category Type { get { return _type; } }
         public int Value { get { return _value; } }
 
-        public Stat (StatType type, int val)
+        public Stat (Category type, int val)
         {
             _type = type;
             _value = val;
@@ -24,7 +55,7 @@ namespace DaleranGames.TBSFramework
 
         public override string ToString()
         {
-            return string.Format("({0}, {1})", Type, Value);
+            return string.Format("({0}: {1})", Type, Value);
         }
 
         public string ToString(string format, IFormatProvider formatProvider)
@@ -75,7 +106,7 @@ namespace DaleranGames.TBSFramework
             }
         }
 
-        public Stat ToType(StatType t)
+        public Stat ToType(Category t)
         {
             return new Stat(t, Value);
         }
@@ -205,7 +236,7 @@ namespace DaleranGames.TBSFramework
             return s.Value;
         }
 
-        public static implicit operator StatType(Stat s)
+        public static implicit operator Category(Stat s)
         {
             return s.Type;
         }

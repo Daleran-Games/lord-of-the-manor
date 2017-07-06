@@ -9,6 +9,9 @@ using UnityEditor;
 
 namespace DaleranGames.Database
 {
+
+    //TODO: Move Database loaders into a scriptable object
+
     public class GraphicsDatabaseLoader : DatabaseLoader<TileGraphic>
     {
         [SerializeField]

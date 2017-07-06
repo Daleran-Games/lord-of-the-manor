@@ -25,7 +25,8 @@ namespace DaleranGames.TBSFramework
             UIGraphics = new TileGraphics(atlas, Position);
             TerrainGraphics = new TileGraphics(atlas, Position);
 
-            TurnManager.Instance.TurnChanged += OnTurnChange;
+            TurnManager.Instance.TurnEnded += OnTurnEnd;
+            TurnManager.Instance.TurnBegan += OnTurnBegin;
             GameManager.Instance.StateChanged += OnGameStart;
         }
 
@@ -53,14 +54,13 @@ namespace DaleranGames.TBSFramework
         public Vector3 Position { get { return position; } protected set { position = value; } }
 
         [SerializeField]
-        [ReadOnly]
-        protected byte elevation = 0;
-        public byte Elevation { get { return elevation; } set { elevation = value; } }
+        protected Group owner;
+        public Group Owner { get { return owner; } }
 
         [SerializeField]
-        [ReadOnly]
-        protected byte moisture = 0;
-        public byte Moisture { get { return moisture; } set { moisture = value; } }
+        protected Unit occupier;
+        public Unit Occupuer { get { return occupier; } }
+
 
         #endregion
 
@@ -83,8 +83,6 @@ namespace DaleranGames.TBSFramework
             }
         }
 
-
-
         [SerializeField]
         protected ImprovementType improvement;
         public virtual ImprovementType Improvement
@@ -102,13 +100,22 @@ namespace DaleranGames.TBSFramework
             }
         }
 
-        void OnTurnChange(BaseTurn turn)
+        void OnTurnEnd(BaseTurn turn)
         {
             if (Land != null)
-                Land.OnTurnChange(turn, this);
+                Land.OnTurnEnd(turn, this);
 
             if (Improvement != null)
-                Improvement.OnTurnChange(turn, this);
+                Improvement.OnTurnEnd(turn, this);
+        }
+
+        void OnTurnBegin(BaseTurn turn)
+        {
+            if (Land != null)
+                Land.OnTurnBegin(turn, this);
+
+            if (Improvement != null)
+                Improvement.OnTurnBegin(turn, this);
         }
 
         void OnGameStart(GameState state)
@@ -123,42 +130,43 @@ namespace DaleranGames.TBSFramework
         #endregion
 
         #region TileStats
-        /*
-        Dictionary<StatType, int> stats;
 
-        public int GetStat(StatType type)
+        [SerializeField]
+        [ReadOnly]
+        protected byte elevation = 0;
+        public byte Elevation { get { return elevation; } set { elevation = value; } }
+
+        [SerializeField]
+        [ReadOnly]
+        protected byte moisture = 0;
+        public byte Moisture { get { return moisture; } set { moisture = value; } }
+
+        public Stat MovementCost
         {
-            int statValue;
-            if (stats.TryGetValue(type, out statValue))
+            get
             {
-                return statValue;
-            }
-            else
-                throw new NullReferenceException("Tile Error: Attempted getting stat where none exsists.");
-        }
-
-        public bool ContainsStat (StatType type)
-        {
-            return stats.ContainsKey(type);
-        }
-
-        public void AddStat (Stat stat)
-        {
-            if(ContainsStat(stat.Type))
-            {
-                
-            } else
-                stats.Add(stat.Type, stat.Value);
-        }
-
-        public void RemoveStat (Stat stat)
-        {
-            if (ContainsStat(stat.Type))
-            {
-
+                if (land != null && improvement != null)
+                    return land.MovementCost + improvement.MovementCost;
+                else if (land != null && improvement == null)
+                    return land.MovementCost;
+                else
+                    return new Stat(Stat.Category.MovementCost, 1);
             }
         }
-        */
+
+        public Stat DefenseBonus
+        {
+            get
+            {
+                if (land != null && improvement != null)
+                    return land.DefenseBonus + improvement.DefenseBonus;
+                else if (land != null && improvement == null)
+                    return land.DefenseBonus;
+                else
+                    return new Stat(Stat.Category.DefenseBonus, 0);
+            }
+        }
+
         #endregion
 
         #region Graphics
@@ -180,7 +188,8 @@ namespace DaleranGames.TBSFramework
             {
                 if (disposing)
                 {
-                    TurnManager.Instance.TurnChanged -= OnTurnChange;
+                    TurnManager.Instance.TurnEnded -= OnTurnEnd;
+                    TurnManager.Instance.TurnBegan -= OnTurnBegin;
                     GameManager.Instance.StateChanged -= OnGameStart;
                     UIGraphics = null;
                     TerrainGraphics = null;

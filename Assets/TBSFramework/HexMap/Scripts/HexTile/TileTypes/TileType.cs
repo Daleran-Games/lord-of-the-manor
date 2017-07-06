@@ -49,7 +49,12 @@ namespace DaleranGames.TBSFramework
 
         }
 
-        public virtual void OnTurnChange(BaseTurn turn, HexTile tile)
+        public virtual void OnTurnEnd(BaseTurn turn, HexTile tile)
+        {
+
+        }
+
+        public virtual void OnTurnBegin(BaseTurn turn, HexTile tile)
         {
 
         }

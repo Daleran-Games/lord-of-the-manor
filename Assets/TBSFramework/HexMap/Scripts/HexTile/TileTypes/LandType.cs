@@ -21,14 +21,46 @@ namespace DaleranGames.TBSFramework
         protected LandType clearedLand;
         public LandType ClearedLand { get { return clearedLand; } }
 
-        public LandType(LandType type, int id)
+        [SerializeField]
+        protected Stat foodYield = new Stat(Stat.Category.FoodYield, 0);
+        public Stat FoodYield { get { return foodYield; } }
+
+        [SerializeField]
+        protected Stat woodYield = new Stat(Stat.Category.FoodYield, 0);
+        public Stat WoodYield { get { return woodYield; } }
+
+        [SerializeField]
+        protected Stat stoneYield = new Stat(Stat.Category.FoodYield, 0);
+        public Stat StoneYield { get { return stoneYield; } }
+
+        [SerializeField]
+        protected Stat goldYield = new Stat(Stat.Category.FoodYield, 0);
+        public Stat GoldYield { get { return goldYield; } }
+
+        [SerializeField]
+        protected Stat defenseBonus = new Stat(Stat.Category.FoodYield, 0);
+        public Stat DefenseBonus { get { return defenseBonus; } }
+
+        [SerializeField]
+        protected Stat movementCost = new Stat(Stat.Category.FoodYield, 1);
+        public Stat MovementCost { get { return movementCost; } }
+
+        public LandType(LandType land, int id)
         {
-            name = type.Name;
+            name = land.Name;
             this.id = id;
-            clearable = type.Clearable;
-            iconName = type.IconName;
-            clearedLandName = type.ClearedLandName;
+            clearable = land.Clearable;
+            iconName = land.IconName;
+            clearedLandName = land.ClearedLandName;
             this.type = this.ToString();
+
+            foodYield = land.FoodYield;
+            woodYield = land.WoodYield;
+            stoneYield = land.StoneYield;
+            goldYield = land.GoldYield;
+            defenseBonus = land.DefenseBonus;
+            movementCost = land.MovementCost;
+
         }
 
         public override void OnDatabaseInitialization()
@@ -52,7 +84,7 @@ namespace DaleranGames.TBSFramework
             base.OnGameStart(tile);
         }
 
-        public override void OnTurnChange(BaseTurn turn, HexTile tile)
+        public override void OnTurnBegin(BaseTurn turn, HexTile tile)
         {
 
         }

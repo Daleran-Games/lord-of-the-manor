@@ -9,7 +9,6 @@ namespace DaleranGames.TBSFramework
     [System.Serializable]
     public class ImprovementType : TileType
     {
-
         [SerializeField]
         protected List<string> validLand;
         public List<string> ValidLand { get { return validLand; } }
@@ -26,15 +25,26 @@ namespace DaleranGames.TBSFramework
         protected ImprovementType upgradedImprovement;
         public ImprovementType UpgradedImprovement { get { return upgradedImprovement; } }
 
-        public ImprovementType(ImprovementType type,int id)
+        [SerializeField]
+        protected Stat defenseBonus = new Stat(Stat.Category.DefenseBonus, 0);
+        public Stat DefenseBonus { get { return defenseBonus; } }
+
+        [SerializeField]
+        protected Stat movementCost = new Stat(Stat.Category.MovementCost, 0);
+        public Stat MovementCost { get { return movementCost; } }
+
+        public ImprovementType(ImprovementType impr,int id)
         {
-            name = type.Name;
+            name = impr.Name;
             this.id = id;
-            upgradeable = type.Upgradeable;
-            iconName = type.IconName;
-            upgradeName = type.UpgradeName;
-            validLand = type.ValidLand;
+            upgradeable = impr.Upgradeable;
+            iconName = impr.IconName;
+            upgradeName = impr.UpgradeName;
+            validLand = impr.ValidLand;
             this.type = this.ToString();
+
+            defenseBonus = impr.defenseBonus;
+            movementCost = impr.movementCost;
         }
 
         public override void OnDatabaseInitialization()
@@ -56,7 +66,7 @@ namespace DaleranGames.TBSFramework
  
         }
 
-        public override void OnTurnChange(BaseTurn turn, HexTile tile)
+        public override void OnTurnBegin(BaseTurn turn, HexTile tile)
         {
 
         }

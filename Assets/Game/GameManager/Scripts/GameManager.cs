@@ -11,10 +11,6 @@ namespace DaleranGames.Game
     {
         protected GameManager ( ) { }
 
-        [SerializeField]
-        Clan playerClan;
-        public Clan PlayerClan { get { return playerClan; } }
-
         public Action<GameState> StateChanged;
 
         [SerializeField]
@@ -52,8 +48,6 @@ namespace DaleranGames.Game
 
             LoadScene.enabled = false;
             Play.enabled = false;
-
-            playerClan = new Clan("Player");
         }
 
         private void OnEnable()

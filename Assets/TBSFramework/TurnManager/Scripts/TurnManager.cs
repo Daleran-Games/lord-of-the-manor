@@ -10,7 +10,8 @@ namespace DaleranGames.TBSFramework
     {
         protected TurnManager() { }
 
-        public Action<BaseTurn> TurnChanged;
+        public Action<BaseTurn> TurnEnded;
+        public Action<BaseTurn> TurnBegan;
 
         [SerializeField]
         protected int turn = 0;
@@ -70,6 +71,10 @@ namespace DaleranGames.TBSFramework
 
         public void ChangeTurn(BaseTurn newState)
         {
+            if (TurnEnded != null)
+                TurnEnded(currentTurn);
+
+
             currentTurn.enabled = false;
             currentTurn = newState;
             currentTurn.enabled = true;
@@ -78,8 +83,8 @@ namespace DaleranGames.TBSFramework
             if (newState is SpringTurn)
                 Year++;
 
-            if (TurnChanged != null)
-                TurnChanged(newState);
+            if (TurnBegan != null)
+                TurnBegan(newState);
 
             //Debug.Log("Transitioning to: " + newState.GetType().ToString());
         }

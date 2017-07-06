@@ -33,7 +33,7 @@ namespace DaleranGames.TBSFramework
         {
             hexMesh = gameObject.GetOrAddComponent<MeshFilter>().mesh = new Mesh();
             meshRenderer = gameObject.GetOrAddComponent<MeshRenderer>();
-            TurnManager.Instance.TurnChanged += OnTurnChange;
+            TurnManager.Instance.TurnBegan += OnTurnChange;
             grid = GetComponentInParent<HexGrid>();
             meshAtlas = grid.Generator.Atlas;
 
