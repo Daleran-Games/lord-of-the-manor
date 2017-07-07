@@ -1,0 +1,8 @@
+{
+    "name": "UIAtlas_Icon_WorkFarm",
+    "type": "DaleranGames.TBSFramework.TileGraphic",
+    "atlasCoord": {
+        "x": 8,
+        "y": 2
+    }
+}

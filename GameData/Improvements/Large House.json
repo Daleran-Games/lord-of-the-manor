@@ -9,5 +9,7 @@
         "Moor Hills"
     ],
     "upgradeable": true,
-    "upgradeName": "Hall"
+    "upgradeName": "Hall",
+    "defenseBonus": 3,
+    "movementCost": 0
 }

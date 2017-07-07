@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DaleranGames.TBSFramework;
 
-namespace DaleranGames.Game
+namespace DaleranGames
 {
     public class PlayState : GameState
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 using DaleranGames.TBSFramework;
 using DaleranGames.Database;
 
-namespace DaleranGames.Game
+namespace DaleranGames
 {
     public class LoadSceneState : GameState
     {

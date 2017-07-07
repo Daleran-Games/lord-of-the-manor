@@ -5,7 +5,7 @@ using UnityEngine;
 using DaleranGames.Tools;
 using DaleranGames.TBSFramework;
 
-namespace DaleranGames.Game
+namespace DaleranGames
 {
     public class GameManager : Singleton<GameManager>
     {

@@ -9,5 +9,7 @@
         "Hills"
     ],
     "upgradeable": true,
-    "upgradeName": "Small House"
+    "upgradeName": "Small House",
+    "defenseBonus": 0,
+    "movementCost": 0
 }

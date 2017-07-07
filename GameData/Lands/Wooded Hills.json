@@ -3,5 +3,11 @@
     "type": "DaleranGames.TBSFramework.LandType",
     "iconName": "Spring_L_WoodedHills",
     "clearable": true,
-    "clearedLandName": "Hills"
+    "clearedLandName": "Hills",
+    "foodYield": 0,
+    "woodYield": 2,
+    "stoneYield": 1,
+    "goldYield": 0,
+    "defenseBonus": 3,
+    "movementCost": 4
 }

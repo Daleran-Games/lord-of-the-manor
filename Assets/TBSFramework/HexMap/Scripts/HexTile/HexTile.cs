@@ -2,7 +2,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DaleranGames.Game;
 
 namespace DaleranGames.TBSFramework
 {
@@ -26,7 +25,8 @@ namespace DaleranGames.TBSFramework
             TerrainGraphics = new TileGraphics(atlas, Position);
 
             TurnManager.Instance.TurnEnded += OnTurnEnd;
-            TurnManager.Instance.TurnBegan += OnTurnBegin;
+            TurnManager.Instance.TurnSetUp += OnTurnSetUp;
+            TurnManager.Instance.TurnStart += OnTurnStart;
             GameManager.Instance.StateChanged += OnGameStart;
         }
 
@@ -109,13 +109,22 @@ namespace DaleranGames.TBSFramework
                 Improvement.OnTurnEnd(turn, this);
         }
 
-        void OnTurnBegin(BaseTurn turn)
+        void OnTurnSetUp(BaseTurn turn)
         {
             if (Land != null)
-                Land.OnTurnBegin(turn, this);
+                Land.OnTurnSetUp(turn, this);
 
             if (Improvement != null)
-                Improvement.OnTurnBegin(turn, this);
+                Improvement.OnTurnSetUp(turn, this);
+        }
+
+        void OnTurnStart(BaseTurn turn)
+        {
+            if (Land != null)
+                Land.OnTurnStart(turn, this);
+
+            if (Improvement != null)
+                Improvement.OnTurnStart(turn, this);
         }
 
         void OnGameStart(GameState state)
@@ -146,7 +155,7 @@ namespace DaleranGames.TBSFramework
             get
             {
                 if (land != null && improvement != null)
-                    return land.MovementCost + improvement.MovementCost;
+                    return land.MovementCost + improvement.MovementCost.Value;
                 else if (land != null && improvement == null)
                     return land.MovementCost;
                 else
@@ -159,7 +168,7 @@ namespace DaleranGames.TBSFramework
             get
             {
                 if (land != null && improvement != null)
-                    return land.DefenseBonus + improvement.DefenseBonus;
+                    return land.DefenseBonus + improvement.DefenseBonus.Value;
                 else if (land != null && improvement == null)
                     return land.DefenseBonus;
                 else
@@ -189,7 +198,8 @@ namespace DaleranGames.TBSFramework
                 if (disposing)
                 {
                     TurnManager.Instance.TurnEnded -= OnTurnEnd;
-                    TurnManager.Instance.TurnBegan -= OnTurnBegin;
+                    TurnManager.Instance.TurnSetUp -= OnTurnSetUp;
+                    TurnManager.Instance.TurnStart += OnTurnStart;
                     GameManager.Instance.StateChanged -= OnGameStart;
                     UIGraphics = null;
                     TerrainGraphics = null;

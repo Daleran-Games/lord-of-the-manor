@@ -9,5 +9,7 @@
         "Moor Hills"
     ],
     "upgradeable": true,
-    "upgradeName": "Roundhouse"
+    "upgradeName": "Roundhouse",
+    "defenseBonus": 1,
+    "movementCost": 0
 }

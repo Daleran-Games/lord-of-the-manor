@@ -3,5 +3,11 @@
     "type": "DaleranGames.TBSFramework.LandType",
     "iconName": "Spring_L_MoorMountains",
     "clearable": false,
-    "clearedLandName": ""
+    "clearedLandName": "",
+    "foodYield": 0,
+    "woodYield": 0,
+    "stoneYield": 3,
+    "goldYield": 0,
+    "defenseBonus": 4,
+    "movementCost": 6
 }

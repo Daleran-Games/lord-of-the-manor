@@ -1,0 +1,12 @@
+{
+    "name": "Cyning",
+    "rank": 6,
+    "culture": 1,
+    "type": "DaleranGames.TBSFramework.UnitType",
+    "actionPoints": 15,
+    "attackPerPop": 8,
+    "attackCost": 5,
+    "defensePerPop": 6,
+    "foodPerPopPerTurn": 1,
+    "woodPerPopPerWinter": 1
+}

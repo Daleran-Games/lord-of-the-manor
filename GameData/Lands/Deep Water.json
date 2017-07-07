@@ -3,5 +3,11 @@
     "type": "DaleranGames.TBSFramework.LandType",
     "iconName": "Spring_L_DeepWater",
     "clearable": false,
-    "clearedLandName": ""
+    "clearedLandName": "",
+    "foodYield": 0,
+    "woodYield": 0,
+    "stoneYield": 0,
+    "goldYield": 0,
+    "defenseBonus": -2,
+    "movementCost": 100
 }

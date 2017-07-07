@@ -35,12 +35,12 @@ namespace DaleranGames.UI
         // Use this for initialization
         void Start()
         {
-            TurnManager.Instance.TurnBegan += OnTurnChange;
+            TurnManager.Instance.TurnSetUp += OnTurnChange;
         }
 
         private void OnDestroy()
         {
-            TurnManager.Instance.TurnBegan -= OnTurnChange;
+            TurnManager.Instance.TurnSetUp -= OnTurnChange;
         }
 
         // Update is called once per frame

@@ -11,7 +11,8 @@ namespace DaleranGames.TBSFramework
         protected TurnManager() { }
 
         public Action<BaseTurn> TurnEnded;
-        public Action<BaseTurn> TurnBegan;
+        public Action<BaseTurn> TurnSetUp;
+        public Action<BaseTurn> TurnStart;
 
         [SerializeField]
         protected int turn = 0;
@@ -83,8 +84,12 @@ namespace DaleranGames.TBSFramework
             if (newState is SpringTurn)
                 Year++;
 
-            if (TurnBegan != null)
-                TurnBegan(newState);
+            if (TurnSetUp != null)
+                TurnSetUp(newState);
+
+            if (TurnStart != null)
+                TurnStart(newState);
+
 
             //Debug.Log("Transitioning to: " + newState.GetType().ToString());
         }

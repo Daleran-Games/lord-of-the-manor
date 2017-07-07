@@ -61,6 +61,8 @@ MonoBehaviour:
     - Moor
     upgradeable: 0
     upgradeName: 
+    defenseBonus: 0
+    movementCost: 0
   - name: Farm Growing
     type: DaleranGames.TBSFramework.ImprovementType
     iconName: Spring_I_FarmGrowing
@@ -69,6 +71,8 @@ MonoBehaviour:
     - Moor
     upgradeable: 0
     upgradeName: 
+    defenseBonus: 0
+    movementCost: 0
   - name: Farm Harvest
     type: DaleranGames.TBSFramework.ImprovementType
     iconName: Spring_I_FarmHarvest
@@ -77,6 +81,8 @@ MonoBehaviour:
     - Moor
     upgradeable: 0
     upgradeName: 
+    defenseBonus: 0
+    movementCost: 0
   - name: Farm Fallow
     type: DaleranGames.TBSFramework.ImprovementType
     iconName: Spring_I_FarmFallow
@@ -85,6 +91,8 @@ MonoBehaviour:
     - Moor
     upgradeable: 0
     upgradeName: 
+    defenseBonus: 0
+    movementCost: 0
   - name: Hall
     type: DaleranGames.TBSFramework.ImprovementType
     iconName: Spring_I_Hall
@@ -95,6 +103,8 @@ MonoBehaviour:
     - Moor Hill
     upgradeable: 0
     upgradeName: 
+    defenseBonus: 4
+    movementCost: 0
   - name: Large House
     type: DaleranGames.TBSFramework.ImprovementType
     iconName: Spring_I_LargeHouse
@@ -105,6 +115,8 @@ MonoBehaviour:
     - Moor Hills
     upgradeable: 1
     upgradeName: Hall
+    defenseBonus: 3
+    movementCost: 0
   - name: Roundhouse
     type: DaleranGames.TBSFramework.ImprovementType
     iconName: Spring_I_RoundHouse
@@ -115,6 +127,8 @@ MonoBehaviour:
     - Moor Hills
     upgradeable: 1
     upgradeName: Large House
+    defenseBonus: 2
+    movementCost: 0
   - name: Small House
     type: DaleranGames.TBSFramework.ImprovementType
     iconName: Spring_I_SmallHouse
@@ -125,6 +139,8 @@ MonoBehaviour:
     - Moor Hills
     upgradeable: 1
     upgradeName: Roundhouse
+    defenseBonus: 1
+    movementCost: 0
   - name: Tent
     type: DaleranGames.TBSFramework.ImprovementType
     iconName: Spring_I_Tent
@@ -135,3 +151,5 @@ MonoBehaviour:
     - Hills
     upgradeable: 1
     upgradeName: Small House
+    defenseBonus: 0
+    movementCost: 0

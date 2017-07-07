@@ -9,5 +9,7 @@
         "Moor Hill"
     ],
     "upgradeable": false,
-    "upgradeName": ""
+    "upgradeName": "",
+    "defenseBonus": 4,
+    "movementCost": 0
 }

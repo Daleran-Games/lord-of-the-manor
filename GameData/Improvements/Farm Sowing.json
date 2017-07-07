@@ -7,5 +7,7 @@
         "Moor"
     ],
     "upgradeable": false,
-    "upgradeName": ""
+    "upgradeName": "",
+    "defenseBonus": 0,
+    "movementCost": 0
 }

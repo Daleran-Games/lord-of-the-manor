@@ -22,28 +22,28 @@ namespace DaleranGames.TBSFramework
         public LandType ClearedLand { get { return clearedLand; } }
 
         [SerializeField]
-        protected Stat foodYield = new Stat(Stat.Category.FoodYield, 0);
-        public Stat FoodYield { get { return foodYield; } }
+        protected int foodYield = 0;
+        public Stat FoodYield { get { return new Stat(Stat.Category.FoodYield, foodYield); } }
 
         [SerializeField]
-        protected Stat woodYield = new Stat(Stat.Category.FoodYield, 0);
-        public Stat WoodYield { get { return woodYield; } }
+        protected int woodYield = 0;
+        public Stat WoodYield { get { return new Stat(Stat.Category.WoodYield, woodYield); } }
 
         [SerializeField]
-        protected Stat stoneYield = new Stat(Stat.Category.FoodYield, 0);
-        public Stat StoneYield { get { return stoneYield; } }
+        protected int stoneYield = 0;
+        public Stat StoneYield { get { return new Stat(Stat.Category.StoneYield, stoneYield); } }
 
         [SerializeField]
-        protected Stat goldYield = new Stat(Stat.Category.FoodYield, 0);
-        public Stat GoldYield { get { return goldYield; } }
+        protected int goldYield = 0;
+        public Stat GoldYield { get { return new Stat(Stat.Category.GoldYield, goldYield); } }
 
         [SerializeField]
-        protected Stat defenseBonus = new Stat(Stat.Category.FoodYield, 0);
-        public Stat DefenseBonus { get { return defenseBonus; } }
+        protected int defenseBonus = 0;
+        public Stat DefenseBonus { get { return new Stat(Stat.Category.DefenseBonus, defenseBonus); } }
 
         [SerializeField]
-        protected Stat movementCost = new Stat(Stat.Category.FoodYield, 1);
-        public Stat MovementCost { get { return movementCost; } }
+        protected int movementCost = 1;
+        public Stat MovementCost { get { return new Stat(Stat.Category.MovementCost, movementCost); } }
 
         public LandType(LandType land, int id)
         {
@@ -84,7 +84,7 @@ namespace DaleranGames.TBSFramework
             base.OnGameStart(tile);
         }
 
-        public override void OnTurnBegin(BaseTurn turn, HexTile tile)
+        public override void OnTurnSetUp(BaseTurn turn, HexTile tile)
         {
 
         }

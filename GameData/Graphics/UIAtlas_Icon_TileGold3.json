@@ -1,0 +1,8 @@
+{
+    "name": "UIAtlas_Icon_TileGold3",
+    "type": "DaleranGames.TBSFramework.TileGraphic",
+    "atlasCoord": {
+        "x": 11,
+        "y": 3
+    }
+}

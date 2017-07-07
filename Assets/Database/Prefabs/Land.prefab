@@ -58,63 +58,141 @@ MonoBehaviour:
     iconName: Spring_L_Plains
     clearable: 0
     clearedLandName: 
+    foodYield: 2
+    woodYield: 0
+    stoneYield: 0
+    goldYield: 0
+    defenseBonus: 0
+    movementCost: 1
   - name: Parkland
     type: DaleranGames.TBSFramework.LandType
     iconName: Spring_L_Parkland
     clearable: 1
     clearedLandName: Plains
+    foodYield: 1
+    woodYield: 1
+    stoneYield: 0
+    goldYield: 0
+    defenseBonus: 1
+    movementCost: 2
   - name: Forest
     type: DaleranGames.TBSFramework.LandType
     iconName: Spring_L_Forest
     clearable: 1
     clearedLandName: Moor
+    foodYield: 0
+    woodYield: 3
+    stoneYield: 0
+    goldYield: 0
+    defenseBonus: 2
+    movementCost: 3
   - name: Hills
     type: DaleranGames.TBSFramework.LandType
     iconName: Spring_L_Hills
     clearable: 0
     clearedLandName: 
+    foodYield: 1
+    woodYield: 0
+    stoneYield: 1
+    goldYield: 0
+    defenseBonus: 2
+    movementCost: 3
   - name: Wooded Hills
     type: DaleranGames.TBSFramework.LandType
     iconName: Spring_L_WoodedHills
     clearable: 1
     clearedLandName: Hills
+    foodYield: 0
+    woodYield: 2
+    stoneYield: 1
+    goldYield: 0
+    defenseBonus: 3
+    movementCost: 4
   - name: Mountains
     type: DaleranGames.TBSFramework.LandType
     iconName: Spring_L_Mountains
     clearable: 0
     clearedLandName: 
+    foodYield: 0
+    woodYield: 0
+    stoneYield: 2
+    goldYield: 0
+    defenseBonus: 4
+    movementCost: 6
   - name: Wooded Mountains
     type: DaleranGames.TBSFramework.LandType
     iconName: Spring_L_WoodedMountains
     clearable: 1
     clearedLandName: Mountains
+    foodYield: 0
+    woodYield: 2
+    stoneYield: 2
+    goldYield: 0
+    defenseBonus: 5
+    movementCost: 8
   - name: Moor
     type: DaleranGames.TBSFramework.LandType
     iconName: Spring_L_Moor
     clearable: 0
     clearedLandName: 
+    foodYield: 1
+    woodYield: 0
+    stoneYield: 0
+    goldYield: 0
+    defenseBonus: 0
+    movementCost: 1
   - name: Moor Hills
     type: DaleranGames.TBSFramework.LandType
     iconName: Spring_L_MoorHills
     clearable: 0
     clearedLandName: 
+    foodYield: 0
+    woodYield: 0
+    stoneYield: 2
+    goldYield: 0
+    defenseBonus: 2
+    movementCost: 3
   - name: Moor Mountains
     type: DaleranGames.TBSFramework.LandType
     iconName: Spring_L_MoorMountains
     clearable: 0
     clearedLandName: 
+    foodYield: 0
+    woodYield: 0
+    stoneYield: 3
+    goldYield: 0
+    defenseBonus: 4
+    movementCost: 6
   - name: Fen
     type: DaleranGames.TBSFramework.LandType
     iconName: Spring_L_Fen
     clearable: 0
     clearedLandName: 
+    foodYield: 0
+    woodYield: 0
+    stoneYield: 0
+    goldYield: 0
+    defenseBonus: -1
+    movementCost: 5
   - name: Deep Water
     type: DaleranGames.TBSFramework.LandType
     iconName: Spring_L_DeepWater
     clearable: 0
     clearedLandName: 
+    foodYield: 0
+    woodYield: 0
+    stoneYield: 0
+    goldYield: 0
+    defenseBonus: -2
+    movementCost: 100
   - name: Shallow Water
     type: DaleranGames.TBSFramework.LandType
     iconName: Spring_L_ShallowWater
     clearable: 0
     clearedLandName: 
+    foodYield: 0
+    woodYield: 0
+    stoneYield: 0
+    goldYield: 0
+    defenseBonus: -1
+    movementCost: 10

@@ -1,0 +1,12 @@
+{
+    "name": "Thegn",
+    "rank": 4,
+    "culture": 1,
+    "type": "DaleranGames.TBSFramework.UnitType",
+    "actionPoints": 10,
+    "attackPerPop": 4,
+    "attackCost": 5,
+    "defensePerPop": 3,
+    "foodPerPopPerTurn": 1,
+    "woodPerPopPerWinter": 1
+}

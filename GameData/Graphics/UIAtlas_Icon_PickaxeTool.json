@@ -1,0 +1,8 @@
+{
+    "name": "UIAtlas_Icon_PickaxeTool",
+    "type": "DaleranGames.TBSFramework.TileGraphic",
+    "atlasCoord": {
+        "x": 5,
+        "y": 8
+    }
+}

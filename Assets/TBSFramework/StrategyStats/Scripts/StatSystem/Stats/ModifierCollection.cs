@@ -5,7 +5,7 @@ using UnityEngine;
 namespace DaleranGames.TBSFramework
 {
     [System.Serializable]
-    public class ModifierCollection 
+    public class ModifierCollection<T>
     {
 
     }

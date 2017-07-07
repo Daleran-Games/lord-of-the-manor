@@ -1,0 +1,12 @@
+{
+    "name": "Deow",
+    "rank": 2,
+    "culture": 1,
+    "type": "DaleranGames.TBSFramework.UnitType",
+    "actionPoints": 8,
+    "attackPerPop": 1,
+    "attackCost": 5,
+    "defensePerPop": 1,
+    "foodPerPopPerTurn": 1,
+    "woodPerPopPerWinter": 1
+}

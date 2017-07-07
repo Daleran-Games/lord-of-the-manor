@@ -1,0 +1,12 @@
+{
+    "name": "Ealdorman",
+    "rank": 5,
+    "culture": 1,
+    "type": "DaleranGames.TBSFramework.UnitType",
+    "actionPoints": 15,
+    "attackPerPop": 6,
+    "attackCost": 5,
+    "defensePerPop": 4,
+    "foodPerPopPerTurn": 1,
+    "woodPerPopPerWinter": 1
+}

@@ -35,7 +35,11 @@ namespace DaleranGames.TBSFramework
             LivestockFoodOnSlaughter = 23,
             MaxFoodStorage = 24,
             MaxWoodStorage = 25,
-            MaxStoneStorage = 26
+            MaxStoneStorage = 26,
+            MaxPopulation = 27,
+            StarvationRate = 28,
+            FreezingRate = 29,
+            AttackCost = 30
         }
 
 

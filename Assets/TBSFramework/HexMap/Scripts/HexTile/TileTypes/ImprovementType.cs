@@ -26,12 +26,12 @@ namespace DaleranGames.TBSFramework
         public ImprovementType UpgradedImprovement { get { return upgradedImprovement; } }
 
         [SerializeField]
-        protected Stat defenseBonus = new Stat(Stat.Category.DefenseBonus, 0);
-        public Stat DefenseBonus { get { return defenseBonus; } }
+        protected int defenseBonus = 0;
+        public Stat DefenseBonus { get { return new Stat(Stat.Category.DefenseBonus, defenseBonus); } }
 
         [SerializeField]
-        protected Stat movementCost = new Stat(Stat.Category.MovementCost, 0);
-        public Stat MovementCost { get { return movementCost; } }
+        protected int movementCost = 1;
+        public Stat MovementCost { get { return new Stat(Stat.Category.MovementCost, movementCost); } }
 
         public ImprovementType(ImprovementType impr,int id)
         {
@@ -66,7 +66,7 @@ namespace DaleranGames.TBSFramework
  
         }
 
-        public override void OnTurnBegin(BaseTurn turn, HexTile tile)
+        public override void OnTurnSetUp(BaseTurn turn, HexTile tile)
         {
 
         }

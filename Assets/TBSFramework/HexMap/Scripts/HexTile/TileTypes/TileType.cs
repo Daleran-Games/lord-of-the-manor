@@ -1,13 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using DaleranGames.Game;
 using DaleranGames.Database;
 
 namespace DaleranGames.TBSFramework
 {
     [System.Serializable]
-    public abstract class TileType : IDatabaseObject
+    public abstract class TileType : IDatabaseObject, IType<HexTile>
     {
         [SerializeField]
         protected string name;
@@ -54,7 +53,12 @@ namespace DaleranGames.TBSFramework
 
         }
 
-        public virtual void OnTurnBegin(BaseTurn turn, HexTile tile)
+        public virtual void OnTurnSetUp(BaseTurn turn, HexTile tile)
+        {
+
+        }
+
+        public virtual void OnTurnStart(BaseTurn turn, HexTile tile)
         {
 
         }

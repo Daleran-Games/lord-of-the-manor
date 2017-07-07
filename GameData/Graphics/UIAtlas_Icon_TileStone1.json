@@ -1,0 +1,8 @@
+{
+    "name": "UIAtlas_Icon_TileStone1",
+    "type": "DaleranGames.TBSFramework.TileGraphic",
+    "atlasCoord": {
+        "x": 6,
+        "y": 3
+    }
+}

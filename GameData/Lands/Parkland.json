@@ -3,5 +3,11 @@
     "type": "DaleranGames.TBSFramework.LandType",
     "iconName": "Spring_L_Parkland",
     "clearable": true,
-    "clearedLandName": "Plains"
+    "clearedLandName": "Plains",
+    "foodYield": 1,
+    "woodYield": 1,
+    "stoneYield": 0,
+    "goldYield": 0,
+    "defenseBonus": 1,
+    "movementCost": 2
 }

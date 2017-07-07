@@ -1,0 +1,12 @@
+{
+    "name": "Ceorl",
+    "rank": 3,
+    "culture": 1,
+    "type": "DaleranGames.TBSFramework.UnitType",
+    "actionPoints": 10,
+    "attackPerPop": 2,
+    "attackCost": 5,
+    "defensePerPop": 2,
+    "foodPerPopPerTurn": 1,
+    "woodPerPopPerWinter": 1
+}

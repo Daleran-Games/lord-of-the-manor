@@ -9,5 +9,7 @@
         "Moor Hills"
     ],
     "upgradeable": true,
-    "upgradeName": "Large House"
+    "upgradeName": "Large House",
+    "defenseBonus": 2,
+    "movementCost": 0
 }
