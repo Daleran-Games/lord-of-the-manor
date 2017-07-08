@@ -20,7 +20,7 @@ namespace DaleranGames.TBSFramework
         public Scope ModifierScope { get { return scope; } }
 
         Stat mod;
-        Stat Mod { get { return mod; } }
+        public Stat Mod { get { return mod; } }
 
         string description;
         public string Description { get { return description; } }
