@@ -63,6 +63,10 @@ MonoBehaviour:
     defensePerPop: 1
     foodPerPopPerTurn: 1
     woodPerPopPerWinter: 1
+    maxFood: 50
+    maxWood: 25
+    maxStone: 15
+    maxPop: 8
   - name: Ceorl
     rank: 3
     culture: 1
@@ -73,6 +77,10 @@ MonoBehaviour:
     defensePerPop: 2
     foodPerPopPerTurn: 1
     woodPerPopPerWinter: 1
+    maxFood: 50
+    maxWood: 25
+    maxStone: 15
+    maxPop: 8
   - name: Thegn
     rank: 4
     culture: 1
@@ -83,6 +91,10 @@ MonoBehaviour:
     defensePerPop: 3
     foodPerPopPerTurn: 1
     woodPerPopPerWinter: 1
+    maxFood: 50
+    maxWood: 25
+    maxStone: 15
+    maxPop: 8
   - name: Ealdorman
     rank: 5
     culture: 1
@@ -93,6 +105,10 @@ MonoBehaviour:
     defensePerPop: 4
     foodPerPopPerTurn: 1
     woodPerPopPerWinter: 1
+    maxFood: 50
+    maxWood: 25
+    maxStone: 15
+    maxPop: 8
   - name: Cyning
     rank: 6
     culture: 1
@@ -103,3 +119,7 @@ MonoBehaviour:
     defensePerPop: 6
     foodPerPopPerTurn: 1
     woodPerPopPerWinter: 1
+    maxFood: 50
+    maxWood: 25
+    maxStone: 15
+    maxPop: 8

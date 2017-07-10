@@ -5,72 +5,53 @@ using UnityEngine;
 namespace DaleranGames.TBSFramework
 {
     [System.Serializable]
-    public class ModifierDictionary
+    public class ModifierDictionary<T>
     {
-        protected Dictionary<Stat.Category, List<Modifier>> modifiers;
-        protected Dictionary<Stat.Category, int> totals;
+        protected Dictionary<T, ModifierCollection> modifiers;
+        
 
-        public ModifierDictionary()
+        public ModifierDictionary ()
         {
-            modifiers = new Dictionary<Stat.Category, List<Modifier>>();
-            totals = new Dictionary<Stat.Category, int>();
+            modifiers = new Dictionary<T, ModifierCollection>();
         }
 
-        public int this[Stat.Category statCat]
+        public virtual ModifierCollection this[T obj]
         {
             get
             {
-                if (totals.ContainsKey(statCat))
-                    return totals[statCat];
-                else
-                    return 0;
-            }
-        }
-
-        public Modifier[] GetAll(Stat.Category statCat)
-        {
-            if (modifiers.ContainsKey(statCat))
-                return modifiers[statCat].ToArray();
-            else
-                return null;
-        }
-
-        public void Add (Modifier mod)
-        {
-            if (!modifiers.ContainsKey(mod.Mod.Type))
-            {
-                modifiers.Add(mod.Mod.Type, new List<Modifier>());
-                totals.Add(mod.Mod.Type, 0);
-            }
-            modifiers[mod.Mod.Type].Add(mod);
-            totals[mod.Mod.Type] += mod.Mod.Value;
-        }
-
-        public void Remove (Modifier mod)
-        {
-            if (modifiers.ContainsKey(mod.Mod.Type))
-            {
-                if (modifiers[mod.Mod.Type].Contains(mod))
+                if (modifiers.ContainsKey(obj))
                 {
-                    modifiers[mod.Mod.Type].Remove(mod);
-                    totals[mod.Mod.Type] -= mod.Mod.Value;
+                    return modifiers[obj];
                 }
+                return null;
             }
         }
 
-        public void Clear (Stat.Category statCat)
+        public void Add(T obj, Modifier mod)
         {
-            if (totals.ContainsKey(statCat))
-                totals[statCat] = 0;
-
-            if (modifiers.ContainsKey(statCat))
-                modifiers[statCat].Clear();
+            if (!modifiers.ContainsKey(obj))
+            {
+                modifiers.Add(obj, new ModifierCollection());
+            }
+            modifiers[obj].Add(mod);
         }
 
-        public void ClearAll()
+        public void Remove(T obj, Modifier mod)
+        {
+            if (modifiers.ContainsKey(obj))
+            {
+                modifiers[obj].Remove(mod);
+            }
+        }
+
+        public bool Contains(T obj)
+        {
+            return modifiers.ContainsKey(obj);
+        }
+
+        public void Clear()
         {
             modifiers.Clear();
-            totals.Clear();
         }
     }
 }

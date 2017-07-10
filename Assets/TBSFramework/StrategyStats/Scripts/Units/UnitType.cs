@@ -56,11 +56,27 @@ namespace DaleranGames.TBSFramework
         protected int woodPerPopPerWinter = 1;
         public Stat WinterWood { get { return new Stat(Stat.Category.WoodPerPopPerWinter, woodPerPopPerWinter); } }
 
+        [SerializeField]
+        protected int maxFood = 50;
+        public int MaxFood { get { return new Stat(Stat.Category.MaxFoodStorage, maxFood); } }
+
+        [SerializeField]
+        protected int maxWood = 30;
+        public int MaxWood { get { return new Stat(Stat.Category.MaxFoodStorage, maxWood); } }
+
+        [SerializeField]
+        protected int maxStone = 10;
+        public int MaxStone { get { return new Stat(Stat.Category.MaxFoodStorage, maxStone); } }
+
+        [SerializeField]
+        protected int maxPop = 8;
+        public int MaxPopulation { get { return new Stat(Stat.Category.MaxFoodStorage, maxPop); } }
+
+
         public Stat BirthRate { get { return GameplayMetrics.BaseBirthRate; } }
         public Stat DeathRate { get { return GameplayMetrics.BaseDeathRate; } }
         public Stat StarvationRate { get { return GameplayMetrics.BaseStarvationRate; } }
         public Stat FreezingRate { get { return GameplayMetrics.BaseFreezingRate; } }
-
         #endregion
 
         public UnitType (UnitType type, int id)

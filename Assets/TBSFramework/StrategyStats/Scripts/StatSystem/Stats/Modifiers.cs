@@ -10,10 +10,7 @@ namespace DaleranGames.TBSFramework
     {
         private Modifiers() { }
 
-        public ModifierCollection<Unit> UnitModifiers = new ModifierCollection<Unit>();
-        public ModifierCollection<HexTile> TileModifiers = new ModifierCollection<HexTile>();
-        public ModifierCollection<Group> GroupModifiers = new ModifierCollection<Group>();
-        public ModifierDictionary GlobalModifiers = new ModifierDictionary();
+        public ModifierCollection GlobalModifiers = new ModifierCollection();
 
     }
 }

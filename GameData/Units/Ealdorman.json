@@ -8,5 +8,9 @@
     "attackCost": 5,
     "defensePerPop": 4,
     "foodPerPopPerTurn": 1,
-    "woodPerPopPerWinter": 1
+    "woodPerPopPerWinter": 1,
+    "maxFood": 50,
+    "maxWood": 25,
+    "maxStone": 15,
+    "maxPop": 8
 }

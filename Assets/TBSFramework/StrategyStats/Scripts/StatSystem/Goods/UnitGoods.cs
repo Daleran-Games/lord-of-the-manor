@@ -8,7 +8,7 @@ namespace DaleranGames.TBSFramework
     public class UnitGoods
     {
 
-        protected UnitType unitType;
+        protected StatCollection unitStats;
 
         protected int food;
         public Good Food { get { return new Good(Good.Category.Food, food); } }
@@ -29,21 +29,19 @@ namespace DaleranGames.TBSFramework
 
 
 
-        protected List<Transaction> nextTurnTransactions;
+        protected List<Transaction> endTurnTransactions;
 
-        public UnitGoods (UnitType type)
+        public UnitGoods (StatCollection stats)
         {
-            unitType = type;
-            nextTurnTransactions = new List<Transaction>();
+            unitStats = stats;
+            endTurnTransactions = new List<Transaction>();
         }
 
-        public bool CanProcessImmediateTransaction (Transaction transaction)
+        public bool CanProcessTransaction (Transaction transaction)
         {
-            return true;
-        }
+            if (ContainsGood(transaction.TransactedGood))
 
-        public bool ProcessImmediateTransaction(Transaction transaction)
-        {
+
             return true;
         }
 

@@ -42,7 +42,6 @@ namespace DaleranGames.TBSFramework
             AttackCost = 30
         }
 
-
         [SerializeField]
         Category _type;
         [SerializeField]

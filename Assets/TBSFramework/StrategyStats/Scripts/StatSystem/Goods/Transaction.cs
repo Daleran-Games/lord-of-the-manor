@@ -7,15 +7,9 @@ namespace DaleranGames.TBSFramework
     [System.Serializable]
     public struct Transaction 
     {
-        public enum ScheduleMode
-        {
-            Immediate=0,
-            TurnBeginning=1,
-            TurnEnd=2
-        }
 
-        ScheduleMode schedule;
-        public ScheduleMode Schedule { get { return schedule; } }
+        bool immediate;
+        public bool Immediate { get { return immediate; } }
 
         Good good;
         public Good TransactedGood { get { return TransactedGood; } }
@@ -23,17 +17,17 @@ namespace DaleranGames.TBSFramework
         string description;
         public string Description { get { return description; } }
 
-        public Transaction (ScheduleMode scheduleMode,Good good)
+        public Transaction (bool immediate,Good good)
         {
             this.good = good;
-            this.schedule = scheduleMode;
+            this.immediate = immediate;
             description = "None";
         }
 
-        public Transaction(ScheduleMode scheduleMode, Good good, string description)
+        public Transaction(bool immediate, Good good, string description)
         {
             this.good = good;
-            this.schedule = scheduleMode;
+            this.immediate = immediate;
             this.description = description;
         }
 
