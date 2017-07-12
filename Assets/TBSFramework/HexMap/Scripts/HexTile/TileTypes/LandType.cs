@@ -21,6 +21,7 @@ namespace DaleranGames.TBSFramework
         protected LandType clearedLand;
         public LandType ClearedLand { get { return clearedLand; } }
 
+        
         [SerializeField]
         protected int foodYield = 0;
         public Stat FoodYield { get { return new Stat(Stat.Category.FoodYield, foodYield); } }
@@ -44,7 +45,7 @@ namespace DaleranGames.TBSFramework
         [SerializeField]
         protected int movementCost = 1;
         public Stat MovementCost { get { return new Stat(Stat.Category.MovementCost, movementCost); } }
-
+        
         public LandType(LandType land, int id)
         {
             name = land.Name;
@@ -69,7 +70,7 @@ namespace DaleranGames.TBSFramework
             base.OnDatabaseInitialization();
 
             if (clearable)
-                clearedLand = GameDatabase.Instance.LandTiles.Get(clearedLandName);
+                clearedLand = GameDatabase.Instance.LandTiles[clearedLandName];
 
         }
 

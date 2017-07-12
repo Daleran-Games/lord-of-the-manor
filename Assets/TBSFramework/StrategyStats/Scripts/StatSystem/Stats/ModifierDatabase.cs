@@ -5,12 +5,12 @@ using UnityEngine;
 namespace DaleranGames.TBSFramework
 {
     [System.Serializable]
-    public class ModifierDictionary<T>
+    public class ModifierDatabase<T>
     {
         protected Dictionary<T, ModifierCollection> modifiers;
         
 
-        public ModifierDictionary ()
+        public ModifierDatabase ()
         {
             modifiers = new Dictionary<T, ModifierCollection>();
         }
@@ -49,7 +49,7 @@ namespace DaleranGames.TBSFramework
             return modifiers.ContainsKey(obj);
         }
 
-        public void Clear()
+        public void ClearAll()
         {
             modifiers.Clear();
         }

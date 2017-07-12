@@ -29,9 +29,9 @@ namespace DaleranGames.TBSFramework
         [HideInInspector]
         protected string type = "UnitType";
         public string Type { get { return type; } }
-
+        /*
         #region UnitStats
-
+        
         [SerializeField]
         protected int actionPoints = 10;
         public Stat ActionPoints { get { return new Stat(Stat.Category.ActionPoints, actionPoints); } }
@@ -58,19 +58,19 @@ namespace DaleranGames.TBSFramework
 
         [SerializeField]
         protected int maxFood = 50;
-        public int MaxFood { get { return new Stat(Stat.Category.MaxFoodStorage, maxFood); } }
+        public Stat MaxFood { get { return new Stat(Stat.Category.MaxFoodStorage, maxFood); } }
 
         [SerializeField]
         protected int maxWood = 30;
-        public int MaxWood { get { return new Stat(Stat.Category.MaxFoodStorage, maxWood); } }
+        public Stat MaxWood { get { return new Stat(Stat.Category.MaxFoodStorage, maxWood); } }
 
         [SerializeField]
         protected int maxStone = 10;
-        public int MaxStone { get { return new Stat(Stat.Category.MaxFoodStorage, maxStone); } }
+        public Stat MaxStone { get { return new Stat(Stat.Category.MaxFoodStorage, maxStone); } }
 
         [SerializeField]
         protected int maxPop = 8;
-        public int MaxPopulation { get { return new Stat(Stat.Category.MaxFoodStorage, maxPop); } }
+        public Stat MaxPopulation { get { return new Stat(Stat.Category.MaxFoodStorage, maxPop); } }
 
 
         public Stat BirthRate { get { return GameplayMetrics.BaseBirthRate; } }
@@ -78,7 +78,7 @@ namespace DaleranGames.TBSFramework
         public Stat StarvationRate { get { return GameplayMetrics.BaseStarvationRate; } }
         public Stat FreezingRate { get { return GameplayMetrics.BaseFreezingRate; } }
         #endregion
-
+    */
         public UnitType (UnitType type, int id)
         {
             this.id = id;
@@ -86,13 +86,14 @@ namespace DaleranGames.TBSFramework
             rank = type.Rank;
             culture = type.Culture;
             this.type = this.ToString();
-
+            /*
             actionPoints = type.ActionPoints;
             attackPerPop = type.BaseAttack;
             attackCost = type.AttackCost;
             defensePerPop = type.BaseDefense;
             foodPerPopPerTurn = type.FoodUse;
             woodPerPopPerWinter = type.WinterWood;
+            */
         }
 
         public void OnDatabaseInitialization()

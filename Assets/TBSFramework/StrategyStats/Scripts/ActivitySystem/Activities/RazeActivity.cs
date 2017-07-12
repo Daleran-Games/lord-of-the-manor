@@ -24,7 +24,7 @@ namespace DaleranGames.TBSFramework
 
         public override void OnDatabaseInitialization()
         {
-            icon = GameDatabase.Instance.TileGraphics.Get("UIAtlas_Highlight_Cross");
+            icon = GameDatabase.Instance.TileGraphics["UIAtlas_Highlight_Cross"];
         }
 
         public override TileGraphic GetTerrainIcon(HexTile tile)

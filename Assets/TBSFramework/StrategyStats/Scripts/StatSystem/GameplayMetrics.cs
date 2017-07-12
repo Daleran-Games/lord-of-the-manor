@@ -12,11 +12,11 @@ namespace DaleranGames.TBSFramework
         public const float Seasons = 4;
         public static float YearsBetweenChildren = 1f;
 
-        public static Stat BaseBirthRate = new Stat(Stat.Category.BirthRate, Mathf.RoundToInt(1000f / (CoupleSize) * (ChildbearingYears / AverageLifespan) / Seasons / YearsBetweenChildren));
-        public static Stat BaseDeathRate = new Stat(Stat.Category.DeathRate, Mathf.RoundToInt(1000f / AverageLifespan / Seasons));
+        public static Stat BaseBirthRate = new Stat("UnitBirthRate", Mathf.RoundToInt(1000f / (CoupleSize) * (ChildbearingYears / AverageLifespan) / Seasons / YearsBetweenChildren));
+        public static Stat BaseDeathRate = new Stat("UnitDeathRate", Mathf.RoundToInt(1000f / AverageLifespan / Seasons));
 
-        public static Stat BaseStarvationRate = new Stat(Stat.Category.StarvationRate, 500);
-        public static Stat BaseFreezingRate = new Stat(Stat.Category.FreezingRate, 250);
+        public static Stat BaseStarvationRate = new Stat("UnitStarvationRate", 500);
+        public static Stat BaseFreezingRate = new Stat("UnitFreezingRate", 250);
 
     }
 }

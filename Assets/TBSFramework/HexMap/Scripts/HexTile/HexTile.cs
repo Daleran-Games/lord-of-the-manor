@@ -54,8 +54,8 @@ namespace DaleranGames.TBSFramework
         public Vector3 Position { get { return position; } protected set { position = value; } }
 
         [SerializeField]
-        protected Group owner;
-        public Group Owner { get { return owner; } }
+        protected Unit owner;
+        public Unit Owner { get { return owner; } }
 
         [SerializeField]
         protected Unit occupier;
@@ -159,7 +159,7 @@ namespace DaleranGames.TBSFramework
                 else if (land != null && improvement == null)
                     return land.MovementCost;
                 else
-                    return new Stat(Stat.Category.MovementCost, 1);
+                    return new Stat("UnitMovementCost", 1);
             }
         }
 
@@ -172,7 +172,7 @@ namespace DaleranGames.TBSFramework
                 else if (land != null && improvement == null)
                     return land.DefenseBonus;
                 else
-                    return new Stat(Stat.Category.DefenseBonus, 0);
+                    return new Stat("UnitTileDefenseBonus", 0);
             }
         }
 

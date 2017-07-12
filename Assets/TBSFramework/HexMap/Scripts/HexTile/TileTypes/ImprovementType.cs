@@ -27,11 +27,11 @@ namespace DaleranGames.TBSFramework
 
         [SerializeField]
         protected int defenseBonus = 0;
-        public Stat DefenseBonus { get { return new Stat(Stat.Category.DefenseBonus, defenseBonus); } }
+        public Stat DefenseBonus { get { return new Stat("UnitDefenseBonus", defenseBonus); } }
 
         [SerializeField]
         protected int movementCost = 1;
-        public Stat MovementCost { get { return new Stat(Stat.Category.MovementCost, movementCost); } }
+        public Stat MovementCost { get { return new Stat("UnitMovementCost", movementCost); } }
 
         public ImprovementType(ImprovementType impr,int id)
         {
@@ -52,7 +52,7 @@ namespace DaleranGames.TBSFramework
             base.OnDatabaseInitialization();
 
             if (upgradeable)
-                upgradedImprovement = GameDatabase.Instance.Improvements.Get(upgradeName);
+                upgradedImprovement = GameDatabase.Instance.Improvements[upgradeName];
         }
 
         public override void OnActivation(HexTile tile)

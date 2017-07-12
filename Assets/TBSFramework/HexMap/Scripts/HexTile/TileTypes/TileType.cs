@@ -32,7 +32,7 @@ namespace DaleranGames.TBSFramework
         public virtual void OnDatabaseInitialization()
         {
             //Debug.Log("Create tile icon " + iconName);
-            iconGraphic = GameDatabase.Instance.TileGraphics.Get(iconName);
+            iconGraphic = GameDatabase.Instance.TileGraphics[iconName];
         }
 
         public virtual void OnActivation(HexTile tile)

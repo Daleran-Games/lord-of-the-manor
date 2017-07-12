@@ -25,7 +25,7 @@ namespace DaleranGames.TBSFramework
 
         public void EnterActivityMode (string activityName)
         {
-            currentActivity = GameDatabase.Instance.Activities.Get(activityName);
+            currentActivity = GameDatabase.Instance.Activities[activityName];
             if (currentActivity != null)
             {
                 activeMode = true;

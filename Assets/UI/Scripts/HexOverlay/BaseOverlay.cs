@@ -39,7 +39,7 @@ namespace DaleranGames.UI
 
         protected virtual void OnDatabaseInitialized()
         {
-            icon = GameDatabase.Instance.TileGraphics.Get(iconName);
+            icon = GameDatabase.Instance.TileGraphics[iconName];
         }
 
         protected abstract void SetLabel(HexTile tile);

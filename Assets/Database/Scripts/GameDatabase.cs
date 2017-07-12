@@ -18,8 +18,10 @@ namespace DaleranGames.Database
         public TileAtlas Atlas { get { return atlas; } }
         public Dictionary<string, Sprite> Sprites;
         public Database<TileGraphic> TileGraphics;
+        //public Database<StatType> StatTypes;
         public Database<LandType> LandTiles;
         public Database<ImprovementType> Improvements;
+        public Database<UnitType> Units;
         public Database<Activity> Activities;
 
         private void Awake()
@@ -34,14 +36,18 @@ namespace DaleranGames.Database
 
             Sprites = GetComponentInChildren<SpriteDatabaseLoader>().GetSpriteDictionary();
             TileGraphics = GetComponentInChildren<GraphicsDatabaseLoader>().GenerateDatabase();
+            //StatTypes = GetComponentInChildren<StatsDatabaseLoader>().GenerateDatabase();
             LandTiles = GetComponentInChildren<LandDatabaseLoader>().GenerateDatabase();
             Improvements = GetComponentInChildren<ImprovementsDatabaseLoader>().GenerateDatabase();
+            Units = GetComponentInChildren<UnitsDatabaseLoader>().GenerateDatabase();
             Activities = GetComponentInChildren<ActivityDatabaseLoader>().GenerateDatabase();
 
 
             GetComponentInChildren<GraphicsDatabaseLoader>().InitializeDatabase(TileGraphics);
+            //GetComponentInChildren<StatsDatabaseLoader>().InitializeDatabase(StatTypes);
             GetComponentInChildren<LandDatabaseLoader>().InitializeDatabase(LandTiles);
             GetComponentInChildren<ImprovementsDatabaseLoader>().InitializeDatabase(Improvements);
+            GetComponentInChildren<UnitsDatabaseLoader>().InitializeDatabase(Units);
             GetComponentInChildren<ActivityDatabaseLoader>().InitializeDatabase(Activities);
 
 

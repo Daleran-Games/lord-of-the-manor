@@ -7,30 +7,30 @@ namespace DaleranGames.TBSFramework
     [System.Serializable]
     public class ModifierCollection
     {
-        protected Dictionary<Stat.Category, List<Modifier>> modifiers;
-        protected Dictionary<Stat.Category, int> totals;
+        protected Dictionary<string, List<Modifier>> modifiers;
+        protected Dictionary<string, int> totals;
 
         public ModifierCollection()
         {
-            modifiers = new Dictionary<Stat.Category, List<Modifier>>();
-            totals = new Dictionary<Stat.Category, int>();
+            modifiers = new Dictionary<string, List<Modifier>>();
+            totals = new Dictionary<string, int>();
         }
 
-        public int this[Stat.Category statCat]
+        public int this[string statType]
         {
             get
             {
-                if (totals.ContainsKey(statCat))
-                    return totals[statCat];
+                if (totals.ContainsKey(statType))
+                    return totals[statType];
                 else
                     return 0;
             }
         }
 
-        public Modifier[] GetAll(Stat.Category statCat)
+        public Modifier[] GetAll(string statType)
         {
-            if (modifiers.ContainsKey(statCat))
-                return modifiers[statCat].ToArray();
+            if (modifiers.ContainsKey(statType))
+                return modifiers[statType].ToArray();
             else
                 return null;
         }
@@ -58,13 +58,13 @@ namespace DaleranGames.TBSFramework
             }
         }
 
-        public void Clear (Stat.Category statCat)
+        public void Clear (string statType)
         {
-            if (totals.ContainsKey(statCat))
-                totals[statCat] = 0;
+            if (totals.ContainsKey(statType))
+                totals[statType] = 0;
 
-            if (modifiers.ContainsKey(statCat))
-                modifiers[statCat].Clear();
+            if (modifiers.ContainsKey(statType))
+                modifiers[statType].Clear();
         }
 
         public void ClearAll()
