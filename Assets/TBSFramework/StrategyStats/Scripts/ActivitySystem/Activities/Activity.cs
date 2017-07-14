@@ -17,6 +17,10 @@ namespace DaleranGames.TBSFramework
         protected string type = "Activity";
         public string Type { get { return type; } }
 
+        [SerializeField]
+        protected string workIconName;
+        public virtual string WorkIconName { get { return workIconName; } }
+
         [System.NonSerialized]
         protected int id;
         public virtual int ID { get { return id; } }

@@ -60,19 +60,18 @@ namespace DaleranGames.UI
         protected override void OnDatabaseInitialized()
         {
             base.OnDatabaseInitialized();
-            food1g = GameDatabase.Instance.TileGraphics.Get(food1);
-            food2g = GameDatabase.Instance.TileGraphics.Get(food2);
-            food3g = GameDatabase.Instance.TileGraphics.Get(food3);
-            wood1g = GameDatabase.Instance.TileGraphics.Get(wood1);
-            wood2g = GameDatabase.Instance.TileGraphics.Get(wood2);
-            wood3g = GameDatabase.Instance.TileGraphics.Get(wood3);
-            stone1g = GameDatabase.Instance.TileGraphics.Get(stone1);
-            stone2g = GameDatabase.Instance.TileGraphics.Get(stone2);
-            stone3g = GameDatabase.Instance.TileGraphics.Get(stone3);
-            gold1g = GameDatabase.Instance.TileGraphics.Get(gold1);
-            gold2g = GameDatabase.Instance.TileGraphics.Get(gold2);
-            gold3g = GameDatabase.Instance.TileGraphics.Get(gold3);
-
+            food1g = GameDatabase.Instance.TileGraphics[food1];
+            food2g = GameDatabase.Instance.TileGraphics[food2];
+            food3g = GameDatabase.Instance.TileGraphics[food3];
+            wood1g = GameDatabase.Instance.TileGraphics[wood1];
+            wood2g = GameDatabase.Instance.TileGraphics[wood2];
+            wood3g = GameDatabase.Instance.TileGraphics[wood3];
+            stone1g = GameDatabase.Instance.TileGraphics[stone1];
+            stone2g = GameDatabase.Instance.TileGraphics[stone2];
+            stone3g = GameDatabase.Instance.TileGraphics[stone3];
+            gold1g = GameDatabase.Instance.TileGraphics[gold1];
+            gold2g = GameDatabase.Instance.TileGraphics[gold2];
+            gold3g = GameDatabase.Instance.TileGraphics[gold3];
         }
 
         protected override void SetLabel(HexTile tile)
@@ -85,7 +84,7 @@ namespace DaleranGames.UI
 
         TileGraphic FoodGraphic(HexTile tile)
         {
-            switch (tile.Land.FoodYield.Value)
+            switch (tile.Land.BaseFoodYield.Value)
             {
                 case 1:
                     return food1g;
@@ -100,7 +99,7 @@ namespace DaleranGames.UI
 
         TileGraphic WoodGraphic(HexTile tile)
         {
-            switch (tile.Land.WoodYield.Value)
+            switch (tile.Land.BaseWoodYield.Value)
             {
                 case 1:
                     return wood1g;
@@ -115,7 +114,7 @@ namespace DaleranGames.UI
 
         TileGraphic StoneGraphic(HexTile tile)
         {
-            switch (tile.Land.StoneYield.Value)
+            switch (tile.Land.BaseStoneYield.Value)
             {
                 case 1:
                     return stone1g;
@@ -130,7 +129,7 @@ namespace DaleranGames.UI
 
         TileGraphic GoldGraphic(HexTile tile)
         {
-            switch(tile.Land.GoldYield.Value)
+            switch(tile.Land.BaseGoldYield.Value)
             {
                 case 1:
                     return gold1g;

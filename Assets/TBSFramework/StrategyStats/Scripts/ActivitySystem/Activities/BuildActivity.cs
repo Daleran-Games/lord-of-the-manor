@@ -30,7 +30,7 @@ namespace DaleranGames.TBSFramework
 
         public override void OnDatabaseInitialization()
         {
-            improvement = GameDatabase.Instance.Improvements.Get(improvementName);
+            improvement = GameDatabase.Instance.Improvements[improvementName];
         }
 
         public override TileGraphic GetTerrainIcon(HexTile tile)

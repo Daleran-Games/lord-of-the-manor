@@ -8,6 +8,7 @@ namespace DaleranGames.TBSFramework
     [System.Serializable]
     public abstract class TileType : IDatabaseObject, IType<HexTile>
     {
+        [Header("Tile Type Info")]
         [SerializeField]
         protected string name;
         public  virtual string Name { get { return name; } }
@@ -32,7 +33,7 @@ namespace DaleranGames.TBSFramework
         public virtual void OnDatabaseInitialization()
         {
             //Debug.Log("Create tile icon " + iconName);
-            iconGraphic = GameDatabase.Instance.TileGraphics.Get(iconName);
+            iconGraphic = GameDatabase.Instance.TileGraphics[iconName];
         }
 
         public virtual void OnActivation(HexTile tile)
@@ -64,6 +65,11 @@ namespace DaleranGames.TBSFramework
         }
 
         public virtual void OnDeactivation(HexTile tile)
+        {
+
+        }
+
+        public virtual void OnChangeOwner (HexTile tile, Group oldOwner, Group newOwner)
         {
 
         }

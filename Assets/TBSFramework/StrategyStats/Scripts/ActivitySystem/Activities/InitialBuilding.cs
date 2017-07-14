@@ -5,13 +5,9 @@ using UnityEngine;
 namespace DaleranGames.TBSFramework
 {
     [System.Serializable]
-    public abstract class GoodsStorage
+    public class InitialBuilding : Activity
     {
 
-        public abstract int Amount { get; }
-        public abstract int Max { get; }
-
-        
 
     }
 }

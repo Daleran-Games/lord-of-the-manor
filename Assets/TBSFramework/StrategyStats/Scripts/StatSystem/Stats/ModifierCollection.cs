@@ -5,45 +5,56 @@ using UnityEngine;
 namespace DaleranGames.TBSFramework
 {
     [System.Serializable]
-    public class ModifierCollection
+    public class ModifierCollection : IModifierCollection
     {
-        protected Dictionary<Stat.Category, List<Modifier>> modifiers;
-        protected Dictionary<Stat.Category, int> totals;
+        protected Dictionary<StatType, List<Modifier>> modifiers;
+        protected Dictionary<StatType, int> totals;
 
         public ModifierCollection()
         {
-            modifiers = new Dictionary<Stat.Category, List<Modifier>>();
-            totals = new Dictionary<Stat.Category, int>();
+            modifiers = new Dictionary<StatType, List<Modifier>>();
+            totals = new Dictionary<StatType, int>();
         }
 
-        public int this[Stat.Category statCat]
+        public int this[StatType statType]
         {
             get
             {
-                if (totals.ContainsKey(statCat))
-                    return totals[statCat];
+                if (totals.ContainsKey(statType))
+                    return totals[statType];
                 else
                     return 0;
             }
         }
 
-        public Modifier[] GetAll(Stat.Category statCat)
+        public Modifier[] GetAll(StatType statType)
         {
-            if (modifiers.ContainsKey(statCat))
-                return modifiers[statCat].ToArray();
+            if (modifiers.ContainsKey(statType))
+                return modifiers[statType].ToArray();
             else
                 return null;
         }
 
         public void Add (Modifier mod)
         {
-            if (!modifiers.ContainsKey(mod.Mod.Type))
+            if (mod.Mod.Value != 0)
             {
-                modifiers.Add(mod.Mod.Type, new List<Modifier>());
-                totals.Add(mod.Mod.Type, 0);
+                if (!modifiers.ContainsKey(mod.Mod.Type))
+                {
+                    modifiers.Add(mod.Mod.Type, new List<Modifier>());
+                    totals.Add(mod.Mod.Type, 0);
+                }
+                modifiers[mod.Mod.Type].Add(mod);
+                totals[mod.Mod.Type] += mod.Mod.Value;
             }
-            modifiers[mod.Mod.Type].Add(mod);
-            totals[mod.Mod.Type] += mod.Mod.Value;
+        }
+        
+        public void Add (ModifierEntry[] mods)
+        {
+            for (int i=0; i < mods.Length; i++)
+            {
+                Add(mods[i].GetModifer());
+            }
         }
 
         public void Remove (Modifier mod)
@@ -58,13 +69,21 @@ namespace DaleranGames.TBSFramework
             }
         }
 
-        public void Clear (Stat.Category statCat)
+        public void Remove(ModifierEntry[] mods)
         {
-            if (totals.ContainsKey(statCat))
-                totals[statCat] = 0;
+            for (int i = 0; i < mods.Length; i++)
+            {
+                Remove(mods[i].GetModifer());
+            }
+        }
 
-            if (modifiers.ContainsKey(statCat))
-                modifiers[statCat].Clear();
+        public void Clear (StatType statType)
+        {
+            if (totals.ContainsKey(statType))
+                totals[statType] = 0;
+
+            if (modifiers.ContainsKey(statType))
+                modifiers[statType].Clear();
         }
 
         public void ClearAll()

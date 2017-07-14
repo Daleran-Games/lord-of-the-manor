@@ -7,21 +7,21 @@ using System.IO;
 
 namespace DaleranGames.Database
 {
-    public class UnitsDatabaseLoader : DatabaseLoader<UnitType>
+    public class UnitsDatabaseLoader : DatabaseLoader<GroupType>
     {
         [SerializeField]
         [Reorderable]
-        protected UnitType[] units;
+        protected GroupType[] units;
 
-        public override Database<UnitType> GenerateDatabase()
+        public override Database<GroupType> GenerateDatabase()
         {
-            Database<UnitType> newDB = new Database<UnitType>();
+            Database<GroupType> newDB = new Database<GroupType>();
             string[] files = Directory.GetFiles(JSONFilePath, "*.json", SearchOption.TopDirectoryOnly);
 
             for (int i = 0; i < files.Length; i++)
             {
                 string jsonString = File.ReadAllText(files[i]);
-                newDB.Add(new UnitType(JsonUtility.FromJson<UnitType>(jsonString), id));
+                newDB.Add(new GroupType(JsonUtility.FromJson<GroupType>(jsonString), id));
                 id++;
             }
             //Debug.Log("Improvment types types created");

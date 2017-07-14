@@ -9,25 +9,15 @@ namespace DaleranGames.TBSFramework
     public class Good : IFormattable, IEquatable<Good>, IComparable<Good>, IComparable
     {
 
-        public enum Category
-        {
-            Food,
-            Wood,
-            Gold,
-            Stone,
-            Work,
-            Population
-        }
-
         [SerializeField]
-        Category _type;
+        GoodType _type;
         [SerializeField]
         int _value;
 
-        public Category Type { get { return _type; } }
+        public GoodType Type { get { return _type; } }
         public int Value { get { return _value; } }
 
-        public Good(Category type, int val)
+        public Good(GoodType type, int val)
         {
             _type = type;
             _value = val;
@@ -86,7 +76,7 @@ namespace DaleranGames.TBSFramework
             }
         }
 
-        public Good ToType(Category t)
+        public Good ToType(GoodType t)
         {
             return new Good(t, Value);
         }
@@ -211,12 +201,12 @@ namespace DaleranGames.TBSFramework
             return l.Value.CompareTo(r) <= 0;
         }
 
-        public static explicit operator int(Good good)
+        public static implicit operator int(Good good)
         {
             return good.Value;
         }
 
-        public static explicit operator Category(Good good)
+        public static implicit operator GoodType(Good good)
         {
             return good.Type;
         }

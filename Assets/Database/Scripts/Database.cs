@@ -25,22 +25,31 @@ namespace DaleranGames.Database
             dict.Add(obj.ID, obj);
         }
 
-        public T Get(int id) 
+        public T this[int id] 
         {
-            T obj;
-            if (dict.TryGetValue(id, out obj))
-                return obj;
+            get
+            {
+                T obj;
+                if (dict.TryGetValue(id, out obj))
+                    return obj;
 
-            throw new KeyNotFoundException(id + " not found in " + typeof(T).ToString() + "database.");
+                throw new KeyNotFoundException(id + " not found in " + typeof(T).ToString() + "database.");
+            }
+
         }
 
-        public T Get(string name) 
+                
+        public T this[string name]
         {
-            T obj;
-            if (dict.TryGetValue(LookupID(name), out obj))
-                return obj;
+            get
+            {
+                T obj;
+                if (dict.TryGetValue(LookupID(name), out obj))
+                    return obj;
 
-            throw new KeyNotFoundException(name + " not found in " + typeof(T).ToString() + "database.");
+                throw new KeyNotFoundException(name + " not found in " + typeof(T).ToString() + "database.");
+            }
+
         }
 
         public int LookupID (string name)

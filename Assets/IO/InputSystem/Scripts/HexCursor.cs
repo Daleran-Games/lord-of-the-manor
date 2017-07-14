@@ -219,12 +219,12 @@ namespace DaleranGames.IO
 
         void OnDatabaseComplete()
         {
-            ring = GameDatabase.Instance.TileGraphics.Get(ringName);
-            dark = GameDatabase.Instance.TileGraphics.Get(darkName);
-            white = GameDatabase.Instance.TileGraphics.Get(whiteName);
-            positive = GameDatabase.Instance.TileGraphics.Get(positiveName);
-            negative = GameDatabase.Instance.TileGraphics.Get(negativeName);
-            cross = GameDatabase.Instance.TileGraphics.Get(crossName);
+            ring = GameDatabase.Instance.TileGraphics[ringName];
+            dark = GameDatabase.Instance.TileGraphics[darkName];
+            white = GameDatabase.Instance.TileGraphics[whiteName];
+            positive = GameDatabase.Instance.TileGraphics[positiveName];
+            negative = GameDatabase.Instance.TileGraphics[negativeName];
+            cross = GameDatabase.Instance.TileGraphics[crossName];
 
             CursorMode = HexCursorMode.Ring;
         }

@@ -68,18 +68,18 @@ namespace DaleranGames.UI
 
         void OnMeshGenrationComplete()
         {
-            zero = GameDatabase.Instance.TileGraphics.Get(zeroKey);
-            one = GameDatabase.Instance.TileGraphics.Get(oneKey);
-            two = GameDatabase.Instance.TileGraphics.Get(twoKey);
-            three = GameDatabase.Instance.TileGraphics.Get(threeKey);
-            four = GameDatabase.Instance.TileGraphics.Get(fourKey);
-            five = GameDatabase.Instance.TileGraphics.Get(fiveKey);
-            six = GameDatabase.Instance.TileGraphics.Get(sixKey);
-            seven = GameDatabase.Instance.TileGraphics.Get(sevenKey);
-            eight = GameDatabase.Instance.TileGraphics.Get(eightKey);
-            nine = GameDatabase.Instance.TileGraphics.Get(nineKey);
-            dash = GameDatabase.Instance.TileGraphics.Get(dashKey);
-            plus = GameDatabase.Instance.TileGraphics.Get(plusKey);
+            zero = GameDatabase.Instance.TileGraphics[zeroKey];
+            one = GameDatabase.Instance.TileGraphics[oneKey];
+            two = GameDatabase.Instance.TileGraphics[twoKey];
+            three = GameDatabase.Instance.TileGraphics[threeKey];
+            four = GameDatabase.Instance.TileGraphics[fourKey];
+            five = GameDatabase.Instance.TileGraphics[fiveKey];
+            six = GameDatabase.Instance.TileGraphics[sixKey];
+            seven = GameDatabase.Instance.TileGraphics[sevenKey];
+            eight = GameDatabase.Instance.TileGraphics[eightKey];
+            nine = GameDatabase.Instance.TileGraphics[nineKey];
+            dash = GameDatabase.Instance.TileGraphics[dashKey];
+            plus = GameDatabase.Instance.TileGraphics[plusKey];
         }
 
         public void SetLabelIcon (HexTile tile, TileGraphic graphic)

@@ -33,12 +33,12 @@ namespace DaleranGames.TBSFramework
         {
             //TODO make the tile types have a bounding box or perhaps a rect instead.
 
-            LandType type = GameDatabase.Instance.LandTiles.Get(terrainCutoffs[0].TileName);
+            LandType type = GameDatabase.Instance.LandTiles[terrainCutoffs[0].TileName];
             TerrainCuttoff initial = TerrainCuttoff.zero;
             for (int i=0; i<terrainCutoffs.Length;i++)
             {
                 if (hexTile.Elevation >= terrainCutoffs[i].ElevationCutoff && hexTile.Moisture >= terrainCutoffs[i].MoistureCutoff)
-                     type = GameDatabase.Instance.LandTiles.Get(terrainCutoffs[i].TileName);
+                     type = GameDatabase.Instance.LandTiles[terrainCutoffs[i].TileName];
             }
             hexTile.Land = type;
             //Debug.Log("Setting cell " + hexCell.Position + " to " + type.Name);

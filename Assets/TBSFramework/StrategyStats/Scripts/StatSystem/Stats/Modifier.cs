@@ -7,10 +7,11 @@ namespace DaleranGames.TBSFramework
     [System.Serializable]
     public struct Modifier 
     {
-
+        [SerializeField]
         Stat mod;
         public Stat Mod { get { return mod; } }
 
+        [SerializeField]
         string description;
         public string Description { get { return description; } }
 
