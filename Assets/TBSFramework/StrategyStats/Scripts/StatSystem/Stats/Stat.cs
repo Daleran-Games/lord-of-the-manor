@@ -10,14 +10,14 @@ namespace DaleranGames.TBSFramework
     {
 
         [SerializeField]
-        string _type;
+        StatType _type;
         [SerializeField]
         int _value;
 
-        public string Type { get { return _type; } }
+        public StatType Type { get { return _type; } }
         public int Value { get { return _value; } }
 
-        public Stat (string type, int val)
+        public Stat (StatType type, int val)
         {
             _type = type;
             _value = val;
@@ -76,7 +76,7 @@ namespace DaleranGames.TBSFramework
             }
         }
 
-        public Stat ToType(string t)
+        public Stat ToType(StatType t)
         {
             return new Stat(t, Value);
         }
@@ -206,7 +206,7 @@ namespace DaleranGames.TBSFramework
             return s.Value;
         }
 
-        public static implicit operator string(Stat s)
+        public static implicit operator StatType(Stat s)
         {
             return s.Type;
         }

@@ -8,6 +8,7 @@ namespace DaleranGames.TBSFramework
     [System.Serializable]
     public abstract class TileType : IDatabaseObject, IType<HexTile>
     {
+        [Header("Tile Type Info")]
         [SerializeField]
         protected string name;
         public  virtual string Name { get { return name; } }
@@ -64,6 +65,11 @@ namespace DaleranGames.TBSFramework
         }
 
         public virtual void OnDeactivation(HexTile tile)
+        {
+
+        }
+
+        public virtual void OnChangeOwner (HexTile tile, Group oldOwner, Group newOwner)
         {
 
         }

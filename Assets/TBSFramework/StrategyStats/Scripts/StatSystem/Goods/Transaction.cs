@@ -7,13 +7,15 @@ namespace DaleranGames.TBSFramework
     [System.Serializable]
     public struct Transaction 
     {
-
+        [SerializeField]
         bool immediate;
         public bool Immediate { get { return immediate; } }
 
+        [SerializeField]
         Good good;
         public Good TransactedGood { get { return TransactedGood; } }
 
+        [SerializeField]
         string description;
         public string Description { get { return description; } }
 

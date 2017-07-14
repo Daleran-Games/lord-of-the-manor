@@ -21,7 +21,7 @@ namespace DaleranGames.Database
         //public Database<StatType> StatTypes;
         public Database<LandType> LandTiles;
         public Database<ImprovementType> Improvements;
-        public Database<UnitType> Units;
+        public Database<GroupType> Units;
         public Database<Activity> Activities;
 
         private void Awake()
