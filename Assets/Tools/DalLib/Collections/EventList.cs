@@ -11,7 +11,7 @@ namespace DaleranGames
         [SerializeField]
         protected List<T> eventList;
 
-        public Action ListModified { get; set; }
+        public event Action ListModified;
 
         public EventList()
         {

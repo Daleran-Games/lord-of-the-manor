@@ -23,15 +23,17 @@ namespace DaleranGames.TBSFramework
             UIGraphics = new TileGraphics(atlas, Position);
             TerrainGraphics = new TileGraphics(atlas, Position);
             owner = Group.NullUnit;
+            TileTimer = new TurnTimer(TurnManager.Instance);
 
             TurnManager.Instance.TurnEnded += OnTurnEnd;
             TurnManager.Instance.TurnSetUp += OnTurnSetUp;
             TurnManager.Instance.TurnStart += OnTurnStart;
             GameManager.Instance.Play.StateEnabled += OnGameStart;
+            TileTimer.TimerExpired += OnTimerExpire;
         }
 
         #region Tile Properties
-
+        
         [SerializeField]
         [ReadOnly]
         protected int id = 0;
@@ -91,6 +93,14 @@ namespace DaleranGames.TBSFramework
                 if (improvement != null)
                     improvement.OnActivation(this);
             }
+        }
+
+        public TurnTimer TileTimer;
+        public event Action<HexTile> TileTimerExpired;
+        public void OnTimerExpire()
+        {
+            if (TileTimerExpired != null)
+                TileTimerExpired(this);
         }
 
         [SerializeField]
@@ -230,10 +240,14 @@ namespace DaleranGames.TBSFramework
                     TurnManager.Instance.TurnSetUp -= OnTurnSetUp;
                     TurnManager.Instance.TurnStart += OnTurnStart;
                     GameManager.Instance.Play.StateEnabled -= OnGameStart;
+                    TileTimer.TimerExpired += OnTimerExpire;
                     UIGraphics = null;
                     TerrainGraphics = null;
                     Land.OnDeactivation(this);
                     Improvement.OnDeactivation(this);
+                    Land = null;
+                    Improvement = null;
+
                 }
 
                 // TODO: free unmanaged resources (unmanaged objects) and override a finalizer below.

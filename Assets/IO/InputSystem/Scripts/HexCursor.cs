@@ -158,12 +158,12 @@ namespace DaleranGames.IO
         HexQuad terrainIconQuad;
 
 
-        public Action<HexTile> HexTileLMBClicked;
-        public Action<HexTile> HexTileRMBClicked;
-        public Action<HexTile> HexTileMMBClicked;
+        public event Action<HexTile> HexTileLMBClicked;
+        public event Action<HexTile> HexTileRMBClicked;
+        public event Action<HexTile> HexTileMMBClicked;
 
-        public Action<HexTile> HexTileEntered;
-        public Action<HexTile> HexTileExited;
+        public event Action<HexTile> HexTileEntered;
+        public event Action<HexTile> HexTileExited;
 
         private void Awake()
         {

@@ -14,7 +14,7 @@ namespace DaleranGames.TBSFramework
         bool meshDirty = true;
         Vector3 tilePosition = Vector3.zero;
 
-        public System.Action GraphicsChanged;
+        public event Action GraphicsChanged;
 
         MeshData meshData;
         public MeshData MeshData

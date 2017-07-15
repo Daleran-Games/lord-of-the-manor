@@ -20,14 +20,51 @@ namespace DaleranGames.TBSFramework
 
         }
 
+        public override Good this[GoodType type]
+        {
+            get
+            {
+                return null;
+            }
+            set
+            {
+
+            }
+        }
+
+        public override Good[] GetAllGoods()
+        {
+            return new Good[0];
+        }
+
+        public override bool ContainsGoodOfType(GoodType type)
+        {
+            return false;
+        }
+
+        public override void ResolveEdgeCases()
+        {
+
+        }
+
         public override bool CanProcessTransaction(Transaction transaction)
         {
             return false;
         }
 
-        public override void Add(Transaction transaction)
+        public override bool CanProcessTransaction(Transaction[] transactions)
         {
+            return false;
+        }
 
+        public override bool TryAdd(Transaction transaction)
+        {
+            return false;
+        }
+
+        public override bool TryAdd(Transaction[] transactions)
+        {
+            return false;
         }
 
         public override void Remove(Transaction transaction)
@@ -35,22 +72,12 @@ namespace DaleranGames.TBSFramework
 
         }
 
-        public override void Set(Transaction transaction)
+        public override void Remove(Transaction[] transactions)
         {
 
-        }
-
-        public override bool ContainsGood(Good good)
-        {
-            return false;
         }
 
         public override void ProcessTransactions()
-        {
-
-        }
-
-        public override void ResolveEdgeCases()
         {
 
         }

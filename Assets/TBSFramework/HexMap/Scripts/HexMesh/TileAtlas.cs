@@ -9,7 +9,7 @@ namespace DaleranGames.TBSFramework
     public class TileAtlas : ScriptableObject
     {
 
-
+#pragma warning disable 0649
         [Header("Season Atlases")]
         [SerializeField]
         Material springAtlas;
@@ -26,7 +26,7 @@ namespace DaleranGames.TBSFramework
         [SerializeField]
         Material winterAtlas;
         public Material WinterAtlas { get { return winterAtlas; } }
-
+#pragma warning restore 0649
 
         [Header("UV Settings")]
         [SerializeField]

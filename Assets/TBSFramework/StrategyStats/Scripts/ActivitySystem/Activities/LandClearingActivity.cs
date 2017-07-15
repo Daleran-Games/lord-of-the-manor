@@ -39,7 +39,7 @@ namespace DaleranGames.TBSFramework
 
         public override void DoActivityOnTile(HexTile tile)
         {
-            tile.Land.ClearTile(tile);
+            //tile.Land.ClearTile(tile);
         }
 
         public override string ToJson()

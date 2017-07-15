@@ -5,8 +5,9 @@ using UnityEngine;
 
 namespace DaleranGames.TBSFramework
 {
-    public class GroupGoods : IGoodsCollection
+    public class GroupGoods : GoodsCollection
     {
+        [System.NonSerialized]
         protected Group owner;
 
         protected int food;
@@ -28,20 +29,12 @@ namespace DaleranGames.TBSFramework
         public virtual Good Work { get { return new Good(GoodType.Work, work); } }
 
 
-
-        protected List<Transaction> endTurnTransactions;
-        public virtual Transaction[] PendingTransactions { get { return endTurnTransactions.ToArray(); } }
-
-        protected Action<Good> goodDepleted;
-        public Action<Good> GoodDepleted  {  get { return goodDepleted; } }
-
-        public GroupGoods (Group unit)
+        public GroupGoods (Group unit) : base()
         {
-            endTurnTransactions = new List<Transaction>();
             owner = unit;
         }
 
-        public virtual Good this[GoodType type]
+        public override Good this[GoodType type]
         {
             get
             {
@@ -63,9 +56,33 @@ namespace DaleranGames.TBSFramework
                         return null;
                 }
             }
+            set
+            {
+                switch (type)
+                {
+                    case GoodType.Food:
+                        food = value.Value;
+                        break;
+                    case GoodType.Wood:
+                        wood = value.Value;
+                        break;
+                    case GoodType.Stone:
+                        stone = value.Value;
+                        break;
+                    case GoodType.Gold:
+                        gold = value.Value;
+                        break;
+                    case GoodType.Population:
+                        population = value.Value;
+                        break;
+                    case GoodType.Work:
+                        work = value.Value;
+                        break;
+                }
+            }
         }
 
-        public virtual Good[] GetAllGoods()
+        public override Good[] GetAllGoods()
         {
             return new Good[]
             {
@@ -78,54 +95,7 @@ namespace DaleranGames.TBSFramework
             };
         }
 
-        public virtual bool CanProcessTransaction (Transaction transaction)
-        {
-            if (ContainsGoodOfType(transaction.TransactedGood))
-            {
-                if (transaction.Immediate == true && this[transaction.TransactedGood.Type].Value >= transaction.TransactedGood.Value)
-                    return true;
-                else if (transaction.Immediate == false)
-                    return true;
-            }
-            return false;
-        }
-
-        public virtual bool CanProcessTransaction(Transaction[] transactions)
-        {
-            for (int i=0;i<transactions.Length;i++)
-            {
-                if (!CanProcessTransaction(transactions[i]))
-                    return false;
-            }
-            return true;
-        }
-
-        public virtual bool Add(Transaction transaction)
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual bool Add(Transaction[] transactions)
-        {
-            throw new NotImplementedException();
-        }
-
-        public virtual void Remove (Transaction transaction)
-        {
-
-        }
-
-        public virtual void Remove(Transaction[] transactions)
-        {
-
-        }
-
-        public virtual void Set(Transaction transaction)
-        {
-
-        }
-
-        public virtual bool ContainsGoodOfType (GoodType type)
+        public override bool ContainsGoodOfType (GoodType type)
         {
             if (
                 type == GoodType.Food ||
@@ -140,18 +110,9 @@ namespace DaleranGames.TBSFramework
                 return false;
         }
 
-        public virtual void ProcessTransactions()
+        public override void ResolveEdgeCases()
         {
 
         }
-
-        public virtual void ResolveEdgeCases()
-        {
-
-        }
-
-
-
-
     }
 }

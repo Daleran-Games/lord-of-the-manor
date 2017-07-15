@@ -17,6 +17,8 @@ namespace DaleranGames.TBSFramework
         public GoodType Type { get { return _type; } }
         public int Value { get { return _value; } }
 
+        public static readonly Good Zero = new Good(GoodType.None, 0);
+
         public Good(GoodType type, int val)
         {
             _type = type;
@@ -25,7 +27,7 @@ namespace DaleranGames.TBSFramework
 
         public override string ToString()
         {
-            return string.Format("({0}: {1})", Type, Value);
+            return string.Format("{0} ({1})", Type, Value);
         }
 
         public string ToString(string format, IFormatProvider formatProvider)
@@ -49,12 +51,17 @@ namespace DaleranGames.TBSFramework
 
         public int CompareTo(Good other)
         {
-            if (other.Value > Value)
-                return 1;
-            else if (other.Value == Value)
-                return 0;
+            if (other.Type == Type)
+            {
+                return Value.CompareTo(other.Value);
+            }
             else
-                return -1;
+            {
+                if (other.Type > Type)
+                    return 1;
+                else
+                    return -1;
+            }
         }
 
         public int CompareTo(object obj)
@@ -101,66 +108,6 @@ namespace DaleranGames.TBSFramework
             return !(l.Value == r);
         }
 
-        public static Good operator +(Good l, int r)
-        {
-            return new Good(l.Type, l.Value + r);
-        }
-
-        public static Good operator -(Good l, int r)
-        {
-            return new Good(l.Type, l.Value - r);
-        }
-
-        public static Good operator *(Good l, int r)
-        {
-            return new Good(l.Type, l.Value * r);
-        }
-
-        public static Good operator /(Good l, int r)
-        {
-            return new Good(l.Type, l.Value / r);
-        }
-
-        public static Good operator %(Good l, int r)
-        {
-            return new Good(l.Type, l.Value % r);
-        }
-
-        public static Good operator +(Good l, Good r)
-        {
-            return new Good(l.Type, l.Value + r.Value);
-        }
-
-        public static Good operator -(Good l, Good r)
-        {
-            return new Good(l.Type, l.Value - r.Value);
-        }
-
-        public static Good operator *(Good l, Good r)
-        {
-            return new Good(l.Type, l.Value * r.Value);
-        }
-
-        public static Good operator /(Good l, Good r)
-        {
-            return new Good(l.Type, l.Value / r.Value);
-        }
-
-        public static Good operator %(Good l, Good r)
-        {
-            return new Good(l.Type, l.Value % r.Value);
-        }
-
-        public static Good operator ++(Good s)
-        {
-            return new Good(s.Type, s.Value + 1);
-        }
-
-        public static Good operator --(Good s)
-        {
-            return new Good(s.Type, s.Value + 1);
-        }
-
         public static bool operator >(Good l, Good r)
         {
             return l.CompareTo(r) == 1;
@@ -199,6 +146,41 @@ namespace DaleranGames.TBSFramework
         public static bool operator <=(Good l, int r)
         {
             return l.Value.CompareTo(r) <= 0;
+        }
+
+        public static Good operator +(Good l, int r)
+        {
+            return new Good(l.Type, l.Value + r);
+        }
+
+        public static Good operator -(Good l, int r)
+        {
+            return new Good(l.Type, l.Value - r);
+        }
+
+        public static Good operator *(Good l, int r)
+        {
+            return new Good(l.Type, l.Value * r);
+        }
+
+        public static Good operator /(Good l, int r)
+        {
+            return new Good(l.Type, l.Value / r);
+        }
+
+        public static Good operator %(Good l, int r)
+        {
+            return new Good(l.Type, l.Value % r);
+        }
+
+        public static Good operator ++(Good s)
+        {
+            return new Good(s.Type, s.Value + 1);
+        }
+
+        public static Good operator --(Good s)
+        {
+            return new Good(s.Type, s.Value + 1);
         }
 
         public static implicit operator int(Good good)

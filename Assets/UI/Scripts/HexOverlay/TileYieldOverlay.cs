@@ -10,6 +10,7 @@ namespace DaleranGames.UI
 
     public class TileYieldOverlay : BaseOverlay
     {
+#pragma warning disable 0649
         [SerializeField]
         string food1;
         TileGraphic food1g;
@@ -46,7 +47,7 @@ namespace DaleranGames.UI
         [SerializeField]
         string gold3;
         TileGraphic gold3g;
-
+#pragma warning restore 0649
         protected override void Awake()
         {
             base.Awake();

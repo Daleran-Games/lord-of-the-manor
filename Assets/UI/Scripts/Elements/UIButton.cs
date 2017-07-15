@@ -9,10 +9,13 @@ namespace DaleranGames.UI
 {
     public class UIButton : MonoBehaviour
     {
+#pragma warning disable 0649
         [SerializeField]
         Text label;
         [SerializeField]
         Image backgroundImage;
+#pragma warning restore 0649
+
         [SerializeField]
         public Button ButtonControl;
 

@@ -11,7 +11,7 @@ namespace DaleranGames
     {
         protected GameManager ( ) { }
 
-        public Action<GameState> StateChanged;
+        public event Action<GameState> StateChanged;
 
         [SerializeField]
         private GameState currentState;
@@ -20,6 +20,10 @@ namespace DaleranGames
             get { return currentState; }
             private set { currentState = value; }
         }
+
+        //Load Game State
+
+        //Menu State
 
         [SerializeField]
         private LoadSceneState loadScene;

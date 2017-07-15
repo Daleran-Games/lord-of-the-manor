@@ -49,12 +49,16 @@ namespace DaleranGames.TBSFramework
 
         public int CompareTo(Stat other)
         {
-            if (other.Value > Value)
-                return 1;
-            else if (other.Value == Value)
-                return 0;
-            else
-                return -1;
+            if (other.Type == Type)
+            {
+                return Value.CompareTo(other.Value);
+            } else
+            {
+                if (other.Type.Value > Type.Value)
+                    return 1;
+                else
+                    return -1;
+            }
         }
 
         public int CompareTo(object obj)
@@ -101,66 +105,6 @@ namespace DaleranGames.TBSFramework
             return !(l.Value == r);
         }
 
-        public static Stat operator +(Stat l, int r)
-        {
-            return new Stat(l.Type, l.Value + r);
-        }
-
-        public static Stat operator -(Stat l, int r)
-        {
-            return new Stat(l.Type, l.Value - r);
-        }
-
-        public static Stat operator *(Stat l, int r)
-        {
-            return new Stat(l.Type, l.Value * r);
-        }
-
-        public static Stat operator /(Stat l, int r)
-        {
-            return new Stat(l.Type, l.Value / r);
-        }
-
-        public static Stat operator %(Stat l, int r)
-        {
-            return new Stat(l.Type, l.Value % r);
-        }
-
-        public static Stat operator +(Stat l, Stat r)
-        {
-            return new Stat(l.Type, l.Value + r.Value);
-        }
-
-        public static Stat operator -(Stat l, Stat r)
-        {
-            return new Stat(l.Type, l.Value - r.Value);
-        }
-
-        public static Stat operator *(Stat l, Stat r)
-        {
-            return new Stat(l.Type, l.Value * r.Value);
-        }
-
-        public static Stat operator /(Stat l, Stat r)
-        {
-            return new Stat(l.Type, l.Value / r.Value);
-        }
-
-        public static Stat operator %(Stat l, Stat r)
-        {
-            return new Stat(l.Type, l.Value % r.Value);
-        }
-
-        public static Stat operator ++(Stat s)
-        {
-            return new Stat(s.Type, s.Value +1);
-        }
-
-        public static Stat operator --(Stat s)
-        {
-            return new Stat(s.Type, s.Value + 1);
-        }
-
         public static bool operator >(Stat l, Stat r)
         {
             return l.CompareTo(r) == 1;
@@ -199,6 +143,41 @@ namespace DaleranGames.TBSFramework
         public static bool operator <=(Stat l, int r)
         {
             return l.Value.CompareTo(r) <= 0;
+        }
+
+        public static Stat operator +(Stat l, int r)
+        {
+            return new Stat(l.Type, l.Value + r);
+        }
+
+        public static Stat operator -(Stat l, int r)
+        {
+            return new Stat(l.Type, l.Value - r);
+        }
+
+        public static Stat operator *(Stat l, int r)
+        {
+            return new Stat(l.Type, l.Value * r);
+        }
+
+        public static Stat operator /(Stat l, int r)
+        {
+            return new Stat(l.Type, l.Value / r);
+        }
+
+        public static Stat operator %(Stat l, int r)
+        {
+            return new Stat(l.Type, l.Value % r);
+        }
+
+        public static Stat operator ++(Stat s)
+        {
+            return new Stat(s.Type, s.Value +1);
+        }
+
+        public static Stat operator --(Stat s)
+        {
+            return new Stat(s.Type, s.Value - 1);
         }
 
         public static implicit operator int(Stat s)

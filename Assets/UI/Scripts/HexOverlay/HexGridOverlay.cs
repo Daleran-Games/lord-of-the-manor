@@ -8,7 +8,7 @@ namespace DaleranGames.UI
 {
     public class HexGridOverlay : MonoBehaviour
     {
-
+#pragma warning disable 0649
         [Header("Numbers")]
         [SerializeField]
         string zeroKey;
@@ -46,7 +46,7 @@ namespace DaleranGames.UI
         [SerializeField]
         string plusKey;
         TileGraphic plus;
-
+#pragma warning restore 0649
         HexGrid grid;
         Dictionary<int, int[]> lookupTable;
 

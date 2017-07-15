@@ -20,14 +20,17 @@ namespace DaleranGames.IO
 
         [SerializeField]
         bool controlsLocked = false;
-        public Action<bool> ControlStateChanged;
+        public event Action<bool> ControlStateChanged;
         public bool ControlsLocked
         {
             get { return controlsLocked; }
             set
             {
-                ControlStateChanged(value);
-                controlsLocked = value;
+                if (controlsLocked != value)
+                {
+                    ControlStateChanged(value);
+                    controlsLocked = value;
+                }
             }
         }
 
@@ -84,7 +87,7 @@ namespace DaleranGames.IO
             bool isAxisInUse = false;
             bool keyState = false;
             string axis;
-            public Action<bool> KeyToggled;
+            public event Action<bool> KeyToggled;
 
             public ToggleKey(string axisName, bool startingState)
             {
@@ -110,6 +113,9 @@ namespace DaleranGames.IO
                     {
                         keyState = !keyState;
 
+                        if (KeyToggled != null && !Instance.ControlsLocked)
+                            KeyToggled(keyState);
+
                         isAxisInUse = true;
                         return true;
                     }
@@ -128,7 +134,7 @@ namespace DaleranGames.IO
         {
             string axis;
             bool alreadyPressed = false;
-            public Action EventKeyPressed;
+            public event Action EventKeyPressed;
 
             public EventKey(string axisName)
             {
@@ -153,6 +159,10 @@ namespace DaleranGames.IO
                 if (Input.GetAxisRaw(axis) != 0f && alreadyPressed == false)
                 {
                     alreadyPressed = true;
+
+                    if (EventKeyPressed != null && !Instance.ControlsLocked)
+                        EventKeyPressed();
+
                     return true;
                 }
                 else if (Input.GetAxisRaw(axis) != 0f && alreadyPressed == true)
@@ -173,9 +183,9 @@ namespace DaleranGames.IO
         public class MouseEvent
         {
             int button;
-            public Action MouseButtonPressed;
-            public Action MouseButtonUp;
-            public Action MouseButtonDown;
+            public event Action MouseButtonPressed;
+            public event Action MouseButtonUp;
+            public event Action MouseButtonDown;
 
             public MouseEvent(MouseButton button)
             {

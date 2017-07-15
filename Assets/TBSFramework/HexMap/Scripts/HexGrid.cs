@@ -21,8 +21,8 @@ namespace DaleranGames.TBSFramework
         public virtual int Width { get { return Generator.Width ; } }
         public virtual int Height { get { return Generator.Height ; } }
 
-        public Action MapGenerationComplete;
-        public Action MeshBuildComplete;
+        public event Action MapGenerationComplete;
+        public event Action MeshBuildComplete;
 
         HexTile[,] tiles;
 

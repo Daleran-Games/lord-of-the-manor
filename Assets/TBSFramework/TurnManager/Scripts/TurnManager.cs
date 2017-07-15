@@ -10,9 +10,9 @@ namespace DaleranGames.TBSFramework
     {
         protected TurnManager() { }
 
-        public Action<BaseTurn> TurnEnded;
-        public Action<BaseTurn> TurnSetUp;
-        public Action<BaseTurn> TurnStart;
+        public event Action<BaseTurn> TurnEnded;
+        public event Action<BaseTurn> TurnSetUp;
+        public event Action<BaseTurn> TurnStart;
 
         [SerializeField]
         protected int turn = 0;

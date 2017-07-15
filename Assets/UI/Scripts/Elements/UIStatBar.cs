@@ -8,7 +8,7 @@ namespace DaleranGames.UI
 {
     public class UIStatBar : MonoBehaviour
     {
-
+#pragma warning disable 0649
         [SerializeField]
         Text label;
         [SerializeField]
@@ -19,7 +19,7 @@ namespace DaleranGames.UI
         Image fillArea;
         [SerializeField]
         Image fillBar;
-
+#pragma warning restore 0649
         string labelText;
 
         public static UIStatBar CreateStatBar(Transform parent, string barLabel, float initialValue, float initialMax, Color barColor)

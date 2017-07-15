@@ -92,9 +92,9 @@ namespace DaleranGames.TBSFramework
         [SerializeField]
         protected int clearLandTurns = 2;
         public Stat BaseClearLandTurns { get { return new Stat(StatType.ClearLandTurns, clearLandTurns); } }
-        public Transaction ClearLandTurns(HexTile tile)
+        public Stat ClearLandTurns(HexTile tile)
         {
-            return new Transaction(false, new Good(GoodType.Turns, clearLandTurns + tile.Owner.Modifiers[StatType.ClearLandTurns]), "Clear Land");
+            return new Stat(StatType.ClearLandTurns, clearLandTurns + tile.Owner.Modifiers[StatType.ClearLandTurns]);
         }
 
         [SerializeField]
@@ -102,10 +102,10 @@ namespace DaleranGames.TBSFramework
         public Transaction[] BaseClearLandCosts { get { return clearLandCosts; } }
         public Transaction[] ClearLandCosts (HexTile tile)
         {
-            Transaction[] newTransactions = BaseClearLandCosts;
+            Transaction[] newTransactions = new Transaction[BaseClearLandCosts.Length];
             for (int i=0;i < BaseClearLandCosts.Length; i++)
             {
-                newTransactions[i] = new Transaction(BaseClearLandCosts[i].Immediate, new Good(BaseClearLandCosts[i].TransactedGood.Type, BaseClearLandCosts[i].TransactedGood + tile.Owner.Modifiers[StatType.ClearLandCosts]), BaseClearLandCosts[i].Description);
+                newTransactions[i] = new Transaction(BaseClearLandCosts[i].Immediate, new Good(BaseClearLandCosts[i].Good.Type, BaseClearLandCosts[i].Good + tile.Owner.Modifiers[StatType.ClearLandCosts]), BaseClearLandCosts[i].Description);
             }
             return newTransactions;
         }
@@ -116,10 +116,10 @@ namespace DaleranGames.TBSFramework
 
         public Transaction[] ClearLandBonus(HexTile tile)
         {
-            Transaction[] newTransactions = BaseClearLandBonus;
+            Transaction[] newTransactions = new Transaction[BaseClearLandBonus.Length];
             for (int i = 0; i < BaseClearLandCosts.Length; i++)
             {
-                newTransactions[i] = new Transaction(BaseClearLandBonus[i].Immediate, new Good(BaseClearLandBonus[i].TransactedGood.Type, BaseClearLandBonus[i].TransactedGood + tile.Owner.Modifiers[StatType.ClearLandBonus]), BaseClearLandBonus[i].Description);
+                newTransactions[i] = new Transaction(BaseClearLandBonus[i].Immediate, new Good(BaseClearLandBonus[i].Good.Type, BaseClearLandBonus[i].Good + tile.Owner.Modifiers[StatType.ClearLandBonus]), BaseClearLandBonus[i].Description);
             }
             return newTransactions;
         }
@@ -128,7 +128,7 @@ namespace DaleranGames.TBSFramework
         protected bool workable = false;
         public bool Workable (HexTile tile)
         {
-
+            return false;
         }
 
 

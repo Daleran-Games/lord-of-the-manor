@@ -37,15 +37,15 @@ namespace DaleranGames.TBSFramework
 
         public void Add (Modifier mod)
         {
-            if (mod.Mod.Value != 0)
+            if (mod.Stat.Value != 0)
             {
-                if (!modifiers.ContainsKey(mod.Mod.Type))
+                if (!modifiers.ContainsKey(mod.Stat.Type))
                 {
-                    modifiers.Add(mod.Mod.Type, new List<Modifier>());
-                    totals.Add(mod.Mod.Type, 0);
+                    modifiers.Add(mod.Stat.Type, new List<Modifier>());
+                    totals.Add(mod.Stat.Type, 0);
                 }
-                modifiers[mod.Mod.Type].Add(mod);
-                totals[mod.Mod.Type] += mod.Mod.Value;
+                modifiers[mod.Stat.Type].Add(mod);
+                totals[mod.Stat.Type] += mod.Stat.Value;
             }
         }
         
@@ -59,12 +59,12 @@ namespace DaleranGames.TBSFramework
 
         public void Remove (Modifier mod)
         {
-            if (modifiers.ContainsKey(mod.Mod.Type))
+            if (modifiers.ContainsKey(mod.Stat.Type))
             {
-                if (modifiers[mod.Mod.Type].Contains(mod))
+                if (modifiers[mod.Stat.Type].Contains(mod))
                 {
-                    modifiers[mod.Mod.Type].Remove(mod);
-                    totals[mod.Mod.Type] -= mod.Mod.Value;
+                    modifiers[mod.Stat.Type].Remove(mod);
+                    totals[mod.Stat.Type] -= mod.Stat.Value;
                 }
             }
         }

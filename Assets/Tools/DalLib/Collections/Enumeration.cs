@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace DaleranGames
 {
-    public abstract class Enumeration : IComparable
+    public abstract class Enumeration : IFormattable, IEquatable<Enumeration>, IComparable<Enumeration>, IComparable
     {
         private readonly int _value;
         private readonly string _displayName;
@@ -35,6 +35,11 @@ namespace DaleranGames
         public override string ToString()
         {
             return DisplayName;
+        }
+
+        public string ToString(string format, IFormatProvider formatProvider)
+        {
+            return ToString();
         }
 
         public static IEnumerable<T> GetAll<T>() where T : Enumeration, new()
@@ -105,11 +110,57 @@ namespace DaleranGames
             return matchingItem;
         }
 
+        public bool Equals(Enumeration other)
+        {
+            if (ReferenceEquals(null, other)) return false;
+            if (ReferenceEquals(this, other)) return true;
+            return GetType().Equals(other.GetType()) && _value.Equals(other.Value);
+        }
+
+        public int CompareTo(Enumeration other)
+        {
+            return Value.CompareTo(other.Value);
+        }
+
         public int CompareTo(object other)
         {
             return Value.CompareTo(((Enumeration)other).Value);
         }
 
+        public static bool operator ==(Enumeration l, Enumeration r)
+        {
+            return Equals(l, r);
+        }
+
+        public static bool operator !=(Enumeration l, Enumeration r)
+        {
+            return !Equals(l, r);
+        }
+
+        public static bool operator >(Enumeration l, Enumeration r)
+        {
+            return l.CompareTo(r) == 1;
+        }
+
+        public static bool operator <(Enumeration l, Enumeration r)
+        {
+            return l.CompareTo(r) == -1;
+        }
+
+        public static bool operator >=(Enumeration l, Enumeration r)
+        {
+            return l.CompareTo(r) >= 0;
+        }
+
+        public static bool operator <=(Enumeration l, Enumeration r)
+        {
+            return l.CompareTo(r) <= 0;
+        }
+
+        public static explicit operator int(Enumeration e)
+        {
+            return e.Value;
+        }
     }
 
 }

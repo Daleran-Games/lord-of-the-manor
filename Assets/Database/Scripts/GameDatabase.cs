@@ -11,7 +11,7 @@ namespace DaleranGames.Database
 
         protected GameDatabase() { }
 
-        public System.Action DatabasesInitialized;
+        public event System.Action DatabasesInitialized;
 
         [SerializeField]
         protected TileAtlas atlas;
