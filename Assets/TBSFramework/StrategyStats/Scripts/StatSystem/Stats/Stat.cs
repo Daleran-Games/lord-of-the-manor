@@ -56,6 +56,8 @@ namespace DaleranGames.TBSFramework
             {
                 if (other.Type.Value > Type.Value)
                     return 1;
+                else if (other.Type.Value == Type.Value)
+                    return 0;
                 else
                     return -1;
             }

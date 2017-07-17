@@ -46,8 +46,7 @@ namespace DaleranGames.Tools
                 {
                     CurrentTile = grid[tileCoord.x, tileCoord.y];
 
-                    if (CameraTileChanged != null)
-                        CameraTileChanged(CurrentTile);
+                    CameraTileChanged(CurrentTile);
                 }
 
             }

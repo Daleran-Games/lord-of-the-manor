@@ -5,6 +5,7 @@ using UnityEngine;
 
 namespace DaleranGames.TBSFramework
 {
+    [System.Serializable]
     public class GroupGoods : GoodsCollection
     {
         [System.NonSerialized]
