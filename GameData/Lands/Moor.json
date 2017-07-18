@@ -2,12 +2,16 @@
     "name": "Moor",
     "type": "DaleranGames.TBSFramework.LandType",
     "iconName": "Spring_L_Moor",
-    "clearable": false,
-    "clearedLandName": "",
+    "defenseBonus": 0,
+    "movementCost": 1,
     "foodYield": 1,
     "woodYield": 0,
     "stoneYield": 0,
     "goldYield": 0,
-    "defenseBonus": 0,
-    "movementCost": 1
+    "clearable": false,
+    "clearedLandName": "",
+    "clearLandTurns": 0,
+    "clearLandCosts": [],
+    "clearLandBonus": [],
+    "tileModifiers": []
 }

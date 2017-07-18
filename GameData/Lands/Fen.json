@@ -2,12 +2,16 @@
     "name": "Fen",
     "type": "DaleranGames.TBSFramework.LandType",
     "iconName": "Spring_L_Fen",
-    "clearable": false,
-    "clearedLandName": "",
+    "defenseBonus": -1,
+    "movementCost": 5,
     "foodYield": 0,
     "woodYield": 0,
     "stoneYield": 0,
     "goldYield": 0,
-    "defenseBonus": -1,
-    "movementCost": 5
+    "clearable": false,
+    "clearedLandName": "",
+    "clearLandTurns": 0,
+    "clearLandCosts": [],
+    "clearLandBonus": [],
+    "tileModifiers": []
 }

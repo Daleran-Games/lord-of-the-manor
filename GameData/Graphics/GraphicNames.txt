@@ -1,4 +1,4 @@
-Sprite Names
+Graphic Names
 
 UIAtlas_Icon_Drop
 UIAtlas_Icon_YellowBox

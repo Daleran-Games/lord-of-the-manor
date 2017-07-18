@@ -105,7 +105,7 @@ namespace DaleranGames.TBSFramework
             Transaction[] newTransactions = new Transaction[BaseClearLandCosts.Length];
             for (int i=0;i < BaseClearLandCosts.Length; i++)
             {
-                newTransactions[i] = new Transaction(BaseClearLandCosts[i].Immediate, new Good(BaseClearLandCosts[i].Good.Type, BaseClearLandCosts[i].Good + tile.Owner.Modifiers[StatType.ClearLandCosts]), BaseClearLandCosts[i].Description);
+                newTransactions[i] = new Transaction(BaseClearLandCosts[i].Immediate, new Good(BaseClearLandCosts[i].Good.Type, BaseClearLandCosts[i].Good + tile.Owner.Modifiers[StatType.ClearLandCost]), BaseClearLandCosts[i].Description);
             }
             return newTransactions;
         }

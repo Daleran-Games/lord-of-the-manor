@@ -11,21 +11,27 @@ namespace DaleranGames.TBSFramework
         [System.NonSerialized]
         protected Group owner;
 
+        [SerializeField]
         protected int food;
         public virtual Good Food { get { return new Good(GoodType.Food, food); } }
 
+        [SerializeField]
         protected int wood;
         public virtual Good Wood { get { return new Good(GoodType.Wood, wood); } }
 
+        [SerializeField]
         protected int stone;
         public virtual Good Stone { get { return new Good(GoodType.Stone, stone); } }
 
+        [SerializeField]
         protected int gold;
         public virtual Good Gold { get { return new Good(GoodType.Gold, gold); } }
 
+        [SerializeField]
         protected int population;
         public virtual Good Population { get { return new Good(GoodType.Population, population); } }
 
+        [SerializeField]
         protected int work;
         public virtual Good Work { get { return new Good(GoodType.Work, work); } }
 
@@ -33,9 +39,15 @@ namespace DaleranGames.TBSFramework
         public GroupGoods (Group unit) : base()
         {
             owner = unit;
+            food = 0;
+            wood = 0;
+            stone = 0;
+            gold = 0;
+            population = 0;
+            work = 0;
         }
 
-        public override Good this[GoodType type]
+        public override int this[GoodType type]
         {
             get
             {
@@ -54,7 +66,7 @@ namespace DaleranGames.TBSFramework
                     case GoodType.Work:
                         return Work;
                     default:
-                        return null;
+                        return 0;
                 }
             }
             set
@@ -62,38 +74,48 @@ namespace DaleranGames.TBSFramework
                 switch (type)
                 {
                     case GoodType.Food:
-                        food = value.Value;
+                        food = value;
+                        OnGoodChanged(this, Food);
                         break;
                     case GoodType.Wood:
-                        wood = value.Value;
+                        wood = value;
+                        OnGoodChanged(this, Wood);
                         break;
                     case GoodType.Stone:
-                        stone = value.Value;
+                        stone = value;
+                        OnGoodChanged(this, Stone);
                         break;
                     case GoodType.Gold:
-                        gold = value.Value;
+                        gold = value;
+                        OnGoodChanged(this, Gold);
                         break;
                     case GoodType.Population:
-                        population = value.Value;
+                        population = value;
+                        OnGoodChanged(this, Population);
                         break;
                     case GoodType.Work:
-                        work = value.Value;
+                        work = value;
+                        OnGoodChanged(this, Work);
                         break;
                 }
             }
         }
 
-        public override Good[] GetAllGoods()
+        public override Good[]Goods
         {
-            return new Good[]
+            get
             {
+                return new Good[]
+                {
                 Food,
                 Wood,
                 Stone,
                 Gold,
                 Population,
                 Work
-            };
+                };
+            }
+
         }
 
         public override bool ContainsGoodOfType (GoodType type)

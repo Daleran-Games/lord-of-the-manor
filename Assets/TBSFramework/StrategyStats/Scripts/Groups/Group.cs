@@ -21,7 +21,6 @@ namespace DaleranGames.TBSFramework
         protected virtual void Initialize (string name, GroupType type)
         {
             this.name = name;
-            GroupType = type;
 
             Goods = new GroupGoods(this);
             Modifiers = new ModifierCollection();
@@ -30,8 +29,23 @@ namespace DaleranGames.TBSFramework
             TurnManager.Instance.TurnSetUp += OnTurnSetUp;
             TurnManager.Instance.TurnStart += OnTurnStart;
             GameManager.Instance.Play.StateEnabled += OnGameStart;
+
+            GroupType = type;
+
+            Goods[GoodType.Food] = MaxFood;
+            Goods[GoodType.Wood] = MaxWood;
+            Goods[GoodType.Stone] = MaxStone;
+            Goods[GoodType.Gold] = GroupType.StartingGold;
+            Goods[GoodType.Population] = MaxPopulation;
+            Goods[GoodType.Work] = WorkRate;
+
+            Debug.Log("Player goods set");
+
+            if (GameManager.Instance.CurrentState is PlayState)
+                OnGameStart(GameManager.Instance.CurrentState);
         }
 
+        #region Interface implementations
         public bool Equals(Group other)
         {
             if (ReferenceEquals(null, other)) return false;
@@ -44,6 +58,14 @@ namespace DaleranGames.TBSFramework
             if (ReferenceEquals(null, obj)) return false;
             if (ReferenceEquals(this, obj)) return true;
             return obj.GetType() == typeof(Group) && Equals((Group)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return (name.GetHashCode()) ^ GroupType.GetHashCode();
+            }
         }
 
         public int CompareTo(Group other)
@@ -61,10 +83,11 @@ namespace DaleranGames.TBSFramework
             else
                 throw new ArgumentException("Object is not a Group");
         }
+        # endregion
 
         #region Group Stats
         public IModifierCollection Modifiers;
-
+        public GroupGoods Goods;
 
         public virtual Stat MaxActionPoints { get { return new Stat(StatType.MaxActionPoints, GroupType.MaxActionPoints + Modifiers[StatType.MaxActionPoints]); } }
         public virtual Stat StrengthPerPop { get { return new Stat(StatType.StrengthPerPop, GroupType.StrengthPerPop + Modifiers[StatType.StrengthPerPop]); } }
@@ -80,6 +103,8 @@ namespace DaleranGames.TBSFramework
         public virtual Stat FoodRate { get { return new Stat(StatType.GroupFoodRate,(FoodRatePerPop * Goods.Population.Value) + Modifiers[StatType.GroupFoodRate]); } }
         public virtual Stat WoodRatePerPop { get { return new Stat(StatType.GroupWoodRatePerPop, GroupType.WoodRatePerPop + Modifiers[StatType.GroupWoodRatePerPop]); } }
         public virtual Stat WoodRate { get { return new Stat(StatType.GroupWoodRate, (WoodRatePerPop * Goods.Population.Value) + Modifiers[StatType.GroupWoodRate]); } }
+        public virtual Stat WorkPerPop { get { return new Stat(StatType.GroupWorkPerPop, GroupType.WorkPerPop + Modifiers[StatType.GroupWorkPerPop]); } }
+        public virtual Stat WorkRate { get { return new Stat(StatType.GroupWorkRate, (WorkPerPop * Goods.Population.Value) + Modifiers[StatType.GroupWorkRate]); } }
 
         public virtual Stat BirthRate { get { return new Stat(StatType.GroupBirthRate, GroupType.BirthRate + Modifiers[StatType.GroupBirthRate]); } }
         public virtual Stat DeathRate { get { return new Stat(StatType.GroupDeathRate, GroupType.DeathRate + Modifiers[StatType.GroupDeathRate]); } }
@@ -89,10 +114,6 @@ namespace DaleranGames.TBSFramework
 
         #endregion
 
-        #region Group Goods
-        public GroupGoods Goods;
-
-        # endregion
 
         #region GroupType
 
@@ -111,6 +132,14 @@ namespace DaleranGames.TBSFramework
             }
         }
 
+        protected virtual void OnGameStart(GameState state)
+        {
+            if (GroupType != null)
+                GroupType.OnGameStart(this);
+
+
+        }
+
         protected virtual void OnTurnEnd(BaseTurn turn)
         {
             GroupType.OnTurnEnd(turn, this);
@@ -125,13 +154,18 @@ namespace DaleranGames.TBSFramework
         protected virtual void OnTurnStart(BaseTurn turn)
         {
             GroupType.OnTurnStart(turn, this);
+            SetUpNextTurn();
         }
 
-        protected virtual void OnGameStart(GameState state)
+        protected virtual void SetUpNextTurn()
         {
-            if (GroupType != null)
-                GroupType.OnGameStart(this);
+            Goods.TryAdd(new Transaction(false, new Good(GoodType.Food, FoodRate),"Food Eaten"));
+
+            if (TurnManager.Instance.CurrentTurn is FallTurn)
+                Goods.TryAdd(new Transaction(false, new Good(GoodType.Wood, WoodRate),"Wood for the Winter"));
         }
+
+
 #endregion
 
         #region IDisposable Support

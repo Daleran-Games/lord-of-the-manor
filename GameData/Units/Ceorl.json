@@ -2,15 +2,17 @@
     "name": "Ceorl",
     "rank": 3,
     "culture": 1,
-    "type": "DaleranGames.TBSFramework.UnitType",
-    "actionPoints": 10,
-    "attackPerPop": 2,
+    "type": "DaleranGames.TBSFramework.GroupType",
+    "maxActionPoints": 10,
+    "strengthPerPop": 2,
     "attackCost": 5,
-    "defensePerPop": 2,
     "foodPerPopPerTurn": 1,
     "woodPerPopPerWinter": 1,
+    "workPerPop": 10,
     "maxFood": 50,
     "maxWood": 25,
     "maxStone": 15,
-    "maxPop": 8
+    "startingGold": 150,
+    "maxPopulation": 8,
+    "groupTypeModifiers": []
 }

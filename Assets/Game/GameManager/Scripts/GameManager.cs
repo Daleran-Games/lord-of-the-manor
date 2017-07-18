@@ -61,7 +61,7 @@ namespace DaleranGames
 
         private void Start()
         {
-            LoadScene.StateDisabled += OnMapGenerationComplete;
+            LoadScene.StateDisabled += OnLoadSceneComplete;
 
             CurrentState.enabled = true;
         }
@@ -69,7 +69,7 @@ namespace DaleranGames
         protected override void OnDestroy()
         {
             base.OnDestroy();
-            LoadScene.StateDisabled -= OnMapGenerationComplete;
+            LoadScene.StateDisabled -= OnLoadSceneComplete;
         }
 
         void ChangeState(GameState newState)
@@ -81,10 +81,10 @@ namespace DaleranGames
             if (StateChanged != null)
                 StateChanged(newState);
 
-            //Debug.Log("Transitioning to: " + newState.GetType().ToString());
+            Debug.Log("Transitioning to: " + newState.GetType().ToString());
         }
 
-        void OnMapGenerationComplete(GameState newState)
+        void OnLoadSceneComplete(GameState newState)
         {
             ChangeState(Play);
         }

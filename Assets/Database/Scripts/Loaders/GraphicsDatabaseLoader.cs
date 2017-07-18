@@ -19,7 +19,7 @@ namespace DaleranGames.Database
         [SerializeField]
         protected string uiSpriteFilePath = "Assets/Graphics/Sprites/UIAtlas.png";
         [SerializeField]
-        protected string graphicRefFilePath = "Assets/Graphics/Sprites/GraphicNames.txt";
+        protected string graphicRefFilePath = "GraphicNames.txt";
         [SerializeField]
         [Reorderable]
         protected TileGraphic[] graphics;
@@ -67,7 +67,7 @@ namespace DaleranGames.Database
             System.Array.Copy(ui, objs, ui.Length);
             System.Array.Copy(spr, 0, objs, ui.Length, spr.Length);
 
-            StreamWriter writer = new StreamWriter(graphicRefFilePath, false);
+            StreamWriter writer = new StreamWriter(JSONFilePath + graphicRefFilePath, false);
             writer.WriteLine("Graphic Names");
             writer.WriteLine("");
 

@@ -8,6 +8,8 @@
     ],
     "upgradeable": false,
     "upgradeName": "",
+    "maxCondition": 5,
     "defenseBonus": 0,
-    "movementCost": 0
+    "movementCost": 1,
+    "tileModifiers": []
 }

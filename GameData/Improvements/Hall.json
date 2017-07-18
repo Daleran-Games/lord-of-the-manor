@@ -10,6 +10,14 @@
     ],
     "upgradeable": false,
     "upgradeName": "",
+    "maxCondition": 6,
     "defenseBonus": 4,
-    "movementCost": 0
+    "movementCost": 0,
+    "tileModifiers": [
+        {
+            "ModifiedStat": "MaxPopulation",
+            "Amount": 16,
+            "Description": "Dwelling"
+        }
+    ]
 }
