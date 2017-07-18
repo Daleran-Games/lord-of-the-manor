@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DaleranGames.Database;
+using System;
 
 namespace DaleranGames.TBSFramework
 {
     [System.Serializable]
-    public class Activity : IDatabaseObject
+    public abstract class Activity : IDatabaseObject
     {
         [SerializeField]
         protected string name;
@@ -52,11 +53,7 @@ namespace DaleranGames.TBSFramework
 
         }
 
-        public virtual string ToJson()
-        {
-            this.type = this.ToString();
-            return JsonUtility.ToJson(this, true);
-        }
+
     }
 }
 

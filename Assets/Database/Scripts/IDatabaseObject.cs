@@ -10,7 +10,6 @@ namespace DaleranGames.Database
         int ID { get; }
         void OnDatabaseInitialization();
         string Type { get; }
-        string ToJson();
     }
 }
 

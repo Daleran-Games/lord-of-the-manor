@@ -5,7 +5,7 @@ using UnityEngine;
 namespace DaleranGames.TBSFramework
 {
     [System.Serializable]
-    public class InitialBuilding : Activity
+    public class InitialActivity : Activity
     {
 
 

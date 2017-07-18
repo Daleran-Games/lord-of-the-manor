@@ -11,7 +11,7 @@ namespace DaleranGames.Database
 {
 
     //TODO: Move Database loaders into a scriptable object
-
+    [CreateAssetMenu(fileName = "GraphicsDatabaseLoader", menuName = "DaleranGames/Database/Graphics", order = 0)]
     public class GraphicsDatabaseLoader : DatabaseLoader<TileGraphic>
     {
         [SerializeField]
@@ -28,12 +28,11 @@ namespace DaleranGames.Database
         public override Database<TileGraphic> GenerateDatabase()
         {
             Database<TileGraphic> newDB = new Database<TileGraphic>();
-            string[] files = Directory.GetFiles(JSONFilePath, "*.json",SearchOption.TopDirectoryOnly);
 
-            for(int i=0; i < files.Length; i++ )
+
+            for(int i=0; i < graphics.Length; i++ )
             {
-                string jsonString = File.ReadAllText(files[i]);
-                newDB.Add(new TileGraphic(JsonUtility.FromJson<TileGraphic>(jsonString), id));
+                newDB.Add(graphics[i]);
                 id++;
             }
 
@@ -43,16 +42,6 @@ namespace DaleranGames.Database
         public override void InitializeDatabase(Database<TileGraphic> newDB)
         {
 
-        }
-
-        public override void BuildJSONFiles()
-        {
-            Directory.CreateDirectory(JSONFilePath);
-
-            for (int i=0; i<graphics.Length;i++)
-            {
-                File.WriteAllText(JSONFilePath + graphics[i].Name + ".json", graphics[i].ToJson());
-            }
         }
 
 #if UNITY_EDITOR
@@ -76,7 +65,8 @@ namespace DaleranGames.Database
                 if (objs[i] as Sprite != null)
                 {
                     Sprite sprite = objs[i] as Sprite;
-                    newGraphics.Add(new TileGraphic(sprite.name, -2, GameDatabase.Instance.Atlas.GetCoordFromRect(sprite.rect)));
+                    newGraphics.Add(new TileGraphic(sprite.name, id, GameDatabase.Instance.Atlas.GetCoordFromRect(sprite.rect)));
+                    id++;
                     writer.WriteLine(sprite.name);
                 }
             }

@@ -5,7 +5,7 @@ using System.IO;
 
 namespace DaleranGames.Database
 {
-    public abstract class DatabaseLoader<T> : MonoBehaviour where T: IDatabaseObject
+    public abstract class DatabaseLoader<T> : ScriptableObject where T: IDatabaseObject
     {
         [SerializeField]
         string jsonFilePath;
@@ -21,12 +21,6 @@ namespace DaleranGames.Database
             {
                 kvp.Value.OnDatabaseInitialization();
             }
-        }
-
-        [ContextMenu("Build JSON Files")]
-        public virtual void BuildJSONFiles ()
-        {
-
         }
 
     }

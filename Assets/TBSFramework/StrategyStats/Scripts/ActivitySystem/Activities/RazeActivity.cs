@@ -50,10 +50,6 @@ namespace DaleranGames.TBSFramework
             tile.Improvement = null;
         }
 
-        public override string ToJson()
-        {
-            this.type = this.ToString();
-            return JsonUtility.ToJson(this, true);
-        }
+
     }
 }

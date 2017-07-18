@@ -8,12 +8,12 @@ using UnityEditor;
 
 namespace DaleranGames.Database
 {
-    public class SpriteDatabaseLoader : MonoBehaviour
+    [CreateAssetMenu(fileName = "SpriteDatabaseLoader", menuName = "DaleranGames/Database/Sprite", order = 0)]
+    public class SpriteDatabaseLoader : ScriptableObject
     {
         [SerializeField]
         [Reorderable]
         protected List<Sprite> sprites;
-
 
         [SerializeField]
         protected string uiSpriteFilePath = "Assets/Graphics/Sprites/UIAtlas.png";

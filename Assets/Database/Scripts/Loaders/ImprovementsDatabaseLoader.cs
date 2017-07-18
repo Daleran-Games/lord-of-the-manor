@@ -7,6 +7,7 @@ using System.IO;
 
 namespace DaleranGames.Database
 {
+    [CreateAssetMenu(fileName = "ImprovementsDatabaseLoader", menuName = "DaleranGames/Database/Improvements", order = 0)]
     public class ImprovementsDatabaseLoader : DatabaseLoader<ImprovementType>
     {
         [SerializeField]
@@ -28,17 +29,6 @@ namespace DaleranGames.Database
             return newDB;
 
         }
-
-        public override void BuildJSONFiles()
-        {
-            Directory.CreateDirectory(JSONFilePath);
-
-            for (int i = 0; i < improvements.Length; i++)
-            {
-                File.WriteAllText(JSONFilePath + improvements[i].Name + ".json", improvements[i].ToJson());
-            }
-        }
-
 
     }
 }

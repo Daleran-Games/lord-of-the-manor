@@ -7,6 +7,7 @@ using System.IO;
 
 namespace DaleranGames.Database
 {
+    [CreateAssetMenu(fileName = "ActivityDatabaseLoader", menuName = "DaleranGames/Database/Activities", order = 0)]
     public class ActivityDatabaseLoader : DatabaseLoader<Activity>
     {
         [SerializeField]
@@ -52,21 +53,6 @@ namespace DaleranGames.Database
 
             return newDB;
         }
-
-        public override void BuildJSONFiles()
-        {
-            Directory.CreateDirectory(JSONFilePath);
-
-            File.WriteAllText(JSONFilePath + landClearing.Name + ".json", landClearing.ToJson());
-            File.WriteAllText(JSONFilePath + raze.Name + ".json", raze.ToJson());
-            File.WriteAllText(JSONFilePath + upgrade.Name + ".json", upgrade.ToJson());
-
-            for (int i = 0; i < builds.Length; i++)
-            {
-                File.WriteAllText(JSONFilePath + builds[i].Name + ".json", builds[i].ToJson());
-            }
-        }
-
 
     }
 }
