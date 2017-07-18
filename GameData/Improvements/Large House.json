@@ -10,6 +10,14 @@
     ],
     "upgradeable": true,
     "upgradeName": "Hall",
+    "maxCondition": 5,
     "defenseBonus": 3,
-    "movementCost": 0
+    "movementCost": 0,
+    "tileModifiers": [
+        {
+            "ModifiedStat": "MaxPopulation",
+            "Amount": 12,
+            "Description": "Dwelling"
+        }
+    ]
 }

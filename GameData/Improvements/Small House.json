@@ -10,6 +10,14 @@
     ],
     "upgradeable": true,
     "upgradeName": "Roundhouse",
+    "maxCondition": 3,
     "defenseBonus": 1,
-    "movementCost": 0
+    "movementCost": 0,
+    "tileModifiers": [
+        {
+            "ModifiedStat": "MaxPopulation",
+            "Amount": 6,
+            "Description": "Dwelling"
+        }
+    ]
 }

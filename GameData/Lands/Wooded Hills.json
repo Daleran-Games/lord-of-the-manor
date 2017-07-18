@@ -2,12 +2,34 @@
     "name": "Wooded Hills",
     "type": "DaleranGames.TBSFramework.LandType",
     "iconName": "Spring_L_WoodedHills",
-    "clearable": true,
-    "clearedLandName": "Hills",
+    "defenseBonus": 3,
+    "movementCost": 4,
     "foodYield": 0,
     "woodYield": 2,
     "stoneYield": 1,
     "goldYield": 0,
-    "defenseBonus": 3,
-    "movementCost": 4
+    "clearable": true,
+    "clearedLandName": "Hills",
+    "clearLandTurns": 5,
+    "clearLandCosts": [
+        {
+            "immediate": false,
+            "good": {
+                "_type": 4,
+                "_value": 10
+            },
+            "description": ""
+        }
+    ],
+    "clearLandBonus": [
+        {
+            "immediate": true,
+            "good": {
+                "_type": 1,
+                "_value": 20
+            },
+            "description": ""
+        }
+    ],
+    "tileModifiers": []
 }

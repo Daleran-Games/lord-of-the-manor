@@ -2,12 +2,34 @@
     "name": "Forest",
     "type": "DaleranGames.TBSFramework.LandType",
     "iconName": "Spring_L_Forest",
-    "clearable": true,
-    "clearedLandName": "Moor",
+    "defenseBonus": 2,
+    "movementCost": 3,
     "foodYield": 0,
     "woodYield": 3,
     "stoneYield": 0,
     "goldYield": 0,
-    "defenseBonus": 2,
-    "movementCost": 3
+    "clearable": true,
+    "clearedLandName": "Moor",
+    "clearLandTurns": 4,
+    "clearLandCosts": [
+        {
+            "immediate": false,
+            "good": {
+                "_type": 4,
+                "_value": 8
+            },
+            "description": "Clearing Forest"
+        }
+    ],
+    "clearLandBonus": [
+        {
+            "immediate": true,
+            "good": {
+                "_type": 1,
+                "_value": 20
+            },
+            "description": ""
+        }
+    ],
+    "tileModifiers": []
 }

@@ -20,11 +20,11 @@ namespace DaleranGames.TBSFramework
 
         }
 
-        public override Good this[GoodType type]
+        public override int this[GoodType type]
         {
             get
             {
-                return null;
+                return 0;
             }
             set
             {
@@ -32,9 +32,12 @@ namespace DaleranGames.TBSFramework
             }
         }
 
-        public override Good[] GetAllGoods()
+        public override Good[] Goods
         {
-            return new Good[0];
+            get
+            {
+                return new Good[0];
+            }
         }
 
         public override bool ContainsGoodOfType(GoodType type)

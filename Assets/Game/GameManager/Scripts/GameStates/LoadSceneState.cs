@@ -16,7 +16,6 @@ namespace DaleranGames
             if (StateEnabled != null)
                 StateEnabled(this);
 
-            grid.MeshBuildComplete += OnMapBuildComplete;
 
             System.Diagnostics.Stopwatch timer = new System.Diagnostics.Stopwatch();
             timer.Start();
@@ -24,8 +23,12 @@ namespace DaleranGames
             GameDatabase.Instance.InitializeDatabases();
             grid.GenerateMap();
 
+            GroupManager.Instance.SetUpGroupManager();
+
             timer.Stop();
             Debug.Log("TOTAL LOAD: Time: " + timer.ElapsedMilliseconds + " ms");
+
+            OnMapBuildComplete();
 
         }
 
@@ -37,7 +40,7 @@ namespace DaleranGames
 
         private void OnDisable()
         {
-            grid.MeshBuildComplete -= OnMapBuildComplete;
+
         }
 
 

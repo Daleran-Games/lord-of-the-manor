@@ -2,12 +2,16 @@
     "name": "Moor Hills",
     "type": "DaleranGames.TBSFramework.LandType",
     "iconName": "Spring_L_MoorHills",
-    "clearable": false,
-    "clearedLandName": "",
+    "defenseBonus": 2,
+    "movementCost": 3,
     "foodYield": 0,
     "woodYield": 0,
     "stoneYield": 2,
     "goldYield": 0,
-    "defenseBonus": 2,
-    "movementCost": 3
+    "clearable": false,
+    "clearedLandName": "",
+    "clearLandTurns": 0,
+    "clearLandCosts": [],
+    "clearLandBonus": [],
+    "tileModifiers": []
 }

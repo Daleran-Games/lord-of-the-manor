@@ -2,12 +2,16 @@
     "name": "Mountains",
     "type": "DaleranGames.TBSFramework.LandType",
     "iconName": "Spring_L_Mountains",
-    "clearable": false,
-    "clearedLandName": "",
+    "defenseBonus": 4,
+    "movementCost": 6,
     "foodYield": 0,
     "woodYield": 0,
     "stoneYield": 2,
     "goldYield": 0,
-    "defenseBonus": 4,
-    "movementCost": 6
+    "clearable": false,
+    "clearedLandName": "",
+    "clearLandTurns": 0,
+    "clearLandCosts": [],
+    "clearLandBonus": [],
+    "tileModifiers": []
 }

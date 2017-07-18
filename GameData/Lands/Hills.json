@@ -2,12 +2,16 @@
     "name": "Hills",
     "type": "DaleranGames.TBSFramework.LandType",
     "iconName": "Spring_L_Hills",
-    "clearable": false,
-    "clearedLandName": "",
+    "defenseBonus": 2,
+    "movementCost": 3,
     "foodYield": 1,
     "woodYield": 0,
     "stoneYield": 1,
     "goldYield": 0,
-    "defenseBonus": 2,
-    "movementCost": 3
+    "clearable": false,
+    "clearedLandName": "",
+    "clearLandTurns": 0,
+    "clearLandCosts": [],
+    "clearLandBonus": [],
+    "tileModifiers": []
 }

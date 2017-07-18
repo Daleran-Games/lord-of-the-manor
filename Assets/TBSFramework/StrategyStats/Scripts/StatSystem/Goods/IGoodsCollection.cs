@@ -1,14 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 namespace DaleranGames.TBSFramework
 {
     public interface IGoodsCollection
     {
-        event System.Action<Good> GoodDepleted;
-        Good this[GoodType type] { get; set; }
-        Good[] GetAllGoods();
+        event Action<GoodsCollection, GoodType> PendingTransactionsChanged;
+        event Action<GoodsCollection, GoodType> GoodChanged;
+        int this[GoodType type] { get; set; }
+        Good[] Goods { get; }
         Transaction[] PendingTransactions { get; }
         bool CanProcessTransaction(Transaction transaction);
         bool CanProcessTransaction(Transaction[] transactions);

@@ -1,4 +1,5 @@
 {
     "name": "Clear",
-    "type": "DaleranGames.TBSFramework.LandClearingActivity"
+    "type": "DaleranGames.TBSFramework.LandClearingActivity",
+    "workIconName": "UIAtlas_Icon_AxeTool"
 }

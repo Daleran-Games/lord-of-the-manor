@@ -15,9 +15,11 @@ namespace DaleranGames.TBSFramework
         public TileGoods(HexTile tile) : base()
         {
             parentTile = tile;
+            condition = 0;
+
         }
 
-        public override Good this[GoodType type]
+        public override int this[GoodType type]
         {
             get
             {
@@ -26,7 +28,7 @@ namespace DaleranGames.TBSFramework
                     case GoodType.Condition:
                         return Condition;
                     default:
-                        return null;
+                        return 0;
                 }
             }
             set
@@ -34,18 +36,22 @@ namespace DaleranGames.TBSFramework
                 switch (type)
                 {
                     case GoodType.Condition:
-                        condition = value.Value;
+                        condition = value;
+                        OnGoodChanged(this, Condition.Type);
                         break;
                 }
             }
         }
 
-        public override Good[] GetAllGoods()
+        public override Good[] Goods
         {
-            return new Good[]
+            get
             {
+                return new Good[]
+{
                 Condition
-            };
+};
+            }
         }
 
         public override bool ContainsGoodOfType(GoodType type)

@@ -8,14 +8,15 @@ namespace DaleranGames.TBSFramework
     public abstract class GoodsCollection : IGoodsCollection
     {
 
-
+        [SerializeField]
         protected List<Transaction> pendingTransactions;
         public virtual Transaction[] PendingTransactions { get { return pendingTransactions.ToArray(); } }
 
-        public event Action<Good> GoodDepleted;
+        public event Action<GoodsCollection, GoodType> PendingTransactionsChanged;
+        public event Action<GoodsCollection, GoodType> GoodChanged;
 
-        public abstract Good this[GoodType type] { get; set; }
-        public abstract Good[] GetAllGoods();
+        public abstract int this[GoodType type] { get; set; }
+        public abstract Good[] Goods { get; }
 
         public GoodsCollection()
         {
@@ -26,7 +27,7 @@ namespace DaleranGames.TBSFramework
         {
             if (ContainsGoodOfType(transaction.Good))
             {
-                if (transaction.Immediate == true && this[transaction.Good.Type].Value >= transaction.Good.Value)
+                if (transaction.Immediate == true && this[transaction.Good.Type] >= transaction.Good.Value)
                     return true;
                 else if (transaction.Immediate == false)
                     return true;
@@ -44,6 +45,21 @@ namespace DaleranGames.TBSFramework
             return true;
         }
 
+
+        protected void Add(Transaction transaction)
+        {
+            if (transaction.Immediate)
+            {
+                this[transaction.Good.Type] += transaction.Good.Value;
+            }
+            else
+            {
+                pendingTransactions.Add(transaction);
+                OnPendingTransactionsChanged(this, transaction.Good.Type);
+            }
+
+        }
+
         public virtual bool TryAdd(Transaction transaction)
         {
             if (CanProcessTransaction(transaction))
@@ -53,14 +69,6 @@ namespace DaleranGames.TBSFramework
                 return true;
             }
             return false;
-        }
-
-        protected void Add(Transaction transaction)
-        {
-            if (transaction.Immediate)
-                this[transaction.Good.Type] += transaction.Good.Value;
-            else
-                pendingTransactions.Add(transaction);
         }
 
         public virtual bool TryAdd(Transaction[] transactions)
@@ -79,6 +87,7 @@ namespace DaleranGames.TBSFramework
         public virtual void Remove(Transaction transaction)
         {
             pendingTransactions.Remove(transaction);
+            OnPendingTransactionsChanged(this, transaction.Good.Type);
         }
 
         public virtual void Remove(Transaction[] transactions)
@@ -86,10 +95,22 @@ namespace DaleranGames.TBSFramework
             for (int i=0; i < transactions.Length; i++)
             {
                 pendingTransactions.Remove(transactions[i]);
+                OnPendingTransactionsChanged(this, transactions[i].Good.Type);
             }
         }
 
         public abstract bool ContainsGoodOfType(GoodType type);
+
+        public virtual Good GetAllPendingTransactionsOfType (GoodType type)
+        {
+            int total = 0;
+            for (int i=0;i<pendingTransactions.Count;i++)
+            {
+                if (pendingTransactions[i].Good.Type == type)
+                    total += pendingTransactions[i].Good.Value;
+            }
+            return new Good(type, total);
+        }
 
         public virtual void ProcessTransactions()
         {
@@ -98,9 +119,30 @@ namespace DaleranGames.TBSFramework
                 this[pendingTransactions[i]] += pendingTransactions[i];
             }
             pendingTransactions.Clear();
+            OnAllPendingTransactionsChanged(this);
         }
 
         public abstract void ResolveEdgeCases();
+
+        protected virtual void OnPendingTransactionsChanged(GoodsCollection col, GoodType type)
+        {
+            if (PendingTransactionsChanged != null)
+                PendingTransactionsChanged(col, type);
+        }
+
+        protected virtual void OnAllPendingTransactionsChanged(GoodsCollection col)
+        {
+            for (int i=0;i< Goods.Length;i++)
+            {
+                OnPendingTransactionsChanged(this, Goods[i].Type);
+            }
+        }
+
+        protected virtual void OnGoodChanged(GoodsCollection col, GoodType type)
+        {
+            if (GoodChanged != null)
+                GoodChanged(col, type);
+        }
     }
 }
 

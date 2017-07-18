@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DaleranGames.Database;
 
 namespace DaleranGames.TBSFramework
 {
@@ -10,15 +11,11 @@ namespace DaleranGames.TBSFramework
 
         [SerializeField]
         protected Group playerGroup;
+        public Group PlayerGroup { get { return playerGroup; } }
 
-
-        public void Start()
+        public void SetUpGroupManager()
         {
-            if (GameManager.Instance.CurrentState is PlayState)
-            {
-                OnGameStart(GameManager.Instance.CurrentState);
-
-            }
+            playerGroup = new Group("Player", GameDatabase.Instance.Units["Thegn"]);
 
             GameManager.Instance.Play.StateEnabled += OnGameStart;
             TurnManager.Instance.TurnEnded += OnTurnEnd;
@@ -26,6 +23,16 @@ namespace DaleranGames.TBSFramework
             TurnManager.Instance.TurnStart += OnTurnStart;
         }
 
+        public void Start()
+        {
+
+
+            if (GameManager.Instance.CurrentState is PlayState)
+            {
+                OnGameStart(GameManager.Instance.CurrentState);
+
+            }
+        }
 
         public virtual void OnGameStart(GameState state)
         {

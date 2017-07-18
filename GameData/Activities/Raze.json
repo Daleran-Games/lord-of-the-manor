@@ -1,4 +1,5 @@
 {
     "name": "Raze",
-    "type": "DaleranGames.TBSFramework.RazeActivity"
+    "type": "DaleranGames.TBSFramework.RazeActivity",
+    "workIconName": "UIAtlas_Icon_Cancel"
 }

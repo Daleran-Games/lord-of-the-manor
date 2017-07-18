@@ -57,69 +57,79 @@ MonoBehaviour:
     rank: 2
     culture: 1
     type: DaleranGames.TBSFramework.UnitType
-    actionPoints: 8
-    attackPerPop: 1
+    maxActionPoints: 0
+    strengthPerPop: 0
     attackCost: 5
-    defensePerPop: 1
     foodPerPopPerTurn: 1
     woodPerPopPerWinter: 1
+    workPerPop: 0
     maxFood: 50
     maxWood: 25
     maxStone: 15
-    maxPop: 8
+    startingGold: 0
+    maxPopulation: 0
+    groupTypeModifiers: []
   - name: Ceorl
     rank: 3
     culture: 1
     type: DaleranGames.TBSFramework.UnitType
-    actionPoints: 10
-    attackPerPop: 2
+    maxActionPoints: 0
+    strengthPerPop: 0
     attackCost: 5
-    defensePerPop: 2
     foodPerPopPerTurn: 1
     woodPerPopPerWinter: 1
+    workPerPop: 0
     maxFood: 50
     maxWood: 25
     maxStone: 15
-    maxPop: 8
+    startingGold: 0
+    maxPopulation: 0
+    groupTypeModifiers: []
   - name: Thegn
     rank: 4
     culture: 1
     type: DaleranGames.TBSFramework.UnitType
-    actionPoints: 10
-    attackPerPop: 4
+    maxActionPoints: 15
+    strengthPerPop: 4
     attackCost: 5
-    defensePerPop: 3
     foodPerPopPerTurn: 1
     woodPerPopPerWinter: 1
+    workPerPop: 10
     maxFood: 50
     maxWood: 25
     maxStone: 15
-    maxPop: 8
+    startingGold: 150
+    maxPopulation: 8
+    groupTypeModifiers: []
   - name: Ealdorman
     rank: 5
     culture: 1
     type: DaleranGames.TBSFramework.UnitType
-    actionPoints: 15
-    attackPerPop: 6
+    maxActionPoints: 0
+    strengthPerPop: 0
     attackCost: 5
-    defensePerPop: 4
     foodPerPopPerTurn: 1
     woodPerPopPerWinter: 1
+    workPerPop: 0
     maxFood: 50
     maxWood: 25
     maxStone: 15
-    maxPop: 8
+    startingGold: 0
+    maxPopulation: 0
+    groupTypeModifiers: []
   - name: Cyning
     rank: 6
     culture: 1
     type: DaleranGames.TBSFramework.UnitType
-    actionPoints: 15
-    attackPerPop: 8
+    maxActionPoints: 0
+    strengthPerPop: 0
     attackCost: 5
-    defensePerPop: 6
     foodPerPopPerTurn: 1
     woodPerPopPerWinter: 1
+    workPerPop: 0
     maxFood: 50
     maxWood: 25
     maxStone: 15
-    maxPop: 8
+    startingGold: 0
+    maxPopulation: 0
+    groupTypeModifiers: []

@@ -10,6 +10,14 @@
     ],
     "upgradeable": true,
     "upgradeName": "Small House",
+    "maxCondition": 2,
     "defenseBonus": 0,
-    "movementCost": 0
+    "movementCost": 0,
+    "tileModifiers": [
+        {
+            "ModifiedStat": "MaxPopulation",
+            "Amount": 4,
+            "Description": "Dwelling"
+        }
+    ]
 }

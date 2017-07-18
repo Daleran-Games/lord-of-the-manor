@@ -2,15 +2,17 @@
     "name": "Ealdorman",
     "rank": 5,
     "culture": 1,
-    "type": "DaleranGames.TBSFramework.UnitType",
-    "actionPoints": 15,
-    "attackPerPop": 6,
+    "type": "DaleranGames.TBSFramework.GroupType",
+    "maxActionPoints": 15,
+    "strengthPerPop": 4,
     "attackCost": 5,
-    "defensePerPop": 4,
     "foodPerPopPerTurn": 1,
     "woodPerPopPerWinter": 1,
+    "workPerPop": 6,
     "maxFood": 50,
     "maxWood": 25,
     "maxStone": 15,
-    "maxPop": 8
+    "startingGold": 150,
+    "maxPopulation": 8,
+    "groupTypeModifiers": []
 }

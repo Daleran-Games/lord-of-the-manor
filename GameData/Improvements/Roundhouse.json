@@ -10,6 +10,14 @@
     ],
     "upgradeable": true,
     "upgradeName": "Large House",
+    "maxCondition": 4,
     "defenseBonus": 2,
-    "movementCost": 0
+    "movementCost": 0,
+    "tileModifiers": [
+        {
+            "ModifiedStat": "MaxPopulation",
+            "Amount": 8,
+            "Description": "Dwelling"
+        }
+    ]
 }

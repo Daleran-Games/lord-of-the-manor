@@ -43,16 +43,20 @@ namespace DaleranGames.TBSFramework
         public virtual Stat StrengthPerPop { get { return new Stat(StatType.StrengthPerPop, strengthPerPop); } }
 
         [SerializeField]
-        protected int attackCost = 5;
+        protected int attackCost = -5;
         public virtual Stat AttackCost { get { return new Stat(StatType.AttackCost, attackCost); } }
 
         [SerializeField]
-        protected int foodPerPopPerTurn = 1;
+        protected int foodPerPopPerTurn = -1;
         public virtual Stat FoodRatePerPop { get { return new Stat(StatType.GroupFoodRatePerPop, foodPerPopPerTurn); } }
 
         [SerializeField]
-        protected int woodPerPopPerWinter = 1;
+        protected int woodPerPopPerWinter = -1;
         public virtual Stat WoodRatePerPop { get { return new Stat(StatType.GroupWoodRatePerPop, woodPerPopPerWinter); } }
+
+        [SerializeField]
+        protected int workPerPop = 12;
+        public virtual Stat WorkPerPop { get { return new Stat(StatType.GroupWorkPerPop, workPerPop); } }
 
         [SerializeField]
         protected int maxFood = 50;
@@ -67,6 +71,10 @@ namespace DaleranGames.TBSFramework
         public virtual Stat MaxStone { get { return new Stat(StatType.MaxStone, maxStone); } }
 
         [SerializeField]
+        protected int startingGold = 150;
+        public int StartingGold { get { return startingGold; } }
+
+        [SerializeField]
         protected int maxPopulation = 8;
         public virtual Stat MaxPopulation { get { return new Stat(StatType.MaxPopulation, maxPopulation); } }
 
@@ -76,9 +84,12 @@ namespace DaleranGames.TBSFramework
         public Stat StarvationRate { get { return GameplayMetrics.BaseStarvationRate; } }
         public Stat FreezingRate { get { return GameplayMetrics.BaseFreezingRate; } }
 
-
+        [SerializeField]
+        protected ModifierEntry[] groupTypeModifiers;
+        public virtual ModifierEntry[] GroupTypeModifiers { get { return groupTypeModifiers; } }
         #endregion
 
+        //Private constructor for a null type group
         private GroupType(string name)
         {
             id = -1;
@@ -131,7 +142,8 @@ namespace DaleranGames.TBSFramework
                 OnGameStart(group);
             }
 
-
+            if (GroupTypeModifiers != null)
+                group.Modifiers.Add(GroupTypeModifiers);
         }
 
         public virtual void OnGameStart(Group group)
@@ -156,7 +168,8 @@ namespace DaleranGames.TBSFramework
 
         public virtual void OnDeactivation(Group group)
         {
-
+            if (GroupTypeModifiers != null)
+                group.Modifiers.Remove(GroupTypeModifiers);
         }
         #endregion
 
