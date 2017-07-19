@@ -10,9 +10,9 @@ namespace DaleranGames.TBSFramework
         int this[StatType statType] { get; }
         Modifier[] GetAll(StatType statType);
         void Add(Modifier mod);
-        void Add(ModifierEntry[] mods);
+        void Add(Modifier[] mods);
         void Remove(Modifier mod);
-        void Remove(ModifierEntry[] mods);
+        void Remove(Modifier[] mods);
         void Clear(StatType statType);
         void ClearAll();
     }

@@ -8,10 +8,8 @@ namespace DaleranGames.Database
     public abstract class DatabaseLoader<T> : ScriptableObject where T: IDatabaseObject
     {
         [SerializeField]
-        string jsonFilePath;
-        protected string JSONFilePath { get { return "GameData/"+jsonFilePath + "/"; } }
-
-        protected int id = 0;
+        string csvFilePath;
+        protected string CSVFilePath { get { return "GameData/"+csvFilePath + "/"; } }
 
         public abstract Database<T> GenerateDatabase();
 

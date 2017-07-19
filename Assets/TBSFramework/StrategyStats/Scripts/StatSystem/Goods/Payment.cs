@@ -34,7 +34,7 @@ namespace DaleranGames.TBSFramework
         public Transaction GetIfPerCapita (int population)
         {
             if (PerCapita)
-                return new Transaction(Amount.Immediate, Amount.Good * population, Amount.Description);
+                return new Transaction(Amount.Good * population, Amount.Immediate, Amount.Description);
             else return Amount;
         }
 

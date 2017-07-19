@@ -13,27 +13,22 @@ namespace DaleranGames.TBSFramework
         protected string name;
         public  virtual string Name { get { return name; } }
 
-        [System.NonSerialized]
+        [SerializeField]
         protected int id;
         public virtual int ID { get { return id; } }
 
         [SerializeField]
         [HideInInspector]
         protected string type = "TileType";
-        public string Type { get { return type; } }
+        public virtual string Type { get { return type; } }
 
         [SerializeField]
-        protected string iconName;
-        public string IconName { get { return iconName; } }
-
-        [System.NonSerialized]
         protected TileGraphic iconGraphic;
         public TileGraphic IconGraphic { get { return iconGraphic; } }
 
         public virtual void OnDatabaseInitialization()
         {
-            //Debug.Log("Create tile icon " + iconName);
-            iconGraphic = GameDatabase.Instance.TileGraphics[iconName];
+
         }
 
         public virtual void OnActivation(HexTile tile)
@@ -74,7 +69,5 @@ namespace DaleranGames.TBSFramework
 
         }
 
-        public abstract string ToJson();
-    
     }
 }

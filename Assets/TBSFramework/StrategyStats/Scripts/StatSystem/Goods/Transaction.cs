@@ -8,6 +8,8 @@ namespace DaleranGames.TBSFramework
     [System.Serializable]
     public struct Transaction : IFormattable, IEquatable<Transaction>, IComparable<Transaction>, IComparable
     {
+        public const string CsvIdentifier = "transaction";
+
         [SerializeField]
         bool immediate;
         public bool Immediate { get { return immediate; } }
@@ -20,18 +22,24 @@ namespace DaleranGames.TBSFramework
         string description;
         public string Description { get { return description; } }
 
-        public Transaction (bool immediate,Good good)
+        public Transaction(Good good, bool immediate)
         {
             this.good = good;
             this.immediate = immediate;
             description = "None";
         }
 
-        public Transaction(bool immediate, Good good, string description)
+        public Transaction(Good good, bool immediate, string description)
         {
             this.good = good;
             this.immediate = immediate;
             this.description = description;
+        }
+
+
+        public Transaction ParseCSV(string[] csvLine, int startingIndex)
+        {
+            return new Transaction(new Good((GoodType)Enum.Parse(typeof(GoodType), csvLine[startingIndex]), Int32.Parse(csvLine[startingIndex + 1])),Boolean.Parse(csvLine[startingIndex + 2]), csvLine[startingIndex + 3]);
         }
 
         public override string ToString()

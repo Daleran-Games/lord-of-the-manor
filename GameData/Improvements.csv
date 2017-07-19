@@ -1,0 +1,7 @@
+id,name,type,maxCondition,defenseBonus,movementCost,,,,,,,,,,
+0,Tent,ImprovementType,2,0,0,validLand,Plains,Moor,Hills,Moor Hills,modifier,MaxPopulation,4,Dwelling,end
+1,Small House,ImprovementType,3,1,0,validLand,Plains,Moor,Hills,Moor Hills,modifier,MaxPopulation,6,Dwelling,end
+2,Round House,ImprovementType,4,2,0,validLand,Plains,Moor,Hills,Moor Hills,modifier,MaxPopulation,8,Dwelling,end
+3,Large House,ImprovementType,5,3,0,validLand,Plains,Moor,Hills,Moor Hills,modifier,MaxPopulation,10,Dwelling,end
+4,Hall,ImprovementType,6,4,0,validLand,Plains,Moor,Hills,Moor Hills,modifier,MaxPopulation,14,Dwelling,end
+5,Farm,ImprovementType,1,0,1,validLand,Plains,Moor,end,,,,,,

@@ -8,10 +8,11 @@ namespace DaleranGames.TBSFramework
     [System.Serializable]
     public class LandClearingActivity : Activity
     {
-        public LandClearingActivity(LandClearingActivity activity, int id)
+        public LandClearingActivity(string[] csv)
         {
-            name = activity.Name;
-            this.id = id;
+            id = Int32.Parse(csv[0]);
+            name = csv[1];
+            type = csv[2];
         }
 
         protected override void Awake()
@@ -42,10 +43,5 @@ namespace DaleranGames.TBSFramework
             //tile.Land.ClearTile(tile);
         }
 
-        public override string ToJson()
-        {
-            this.type = this.ToString();
-            return JsonUtility.ToJson(this, true);
-        }
     }
 }

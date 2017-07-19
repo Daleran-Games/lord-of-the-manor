@@ -78,6 +78,10 @@ namespace DaleranGames.TBSFramework
         protected int maxPopulation = 8;
         public virtual Stat MaxPopulation { get { return new Stat(StatType.MaxPopulation, maxPopulation); } }
 
+        [SerializeField]
+        protected int levyPercent = 8;
+        public virtual Stat LevyPervent { get { return new Stat(StatType.GroupLevy, levyPercent); } }
+
 
         public Stat BirthRate { get { return GameplayMetrics.BaseBirthRate; } }
         public Stat DeathRate { get { return GameplayMetrics.BaseDeathRate; } }
@@ -85,8 +89,8 @@ namespace DaleranGames.TBSFramework
         public Stat FreezingRate { get { return GameplayMetrics.BaseFreezingRate; } }
 
         [SerializeField]
-        protected ModifierEntry[] groupTypeModifiers;
-        public virtual ModifierEntry[] GroupTypeModifiers { get { return groupTypeModifiers; } }
+        protected Modifier[] groupTypeModifiers;
+        public virtual Modifier[] GroupTypeModifiers { get { return groupTypeModifiers; } }
         #endregion
 
         //Private constructor for a null type group
@@ -109,14 +113,15 @@ namespace DaleranGames.TBSFramework
             maxPopulation = 0;
         }
 
-        public GroupType (GroupType type, int id)
+        public GroupType(string[] csvLine)
         {
-            this.id = id;
-            name = type.Name;
-            rank = type.Rank;
-            culture = type.Culture;
-            this.type = this.ToString();
-            
+            id = Int32.Parse(csvLine[0]);
+            name = csvLine[1];
+            type = csvLine[2];
+            rank = (Ranks)Enum.Parse(typeof(Ranks), csvLine[3]);
+            culture = (Cultures)Enum.Parse(typeof(Cultures), csvLine[4]);
+
+
             maxActionPoints = type.MaxActionPoints;
             strengthPerPop = type.StrengthPerPop;
             attackCost = type.AttackCost;
@@ -126,7 +131,7 @@ namespace DaleranGames.TBSFramework
             maxWood = type.MaxWood;
             maxStone = type.MaxStone;
             maxPopulation = type.MaxPopulation;
-            
+
         }
 
         # region Group Callbacks
@@ -174,12 +179,6 @@ namespace DaleranGames.TBSFramework
         #endregion
 
 
-
-        public virtual string ToJson()
-        {
-            this.type = this.ToString();
-            return JsonUtility.ToJson(this, true);
-        }
 
     }
 }

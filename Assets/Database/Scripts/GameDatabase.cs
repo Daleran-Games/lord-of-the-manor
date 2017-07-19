@@ -16,12 +16,27 @@ namespace DaleranGames.Database
         [SerializeField]
         protected TileAtlas atlas;
         public TileAtlas Atlas { get { return atlas; } }
+
+        [Header("Database Loaders")]
+        [SerializeField]
+        SpriteDatabaseLoader spriteLoader;
+        [SerializeField]
+        GraphicsDatabaseLoader graphicsLoader;
+        [SerializeField]
+        LandDatabaseLoader landsLoader;
+        [SerializeField]
+        ImprovementsDatabaseLoader improvementsLoader;
+        [SerializeField]
+        GroupsDatabaseLoader groupsLoader;
+        [SerializeField]
+        ActivityDatabaseLoader activityLoader;
+
+
         public Dictionary<string, Sprite> Sprites;
         public Database<TileGraphic> TileGraphics;
-        //public Database<StatType> StatTypes;
-        public Database<LandType> LandTiles;
+        public Database<LandType> Lands;
         public Database<ImprovementType> Improvements;
-        public Database<GroupType> Units;
+        public Database<GroupType> Groups;
         public Database<Activity> Activities;
 
         private void Awake()
@@ -34,21 +49,19 @@ namespace DaleranGames.Database
             System.Diagnostics.Stopwatch timer = new System.Diagnostics.Stopwatch();
             timer.Start();
 
-            Sprites = GetComponentInChildren<SpriteDatabaseLoader>().GetSpriteDictionary();
-            TileGraphics = GetComponentInChildren<GraphicsDatabaseLoader>().GenerateDatabase();
-            //StatTypes = GetComponentInChildren<StatsDatabaseLoader>().GenerateDatabase();
-            LandTiles = GetComponentInChildren<LandDatabaseLoader>().GenerateDatabase();
-            Improvements = GetComponentInChildren<ImprovementsDatabaseLoader>().GenerateDatabase();
-            Units = GetComponentInChildren<UnitsDatabaseLoader>().GenerateDatabase();
-            Activities = GetComponentInChildren<ActivityDatabaseLoader>().GenerateDatabase();
+            Sprites = spriteLoader.GenerateDatabase();
+            TileGraphics = graphicsLoader.GenerateDatabase();
+            Lands = landsLoader.GenerateDatabase();
+            Improvements = improvementsLoader.GenerateDatabase();
+            Groups = groupsLoader.GenerateDatabase();
+            Activities = activityLoader.GenerateDatabase();
 
+            graphicsLoader.InitializeDatabase(TileGraphics);
+            landsLoader.InitializeDatabase(Lands);
+            improvementsLoader.InitializeDatabase(Improvements);
+            groupsLoader.InitializeDatabase(Groups);
+            activityLoader.InitializeDatabase(Activities);
 
-            GetComponentInChildren<GraphicsDatabaseLoader>().InitializeDatabase(TileGraphics);
-            //GetComponentInChildren<StatsDatabaseLoader>().InitializeDatabase(StatTypes);
-            GetComponentInChildren<LandDatabaseLoader>().InitializeDatabase(LandTiles);
-            GetComponentInChildren<ImprovementsDatabaseLoader>().InitializeDatabase(Improvements);
-            GetComponentInChildren<UnitsDatabaseLoader>().InitializeDatabase(Units);
-            GetComponentInChildren<ActivityDatabaseLoader>().InitializeDatabase(Activities);
 
 
             timer.Stop();

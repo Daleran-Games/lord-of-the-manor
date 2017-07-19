@@ -10,17 +10,17 @@ namespace DaleranGames.TBSFramework
     public class BuildActivity : Activity
     {
         [SerializeField]
-        protected string improvementName;
-        public string ImprovementName { get { return improvementName; } }
+        string improvementName;
 
-        [System.NonSerialized]
+        [SerializeField]
         ImprovementType improvement;
 
-        public BuildActivity(BuildActivity activity, int id)
+        public BuildActivity(string[] csv)
         {
-            name = activity.Name;
-            this.id = id;
-            improvementName = activity.improvementName;
+            id = Int32.Parse(csv[0]);
+            name = csv[1];
+            type = csv[2];
+            improvementName = csv[3];
         }
 
         protected override void Awake()
@@ -53,10 +53,5 @@ namespace DaleranGames.TBSFramework
             tile.Improvement = improvement;
         }
 
-        public override string ToJson()
-        {
-            this.type = this.ToString();
-            return JsonUtility.ToJson(this, true);
-        }
     }
 }

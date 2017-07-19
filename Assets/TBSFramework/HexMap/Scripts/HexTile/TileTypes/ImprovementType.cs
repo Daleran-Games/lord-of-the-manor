@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DaleranGames.Database;
-
+using System;
 
 namespace DaleranGames.TBSFramework
 {
@@ -19,9 +19,8 @@ namespace DaleranGames.TBSFramework
 
         [SerializeField]
         protected string upgradeName;
-        public string UpgradeName { get { return upgradeName; } }
 
-        [System.NonSerialized]
+        [SerializeField]
         protected ImprovementType upgradedImprovement;
         public ImprovementType UpgradedImprovement { get { return upgradedImprovement; } }
         
@@ -43,21 +42,27 @@ namespace DaleranGames.TBSFramework
         public Stat BaseMovementCost { get { return new Stat(StatType.MovementCost, movementCost); } }
 
         [SerializeField]
-        protected ModifierEntry[] tileModifiers;
+        protected Modifier[] tileModifiers;
 
 
-        public ImprovementType(ImprovementType impr,int id)
+        public ImprovementType(string[] csv)
         {
-            name = impr.Name;
-            this.id = id;
-            upgradeable = impr.Upgradeable;
-            iconName = impr.IconName;
-            upgradeName = impr.UpgradeName;
-            validLand = impr.ValidLand;
-            this.type = this.ToString();
 
-            defenseBonus = impr.defenseBonus;
-            movementCost = impr.movementCost;
+            id = Int32.Parse(csv[0]);
+            name = csv[1];
+            type = csv[2];
+
+            maxCondition = Int32.Parse(csv[3]);
+            defenseBonus = Int32.Parse(csv[4]);
+            movementCost = Int32.Parse(csv[5]);
+            upgradeable = Boolean.Parse(csv[6]);
+
+            if (upgradeable)
+            {
+
+            }
+            
+            
         }
 
 #region Tile Callbacks
@@ -126,12 +131,6 @@ namespace DaleranGames.TBSFramework
         {
            // if (UpgradedImprovement != null && Upgradeable)
                 //tile.ChangeImprovementType(UpgradedImprovement);
-        }
-
-        public override string ToJson()
-        {
-            this.type = this.ToString();
-            return JsonUtility.ToJson(this, true);
         }
 
     }

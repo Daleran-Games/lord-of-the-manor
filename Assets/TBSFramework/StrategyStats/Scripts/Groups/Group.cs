@@ -159,10 +159,10 @@ namespace DaleranGames.TBSFramework
 
         protected virtual void SetUpNextTurn()
         {
-            Goods.TryAdd(new Transaction(false, new Good(GoodType.Food, FoodRate),"Food Eaten"));
+            Goods.TryAdd(new Transaction(new Good(GoodType.Food, FoodRate), false, "Food Eaten"));
 
             if (TurnManager.Instance.CurrentTurn is FallTurn)
-                Goods.TryAdd(new Transaction(false, new Good(GoodType.Wood, WoodRate),"Wood for the Winter"));
+                Goods.TryAdd(new Transaction(new Good(GoodType.Wood, WoodRate), false, "Wood for the Winter"));
         }
 
 
@@ -196,6 +196,26 @@ namespace DaleranGames.TBSFramework
         {
             // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
             Dispose(true);
+        }
+        #endregion
+
+
+        #region Save and Loading Support
+        public class GroupSaveData
+        {
+            public readonly int GroupTypeID;
+            public readonly int Food;
+            public readonly int Wood;
+            public readonly int Stone;
+            public readonly int Gold;
+            public readonly int Population;
+            public readonly int Work;
+
+            public GroupSaveData(Group group)
+            {
+
+
+            }
         }
         #endregion
     }

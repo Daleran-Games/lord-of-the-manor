@@ -7,10 +7,11 @@ namespace DaleranGames.TBSFramework
     [System.Serializable]
     public class UpgradeActivity : Activity
     {
-        public UpgradeActivity(UpgradeActivity activity, int id)
+        public UpgradeActivity(string[] csv)
         {
-            name = activity.Name;
-            this.id = id;
+            id = System.Int32.Parse(csv[0]);
+            name = csv[1];
+            type = csv[2];
         }
 
         protected override void Awake()
@@ -47,11 +48,6 @@ namespace DaleranGames.TBSFramework
             return TileGraphic.clear;
         }
 
-        public override string ToJson()
-        {
-            this.type = this.ToString();
-            return JsonUtility.ToJson(this, true);
-        }
 
     }
 }

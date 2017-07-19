@@ -49,11 +49,11 @@ namespace DaleranGames.TBSFramework
             }
         }
         
-        public void Add (ModifierEntry[] mods)
+        public void Add (Modifier[] mods)
         {
             for (int i=0; i < mods.Length; i++)
             {
-                Add(mods[i].GetModifer());
+                Add(mods[i]);
             }
         }
 
@@ -69,11 +69,11 @@ namespace DaleranGames.TBSFramework
             }
         }
 
-        public void Remove(ModifierEntry[] mods)
+        public void Remove(Modifier[] mods)
         {
             for (int i = 0; i < mods.Length; i++)
             {
-                Remove(mods[i].GetModifer());
+                Remove(mods[i]);
             }
         }
 

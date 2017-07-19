@@ -17,13 +17,12 @@ namespace DaleranGames.Database
         [SerializeField]
         protected UpgradeActivity upgrade;
         [SerializeField]
-        [Reorderable]
         protected BuildActivity[] builds;
 
         public override Database<Activity> GenerateDatabase()
         {
             Database<Activity> newDB = new Database<Activity>();
-            string[] files = Directory.GetFiles(JSONFilePath, "*.json", SearchOption.TopDirectoryOnly);
+            string[] files = Directory.GetFiles(CSVFilePath, "*.json", SearchOption.TopDirectoryOnly);
 
             for (int i = 0; i < files.Length; i++)
             {
@@ -33,7 +32,7 @@ namespace DaleranGames.Database
                 switch(activity.Type)
                 {
                     case "DaleranGames.TBSFramework.BuildActivity":
-                        newDB.Add(new BuildActivity(JsonUtility.FromJson<BuildActivity>(jsonString), id));
+                        newDB.Add();
                         break;
                     case "DaleranGames.TBSFramework.LandClearingActivity":
                         newDB.Add(new LandClearingActivity(JsonUtility.FromJson<LandClearingActivity>(jsonString), id));
@@ -48,7 +47,7 @@ namespace DaleranGames.Database
                         Debug.LogError("Database Error: "+activity.Type+ " not a valid type.");
                         break;
                 }
-                id++;
+
             }
 
             return newDB;

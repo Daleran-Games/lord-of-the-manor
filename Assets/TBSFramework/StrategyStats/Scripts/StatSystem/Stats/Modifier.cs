@@ -8,6 +8,8 @@ namespace DaleranGames.TBSFramework
     [System.Serializable]
     public struct Modifier : IFormattable, IEquatable<Modifier>, IComparable<Modifier>, IComparable
     {
+        public const string CsvIdentifier = "modifier";
+
         [SerializeField]
         Stat stat;
         public Stat Stat { get { return stat; } }
@@ -26,6 +28,11 @@ namespace DaleranGames.TBSFramework
         {
             this.stat = mod;
             this.description = description;
+        }
+
+        public Modifier ParseCSV(string[] csvLine, int startingIndex)
+        {
+            return new Modifier(new Stat(Enumeration.FromDisplayName<StatType>(csvLine[startingIndex]),Int32.Parse(csvLine[startingIndex+1])),csvLine[startingIndex+2]);
         }
 
         public override string ToString()

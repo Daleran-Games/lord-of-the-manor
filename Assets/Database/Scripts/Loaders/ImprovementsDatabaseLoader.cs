@@ -11,18 +11,17 @@ namespace DaleranGames.Database
     public class ImprovementsDatabaseLoader : DatabaseLoader<ImprovementType>
     {
         [SerializeField]
-        [Reorderable]
         protected ImprovementType[] improvements;
 
         public override Database<ImprovementType> GenerateDatabase()
         {
             Database<ImprovementType> newDB = new Database<ImprovementType>();
-            string[] files = Directory.GetFiles(JSONFilePath, "*.json", SearchOption.TopDirectoryOnly);
+            string[] files = Directory.GetFiles(CSVFilePath, "*.json", SearchOption.TopDirectoryOnly);
 
             for (int i = 0; i <files.Length; i++)
             {
-                string jsonString = File.ReadAllText(files[i]);
-                newDB.Add(new ImprovementType(JsonUtility.FromJson<ImprovementType>(jsonString), id));
+                string csv = File.ReadAllText(files[i]);
+                newDB.Add(new ImprovementType(JsonUtility.FromJson<ImprovementType>(csv), id));
                 id++;
             }
             //Debug.Log("Improvment types types created");

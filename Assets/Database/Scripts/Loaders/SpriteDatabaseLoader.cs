@@ -12,7 +12,6 @@ namespace DaleranGames.Database
     public class SpriteDatabaseLoader : ScriptableObject
     {
         [SerializeField]
-        [Reorderable]
         protected List<Sprite> sprites;
 
         [SerializeField]
@@ -22,7 +21,7 @@ namespace DaleranGames.Database
         [SerializeField]
         protected string refTextFilePath = "Assets/Graphics/Sprites/SpriteNames.txt";
 
-        public Dictionary<string, Sprite> GetSpriteDictionary ()
+        public Dictionary<string, Sprite> GenerateDatabase ()
         {
             Dictionary<string, Sprite> dict = new Dictionary<string, Sprite>();
 
@@ -48,9 +47,7 @@ namespace DaleranGames.Database
             System.Array.Copy(ui, objs, ui.Length);
             System.Array.Copy(spr, 0, objs, ui.Length, spr.Length);
 
-            StreamWriter writer = new StreamWriter(refTextFilePath, false);
-            writer.WriteLine("Sprite Names");
-            writer.WriteLine("");
+
 
             for (int i = 0; i < objs.Length; i++)
             {
@@ -58,12 +55,8 @@ namespace DaleranGames.Database
                 {
                     Sprite sprite = objs[i] as Sprite;
                     newSprites.Add(sprite);
-                    writer.WriteLine(sprite.name);
                 }
             }
-
-            writer.Close();
-
             sprites = newSprites;
 
         }

@@ -1,6 +1,0 @@
-{
-    "name": "Build Farm",
-    "type": "DaleranGames.TBSFramework.BuildActivity",
-    "workIconName": "UIAtlas_Icon_Hammer",
-    "improvementName": "Farm Sowing"
-}

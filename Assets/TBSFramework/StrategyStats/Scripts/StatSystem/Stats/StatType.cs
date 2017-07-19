@@ -34,6 +34,7 @@ namespace DaleranGames.TBSFramework
         public static readonly StatType GroupFreezeRate = new StatType(16, "Freeze Rate", "FR");
         public static readonly StatType GroupWorkPerPop = new StatType(23, "Work Per Turn Per Population", "W/T/P");
         public static readonly StatType GroupWorkRate = new StatType(47, "Work Per Turn", "W/T");
+        public static readonly StatType GroupLevy = new StatType(48, "Levy Percent", "LY");
 
 
         //Tile Stats

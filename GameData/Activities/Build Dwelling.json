@@ -1,6 +1,0 @@
-{
-    "name": "Build Dwelling",
-    "type": "DaleranGames.TBSFramework.BuildActivity",
-    "workIconName": "UIAtlas_Icon_Hammer",
-    "improvementName": "Tent"
-}

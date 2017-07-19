@@ -21,21 +21,17 @@ namespace DaleranGames.Database
         [SerializeField]
         protected string graphicRefFilePath = "GraphicNames.txt";
         [SerializeField]
-        [Reorderable]
         protected TileGraphic[] graphics;
 
 
         public override Database<TileGraphic> GenerateDatabase()
         {
+
             Database<TileGraphic> newDB = new Database<TileGraphic>();
-
-
             for(int i=0; i < graphics.Length; i++ )
             {
                 newDB.Add(graphics[i]);
-                id++;
             }
-
             return newDB;
         }
 
@@ -56,9 +52,12 @@ namespace DaleranGames.Database
             System.Array.Copy(ui, objs, ui.Length);
             System.Array.Copy(spr, 0, objs, ui.Length, spr.Length);
 
-            StreamWriter writer = new StreamWriter(JSONFilePath + graphicRefFilePath, false);
+            StreamWriter writer = new StreamWriter(CSVFilePath + graphicRefFilePath, false);
             writer.WriteLine("Graphic Names");
-            writer.WriteLine("");
+            writer.WriteLine("id  Name");
+            writer.WriteLine(" ");
+            
+            int id = 0;
 
             for (int i=0; i< objs.Length;i++)
             {
@@ -66,8 +65,9 @@ namespace DaleranGames.Database
                 {
                     Sprite sprite = objs[i] as Sprite;
                     newGraphics.Add(new TileGraphic(sprite.name, id, GameDatabase.Instance.Atlas.GetCoordFromRect(sprite.rect)));
+                    writer.WriteLine(id + "  " +sprite.name);
                     id++;
-                    writer.WriteLine(sprite.name);
+
                 }
             }
             writer.Close();

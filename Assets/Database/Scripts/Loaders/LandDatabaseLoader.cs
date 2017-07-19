@@ -11,18 +11,17 @@ namespace DaleranGames.Database
     public class LandDatabaseLoader : DatabaseLoader<LandType>
     {
         [SerializeField]
-        [Reorderable]
         protected LandType[] lands;
 
         public override Database<LandType> GenerateDatabase()
         {
             Database<LandType> newDB = new Database<LandType>();
-            string[] files = Directory.GetFiles(JSONFilePath, "*.json", SearchOption.TopDirectoryOnly);
+            string[] files = Directory.GetFiles(CSVFilePath, "*.json", SearchOption.TopDirectoryOnly);
 
             for (int i = 0; i < files.Length; i++)
             {
                 string jsonString = File.ReadAllText(files[i]);
-                newDB.Add(new LandType(JsonUtility.FromJson<LandType>(jsonString), id));
+                newDB.Add();
                 id++;
             }
 

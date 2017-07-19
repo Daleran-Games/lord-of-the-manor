@@ -1,8 +1,0 @@
-{
-    "name": "UIAtlas_Icon_HousingArea",
-    "type": "DaleranGames.TBSFramework.TileGraphic",
-    "atlasCoord": {
-        "x": 3,
-        "y": 9
-    }
-}

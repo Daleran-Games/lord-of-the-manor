@@ -9,23 +9,31 @@ namespace DaleranGames.TBSFramework
     [System.Serializable]
     public class LandType : TileType
     {
-
-
-        public LandType(LandType land, int id)
+   
+        public LandType(string[] csv)
         {
-            name = land.Name;
-            this.id = id;
-            iconName = land.IconName;
-            this.type = this.ToString();
+            id = Int32.Parse(csv[0]);
+            name = csv[1];
 
-            foodYield = land.BaseFoodYield;
-            woodYield = land.BaseWoodYield;
-            stoneYield = land.BaseStoneYield;
-            goldYield = land.BaseGoldYield;
-            defenseBonus = land.BaseDefenseBonus;
-            movementCost = land.BaseMovementCost;
+            iconGraphic = GameDatabase.Instance.TileGraphics[csv[3]];
+            defenseBonus = Int32.Parse(csv[4]);
+            movementCost = Int32.Parse(csv[5]);
+            foodYield = Int32.Parse(csv[6]);
+            woodYield = Int32.Parse(csv[7]);
+            stoneYield = Int32.Parse(csv[8]);
+            goldYield = Int32.Parse(csv[9]);
+            clearable = Boolean.Parse(csv[10]);
+
+            if (clearable)
+            {
+
+            } else
+            {
+
+            }
 
         }
+
 
         #region TileStats
         [Header("Tile Stats")]
@@ -75,7 +83,7 @@ namespace DaleranGames.TBSFramework
         protected bool clearable = false;
         public bool Clearable (HexTile tile)
         {
-            if (clearable && tile.Owner.Goods.CanProcessTransaction(ClearLandCosts(tile)) && ClearedLand != null)
+            if (clearable && tile.Owner.Goods.CanProcessTransaction(ClearLandCost(tile)) && ClearedLand != null)
                 return true;
             else
                 return false;
@@ -83,7 +91,6 @@ namespace DaleranGames.TBSFramework
 
         [SerializeField]
         protected string clearedLandName;
-        public string ClearedLandName { get { return clearedLandName; } }
 
         [System.NonSerialized]
         protected LandType clearedLand;
@@ -98,31 +105,45 @@ namespace DaleranGames.TBSFramework
         }
 
         [SerializeField]
-        protected Transaction[] clearLandCosts;
-        public Transaction[] BaseClearLandCosts { get { return clearLandCosts; } }
-        public Transaction[] ClearLandCosts (HexTile tile)
+        protected int clearLandWork;
+        public Stat BaseClearLandWork { get { return new Stat(StatType.ClearLandCost, clearLandWork); } }
+        public Transaction ClearLandCost (HexTile tile)
         {
-            Transaction[] newTransactions = new Transaction[BaseClearLandCosts.Length];
-            for (int i=0;i < BaseClearLandCosts.Length; i++)
-            {
-                newTransactions[i] = new Transaction(BaseClearLandCosts[i].Immediate, new Good(BaseClearLandCosts[i].Good.Type, BaseClearLandCosts[i].Good + tile.Owner.Modifiers[StatType.ClearLandCost]), BaseClearLandCosts[i].Description);
-            }
-            return newTransactions;
+            return new Transaction(new Good(GoodType.Work, clearLandWork + tile.Owner.Modifiers[StatType.ClearLandCost]), false, "Clearing " + name);
         }
 
         [SerializeField]
-        protected Transaction[] clearLandBonus;
-        public Transaction[] BaseClearLandBonus { get { return clearLandBonus; } }
-
-        public Transaction[] ClearLandBonus(HexTile tile)
+        protected int clearFoodBonus;
+        public Stat BaseClearFoodBonus { get { return new Stat(StatType.ClearLandBonus, clearFoodBonus); } }
+        public Transaction ClearFoodBonus(HexTile tile)
         {
-            Transaction[] newTransactions = new Transaction[BaseClearLandBonus.Length];
-            for (int i = 0; i < BaseClearLandCosts.Length; i++)
-            {
-                newTransactions[i] = new Transaction(BaseClearLandBonus[i].Immediate, new Good(BaseClearLandBonus[i].Good.Type, BaseClearLandBonus[i].Good + tile.Owner.Modifiers[StatType.ClearLandBonus]), BaseClearLandBonus[i].Description);
-            }
-            return newTransactions;
+            return new Transaction(new Good(GoodType.Food, clearFoodBonus + tile.Owner.Modifiers[StatType.ClearLandBonus]), false, "Clearing " + name);
         }
+
+        [SerializeField]
+        protected int clearWoodBonus;
+        public Stat BaseClearWoodBonus { get { return new Stat(StatType.ClearLandBonus, clearWoodBonus); } }
+        public Transaction ClearWoodBonus(HexTile tile)
+        {
+            return new Transaction(new Good(GoodType.Wood, clearWoodBonus + tile.Owner.Modifiers[StatType.ClearLandBonus]), false, "Clearing " + name);
+        }
+
+        [SerializeField]
+        protected int clearStoneBonus;
+        public Stat BaseClearStoneBonus { get { return new Stat(StatType.ClearLandBonus, clearStoneBonus); } }
+        public Transaction ClearStoneBonus(HexTile tile)
+        {
+            return new Transaction(new Good(GoodType.Stone, clearStoneBonus + tile.Owner.Modifiers[StatType.ClearLandBonus]), false, "Clearing " + name);
+        }
+
+        [SerializeField]
+        protected int clearGoldBonus;
+        public Stat BaseClearGoldBonus { get { return new Stat(StatType.ClearLandBonus, clearStoneBonus); } }
+        public Transaction ClearGoldBonus(HexTile tile)
+        {
+            return new Transaction(new Good(GoodType.Gold, clearGoldBonus + tile.Owner.Modifiers[StatType.ClearLandBonus]), false, "Clearing " + name);
+        }
+
 
         [Header("Work Land Stats")]
         protected bool workable = false;
@@ -131,22 +152,17 @@ namespace DaleranGames.TBSFramework
             return false;
         }
 
-
-
-
-
         [SerializeField]
-        protected ModifierEntry[] tileModifiers;
+        protected Modifier[] tileModifiers = new Modifier[0];
         #endregion
 
         #region Tile Callbacks
         public override void OnDatabaseInitialization()
         {
-
             base.OnDatabaseInitialization();
 
             if (clearable)
-                clearedLand = GameDatabase.Instance.LandTiles[ClearedLandName];
+                clearedLand = GameDatabase.Instance.Lands[clearedLandName];
         }
         public override void OnActivation(HexTile tile)
         {
@@ -180,11 +196,6 @@ namespace DaleranGames.TBSFramework
         }
         #endregion
 
-        public override string ToJson()
-        {
-            this.type = this.ToString();
-            return JsonUtility.ToJson(this, true);
-        }
 
     }
 }

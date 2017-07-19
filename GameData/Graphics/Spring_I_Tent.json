@@ -1,8 +1,0 @@
-{
-    "name": "Spring_I_Tent",
-    "type": "DaleranGames.TBSFramework.TileGraphic",
-    "atlasCoord": {
-        "x": 8,
-        "y": 5
-    }
-}
