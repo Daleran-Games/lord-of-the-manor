@@ -7,10 +7,13 @@ using UnityEngine;
 
 namespace DaleranGames
 {
+    [System.Serializable]
     public abstract class Enumeration : IFormattable, IEquatable<Enumeration>, IComparable<Enumeration>, IComparable
     {
-        private readonly int _value;
-        private readonly string _displayName;
+        [SerializeField]
+        int _value;
+        [SerializeField]
+        string _displayName;
 
         protected Enumeration()
         {

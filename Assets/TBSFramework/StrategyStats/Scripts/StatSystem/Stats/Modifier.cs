@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using DaleranGames.Database;
 
 namespace DaleranGames.TBSFramework
 {
     [System.Serializable]
     public struct Modifier : IFormattable, IEquatable<Modifier>, IComparable<Modifier>, IComparable
     {
-        public const string CsvIdentifier = "modifier";
+        public const string CsvId = "modifier";
 
         [SerializeField]
         Stat stat;
@@ -30,9 +31,25 @@ namespace DaleranGames.TBSFramework
             this.description = description;
         }
 
-        public Modifier ParseCSV(string[] csvLine, int startingIndex)
+        public Modifier(StatType type, int value, string description)
+        {
+            stat = new Stat(type, value);
+            this.description = description;
+        }
+
+        public static Modifier ParseCSV(string[] csvLine, int startingIndex)
         {
             return new Modifier(new Stat(Enumeration.FromDisplayName<StatType>(csvLine[startingIndex]),Int32.Parse(csvLine[startingIndex+1])),csvLine[startingIndex+2]);
+        }
+
+        public static Modifier[] ParseCSVList (string[] csvList)
+        {
+            List<Modifier> items = new List<Modifier>();
+            for (int i=0; i < csvList.Length; i+=3)
+            {
+                items.Add(ParseCSV(csvList, i));
+            }
+            return items.ToArray();
         }
 
         public override string ToString()

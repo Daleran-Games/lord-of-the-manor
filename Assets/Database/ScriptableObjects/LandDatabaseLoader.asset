@@ -1,0 +1,353 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15cbe7e10f21c8241b174157283faa41, type: 3}
+  m_Name: LandDatabaseLoader
+  m_EditorClassIdentifier: 
+  csvFilePath: Lands.csv
+  lands:
+  - name: Deep Water
+    id: 0
+    type: LandType
+    iconName: Spring_L_DeepWater
+    iconGraphic:
+      name: Spring_L_DeepWater
+      type: TileGraphic
+      id: 80
+      atlasCoord:
+        x: 11
+        y: 1
+    defenseBonus: -2
+    movementCost: 100
+    foodYield: 0
+    woodYield: 0
+    stoneYield: 0
+    goldYield: 0
+    clearable: 0
+    clearedLandName: 
+    clearLandTurns: 2
+    clearLandWork: 0
+    clearFoodBonus: 0
+    clearWoodBonus: 0
+    clearStoneBonus: 0
+    clearGoldBonus: 0
+    ownerModifiers: []
+  - name: Shallow Water
+    id: 1
+    type: LandType
+    iconName: Spring_L_ShallowWater
+    iconGraphic:
+      name: Spring_L_ShallowWater
+      type: TileGraphic
+      id: 90
+      atlasCoord:
+        x: 12
+        y: 1
+    defenseBonus: -1
+    movementCost: 10
+    foodYield: 1
+    woodYield: 0
+    stoneYield: 0
+    goldYield: 0
+    clearable: 0
+    clearedLandName: 
+    clearLandTurns: 2
+    clearLandWork: 0
+    clearFoodBonus: 0
+    clearWoodBonus: 0
+    clearStoneBonus: 0
+    clearGoldBonus: 0
+    ownerModifiers: []
+  - name: Fen
+    id: 2
+    type: LandType
+    iconName: Spring_L_Fen
+    iconGraphic:
+      name: Spring_L_Fen
+      type: TileGraphic
+      id: 81
+      atlasCoord:
+        x: 10
+        y: 1
+    defenseBonus: -1
+    movementCost: 5
+    foodYield: 0
+    woodYield: 0
+    stoneYield: 0
+    goldYield: 0
+    clearable: 0
+    clearedLandName: 
+    clearLandTurns: 2
+    clearLandWork: 0
+    clearFoodBonus: 0
+    clearWoodBonus: 0
+    clearStoneBonus: 0
+    clearGoldBonus: 0
+    ownerModifiers: []
+  - name: Plains
+    id: 3
+    type: LandType
+    iconName: Spring_L_Plains
+    iconGraphic:
+      name: Spring_L_Plains
+      type: TileGraphic
+      id: 89
+      atlasCoord:
+        x: 0
+        y: 1
+    defenseBonus: 0
+    movementCost: 1
+    foodYield: 2
+    woodYield: 0
+    stoneYield: 0
+    goldYield: 0
+    clearable: 0
+    clearedLandName: 
+    clearLandTurns: 2
+    clearLandWork: 0
+    clearFoodBonus: 0
+    clearWoodBonus: 0
+    clearStoneBonus: 0
+    clearGoldBonus: 0
+    ownerModifiers: []
+  - name: Parkland
+    id: 4
+    type: LandType
+    iconName: Spring_L_Parkland
+    iconGraphic:
+      name: Spring_L_Parkland
+      type: TileGraphic
+      id: 88
+      atlasCoord:
+        x: 1
+        y: 1
+    defenseBonus: 1
+    movementCost: 2
+    foodYield: 1
+    woodYield: 1
+    stoneYield: 0
+    goldYield: 0
+    clearable: 1
+    clearedLandName: Plains
+    clearLandTurns: 3
+    clearLandWork: 6
+    clearFoodBonus: 0
+    clearWoodBonus: 20
+    clearStoneBonus: 0
+    clearGoldBonus: 0
+    ownerModifiers: []
+  - name: Forest
+    id: 5
+    type: LandType
+    iconName: Spring_L_Forest
+    iconGraphic:
+      name: Spring_L_Forest
+      type: TileGraphic
+      id: 82
+      atlasCoord:
+        x: 2
+        y: 1
+    defenseBonus: 2
+    movementCost: 3
+    foodYield: 1
+    woodYield: 3
+    stoneYield: 0
+    goldYield: 0
+    clearable: 1
+    clearedLandName: Moor
+    clearLandTurns: 4
+    clearLandWork: 4
+    clearFoodBonus: 0
+    clearWoodBonus: 10
+    clearStoneBonus: 10
+    clearGoldBonus: 0
+    ownerModifiers: []
+  - name: Hills
+    id: 6
+    type: LandType
+    iconName: Spring_L_Hills
+    iconGraphic:
+      name: Spring_L_Hills
+      type: TileGraphic
+      id: 83
+      atlasCoord:
+        x: 3
+        y: 1
+    defenseBonus: 2
+    movementCost: 2
+    foodYield: 1
+    woodYield: 0
+    stoneYield: 1
+    goldYield: 0
+    clearable: 0
+    clearedLandName: 
+    clearLandTurns: 2
+    clearLandWork: 0
+    clearFoodBonus: 0
+    clearWoodBonus: 0
+    clearStoneBonus: 0
+    clearGoldBonus: 0
+    ownerModifiers: []
+  - name: Wooded Hills
+    id: 7
+    type: LandType
+    iconName: Spring_L_WoodedHills
+    iconGraphic:
+      name: Spring_L_WoodedHills
+      type: TileGraphic
+      id: 91
+      atlasCoord:
+        x: 4
+        y: 1
+    defenseBonus: 3
+    movementCost: 4
+    foodYield: 0
+    woodYield: 2
+    stoneYield: 1
+    goldYield: 0
+    clearable: 1
+    clearedLandName: Hills
+    clearLandTurns: 6
+    clearLandWork: 8
+    clearFoodBonus: 0
+    clearWoodBonus: 15
+    clearStoneBonus: 5
+    clearGoldBonus: 0
+    ownerModifiers: []
+  - name: Mountains
+    id: 8
+    type: LandType
+    iconName: Spring_L_Mountains
+    iconGraphic:
+      name: Spring_L_Mountains
+      type: TileGraphic
+      id: 87
+      atlasCoord:
+        x: 5
+        y: 1
+    defenseBonus: 4
+    movementCost: 4
+    foodYield: 0
+    woodYield: 0
+    stoneYield: 2
+    goldYield: 0
+    clearable: 0
+    clearedLandName: 
+    clearLandTurns: 2
+    clearLandWork: 0
+    clearFoodBonus: 0
+    clearWoodBonus: 0
+    clearStoneBonus: 0
+    clearGoldBonus: 0
+    ownerModifiers: []
+  - name: Wooded Mountains
+    id: 9
+    type: LandType
+    iconName: Spring_L_WoodedMountains
+    iconGraphic:
+      name: Spring_L_WoodedMountains
+      type: TileGraphic
+      id: 92
+      atlasCoord:
+        x: 6
+        y: 1
+    defenseBonus: 5
+    movementCost: 5
+    foodYield: 0
+    woodYield: 1
+    stoneYield: 2
+    goldYield: 0
+    clearable: 1
+    clearedLandName: Mountains
+    clearLandTurns: 8
+    clearLandWork: 10
+    clearFoodBonus: 0
+    clearWoodBonus: 15
+    clearStoneBonus: 5
+    clearGoldBonus: 0
+    ownerModifiers: []
+  - name: Moor
+    id: 10
+    type: LandType
+    iconName: Spring_L_Moor
+    iconGraphic:
+      name: Spring_L_Moor
+      type: TileGraphic
+      id: 84
+      atlasCoord:
+        x: 7
+        y: 1
+    defenseBonus: 0
+    movementCost: 1
+    foodYield: 1
+    woodYield: 0
+    stoneYield: 0
+    goldYield: 0
+    clearable: 0
+    clearedLandName: 
+    clearLandTurns: 2
+    clearLandWork: 0
+    clearFoodBonus: 0
+    clearWoodBonus: 0
+    clearStoneBonus: 0
+    clearGoldBonus: 0
+    ownerModifiers: []
+  - name: Moor Hills
+    id: 11
+    type: LandType
+    iconName: Spring_L_MoorHills
+    iconGraphic:
+      name: Spring_L_MoorHills
+      type: TileGraphic
+      id: 85
+      atlasCoord:
+        x: 8
+        y: 1
+    defenseBonus: 2
+    movementCost: 2
+    foodYield: 1
+    woodYield: 0
+    stoneYield: 2
+    goldYield: 0
+    clearable: 0
+    clearedLandName: 
+    clearLandTurns: 2
+    clearLandWork: 0
+    clearFoodBonus: 0
+    clearWoodBonus: 0
+    clearStoneBonus: 0
+    clearGoldBonus: 0
+    ownerModifiers: []
+  - name: Moor Mountains
+    id: 12
+    type: LandType
+    iconName: Spring_L_MoorMountains
+    iconGraphic:
+      name: Spring_L_MoorMountains
+      type: TileGraphic
+      id: 86
+      atlasCoord:
+        x: 9
+        y: 1
+    defenseBonus: 4
+    movementCost: 4
+    foodYield: 0
+    woodYield: 0
+    stoneYield: 3
+    goldYield: 0
+    clearable: 0
+    clearedLandName: 
+    clearLandTurns: 2
+    clearLandWork: 0
+    clearFoodBonus: 0
+    clearWoodBonus: 0
+    clearStoneBonus: 0
+    clearGoldBonus: 0
+    ownerModifiers: []

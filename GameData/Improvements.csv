@@ -1,7 +1,7 @@
-id,name,type,maxCondition,defenseBonus,movementCost,,,,,,,,,,
-0,Tent,ImprovementType,2,0,0,validLand,Plains,Moor,Hills,Moor Hills,modifier,MaxPopulation,4,Dwelling,end
-1,Small House,ImprovementType,3,1,0,validLand,Plains,Moor,Hills,Moor Hills,modifier,MaxPopulation,6,Dwelling,end
-2,Round House,ImprovementType,4,2,0,validLand,Plains,Moor,Hills,Moor Hills,modifier,MaxPopulation,8,Dwelling,end
-3,Large House,ImprovementType,5,3,0,validLand,Plains,Moor,Hills,Moor Hills,modifier,MaxPopulation,10,Dwelling,end
-4,Hall,ImprovementType,6,4,0,validLand,Plains,Moor,Hills,Moor Hills,modifier,MaxPopulation,14,Dwelling,end
-5,Farm,ImprovementType,1,0,1,validLand,Plains,Moor,end,,,,,,
+id,name,type,iconName,maxCondition,defenseBonus,movementCost,upgradeable,upgradeName,validLand,,,,,,improvementModifiers,,,,
+0,Tent,ImprovementType,Spring_I_Tent,2,0,0,True,Small House,landList,Plains,Moor,Hills,Moor Hills,endList,improvementModifiers,Max Population,4,Dwelling,endList
+1,Small House,ImprovementType,Spring_I_SmallHouse,3,1,0,True,Round House,landList,Plains,Moor,Hills,Moor Hills,endList,improvementModifiers,Max Population,6,Dwelling,endList
+2,Round House,ImprovementType,Spring_I_RoundHouse,4,2,0,True,Large House,landList,Plains,Moor,Hills,Moor Hills,endList,improvementModifiers,Max Population,8,Dwelling,endList
+3,Large House,ImprovementType,Spring_I_LargeHouse,5,3,0,True,Hall,landList,Plains,Moor,Hills,Moor Hills,endList,improvementModifiers,Max Population,10,Dwelling,endList
+4,Hall,ImprovementType,Spring_I_Hall,6,4,0,False,,landList,Plains,Moor,Hills,Moor Hills,endList,improvementModifiers,Max Population,14,Dwelling,endList
+5,Farm,ImprovementType,Spring_I_FarmSowing,1,0,1,False,,landList,Plains,Moor,endList,,,,,,,

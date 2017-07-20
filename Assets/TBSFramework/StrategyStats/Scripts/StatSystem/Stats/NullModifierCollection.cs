@@ -20,7 +20,7 @@ namespace DaleranGames.TBSFramework
 
         }
 
-        public void Add(ModifierEntry[] mods)
+        public void Add(Modifier[] mods)
         {
 
         }
@@ -45,7 +45,7 @@ namespace DaleranGames.TBSFramework
             
         }
 
-        public void Remove(ModifierEntry[] mods)
+        public void Remove(Modifier[] mods)
         {
 
         }

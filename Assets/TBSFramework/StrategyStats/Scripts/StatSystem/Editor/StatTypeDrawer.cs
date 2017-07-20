@@ -5,10 +5,10 @@ using UnityEditor;
 
 namespace DaleranGames.TBSFramework
 {
-    [CustomPropertyDrawer(typeof(Stat))]
-    public class StatDrawer : PropertyDrawer
+    [CustomPropertyDrawer(typeof(StatType))]
+    public class StatTypeDrawer : PropertyDrawer
     {
-        SerializedProperty t, v;
+        SerializedProperty t;
         string name;
 
         public override void OnGUI(Rect position, SerializedProperty property, GUIContent label)
@@ -16,9 +16,7 @@ namespace DaleranGames.TBSFramework
             //get the name before it's gone
             name = property.displayName;
 
-            t = property.FindPropertyRelative("_type");
-            v = property.FindPropertyRelative("_value");
-
+            t = property.FindPropertyRelative("_displayName");
 
             Rect contentPosition = EditorGUI.PrefixLabel(position, new GUIContent(name));
 
@@ -31,27 +29,18 @@ namespace DaleranGames.TBSFramework
                 contentPosition.y += 18f;
             }
 
-            float half = contentPosition.width / 2;
             GUI.skin.label.padding = new RectOffset(3, 3, 6, 6);
 
             //show the X and Y from the point
             EditorGUIUtility.labelWidth = 40f;
-            contentPosition.width *= 0.5f;
             EditorGUI.indentLevel = 0;
 
             // Begin/end property & change check make each field
             // behave correctly when multi-object editing.
             EditorGUI.BeginProperty(contentPosition, label, t);
             {
-                EditorGUI.PropertyField(contentPosition, t, new GUIContent("Type"));
-            }
-            EditorGUI.EndProperty();
-
-            contentPosition.x += half;
-
-            EditorGUI.BeginProperty(contentPosition, label, v);
-            {
-                EditorGUI.PropertyField(contentPosition, v, new GUIContent("Value"));
+                //EditorGUI.PropertyField(contentPosition, t, new GUIContent("Type"));
+                EditorGUI.LabelField(contentPosition, new GUIContent(t.stringValue));
             }
             EditorGUI.EndProperty();
 
@@ -61,6 +50,5 @@ namespace DaleranGames.TBSFramework
         {
             return Screen.width < 333 ? (16f + 18f) : 16f;
         }
-
     }
 }

@@ -9,30 +9,32 @@ namespace DaleranGames.TBSFramework
     [System.Serializable]
     public class ImprovementType : TileType
     {
-        [SerializeField]
-        protected List<string> validLand;
-        public virtual List<string> ValidLand { get { return validLand; } }
 
-        [SerializeField]
-        bool upgradeable = false;
-        public bool Upgradeable {  get { return upgradeable; } }
-
-        [SerializeField]
-        protected string upgradeName;
-
-        [SerializeField]
-        protected ImprovementType upgradedImprovement;
-        public ImprovementType UpgradedImprovement { get { return upgradedImprovement; } }
-        
-
-        [SerializeField]
-        protected int maxCondition = 10;
-        public Stat BaseMaxCondition { get { return new Stat(StatType.MaxCondition, maxCondition); } }
-        public Stat MaxCondition(HexTile tile)
+        public ImprovementType(string[] csv)
         {
-            return new Stat(StatType.MaxCondition, maxCondition + tile.Owner.Modifiers[StatType.MaxCondition]);
+
+            id = Int32.Parse(csv[0]);
+            name = csv[1];
+            type = csv[2];
+            iconName = csv[3];
+            maxCondition = Int32.Parse(csv[4]);
+            defenseBonus = Int32.Parse(csv[5]);
+            movementCost = Int32.Parse(csv[6]);
+            upgradeable = Boolean.Parse(csv[7]);
+
+            if (upgradeable)
+            {
+                upgradeName = csv[8];
+            }
+
+            validLand = new List<string>(CSVUtility.ParseList(csv, "landList"));
+            ownerModifiers = Modifier.ParseCSVList(CSVUtility.ParseList(csv, "improvementModifiers"));
+
         }
 
+
+        #region Tile Stats
+        [Header("Tile Stats")]
         [SerializeField]
         protected int defenseBonus = 0;
         public Stat BaseDefenseBonus { get { return new Stat(StatType.DefenseBonus, defenseBonus); } }
@@ -42,30 +44,53 @@ namespace DaleranGames.TBSFramework
         public Stat BaseMovementCost { get { return new Stat(StatType.MovementCost, movementCost); } }
 
         [SerializeField]
-        protected Modifier[] tileModifiers;
-
-
-        public ImprovementType(string[] csv)
+        protected int maxCondition = 10;
+        public Stat BaseMaxCondition { get { return new Stat(StatType.MaxCondition, maxCondition); } }
+        public Stat MaxCondition(HexTile tile)
         {
-
-            id = Int32.Parse(csv[0]);
-            name = csv[1];
-            type = csv[2];
-
-            maxCondition = Int32.Parse(csv[3]);
-            defenseBonus = Int32.Parse(csv[4]);
-            movementCost = Int32.Parse(csv[5]);
-            upgradeable = Boolean.Parse(csv[6]);
-
-            if (upgradeable)
-            {
-
-            }
-            
-            
+            return new Stat(StatType.MaxCondition, maxCondition + tile.Owner.Modifiers[StatType.MaxCondition]);
         }
 
-#region Tile Callbacks
+
+        [Header("Build Stats")]
+        public int buildWorkCost;
+        public int buildWoodCost;
+        public int builtTime;
+
+        [SerializeField]
+        protected List<string> validLand;
+        public virtual List<string> ValidLand { get { return validLand; } }
+
+        [Header("Upgrade Stats")]
+        [SerializeField]
+        bool upgradeable = false;
+        public bool Upgradeable { get { return upgradeable; } }
+
+        [SerializeField]
+        protected string upgradeName;
+
+        [SerializeField]
+        protected ImprovementType upgradedImprovement;
+        public ImprovementType UpgradedImprovement { get { return upgradedImprovement; } }
+
+        [Header("Raze Stats")]
+        public int razeWorkCost;
+        public int razeTime;
+        public int razeRecoveryPercentage;
+
+        [Header("Work Stats")]
+        bool workable = false;
+
+
+        [Header("Modifiers")]
+        [SerializeField]
+        protected Modifier[] ownerModifiers;
+
+
+
+        #endregion
+
+        #region Tile Callbacks
         public override void OnDatabaseInitialization()
         {
             base.OnDatabaseInitialization();
@@ -95,13 +120,13 @@ namespace DaleranGames.TBSFramework
             tile.TerrainGraphics.Remove(TileLayers.Improvements);
 
             if (tile.Owner != null)
-                tile.Owner.Modifiers.Remove(tileModifiers);
+                tile.Owner.Modifiers.Remove(ownerModifiers);
         }
 
         public virtual void OnBuilt (HexTile tile)
         {
             if (tile.Owner != null)
-                tile.Owner.Modifiers.Add(tileModifiers);
+                tile.Owner.Modifiers.Add(ownerModifiers);
         }
 
         public override void OnChangeOwner(HexTile tile, Group oldOwner, Group newOwner)
@@ -109,10 +134,10 @@ namespace DaleranGames.TBSFramework
             base.OnChangeOwner(tile, oldOwner, newOwner);
 
             if (oldOwner != null)
-                oldOwner.Modifiers.Remove(tileModifiers);
+                oldOwner.Modifiers.Remove(ownerModifiers);
 
             if (newOwner != null)
-                newOwner.Modifiers.Add(tileModifiers);
+                newOwner.Modifiers.Add(ownerModifiers);
 
         }
 
@@ -129,8 +154,8 @@ namespace DaleranGames.TBSFramework
 
         public virtual void Upgrade(HexTile tile)
         {
-           // if (UpgradedImprovement != null && Upgradeable)
-                //tile.ChangeImprovementType(UpgradedImprovement);
+            if (UpgradedImprovement != null && Upgradeable)
+                tile.Improvement = UpgradedImprovement;
         }
 
     }

@@ -9,17 +9,56 @@ namespace DaleranGames.TBSFramework
     [System.Serializable]
     public class GroupType : IDatabaseObject, IType<Group>
     {
+
+        //Private constructor for a null type group
+        private GroupType(string name)
+        {
+            id = -1;
+            this.name = name;
+            rank = Ranks.None;
+            culture = Cultures.None;
+            this.type = this.ToString();
+
+            maxActionPoints = 0;
+            strengthPerPop = 0;
+            attackCost = 0;
+            foodPerPopPerTurn = 0;
+            woodPerPopPerWinter = 0;
+            maxFood = 0;
+            maxWood = 0;
+            maxStone = 0;
+            maxPopulation = 0;
+        }
+
+        public GroupType(string[] csvLine)
+        {
+            id = Int32.Parse(csvLine[0]);
+            name = csvLine[1];
+            type = csvLine[2];
+            rank = (Ranks)Enum.Parse(typeof(Ranks), csvLine[3]);
+            culture = (Cultures)Enum.Parse(typeof(Cultures), csvLine[4]);
+
+            maxActionPoints = Int32.Parse(csvLine[5]);
+            strengthPerPop = Int32.Parse(csvLine[6]);
+            levyPercent = Int32.Parse(csvLine[7]);
+            attackCost = Int32.Parse(csvLine[8]);
+            foodPerPopPerTurn = Int32.Parse(csvLine[9]);
+            woodPerPopPerWinter = Int32.Parse(csvLine[10]);
+            workPerPop = Int32.Parse(csvLine[11]);
+            maxFood = Int32.Parse(csvLine[12]);
+            maxWood = Int32.Parse(csvLine[13]);
+            maxStone = Int32.Parse(csvLine[14]);
+            startingGold = Int32.Parse(csvLine[15]);
+            maxPopulation = Int32.Parse(csvLine[16]);
+
+            groupTypeModifiers = Modifier.ParseCSVList(CSVUtility.ParseList(csvLine,"groupModifiers"));
+
+        }
+
+        [Header("Group Info")]
         [SerializeField]
         protected string name;
         public virtual string Name { get { return name; } }
-
-        [SerializeField]
-        protected Ranks rank;
-        public virtual Ranks Rank { get { return rank; } }
-
-        [SerializeField]
-        protected Cultures culture;
-        public Cultures Culture { get { return culture; } }
 
         [System.NonSerialized]
         protected int id;
@@ -30,10 +69,19 @@ namespace DaleranGames.TBSFramework
         protected string type = "GroupType";
         public virtual string Type { get { return type; } }
 
+        [SerializeField]
+        protected Ranks rank;
+        public virtual Ranks Rank { get { return rank; } }
+
+        [SerializeField]
+        protected Cultures culture;
+        public Cultures Culture { get { return culture; } }
+
         public static readonly GroupType NullGroupType = new GroupType("NullGroup");
 
         #region UnitStats
 
+        [Header("Combat Stats")]
         [SerializeField]
         protected int maxActionPoints = 10;
         public virtual Stat MaxActionPoints { get { return new Stat(StatType.MaxActionPoints, maxActionPoints); } }
@@ -45,6 +93,10 @@ namespace DaleranGames.TBSFramework
         [SerializeField]
         protected int attackCost = -5;
         public virtual Stat AttackCost { get { return new Stat(StatType.AttackCost, attackCost); } }
+
+        [SerializeField]
+        protected int levyPercent = 0;
+        public virtual Stat LevyPervent { get { return new Stat(StatType.GroupLevy, levyPercent); } }
 
         [SerializeField]
         protected int foodPerPopPerTurn = -1;
@@ -78,61 +130,17 @@ namespace DaleranGames.TBSFramework
         protected int maxPopulation = 8;
         public virtual Stat MaxPopulation { get { return new Stat(StatType.MaxPopulation, maxPopulation); } }
 
-        [SerializeField]
-        protected int levyPercent = 8;
-        public virtual Stat LevyPervent { get { return new Stat(StatType.GroupLevy, levyPercent); } }
+        public Stat BirthRate { get { return GameplayMetrics.BaseBirthRateStat; } }
+        public Stat DeathRate { get { return GameplayMetrics.BaseDeathRateStats; } }
+        public Stat StarvationRate { get { return GameplayMetrics.BaseStarvationRateStats; } }
+        public Stat FreezingRate { get { return GameplayMetrics.BaseFreezingRateStats; } }
 
 
-        public Stat BirthRate { get { return GameplayMetrics.BaseBirthRate; } }
-        public Stat DeathRate { get { return GameplayMetrics.BaseDeathRate; } }
-        public Stat StarvationRate { get { return GameplayMetrics.BaseStarvationRate; } }
-        public Stat FreezingRate { get { return GameplayMetrics.BaseFreezingRate; } }
-
+        //Turn all stats into read only ints that get turned into the modifers and added to the group at runtime;
         [SerializeField]
         protected Modifier[] groupTypeModifiers;
         public virtual Modifier[] GroupTypeModifiers { get { return groupTypeModifiers; } }
         #endregion
-
-        //Private constructor for a null type group
-        private GroupType(string name)
-        {
-            id = -1;
-            this.name = name;
-            rank = Ranks.None;
-            culture = Cultures.None;
-            this.type = this.ToString();
-
-            maxActionPoints = 0;
-            strengthPerPop = 0;
-            attackCost = 0;
-            foodPerPopPerTurn = 0;
-            woodPerPopPerWinter = 0;
-            maxFood = 0;
-            maxWood = 0;
-            maxStone = 0;
-            maxPopulation = 0;
-        }
-
-        public GroupType(string[] csvLine)
-        {
-            id = Int32.Parse(csvLine[0]);
-            name = csvLine[1];
-            type = csvLine[2];
-            rank = (Ranks)Enum.Parse(typeof(Ranks), csvLine[3]);
-            culture = (Cultures)Enum.Parse(typeof(Cultures), csvLine[4]);
-
-
-            maxActionPoints = type.MaxActionPoints;
-            strengthPerPop = type.StrengthPerPop;
-            attackCost = type.AttackCost;
-            foodPerPopPerTurn = type.FoodRatePerPop;
-            woodPerPopPerWinter = type.WoodRatePerPop;
-            maxFood = type.MaxFood;
-            maxWood = type.MaxWood;
-            maxStone = type.MaxStone;
-            maxPopulation = type.MaxPopulation;
-
-        }
 
         # region Group Callbacks
         public virtual void OnDatabaseInitialization()

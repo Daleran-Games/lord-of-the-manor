@@ -1,0 +1,6 @@
+id,name,type,rank,culture,maxActionPoints,strengthPerPop,levyPercent,attackCost,foodPerTurn,woodPerWinter,workPerPop,maxFood,maxWood,maxStone,startingGold,maxPopulation,groupModifiers
+0,Deow,GroupType,Slave,Settler,10,1,0,-5,-1,-1,12,20,10,0,0,8,
+1,Ceorl,GroupType,Villager,Settler,10,2,62,-5,-1,-1,12,30,15,5,25,8,
+2,Thegn,GroupType,Warrior,Settler,15,3,125,-5,-1,-1,10,40,20,10,50,8,
+3,Ealdorman,GroupType,Chief,Settler,15,4,250,-5,-2,-2,8,50,30,10,150,8,
+4,Cyning,GroupType,King,Settler,20,5,500,-5,-2,-2,6,100,50,20,500,8,

@@ -11,16 +11,19 @@ namespace DaleranGames.Database
     public class GroupsDatabaseLoader : DatabaseLoader<GroupType>
     {
         [SerializeField]
-        protected GroupType[] units;
+        protected List<GroupType> groups = new List<GroupType>();
 
         public override Database<GroupType> GenerateDatabase()
         {
             Database<GroupType> newDB = new Database<GroupType>();
             string[][] csvArray = CSVUtility.ParseCSVToArray(File.ReadAllText(CSVFilePath));
+            groups.Clear();
 
             for (int i = 1; i < csvArray.Length; i++)
             {
-                newDB.Add(new GroupType());
+                GroupType newType = new GroupType(csvArray[i]);
+                newDB.Add(newType);
+                groups.Add(newType);
             }
             //Debug.Log("Improvment types types created");
             return newDB;

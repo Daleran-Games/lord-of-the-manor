@@ -17,39 +17,46 @@ namespace DaleranGames.Database
         [SerializeField]
         protected UpgradeActivity upgrade;
         [SerializeField]
-        protected BuildActivity[] builds;
+        protected List<BuildActivity> builds = new List<BuildActivity>();
 
         public override Database<Activity> GenerateDatabase()
         {
             Database<Activity> newDB = new Database<Activity>();
-            string[] files = Directory.GetFiles(CSVFilePath, "*.json", SearchOption.TopDirectoryOnly);
+            string[][] csvArray = CSVUtility.ParseCSVToArray(File.ReadAllText(CSVFilePath));
+            builds.Clear();
+            raze = null;
+            upgrade = null;
+            landClearing = null;
 
-            for (int i = 0; i < files.Length; i++)
+            for (int i = 1; i < csvArray.Length; i++)
             {
-                string jsonString = File.ReadAllText(files[i]);
-                Activity activity = JsonUtility.FromJson<Activity>(jsonString);
-
-                switch(activity.Type)
+                switch (csvArray[i][2])
                 {
-                    case "DaleranGames.TBSFramework.BuildActivity":
-                        newDB.Add();
+                    case "BuildActivity":
+                        BuildActivity newBuildType = new BuildActivity(csvArray[i]);
+                        newDB.Add(newBuildType);
+                        builds.Add(newBuildType);
                         break;
-                    case "DaleranGames.TBSFramework.LandClearingActivity":
-                        newDB.Add(new LandClearingActivity(JsonUtility.FromJson<LandClearingActivity>(jsonString), id));
+                    case "LandClearingActivity":
+                        LandClearingActivity newClear = new LandClearingActivity(csvArray[i]);
+                        landClearing = newClear;
+                        newDB.Add(newClear);
                         break;
-                    case "DaleranGames.TBSFramework.RazeActivity":
-                        newDB.Add(new RazeActivity(JsonUtility.FromJson<RazeActivity>(jsonString), id));
+                    case "RazeActivity":
+                        RazeActivity newRaze = new RazeActivity(csvArray[i]);
+                        raze = newRaze;
+                        newDB.Add(newRaze);
                         break;
-                    case "DaleranGames.TBSFramework.UpgradeActivity":
-                        newDB.Add(new UpgradeActivity(JsonUtility.FromJson<UpgradeActivity>(jsonString), id));
+                    case "UpgradeActivity":
+                        UpgradeActivity newUpgrade = new UpgradeActivity(csvArray[i]);
+                        upgrade = newUpgrade;
+                        newDB.Add(newUpgrade);
                         break;
                     default:
-                        Debug.LogError("Database Error: "+activity.Type+ " not a valid type.");
+                        Debug.LogWarning("Database Error: " + csvArray[i][2] + " not a valid type.");
                         break;
                 }
-
             }
-
             return newDB;
         }
 

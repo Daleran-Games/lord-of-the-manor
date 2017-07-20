@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using DaleranGames.TBSFramework;
 using System.IO;
+using System;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -28,6 +29,7 @@ namespace DaleranGames.Database
         {
 
             Database<TileGraphic> newDB = new Database<TileGraphic>();
+
             for(int i=0; i < graphics.Length; i++ )
             {
                 newDB.Add(graphics[i]);
@@ -40,20 +42,25 @@ namespace DaleranGames.Database
 
         }
 
+        public override void LoadCSV()
+        {
+            
+        }
+
 #if UNITY_EDITOR
         [ContextMenu("Build Graphics")]
         public void LoadUIGraphicsFromFolder()
         {
             List<TileGraphic> newGraphics = new List<TileGraphic>();
 
-            Object[] ui = AssetDatabase.LoadAllAssetsAtPath(uiSpriteFilePath);
-            Object[] spr = AssetDatabase.LoadAllAssetsAtPath(terrainSpriteFilePath);
-            Object[] objs = new Object[ui.Length + spr.Length];
+            UnityEngine.Object[] ui = AssetDatabase.LoadAllAssetsAtPath(uiSpriteFilePath);
+            UnityEngine.Object[] spr = AssetDatabase.LoadAllAssetsAtPath(terrainSpriteFilePath);
+            UnityEngine.Object[] objs = new UnityEngine.Object[ui.Length + spr.Length];
             System.Array.Copy(ui, objs, ui.Length);
             System.Array.Copy(spr, 0, objs, ui.Length, spr.Length);
 
             StreamWriter writer = new StreamWriter(CSVFilePath + graphicRefFilePath, false);
-            writer.WriteLine("Graphic Names");
+            writer.WriteLine("Graphics");
             writer.WriteLine("id  Name");
             writer.WriteLine(" ");
             

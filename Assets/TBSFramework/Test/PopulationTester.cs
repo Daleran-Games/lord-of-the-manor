@@ -21,8 +21,8 @@ namespace DaleranGames.TBSFramework
         // Use this for initialization
         void Start()
         {
-            Debug.Log("Birth Rate: " + GameplayMetrics.BaseBirthRate);
-            Debug.Log("Death Rate: " + GameplayMetrics.BaseDeathRate);
+            Debug.Log("Birth Rate: " + GameplayMetrics.BaseBirthRateStat);
+            Debug.Log("Death Rate: " + GameplayMetrics.BaseDeathRateStats);
         }
 
         // Update is called once per frame
@@ -30,10 +30,10 @@ namespace DaleranGames.TBSFramework
         {
             if (run < maxRuns)
             {
-                if (Random.Bool(GameplayMetrics.BaseBirthRate))
+                if (Random.Bool(GameplayMetrics.BaseBirthRateStat))
                     pop++;
 
-                if (Random.Bool(GameplayMetrics.BaseDeathRate))
+                if (Random.Bool(GameplayMetrics.BaseDeathRateStats))
                     pop--;
 
                 run++;

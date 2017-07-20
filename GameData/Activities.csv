@@ -1,8 +1,8 @@
-id,name,type,improvementName,
-0,Clear,LandClearingActivity,end,
-1,Raze,RazeActivity,end,
-2,Upgrade,UpgradeActivity,end,
-3,Work,WorkTileActivity,end,
-4,Initial,InitialActivity,end,
-5,Build Farm,BuildActivity,Farm Sowing,end
-6,Build Dwelling,BuildActivity,Tent,end
+id,name,type,improvementName
+0,Clear,LandClearingActivity,
+1,Raze,RazeActivity,
+2,Upgrade,UpgradeActivity,
+3,Work,WorkTileActivity,
+4,Initial,InitialActivity,
+5,Build Farm,BuildActivity,Farm
+6,Build Dwelling,BuildActivity,Tent

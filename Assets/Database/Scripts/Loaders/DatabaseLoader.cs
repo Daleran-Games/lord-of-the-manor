@@ -9,7 +9,7 @@ namespace DaleranGames.Database
     {
         [SerializeField]
         string csvFilePath;
-        protected string CSVFilePath { get { return "GameData/"+csvFilePath + "/"; } }
+        protected string CSVFilePath { get { return "GameData/"+csvFilePath; } }
 
         public abstract Database<T> GenerateDatabase();
 
@@ -20,6 +20,13 @@ namespace DaleranGames.Database
                 kvp.Value.OnDatabaseInitialization();
             }
         }
+
+        [ContextMenu("Load CSV")]
+        public virtual void LoadCSV()
+        {
+            GenerateDatabase();
+        }
+
 
     }
 }

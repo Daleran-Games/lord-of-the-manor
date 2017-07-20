@@ -14,7 +14,6 @@ namespace DaleranGames.TBSFramework
         public virtual string Name { get { return name; } }
 
         [SerializeField]
-        [HideInInspector]
         protected string type = "Activity";
         public string Type { get { return type; } }
 
@@ -22,7 +21,7 @@ namespace DaleranGames.TBSFramework
         protected string workIconName;
         public virtual string WorkIconName { get { return workIconName; } }
 
-        [System.NonSerialized]
+        [SerializeField]
         protected int id;
         public virtual int ID { get { return id; } }
 

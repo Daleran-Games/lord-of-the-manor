@@ -10,8 +10,6 @@ namespace DaleranGames.TBSFramework
     {
         #region StatTypes
 
-        //Next stat is 25
-
         public static readonly StatType NullStat = new StatType(-1, "Null", "NL");
 
         //Unit Stats
@@ -93,6 +91,7 @@ namespace DaleranGames.TBSFramework
 
         #region StatType Object
 
+        [SerializeField]
         string _abbreviation;
         public string Abbreviation { get { return _abbreviation; } }
             

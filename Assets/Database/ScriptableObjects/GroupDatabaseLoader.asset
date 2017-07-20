@@ -1,0 +1,100 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df49578e0ad36f6439ab93e7fd0b307c, type: 3}
+  m_Name: GroupDatabaseLoader
+  m_EditorClassIdentifier: 
+  csvFilePath: Groups.csv
+  groups:
+  - name: Deow
+    type: GroupType
+    rank: 2
+    culture: 1
+    maxActionPoints: 10
+    strengthPerPop: 1
+    attackCost: 5
+    levyPercent: 0
+    foodPerPopPerTurn: 1
+    woodPerPopPerWinter: 1
+    workPerPop: 12
+    maxFood: 20
+    maxWood: 10
+    maxStone: 0
+    startingGold: 0
+    maxPopulation: 8
+    groupTypeModifiers: []
+  - name: Ceorl
+    type: GroupType
+    rank: 3
+    culture: 1
+    maxActionPoints: 10
+    strengthPerPop: 2
+    attackCost: 5
+    levyPercent: 62
+    foodPerPopPerTurn: 1
+    woodPerPopPerWinter: 1
+    workPerPop: 12
+    maxFood: 30
+    maxWood: 15
+    maxStone: 5
+    startingGold: 25
+    maxPopulation: 8
+    groupTypeModifiers: []
+  - name: Thegn
+    type: GroupType
+    rank: 4
+    culture: 1
+    maxActionPoints: 15
+    strengthPerPop: 3
+    attackCost: 5
+    levyPercent: 125
+    foodPerPopPerTurn: 1
+    woodPerPopPerWinter: 1
+    workPerPop: 10
+    maxFood: 40
+    maxWood: 20
+    maxStone: 10
+    startingGold: 50
+    maxPopulation: 8
+    groupTypeModifiers: []
+  - name: Ealdorman
+    type: GroupType
+    rank: 5
+    culture: 1
+    maxActionPoints: 15
+    strengthPerPop: 4
+    attackCost: 5
+    levyPercent: 250
+    foodPerPopPerTurn: 2
+    woodPerPopPerWinter: 2
+    workPerPop: 8
+    maxFood: 50
+    maxWood: 30
+    maxStone: 10
+    startingGold: 150
+    maxPopulation: 8
+    groupTypeModifiers: []
+  - name: Cyning
+    type: GroupType
+    rank: 6
+    culture: 1
+    maxActionPoints: 20
+    strengthPerPop: 5
+    attackCost: 5
+    levyPercent: 500
+    foodPerPopPerTurn: 2
+    woodPerPopPerWinter: 2
+    workPerPop: 6
+    maxFood: 100
+    maxWood: 50
+    maxStone: 20
+    startingGold: 500
+    maxPopulation: 8
+    groupTypeModifiers: []

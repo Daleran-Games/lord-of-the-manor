@@ -20,11 +20,10 @@ namespace DaleranGames.TBSFramework
         public string Name { get {return name; } }
 
         [SerializeField]
-        [HideInInspector]
         protected string type = "TileGraphic";
         public string Type { get { return type; } }
 
-        [System.NonSerialized]
+        [SerializeField]
         protected int id;
         public int ID { get { return id; } }
 

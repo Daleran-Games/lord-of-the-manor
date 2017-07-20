@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using DaleranGames.Database;
 
 namespace DaleranGames.TBSFramework
 {
     [System.Serializable]
     public struct Transaction : IFormattable, IEquatable<Transaction>, IComparable<Transaction>, IComparable
     {
-        public const string CsvIdentifier = "transaction";
 
         [SerializeField]
         bool immediate;
@@ -36,10 +36,26 @@ namespace DaleranGames.TBSFramework
             this.description = description;
         }
 
+        public Transaction(GoodType type, int amount, bool immediate, string description)
+        {
+            this.good = new Good(type, amount);
+            this.immediate = immediate;
+            this.description = description;
+        }
 
-        public Transaction ParseCSV(string[] csvLine, int startingIndex)
+        public static Transaction ParseCSV(string[] csvLine, int startingIndex)
         {
             return new Transaction(new Good((GoodType)Enum.Parse(typeof(GoodType), csvLine[startingIndex]), Int32.Parse(csvLine[startingIndex + 1])),Boolean.Parse(csvLine[startingIndex + 2]), csvLine[startingIndex + 3]);
+        }
+
+        public static Transaction[] ParseCSVList(string[] csvList)
+        {
+            List<Transaction> items = new List<Transaction>();
+            for (int i = 0; i < csvList.Length; i += 4)
+            {
+                items.Add(ParseCSV(csvList, i));
+            }
+            return items.ToArray();
         }
 
         public override string ToString()

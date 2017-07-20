@@ -23,12 +23,15 @@ namespace DaleranGames.TBSFramework
         public virtual string Type { get { return type; } }
 
         [SerializeField]
+        protected string iconName;
+
+        [SerializeField]
         protected TileGraphic iconGraphic;
         public TileGraphic IconGraphic { get { return iconGraphic; } }
 
         public virtual void OnDatabaseInitialization()
         {
-
+            iconGraphic = GameDatabase.Instance.TileGraphics[iconName];
         }
 
         public virtual void OnActivation(HexTile tile)

@@ -9,13 +9,14 @@ namespace DaleranGames.TBSFramework
     [System.Serializable]
     public class LandType : TileType
     {
-   
+
+
         public LandType(string[] csv)
         {
             id = Int32.Parse(csv[0]);
             name = csv[1];
-
-            iconGraphic = GameDatabase.Instance.TileGraphics[csv[3]];
+            type = csv[2];
+            iconName = csv[3];
             defenseBonus = Int32.Parse(csv[4]);
             movementCost = Int32.Parse(csv[5]);
             foodYield = Int32.Parse(csv[6]);
@@ -26,12 +27,15 @@ namespace DaleranGames.TBSFramework
 
             if (clearable)
             {
-
-            } else
-            {
-
-            }
-
+                clearedLandName = csv[11];
+                clearLandTurns = Int32.Parse(csv[12]);
+                clearLandWork = Int32.Parse(csv[13]);
+                clearFoodBonus = Int32.Parse(csv[14]);
+                clearWoodBonus = Int32.Parse(csv[15]);
+                clearStoneBonus = Int32.Parse(csv[16]);
+                clearGoldBonus = Int32.Parse(csv[17]);
+            } 
+            ownerModifiers = Modifier.ParseCSVList(CSVUtility.ParseList(csv, "landModifiers"));
         }
 
 
@@ -152,14 +156,17 @@ namespace DaleranGames.TBSFramework
             return false;
         }
 
+
+        [Header("Modifiers")]
         [SerializeField]
-        protected Modifier[] tileModifiers = new Modifier[0];
+        protected Modifier[] ownerModifiers = new Modifier[0];
         #endregion
 
         #region Tile Callbacks
         public override void OnDatabaseInitialization()
         {
             base.OnDatabaseInitialization();
+
 
             if (clearable)
                 clearedLand = GameDatabase.Instance.Lands[clearedLandName];
@@ -170,7 +177,7 @@ namespace DaleranGames.TBSFramework
             tile.TerrainGraphics.Add(TileLayers.Land, iconGraphic);
 
             if (tile.Owner != null)
-                tile.Owner.Modifiers.Add(tileModifiers);
+                tile.Owner.Modifiers.Add(ownerModifiers);
         }
 
         public override void OnDeactivation(HexTile tile)
@@ -180,7 +187,7 @@ namespace DaleranGames.TBSFramework
             tile.TerrainGraphics.Remove(TileLayers.Land);
 
             if (tile.Owner != null)
-                tile.Owner.Modifiers.Remove(tileModifiers);
+                tile.Owner.Modifiers.Remove(ownerModifiers);
         }
 
         public override void OnChangeOwner(HexTile tile, Group oldOwner, Group newOwner)
@@ -188,14 +195,13 @@ namespace DaleranGames.TBSFramework
             base.OnChangeOwner(tile, oldOwner, newOwner);
 
             if (oldOwner != null)
-                oldOwner.Modifiers.Remove(tileModifiers);
+                oldOwner.Modifiers.Remove(ownerModifiers);
 
             if (newOwner != null)
-                newOwner.Modifiers.Add(tileModifiers);
+                newOwner.Modifiers.Add(ownerModifiers);
 
         }
         #endregion
-
 
     }
 }
