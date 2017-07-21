@@ -10,12 +10,8 @@ namespace DaleranGames.UI
         protected UIManager() { }
 
         [SerializeField]
-        UIStyle currentUIStlye;
-
-        public UIStyle CurrentUIStyle
-        {
-            get { return currentUIStlye; }
-        }
+        UIStyle style;
+        public UIStyle Style { get { return style; } }
 
         void Awake()
         {

@@ -14,10 +14,21 @@ namespace DaleranGames.UI
         protected TextMeshProUGUI label;
         protected Group player;
 
-        private void Start()
+        protected string posColor;
+        protected string negColor;
+
+        protected virtual void Start()
         {
             label = GetComponentInChildren<TextMeshProUGUI>();
             GameManager.Instance.Play.StateEnabled += OnGameStart;
+
+            posColor = ColorUtility.ToHtmlStringRGB(UIManager.Instance.Style.StatIncreaseColor);
+            negColor = ColorUtility.ToHtmlStringRGB(UIManager.Instance.Style.StatDecreaseColor);
+
+            //Debug.Log(posColor);
+
+            if (GameManager.Instance.CurrentState == GameManager.Instance.Play)
+                OnGameStart(GameManager.Instance.CurrentState);
         }
         
         protected virtual void OnGameStart (GameState state)
@@ -26,7 +37,7 @@ namespace DaleranGames.UI
             player.Goods.GoodChanged += OnGoodChanged;
             player.Goods.PendingTransactionsChanged += OnPendingTransactionsChanged;
             UpdateLabel();
-            Debug.Log("Game start update labels");
+            //Debug.Log("Game start update labels");
         }
 
         protected virtual void OnPendingTransactionsChanged(GoodsCollection col, GoodType type)
@@ -41,12 +52,19 @@ namespace DaleranGames.UI
 
         protected virtual void UpdateLabel()
         {
+            int nextTurn = player.Goods.GetAllPendingTransactionsOfType(TrackedGood).Value;
 
-            label.text = player.Goods[TrackedGood] + " (" + player.Goods.GetAllPendingTransactionsOfType(TrackedGood).Value +")";
-            Canvas.ForceUpdateCanvases();
+            if (nextTurn > 0)
+                label.text = player.Goods[TrackedGood] + " <color=#"+posColor+">(+" + nextTurn +")</color>";
+            else if (nextTurn == 0)
+                label.text = player.Goods[TrackedGood] + " (0)";
+            else
+                label.text = player.Goods[TrackedGood] + " <color=#" + negColor + ">(" + nextTurn + ")</color>";
+
+            //Canvas.ForceUpdateCanvases();
         }
 
-        private void OnDestroy()
+        protected virtual void OnDestroy()
         {
             player.Goods.GoodChanged -= OnGoodChanged;
             player.Goods.PendingTransactionsChanged -= OnPendingTransactionsChanged;
