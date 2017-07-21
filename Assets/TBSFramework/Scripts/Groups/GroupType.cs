@@ -60,7 +60,7 @@ namespace DaleranGames.TBSFramework
         protected string name;
         public virtual string Name { get { return name; } }
 
-        [SerializeField]
+        [System.NonSerialized]
         protected int id;
         public virtual int ID { get { return id; } }
 

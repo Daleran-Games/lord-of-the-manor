@@ -1,0 +1,33 @@
+﻿Revert "Merge remote-tracking branch 'origin/v3-gebur' into v3-gebur"
+
+This reverts commit f1f5fa9bd2ab6fb2916bcf736bd3f7ff1d5b3bf3, reversing
+changes made to 6d6693e8b926e99fec750a718a2bafb9f5afc406.
+
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch v3-gebur
+# Your branch is up-to-date with 'origin/v3-gebur'.
+#
+# Changes to be committed:
+#	deleted:    Assets/Builtin Shaders/DefaultResources.meta
+#	deleted:    Assets/Builtin Shaders/DefaultResourcesExtra/UI.meta
+#	deleted:    Assets/Builtin Shaders/DefaultResourcesExtra/VR.meta
+#	modified:   Assets/Game/Scripts/GameManager.cs.meta
+#	modified:   Assets/IO/ScriptableObjects/GraphicsDatabaseLoader.asset
+#	modified:   Assets/IO/Scripts/Database/GameDatabase.cs.meta
+#	modified:   Assets/IO/Scripts/InputSystem/InputManager.cs.meta
+#	modified:   Assets/TBSFramework/Scenes/MapTester.unity
+#	modified:   Assets/TBSFramework/Scripts/Groups/GroupType.cs
+#	modified:   Assets/TBSFramework/Scripts/HexMesh/HexMeshChunk.cs.meta
+#	modified:   Assets/TBSFramework/Scripts/TurnManager/TurnManager.cs.meta
+#	deleted:    Assets/UI/Prefabs/Panels.meta
+#	modified:   Assets/UI/Scripts/Elements/GoodCounter.cs
+#	modified:   Assets/UI/Scripts/Elements/GoodCounter.cs.meta
+#	deleted:    GameData/Graphics.csvGraphicNames.txt
+#	modified:   ProjectSettings/UnityConnectSettings.asset
+#
+# Untracked files:
+#	Assets/Builtin Shaders.meta
+#	Assets/Builtin Shaders/
+#
+
