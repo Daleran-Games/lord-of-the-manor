@@ -10,8 +10,10 @@ namespace DaleranGames.UI
     {
         public GoodType TrackedGood = GoodType.Food;
 
-
+        [SerializeField]
         protected TextMeshProUGUI label;
+
+        [SerializeField]
         protected Group player;
 
         protected string posColor;
@@ -22,11 +24,14 @@ namespace DaleranGames.UI
             label = GetComponentInChildren<TextMeshProUGUI>();
             GameManager.Instance.Play.StateEnabled += OnGameStart;
 
+<<<<<<< HEAD
             posColor = ColorUtility.ToHtmlStringRGB(UIManager.Instance.Style.StatIncreaseColor);
             negColor = ColorUtility.ToHtmlStringRGB(UIManager.Instance.Style.StatDecreaseColor);
 
             //Debug.Log(posColor);
 
+=======
+>>>>>>> origin/v3-gebur
             if (GameManager.Instance.CurrentState == GameManager.Instance.Play)
                 OnGameStart(GameManager.Instance.CurrentState);
         }

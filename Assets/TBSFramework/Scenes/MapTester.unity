@@ -369,6 +369,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TrackedGood: 1
+  label: {fileID: 0}
+  player:
+    Goods:
+      pendingTransactions: []
+      food: 0
+      wood: 0
+      stone: 0
+      gold: 0
+      population: 0
+      work: 0
+    groupType:
+      name: 
+      id: 0
+      type: 
+      rank: 0
+      culture: 0
+      maxActionPoints: 0
+      strengthPerPop: 0
+      attackCost: 0
+      levyPercent: 0
+      foodPerPopPerTurn: 0
+      woodPerPopPerWinter: 0
+      workPerPop: 0
+      maxFood: 0
+      maxWood: 0
+      maxStone: 0
+      startingGold: 0
+      maxPopulation: 0
+      groupTypeModifiers: []
 --- !u!1 &141856918
 GameObject:
   m_ObjectHideFlags: 0
@@ -1227,6 +1256,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TrackedGood: 5
+  label: {fileID: 0}
+  player:
+    Goods:
+      pendingTransactions: []
+      food: 0
+      wood: 0
+      stone: 0
+      gold: 0
+      population: 0
+      work: 0
+    groupType:
+      name: 
+      id: 0
+      type: 
+      rank: 0
+      culture: 0
+      maxActionPoints: 0
+      strengthPerPop: 0
+      attackCost: 0
+      levyPercent: 0
+      foodPerPopPerTurn: 0
+      woodPerPopPerWinter: 0
+      workPerPop: 0
+      maxFood: 0
+      maxWood: 0
+      maxStone: 0
+      startingGold: 0
+      maxPopulation: 0
+      groupTypeModifiers: []
 --- !u!1 &580119372
 GameObject:
   m_ObjectHideFlags: 0
@@ -2542,6 +2600,77 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d441f949931b64847a4109e8dfc3d00e, type: 2}
   m_IsPrefabParent: 0
+<<<<<<< HEAD:Assets/TBSFramework/Scenes/MapTester.unity
+=======
+--- !u!1 &911105491
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 911105493}
+  - component: {fileID: 911105492}
+  m_Layer: 0
+  m_Name: GroupManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &911105492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 911105491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a47a4a21a5b464044886eefe501aaa31, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerGroup:
+    Goods:
+      pendingTransactions: []
+      food: 0
+      wood: 0
+      stone: 0
+      gold: 0
+      population: 0
+      work: 0
+    groupType:
+      name: 
+      id: 0
+      type: 
+      rank: 0
+      culture: 0
+      maxActionPoints: 0
+      strengthPerPop: 0
+      attackCost: 0
+      levyPercent: 0
+      foodPerPopPerTurn: 0
+      woodPerPopPerWinter: 0
+      workPerPop: 0
+      maxFood: 0
+      maxWood: 0
+      maxStone: 0
+      startingGold: 0
+      maxPopulation: 0
+      groupTypeModifiers: []
+--- !u!4 &911105493
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 911105491}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+>>>>>>> origin/v3-gebur:Assets/TBSFramework/HexMap/Scenes/MapTester.unity
 --- !u!1001 &913254086
 Prefab:
   m_ObjectHideFlags: 0
@@ -3910,6 +4039,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TrackedGood: 4
+  label: {fileID: 0}
+  player:
+    Goods:
+      pendingTransactions: []
+      food: 0
+      wood: 0
+      stone: 0
+      gold: 0
+      population: 0
+      work: 0
+    groupType:
+      name: 
+      id: 0
+      type: 
+      rank: 0
+      culture: 0
+      maxActionPoints: 0
+      strengthPerPop: 0
+      attackCost: 0
+      levyPercent: 0
+      foodPerPopPerTurn: 0
+      woodPerPopPerWinter: 0
+      workPerPop: 0
+      maxFood: 0
+      maxWood: 0
+      maxStone: 0
+      startingGold: 0
+      maxPopulation: 0
+      groupTypeModifiers: []
 --- !u!1 &1417892413
 GameObject:
   m_ObjectHideFlags: 0
@@ -4482,6 +4640,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TrackedGood: 2
+  label: {fileID: 0}
+  player:
+    Goods:
+      pendingTransactions: []
+      food: 0
+      wood: 0
+      stone: 0
+      gold: 0
+      population: 0
+      work: 0
+    groupType:
+      name: 
+      id: 0
+      type: 
+      rank: 0
+      culture: 0
+      maxActionPoints: 0
+      strengthPerPop: 0
+      attackCost: 0
+      levyPercent: 0
+      foodPerPopPerTurn: 0
+      woodPerPopPerWinter: 0
+      workPerPop: 0
+      maxFood: 0
+      maxWood: 0
+      maxStone: 0
+      startingGold: 0
+      maxPopulation: 0
+      groupTypeModifiers: []
 --- !u!1001 &1695830573
 Prefab:
   m_ObjectHideFlags: 0
@@ -5093,6 +5280,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TrackedGood: 3
+  label: {fileID: 0}
+  player:
+    Goods:
+      pendingTransactions: []
+      food: 0
+      wood: 0
+      stone: 0
+      gold: 0
+      population: 0
+      work: 0
+    groupType:
+      name: 
+      id: 0
+      type: 
+      rank: 0
+      culture: 0
+      maxActionPoints: 0
+      strengthPerPop: 0
+      attackCost: 0
+      levyPercent: 0
+      foodPerPopPerTurn: 0
+      woodPerPopPerWinter: 0
+      workPerPop: 0
+      maxFood: 0
+      maxWood: 0
+      maxStone: 0
+      startingGold: 0
+      maxPopulation: 0
+      groupTypeModifiers: []
 --- !u!1001 &1922992561
 Prefab:
   m_ObjectHideFlags: 0
@@ -5162,6 +5378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TrackedGood: 0
+<<<<<<< HEAD:Assets/TBSFramework/Scenes/MapTester.unity
 --- !u!1001 &1984095382
 Prefab:
   m_ObjectHideFlags: 0
@@ -5204,6 +5421,37 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 149a559af453de042881b9d486efa9e7, type: 2}
   m_IsPrefabParent: 0
+=======
+  label: {fileID: 0}
+  player:
+    Goods:
+      pendingTransactions: []
+      food: 0
+      wood: 0
+      stone: 0
+      gold: 0
+      population: 0
+      work: 0
+    groupType:
+      name: 
+      id: 0
+      type: 
+      rank: 0
+      culture: 0
+      maxActionPoints: 0
+      strengthPerPop: 0
+      attackCost: 0
+      levyPercent: 0
+      foodPerPopPerTurn: 0
+      woodPerPopPerWinter: 0
+      workPerPop: 0
+      maxFood: 0
+      maxWood: 0
+      maxStone: 0
+      startingGold: 0
+      maxPopulation: 0
+      groupTypeModifiers: []
+>>>>>>> origin/v3-gebur:Assets/TBSFramework/HexMap/Scenes/MapTester.unity
 --- !u!1 &2000755240
 GameObject:
   m_ObjectHideFlags: 0
