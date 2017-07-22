@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 namespace DaleranGames.TBSFramework
 {
@@ -9,6 +10,8 @@ namespace DaleranGames.TBSFramework
     {
         protected Dictionary<StatType, List<Modifier>> modifiers;
         protected Dictionary<StatType, int> totals;
+
+        public event Action<IModifierCollection, StatType> StatModified;
 
         public ModifierCollection()
         {
@@ -46,6 +49,9 @@ namespace DaleranGames.TBSFramework
                 }
                 modifiers[mod.Stat.Type].Add(mod);
                 totals[mod.Stat.Type] += mod.Stat.Value;
+
+                if (StatModified != null)
+                    StatModified(this, mod.Stat.Type);
             }
         }
         
@@ -65,6 +71,9 @@ namespace DaleranGames.TBSFramework
                 {
                     modifiers[mod.Stat.Type].Remove(mod);
                     totals[mod.Stat.Type] -= mod.Stat.Value;
+
+                    if (StatModified != null)
+                        StatModified(this, mod.Stat.Type);
                 }
             }
         }
@@ -80,10 +89,22 @@ namespace DaleranGames.TBSFramework
         public void Clear (StatType statType)
         {
             if (totals.ContainsKey(statType))
+            {
                 totals[statType] = 0;
 
+                if (StatModified != null)
+                    StatModified(this, statType);
+            }
+                
+
             if (modifiers.ContainsKey(statType))
+            {
                 modifiers[statType].Clear();
+
+                if (StatModified != null)
+                    StatModified(this, statType);
+            }
+                
         }
 
         public void ClearAll()

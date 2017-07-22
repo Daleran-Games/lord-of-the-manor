@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DaleranGames.IO;
-using DaleranGames.IO;
 
 namespace DaleranGames.TBSFramework
 {
@@ -17,6 +16,7 @@ namespace DaleranGames.TBSFramework
         HexCursor mouse;
 
         Activity currentActivity = null;
+        Group activeOwner = null;
 
         private void Awake()
         {
@@ -26,7 +26,22 @@ namespace DaleranGames.TBSFramework
         public void EnterActivityMode (string activityName)
         {
             currentActivity = GameDatabase.Instance.Activities[activityName];
-            if (currentActivity != null)
+            activeOwner = GroupManager.Instance.PlayerGroup;
+
+            EnterActivityMode(currentActivity);
+        }
+
+        public void EnterActivityMode (Activity activity, Group owner)
+        {
+            currentActivity = activity;
+            activeOwner = owner;
+
+            EnterActivityMode(currentActivity);
+        }
+
+        protected void EnterActivityMode(Activity activity)
+        {
+            if (activity != null)
             {
                 activeMode = true;
                 lastClickTime = Time.time;
@@ -35,13 +50,12 @@ namespace DaleranGames.TBSFramework
                 InputManager.Instance.RMBClick.MouseButtonUp += OnRightClick;
                 UpdateCursor(mouse.CurrentTile);
             }
-
         }
 
-        public void DoActivityOnTile(Activity activity, HexTile tile)
+        public void DoActivityOnTile(Activity activity, HexTile tile, Group owner)
         {
-            if (activeMode == true && activity.IsActivityValid(tile))
-                activity.DoActivityOnTile(tile);
+            if (activeMode == true && activity.IsActivityValid(tile, owner))
+                activity.DoActivityOnTile(tile, owner);
         }
 
         void OnTileEnter(HexTile tile)
@@ -55,7 +69,7 @@ namespace DaleranGames.TBSFramework
             if (Time.time - lastClickTime > timeSkip)
             {
                 lastClickTime = Time.time;
-                DoActivityOnTile(currentActivity, tile);
+                DoActivityOnTile(currentActivity, tile, activeOwner);
                 UpdateCursor(tile);
                 //Debug.Log("Recieved Left Click");
             }

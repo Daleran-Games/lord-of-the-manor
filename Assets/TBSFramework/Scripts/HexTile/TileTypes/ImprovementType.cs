@@ -103,6 +103,9 @@ namespace DaleranGames.TBSFramework
         {
             base.OnActivation(tile);
             tile.TerrainGraphics.Add(TileLayers.Improvements,iconGraphic);
+
+            if (tile.Owner != null)
+                tile.Owner.Modifiers.Add(ownerModifiers);
         }
 
         public override void OnGameStart(HexTile tile)

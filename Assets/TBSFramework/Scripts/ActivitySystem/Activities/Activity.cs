@@ -19,27 +19,36 @@ namespace DaleranGames.TBSFramework
 
         [SerializeField]
         protected string workIconName;
-        public virtual string WorkIconName { get { return workIconName; } }
+
+        [SerializeField]
+        protected TileGraphic workIcon;
 
         [SerializeField]
         protected int id;
         public virtual int ID { get { return id; } }
 
-        public virtual void DoActivityOnTile(HexTile tile)
+        public virtual void DoActivityOnTile(HexTile tile, Group owner)
         {
 
         }
-        public virtual bool IsActivityValid(HexTile tile)
+        public virtual bool IsActivityValid(HexTile tile, Group owner)
         {
             return false;
         }
+
         public virtual TileGraphic GetUIIcon(HexTile tile)
         {
             return TileGraphic.clear;
         }
+
         public virtual TileGraphic GetTerrainIcon(HexTile tile)
         {
             return TileGraphic.clear;
+        }
+
+        public virtual TileGraphic GetWorkIcon(HexTile tile)
+        {
+            return workIcon;
         }
 
         protected virtual void Awake()
@@ -49,7 +58,7 @@ namespace DaleranGames.TBSFramework
 
         public virtual void OnDatabaseInitialization()
         {
-
+            workIcon = GameDatabase.Instance.TileGraphics[workIconName];
         }
 
 

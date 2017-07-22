@@ -19,8 +19,9 @@ namespace DaleranGames.TBSFramework
         {
             id = Int32.Parse(csv[0]);
             name = csv[1];
-            type = csv[2];
-            improvementName = csv[3];
+            workIconName = csv[2];
+            type = csv[3];
+            improvementName = csv[4];
         }
 
         protected override void Awake()

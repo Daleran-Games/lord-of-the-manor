@@ -1,12 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 
 namespace DaleranGames.TBSFramework
 {
     public interface IModifierCollection
     {
+        event Action <IModifierCollection,StatType> StatModified;
         int this[StatType statType] { get; }
         Modifier[] GetAll(StatType statType);
         void Add(Modifier mod);

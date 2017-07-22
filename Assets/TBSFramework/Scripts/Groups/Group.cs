@@ -160,7 +160,6 @@ namespace DaleranGames.TBSFramework
         protected virtual void SetUpNextTurn()
         {
             Goods.TryAdd(new Transaction(GoodType.Food, FoodRate, false, "Food Eaten"));
-            Goods.TryAdd(new Transaction(GoodType.Gold, 15, false, "Taxes"));
 
             if (TurnManager.Instance.CurrentTurn is FallTurn)
                 Goods.TryAdd(new Transaction(GoodType.Wood, WoodRate, false, "Wood for the Winter"));

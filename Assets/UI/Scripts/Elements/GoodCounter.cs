@@ -9,14 +9,13 @@ namespace DaleranGames.UI
     public class GoodCounter : MonoBehaviour
     {
         public GoodType TrackedGood = GoodType.Food;
-
-
+        
         protected TextMeshProUGUI label;
         protected Group player;
 
         protected string posColor;
         protected string negColor;
-
+    
         protected virtual void Start()
         {
             label = GetComponentInChildren<TextMeshProUGUI>();
@@ -42,12 +41,14 @@ namespace DaleranGames.UI
 
         protected virtual void OnPendingTransactionsChanged(GoodsCollection col, GoodType type)
         {
-            UpdateLabel();
+            if (type == TrackedGood)
+                UpdateLabel();
         }
 
         protected virtual void OnGoodChanged(GoodsCollection col, GoodType type)
         {
-            UpdateLabel();
+            if (type == TrackedGood)
+                UpdateLabel();
         }
 
         protected virtual void UpdateLabel()

@@ -7,6 +7,8 @@ namespace DaleranGames.TBSFramework
 {
     public class NullModifierCollection : IModifierCollection
     {
+        public event Action<IModifierCollection, StatType> StatModified;
+
         public int this[StatType statType]
         {
             get

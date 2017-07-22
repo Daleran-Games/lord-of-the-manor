@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DaleranGames.TBSFramework;
 
 namespace DaleranGames.UI
 {
@@ -8,18 +9,37 @@ namespace DaleranGames.UI
     {
         protected override void Start()
         {
-            TrackedGood = TBSFramework.GoodType.Population;
+            TrackedGood = GoodType.Population;
             base.Start();
+        }
+
+        protected override void OnGameStart(GameState state)
+        {
+            base.OnGameStart(state);
+            player.Modifiers.StatModified += OnMaxPopChanged;
+        }
+
+        protected void OnMaxPopChanged(IModifierCollection mods,StatType type)
+        {
+
+
+            if (type == StatType.MaxPopulation)
+                UpdateLabel();
         }
 
         protected override void UpdateLabel()
         {
-            label.text = player.Goods[TrackedGood] + "/" + player.MaxPopulation.Value;
+            if (player.Goods[TrackedGood] > player.MaxPopulation.Value || player.Goods[TrackedGood] <= 0)
+                label.text = " <color=#" + negColor + ">"+player.Goods[TrackedGood] + "</color> / " + player.MaxPopulation.Value;
+            else
+                label.text = player.Goods[TrackedGood] + "/" + player.MaxPopulation.Value;
         }
 
         protected override void OnDestroy()
         {
             base.OnDestroy();
+            player.Modifiers.StatModified -= OnMaxPopChanged;
+
         }
 
     }

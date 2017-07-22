@@ -85,7 +85,6 @@ namespace DaleranGames.TBSFramework
         public static readonly StatType ImprovementCost = new StatType(45, "Per Turn Costs");
         public static readonly StatType ImprovementBonus = new StatType(46, "Per Turn Bonuses");
 
-
         #endregion
 
 

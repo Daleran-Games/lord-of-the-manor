@@ -11,7 +11,8 @@ namespace DaleranGames.TBSFramework
         {
             id = System.Int32.Parse(csv[0]);
             name = csv[1];
-            type = csv[2];
+            workIconName = csv[2];
+            type = csv[3];
         }
 
         protected override void Awake()
@@ -40,11 +41,6 @@ namespace DaleranGames.TBSFramework
                 if (tile.Improvement.Upgradeable)
                     return tile.Improvement.UpgradedImprovement.IconGraphic;
             }
-            return TileGraphic.clear;
-        }
-
-        public override TileGraphic GetUIIcon(HexTile tile)
-        {
             return TileGraphic.clear;
         }
 

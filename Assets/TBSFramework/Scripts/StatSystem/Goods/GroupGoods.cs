@@ -157,7 +157,7 @@ namespace DaleranGames.TBSFramework
                 }
             } else if (food > owner.MaxFood)
             {
-                Add(new Transaction(GoodType.Food, -(owner.MaxFood - food), false, "Granaries Full"));
+                Add(new Transaction(GoodType.Food, owner.MaxFood - food, false, "Spoilage"));
             }
         }
 
@@ -178,7 +178,7 @@ namespace DaleranGames.TBSFramework
                     this[GoodType.Wood] = 0;
             } else if (wood > owner.MaxWood)
             {
-                Add(new Transaction(GoodType.Wood, -(owner.MaxWood - wood), false, "Wood Stores Full"));
+                Add(new Transaction(GoodType.Wood, owner.MaxWood - wood, false, "Wood Waste"));
             }
         }
 
@@ -188,7 +188,7 @@ namespace DaleranGames.TBSFramework
                 this[GoodType.Stone] = 0;
             else if (stone > owner.MaxStone)
             {
-                Add(new Transaction(GoodType.Stone,-(owner.MaxStone - stone), false, "Stone Stores Full"));
+                Add(new Transaction(GoodType.Stone, owner.MaxStone - stone, false, "Stone Waste"));
             }
         }
 
@@ -203,7 +203,27 @@ namespace DaleranGames.TBSFramework
                 this[GoodType.Population] = 0;
             else if (population > owner.MaxPopulation)
             {
-                Add(new Transaction(GoodType.Population, -(owner.MaxPopulation - population), false, "Overpopulation"));
+                Add(new Transaction(GoodType.Population, owner.MaxPopulation - population, false, "Overpopulation"));
+            } else
+            {
+                int births = 0;
+                int deaths = 0;
+
+                for (int p = 0; p < population; p++)
+                {
+                    if (Random.Bool(owner.BirthRate))
+                        births++;
+
+                    if (Random.Bool(owner.DeathRate))
+                        deaths++;
+                }
+
+                if (births > 0)
+                    Add(new Transaction(GoodType.Population, births, false, "Births"));
+
+                if (deaths > 0)
+                    Add(new Transaction(GoodType.Population, -deaths, false, "Deaths"));
+
             }
         }
 

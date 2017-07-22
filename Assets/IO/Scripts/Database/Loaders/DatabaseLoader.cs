@@ -9,7 +9,9 @@ namespace DaleranGames.IO
     {
         [SerializeField]
         string csvFilePath;
-        protected string CSVFilePath { get { return "GameData/"+csvFilePath; } }
+        protected string CSVFilePath { get { return GameDatabase.GameDataPath +csvFilePath; } }
+
+        
 
         public abstract Database<T> GenerateDatabase();
 

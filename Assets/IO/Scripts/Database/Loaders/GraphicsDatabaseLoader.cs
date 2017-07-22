@@ -16,11 +16,16 @@ namespace DaleranGames.IO
     public class GraphicsDatabaseLoader : DatabaseLoader<TileGraphic>
     {
         [SerializeField]
-        protected string terrainSpriteFilePath = "Assets/Graphics/Sprites/SpringAtlas.png";
+        string uiSpriteFilePath = "UIAtlas.png";
+        public string UISpritePath { get { return GameDatabase.SpritePath + uiSpriteFilePath; } }
         [SerializeField]
-        protected string uiSpriteFilePath = "Assets/Graphics/Sprites/UIAtlas.png";
+        string springSpriteFilePath = "SpringAtlas.png";
+        public string SpringSpritePath { get { return GameDatabase.SpritePath + springSpriteFilePath; } }
+
         [SerializeField]
         protected string graphicRefFilePath = "GraphicNames.txt";
+        protected string RefFilePath { get { return GameDatabase.GameDataPath + graphicRefFilePath; } }
+
         [SerializeField]
         protected TileGraphic[] graphics;
 
@@ -53,13 +58,13 @@ namespace DaleranGames.IO
         {
             List<TileGraphic> newGraphics = new List<TileGraphic>();
 
-            UnityEngine.Object[] ui = AssetDatabase.LoadAllAssetsAtPath(uiSpriteFilePath);
-            UnityEngine.Object[] spr = AssetDatabase.LoadAllAssetsAtPath(terrainSpriteFilePath);
+            UnityEngine.Object[] ui = AssetDatabase.LoadAllAssetsAtPath(UISpritePath);
+            UnityEngine.Object[] spr = AssetDatabase.LoadAllAssetsAtPath(SpringSpritePath);
             UnityEngine.Object[] objs = new UnityEngine.Object[ui.Length + spr.Length];
             System.Array.Copy(ui, objs, ui.Length);
             System.Array.Copy(spr, 0, objs, ui.Length, spr.Length);
 
-            StreamWriter writer = new StreamWriter(CSVFilePath + graphicRefFilePath, false);
+            StreamWriter writer = new StreamWriter(RefFilePath, false);
             writer.WriteLine("Graphics");
             writer.WriteLine("id  Name");
             writer.WriteLine(" ");

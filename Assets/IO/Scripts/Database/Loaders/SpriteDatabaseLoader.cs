@@ -14,12 +14,14 @@ namespace DaleranGames.IO
         [SerializeField]
         protected List<Sprite> sprites;
 
+        
+
         [SerializeField]
-        protected string uiSpriteFilePath = "Assets/Graphics/Sprites/UIAtlas.png";
+        string uiSpriteFilePath = "UIAtlas.png";
+        public string UISpritePath { get { return GameDatabase.SpritePath + uiSpriteFilePath; } } 
         [SerializeField]
-        protected string springSpriteFilePath = "Assets/Graphics/Sprites/SpringAtlas.png";
-        [SerializeField]
-        protected string refTextFilePath = "Assets/Graphics/Sprites/SpriteNames.txt";
+        string springSpriteFilePath = "SpringAtlas.png";
+        public string SpringSpritePath { get { return GameDatabase.SpritePath + springSpriteFilePath; } }
 
         public Dictionary<string, Sprite> GenerateDatabase ()
         {
@@ -41,13 +43,11 @@ namespace DaleranGames.IO
         public void LoadSpritesFromFolder()
         {
             List<Sprite> newSprites = new List<Sprite>();
-            Object[] ui = AssetDatabase.LoadAllAssetsAtPath(uiSpriteFilePath);
-            Object[] spr = AssetDatabase.LoadAllAssetsAtPath(springSpriteFilePath);
+            Object[] ui = AssetDatabase.LoadAllAssetsAtPath(UISpritePath);
+            Object[] spr = AssetDatabase.LoadAllAssetsAtPath(SpringSpritePath);
             Object[] objs = new Object[ui.Length + spr.Length];
             System.Array.Copy(ui, objs, ui.Length);
             System.Array.Copy(spr, 0, objs, ui.Length, spr.Length);
-
-
 
             for (int i = 0; i < objs.Length; i++)
             {

@@ -40,6 +40,10 @@ namespace DaleranGames.IO
         public Database<GroupType> Groups;
         public Database<Activity> Activities;
 
+        public static readonly string SpritePath = "Assets/Graphics/Sprites/";
+        public static string GameDataPath { get { return Application.streamingAssetsPath + "/GameData/"; } }
+
+
         private void Awake()
         {
             DontDestroyOnLoad(this);
