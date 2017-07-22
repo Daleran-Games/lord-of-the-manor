@@ -13,7 +13,7 @@ namespace DaleranGames.IO
 
         public CSVData(string[][] csvArray)
         {
-
+            this.csvArray = csvArray;
         }
 
         string this[int col, int row]

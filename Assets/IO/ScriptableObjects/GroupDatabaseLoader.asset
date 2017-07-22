@@ -19,10 +19,10 @@ MonoBehaviour:
     culture: 1
     maxActionPoints: 10
     strengthPerPop: 1
-    attackCost: 5
+    attackCost: -5
     levyPercent: 0
-    foodPerPopPerTurn: 1
-    woodPerPopPerWinter: 1
+    foodPerPopPerTurn: -1
+    woodPerPopPerWinter: -1
     workPerPop: 12
     maxFood: 20
     maxWood: 10
@@ -36,10 +36,10 @@ MonoBehaviour:
     culture: 1
     maxActionPoints: 10
     strengthPerPop: 2
-    attackCost: 5
+    attackCost: -5
     levyPercent: 62
-    foodPerPopPerTurn: 1
-    woodPerPopPerWinter: 1
+    foodPerPopPerTurn: -1
+    woodPerPopPerWinter: -1
     workPerPop: 12
     maxFood: 30
     maxWood: 15
@@ -53,10 +53,10 @@ MonoBehaviour:
     culture: 1
     maxActionPoints: 15
     strengthPerPop: 3
-    attackCost: 5
+    attackCost: -5
     levyPercent: 125
-    foodPerPopPerTurn: 1
-    woodPerPopPerWinter: 1
+    foodPerPopPerTurn: -1
+    woodPerPopPerWinter: -1
     workPerPop: 10
     maxFood: 40
     maxWood: 20
@@ -70,10 +70,10 @@ MonoBehaviour:
     culture: 1
     maxActionPoints: 15
     strengthPerPop: 4
-    attackCost: 5
+    attackCost: -5
     levyPercent: 250
-    foodPerPopPerTurn: 2
-    woodPerPopPerWinter: 2
+    foodPerPopPerTurn: -2
+    woodPerPopPerWinter: -2
     workPerPop: 8
     maxFood: 50
     maxWood: 30
@@ -87,10 +87,10 @@ MonoBehaviour:
     culture: 1
     maxActionPoints: 20
     strengthPerPop: 5
-    attackCost: 5
+    attackCost: -5
     levyPercent: 500
-    foodPerPopPerTurn: 2
-    woodPerPopPerWinter: 2
+    foodPerPopPerTurn: -2
+    woodPerPopPerWinter: -2
     workPerPop: 6
     maxFood: 100
     maxWood: 50
