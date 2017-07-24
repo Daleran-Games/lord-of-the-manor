@@ -22,38 +22,39 @@ namespace DaleranGames.IO
         public override Database<Activity> GenerateDatabase()
         {
             Database<Activity> newDB = new Database<Activity>();
-            string[][] csvArray = CSVUtility.ParseCSVToArray(File.ReadAllText(CSVFilePath));
+            CSVData data = new CSVData("Activities", CSVUtility.ParseCSVToArray(File.ReadAllText(CSVFilePath)));
             builds.Clear();
             raze = null;
             upgrade = null;
             landClearing = null;
 
-            for (int i = 1; i < csvArray.Length; i++)
+            for (int i = 1; i < data.Rows; i++)
             {
-                switch (csvArray[i][2])
+                int id = Int32.Parse(data[data.FindColumnWithHeader("id"),i]);
+                switch (data["type",id])
                 {
                     case "BuildActivity":
-                        BuildActivity newBuildType = new BuildActivity(csvArray[i]);
+                        BuildActivity newBuildType = new BuildActivity(data,id);
                         newDB.Add(newBuildType);
                         builds.Add(newBuildType);
                         break;
                     case "LandClearingActivity":
-                        LandClearingActivity newClear = new LandClearingActivity(csvArray[i]);
+                        LandClearingActivity newClear = new LandClearingActivity(data, id);
                         landClearing = newClear;
                         newDB.Add(newClear);
                         break;
                     case "RazeActivity":
-                        RazeActivity newRaze = new RazeActivity(csvArray[i]);
+                        RazeActivity newRaze = new RazeActivity(data, id);
                         raze = newRaze;
                         newDB.Add(newRaze);
                         break;
                     case "UpgradeActivity":
-                        UpgradeActivity newUpgrade = new UpgradeActivity(csvArray[i]);
+                        UpgradeActivity newUpgrade = new UpgradeActivity(data, id);
                         upgrade = newUpgrade;
                         newDB.Add(newUpgrade);
                         break;
                     default:
-                        Debug.LogWarning("Database Error: " + csvArray[i][2] + " not a valid type.");
+                        Debug.LogWarning("Database Error: " + data["type", id] + " not a valid type.");
                         break;
                 }
             }

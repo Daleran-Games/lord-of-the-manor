@@ -8,7 +8,7 @@ namespace DaleranGames.TBSFramework
     [System.Serializable]
     public class GroupGoods : GoodsCollection
     {
-        [System.NonSerialized]
+        //[System.NonSerialized]
         protected Group owner;
 
         [SerializeField]
@@ -131,6 +131,11 @@ namespace DaleranGames.TBSFramework
                 return true;
             else
                 return false;
+        }
+
+        public override bool CanProcessCost(Cost cost)
+        {
+            return CanProcessTransaction(cost.GetTransactionWithModifiers(owner.Stats));
         }
 
         public override void ResolveEdgeCases()

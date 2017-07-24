@@ -19,39 +19,20 @@ namespace DaleranGames.TBSFramework
             culture = Cultures.None;
             this.type = this.ToString();
 
-            maxActionPoints = 0;
-            strengthPerPop = 0;
-            attackCost = 0;
-            foodPerPopPerTurn = 0;
-            woodPerPopPerWinter = 0;
-            maxFood = 0;
-            maxWood = 0;
-            maxStone = 0;
-            maxPopulation = 0;
         }
 
-        public GroupType(string[] csvLine)
+        public GroupType(CSVData data, int id)
         {
-            id = Int32.Parse(csvLine[0]);
-            name = csvLine[1];
-            type = csvLine[2];
-            rank = (Ranks)Enum.Parse(typeof(Ranks), csvLine[3]);
-            culture = (Cultures)Enum.Parse(typeof(Cultures), csvLine[4]);
+            this.id = id;
+            name = data["name", id];
+            type = data["type", id];
+            rank = (Ranks)Enum.Parse(typeof(Ranks), data["rank",id]);
+            culture = (Cultures)Enum.Parse(typeof(Cultures), data["culture", id]);
 
-            maxActionPoints = Int32.Parse(csvLine[5]);
-            strengthPerPop = Int32.Parse(csvLine[6]);
-            levyPercent = Int32.Parse(csvLine[7]);
-            attackCost = Int32.Parse(csvLine[8]);
-            foodPerPopPerTurn = Int32.Parse(csvLine[9]);
-            woodPerPopPerWinter = Int32.Parse(csvLine[10]);
-            workPerPop = Int32.Parse(csvLine[11]);
-            maxFood = Int32.Parse(csvLine[12]);
-            maxWood = Int32.Parse(csvLine[13]);
-            maxStone = Int32.Parse(csvLine[14]);
-            startingGold = Int32.Parse(csvLine[15]);
-            maxPopulation = Int32.Parse(csvLine[16]);
 
-            groupTypeModifiers = Modifier.ParseCSVList(CSVUtility.ParseList(csvLine,"groupModifiers"));
+
+            tileModifiers = Modifier.ParseCSVList(data.ParseList("tileModifierList", id));
+            groupModifiers = Modifier.ParseCSVList(data.ParseList("groupModifierList", id));
 
         }
 
@@ -80,66 +61,13 @@ namespace DaleranGames.TBSFramework
         public static readonly GroupType NullGroupType = new GroupType("NullGroup");
 
         #region UnitStats
-
-        [Header("Combat Stats")]
         [SerializeField]
-        protected int maxActionPoints = 10;
-        public virtual Stat MaxActionPoints { get { return new Stat(StatType.MaxActionPoints, maxActionPoints); } }
+        protected Modifier[] groupModifiers;
+        public virtual Modifier[] GroupModifiers { get { return groupModifiers; } }
 
         [SerializeField]
-        protected int strengthPerPop = 2;
-        public virtual Stat StrengthPerPop { get { return new Stat(StatType.StrengthPerPop, strengthPerPop); } }
-
-        [SerializeField]
-        protected int attackCost = -5;
-        public virtual Stat AttackCost { get { return new Stat(StatType.AttackCost, attackCost); } }
-
-        [SerializeField]
-        protected int levyPercent = 0;
-        public virtual Stat LevyPervent { get { return new Stat(StatType.GroupLevy, levyPercent); } }
-
-        [SerializeField]
-        protected int foodPerPopPerTurn = -1;
-        public virtual Stat FoodRatePerPop { get { return new Stat(StatType.GroupFoodRatePerPop, foodPerPopPerTurn); } }
-
-        [SerializeField]
-        protected int woodPerPopPerWinter = -1;
-        public virtual Stat WoodRatePerPop { get { return new Stat(StatType.GroupWoodRatePerPop, woodPerPopPerWinter); } }
-
-        [SerializeField]
-        protected int workPerPop = 12;
-        public virtual Stat WorkPerPop { get { return new Stat(StatType.GroupWorkPerPop, workPerPop); } }
-
-        [SerializeField]
-        protected int maxFood = 50;
-        public virtual Stat MaxFood { get { return new Stat(StatType.MaxFood, maxFood); } }
-
-        [SerializeField]
-        protected int maxWood = 30;
-        public virtual Stat MaxWood { get { return new Stat(StatType.MaxWood, maxWood); } }
-
-        [SerializeField]
-        protected int maxStone = 10;
-        public virtual Stat MaxStone { get { return new Stat(StatType.MaxStone, maxStone); } }
-
-        [SerializeField]
-        protected int startingGold = 150;
-        public int StartingGold { get { return startingGold; } }
-
-        [SerializeField]
-        protected int maxPopulation = 8;
-        public virtual Stat MaxPopulation { get { return new Stat(StatType.MaxPopulation, maxPopulation); } }
-
-        public Stat BirthRate { get { return GameplayMetrics.BaseBirthRateStat; } }
-        public Stat DeathRate { get { return GameplayMetrics.BaseDeathRateStats; } }
-        public Stat StarvationRate { get { return GameplayMetrics.BaseStarvationRateStats; } }
-        public Stat FreezingRate { get { return GameplayMetrics.BaseFreezingRateStats; } }
-
-
-        //Turn all stats into read only ints that get turned into the modifers and added to the group at runtime;
-        [SerializeField]
-        protected Modifier[] groupTypeModifiers;
-        public virtual Modifier[] GroupTypeModifiers { get { return groupTypeModifiers; } }
+        protected Modifier[] tileModifiers;
+        public virtual Modifier[] TileModifiers { get { return tileModifiers; } }
         #endregion
 
         # region Group Callbacks
@@ -155,8 +83,8 @@ namespace DaleranGames.TBSFramework
                 OnGameStart(group);
             }
 
-            if (GroupTypeModifiers != null)
-                group.Modifiers.Add(GroupTypeModifiers);
+            if (GroupModifiers != null)
+                group.Stats.Add(GroupModifiers);
         }
 
         public virtual void OnGameStart(Group group)
@@ -181,8 +109,8 @@ namespace DaleranGames.TBSFramework
 
         public virtual void OnDeactivation(Group group)
         {
-            if (GroupTypeModifiers != null)
-                group.Modifiers.Remove(GroupTypeModifiers);
+            if (GroupModifiers != null)
+                group.Stats.Remove(GroupModifiers);
         }
         #endregion
 

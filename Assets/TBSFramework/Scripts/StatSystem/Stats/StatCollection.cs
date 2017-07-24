@@ -6,14 +6,14 @@ using System;
 namespace DaleranGames.TBSFramework
 {
     [System.Serializable]
-    public class ModifierCollection : IModifierCollection
+    public class StatCollection : IStatCollection<StatType>
     {
         protected Dictionary<StatType, List<Modifier>> modifiers;
         protected Dictionary<StatType, int> totals;
 
-        public event Action<IModifierCollection, StatType> StatModified;
+        public event Action<IStatCollection<StatType>, StatType> StatModified;
 
-        public ModifierCollection()
+        public StatCollection()
         {
             modifiers = new Dictionary<StatType, List<Modifier>>();
             totals = new Dictionary<StatType, int>();
@@ -30,12 +30,37 @@ namespace DaleranGames.TBSFramework
             }
         }
 
-        public Modifier[] GetAll(StatType statType)
+        public StatType[] Types
+        {
+            get
+            {
+                StatType[] types = new StatType[modifiers.Keys.Count];
+                modifiers.Keys.CopyTo(types, 0);
+                return types;
+            }
+        }
+
+        public Modifier[] GetAllOfType(StatType statType)
         {
             if (modifiers.ContainsKey(statType))
                 return modifiers[statType].ToArray();
             else
                 return null;
+        }
+
+        public Modifier[] GetAll()
+        {
+            List<Modifier> mods = new List<Modifier>();
+            foreach(KeyValuePair<StatType,List<Modifier>> m in modifiers)
+            {
+                mods.AddRange(m.Value);
+            }
+            return mods.ToArray();
+        }
+
+        public bool Contains(StatType statType)
+        {
+            return modifiers.ContainsKey(statType);
         }
 
         public void Add (Modifier mod)
@@ -95,8 +120,6 @@ namespace DaleranGames.TBSFramework
                 if (StatModified != null)
                     StatModified(this, statType);
             }
-                
-
             if (modifiers.ContainsKey(statType))
             {
                 modifiers[statType].Clear();
@@ -104,7 +127,6 @@ namespace DaleranGames.TBSFramework
                 if (StatModified != null)
                     StatModified(this, statType);
             }
-                
         }
 
         public void ClearAll()
@@ -112,5 +134,7 @@ namespace DaleranGames.TBSFramework
             modifiers.Clear();
             totals.Clear();
         }
+
+
     }
 }

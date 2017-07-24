@@ -31,7 +31,10 @@ namespace DaleranGames.TBSFramework
 
         public virtual void OnDatabaseInitialization()
         {
-            iconGraphic = GameDatabase.Instance.TileGraphics[iconName];
+            if (iconName != null)
+                iconGraphic = GameDatabase.Instance.TileGraphics[iconName];
+            else
+                iconGraphic = TileGraphic.clear;
         }
 
         public virtual void OnActivation(HexTile tile)

@@ -6,16 +6,18 @@ using System;
 
 namespace DaleranGames.TBSFramework
 {
-    public interface IModifierCollection
+    public interface IStatCollection<T> where T : StatType
     {
-        event Action <IModifierCollection,StatType> StatModified;
-        int this[StatType statType] { get; }
-        Modifier[] GetAll(StatType statType);
+        event Action <IStatCollection<T>,T> StatModified;
+        int this[T statType] { get; }
+        T[] Types { get; }
+        Modifier[] GetAllOfType(T statType);
+        bool Contains(T statType);
         void Add(Modifier mod);
         void Add(Modifier[] mods);
         void Remove(Modifier mod);
         void Remove(Modifier[] mods);
-        void Clear(StatType statType);
+        void Clear(T statType);
         void ClearAll();
     }
 

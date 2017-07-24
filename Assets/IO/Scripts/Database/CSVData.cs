@@ -3,57 +3,53 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Text.RegularExpressions;
+using System;
 
 namespace DaleranGames.IO
 {
     public class CSVData
     {
-
+        public readonly string Name;
         string[][] csvArray;
 
-        public CSVData(string[][] csvArray)
+        public CSVData(string name, string[][] csvArray)
         {
+            Name = name;
             this.csvArray = csvArray;
         }
 
-        string this[int col, int row]
+        public string this[int col, int row] { get { return csvArray[row][col]; } }
+        public string this[string header, int id] { get { return csvArray[FindRowWithId(id.ToString())][FindColumnWithHeader(header)]; } }
+        public string[] this[int row] { get { return csvArray[row]; } }
+        public int Rows { get { return csvArray.Length; } }
+
+
+        public string[] ParseList(string listName, int id)
         {
-            get
-            {
-                return "";
-            }
+            int row = FindRowWithId(id.ToString());
+            return CSVUtility.ParseList(csvArray[row], listName);
         }
 
-        string this[string header, int row]
+        public int FindRowWithId(string idString)
         {
-            get
+            for (int i=0; i < csvArray.Length; i++)
             {
-                return "";
+                if (csvArray[i][0] == idString)
+                    return i;
             }
+            Debug.LogError("id " + idString + " not found in CVSData "+ Name + ". Returning 0.");
+            return 0;
         }
 
-        public static string[] ParseList(int row, string listName)
+        public int FindColumnWithHeader (string header)
         {
-            bool inList = false;
-            List<string> items = new List<string>();
-
-            for (int i = 0; i < csvLine.Length; i++)
+            for (int i = 0; i < csvArray[0].Length; i++)
             {
-                if (inList)
-                {
-                    if (csvLine[i] == CSVUtility.EndList)
-                        inList = false;
-                    else
-                        items.Add(csvLine[i]);
-                }
-                else if (csvLine[i] == listName && !inList)
-                    inList = true;
+                if (csvArray[0][i] == header)
+                    return i;
             }
-
-            if (inList)
-                Debug.LogError("Never Exited list: " + listName);
-
-            return items.ToArray();
+            Debug.LogError("header " + header + " not found in CVSData " + Name + ". Returning 0.");
+            return 0;
         }
     }
 }

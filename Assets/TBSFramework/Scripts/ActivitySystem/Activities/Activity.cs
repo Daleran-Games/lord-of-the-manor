@@ -27,11 +27,13 @@ namespace DaleranGames.TBSFramework
         protected int id;
         public virtual int ID { get { return id; } }
 
-        public virtual void DoActivityOnTile(HexTile tile, Group owner)
+        public static readonly Activity Null = new NullActivity("Null Activity", "NullActivity", -1);
+
+        public virtual void DoActivityOnTile(HexTile tile)
         {
 
         }
-        public virtual bool IsActivityValid(HexTile tile, Group owner)
+        public virtual bool IsActivityValid(HexTile tile)
         {
             return false;
         }
@@ -60,7 +62,6 @@ namespace DaleranGames.TBSFramework
         {
             workIcon = GameDatabase.Instance.TileGraphics[workIconName];
         }
-
 
     }
 }

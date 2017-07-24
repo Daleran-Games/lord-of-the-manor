@@ -1,7 +1,5 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
-using System;
 
 namespace DaleranGames.TBSFramework
 {
@@ -11,7 +9,7 @@ namespace DaleranGames.TBSFramework
         protected string name;
         public string Name { get { return name; } }
 
-        public static readonly Group NullUnit = new NullGroup("NullGroup", GroupType.NullGroupType);
+        public static readonly Group Null = new NullGroup("NullGroup", GroupType.NullGroupType);
 
         public Group (string name, GroupType type)
         {
@@ -23,7 +21,7 @@ namespace DaleranGames.TBSFramework
             this.name = name;
 
             Goods = new GroupGoods(this);
-            Modifiers = new ModifierCollection();
+            Stats = new StatCollection();
 
             TurnManager.Instance.TurnEnded += OnTurnEnd;
             TurnManager.Instance.TurnSetUp += OnTurnSetUp;
@@ -32,12 +30,12 @@ namespace DaleranGames.TBSFramework
 
             GroupType = type;
 
-            Goods[GoodType.Food] = MaxFood;
-            Goods[GoodType.Wood] = MaxWood;
-            Goods[GoodType.Stone] = MaxStone;
-            Goods[GoodType.Gold] = GroupType.StartingGold;
-            Goods[GoodType.Population] = MaxPopulation;
-            Goods[GoodType.Work] = WorkRate;
+            Goods[GoodType.Food] = Stats[StatType.MaxFood];
+            Goods[GoodType.Wood] = Stats[StatType.MaxWood];
+            Goods[GoodType.Stone] = Stats[StatType.MaxStone];
+            Goods[GoodType.Gold] = Stats[StatType.StartingGold];
+            Goods[GoodType.Population] = Stats[StatType.MaxPopulation];
+            Goods[GoodType.Work] = Stats[StatType.GroupWorkRate];
 
             //Debug.Log("Player goods set");
 
@@ -86,30 +84,8 @@ namespace DaleranGames.TBSFramework
         # endregion
 
         #region Group Stats
-        public IModifierCollection Modifiers;
+        public IStatCollection<StatType> Stats;
         public GroupGoods Goods;
-
-        public virtual Stat MaxActionPoints { get { return new Stat(StatType.MaxActionPoints, GroupType.MaxActionPoints + Modifiers[StatType.MaxActionPoints]); } }
-        public virtual Stat StrengthPerPop { get { return new Stat(StatType.StrengthPerPop, GroupType.StrengthPerPop + Modifiers[StatType.StrengthPerPop]); } }
-        public virtual Stat Strength { get { return new Stat(StatType.Strength, (StrengthPerPop * Goods.Population.Value) + Modifiers[StatType.Strength]); } }
-        public virtual Stat AttackCost { get { return new Stat(StatType.AttackCost, GroupType.AttackCost + Modifiers[StatType.AttackCost]); } }
-
-        public virtual Stat MaxFood { get { return new Stat(StatType.MaxFood, GroupType.MaxFood + Modifiers[StatType.MaxFood]); } }
-        public virtual Stat MaxWood { get { return new Stat(StatType.MaxWood, GroupType.MaxWood + Modifiers[StatType.MaxWood]); } }
-        public virtual Stat MaxStone { get { return new Stat(StatType.MaxStone, GroupType.MaxStone + Modifiers[StatType.MaxStone]); } }
-        public virtual Stat MaxPopulation { get { return new Stat(StatType.MaxPopulation, GroupType.MaxPopulation + Modifiers[StatType.MaxPopulation]); } }
-
-        public virtual Stat FoodRatePerPop { get { return new Stat(StatType.GroupFoodRatePerPop, GroupType.FoodRatePerPop + Modifiers[StatType.GroupFoodRatePerPop]); } }
-        public virtual Stat FoodRate { get { return new Stat(StatType.GroupFoodRate,(FoodRatePerPop * Goods.Population.Value) + Modifiers[StatType.GroupFoodRate]); } }
-        public virtual Stat WoodRatePerPop { get { return new Stat(StatType.GroupWoodRatePerPop, GroupType.WoodRatePerPop + Modifiers[StatType.GroupWoodRatePerPop]); } }
-        public virtual Stat WoodRate { get { return new Stat(StatType.GroupWoodRate, (WoodRatePerPop * Goods.Population.Value) + Modifiers[StatType.GroupWoodRate]); } }
-        public virtual Stat WorkPerPop { get { return new Stat(StatType.GroupWorkPerPop, GroupType.WorkPerPop + Modifiers[StatType.GroupWorkPerPop]); } }
-        public virtual Stat WorkRate { get { return new Stat(StatType.GroupWorkRate, (WorkPerPop * Goods.Population.Value) + Modifiers[StatType.GroupWorkRate]); } }
-
-        public virtual Stat BirthRate { get { return new Stat(StatType.GroupBirthRate, GroupType.BirthRate + Modifiers[StatType.GroupBirthRate]); } }
-        public virtual Stat DeathRate { get { return new Stat(StatType.GroupDeathRate, GroupType.DeathRate + Modifiers[StatType.GroupDeathRate]); } }
-        public virtual Stat StarvationRate { get { return new Stat(StatType.GroupStarvationRate, GroupType.StarvationRate + Modifiers[StatType.GroupStarvationRate]); } }
-        public virtual Stat FreezingRate { get { return new Stat(StatType.GroupFreezeRate, GroupType.FreezingRate + Modifiers[StatType.GroupFreezeRate]); } }
 
 
         #endregion

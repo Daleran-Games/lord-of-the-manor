@@ -6,7 +6,7 @@ namespace DaleranGames.TBSFramework
 {
     public class TileGoods : GoodsCollection
     {
-        [System.NonSerialized]
+        //[System.NonSerialized]
         protected HexTile parentTile;
 
         protected int condition;
@@ -62,6 +62,11 @@ namespace DaleranGames.TBSFramework
                 return true;
             else
                 return false;
+        }
+
+        public override bool CanProcessCost(Cost cost)
+        {
+            return CanProcessTransaction(cost.GetTransactionWithModifiers(parentTile.Stats));
         }
 
         public override void ResolveEdgeCases()

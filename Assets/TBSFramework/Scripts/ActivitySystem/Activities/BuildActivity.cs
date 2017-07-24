@@ -15,13 +15,13 @@ namespace DaleranGames.TBSFramework
         [SerializeField]
         ImprovementType improvement;
 
-        public BuildActivity(string[] csv)
+        public BuildActivity(CSVData data, int id)
         {
-            id = Int32.Parse(csv[0]);
-            name = csv[1];
-            workIconName = csv[2];
-            type = csv[3];
-            improvementName = csv[4];
+            this.id = id;
+            name = data["name", id];
+            workIconName = data["workIcon", id];
+            type = data["type", id];
+            improvementName = data["improvementName", id];
         }
 
         protected override void Awake()
@@ -46,7 +46,7 @@ namespace DaleranGames.TBSFramework
 
         public override bool IsActivityValid(HexTile tile)
         {
-            return improvement.CheckIfCanBuild(tile);
+            return improvement.CanBuildOnTile(tile);
         }
 
         public override void DoActivityOnTile(HexTile tile)

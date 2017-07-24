@@ -14,6 +14,8 @@ namespace DaleranGames.TBSFramework
         Transaction[] PendingTransactions { get; }
         bool CanProcessTransaction(Transaction transaction);
         bool CanProcessTransaction(Transaction[] transactions);
+        bool CanProcessCost(Cost cost);
+        bool CanProcessCost(Cost[] costs);
         bool TryAdd(Transaction transaction);
         bool TryAdd(Transaction[] transactions);
         void Remove(Transaction transaction);

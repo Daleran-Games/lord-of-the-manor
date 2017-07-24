@@ -16,12 +16,13 @@ namespace DaleranGames.IO
         public override Database<LandType> GenerateDatabase()
         {
             Database<LandType> newDB = new Database<LandType>();
-            string[][] csvArray = CSVUtility.ParseCSVToArray(File.ReadAllText(CSVFilePath));
+            CSVData data = new CSVData("Lands", CSVUtility.ParseCSVToArray(File.ReadAllText(CSVFilePath)));
             lands.Clear();
 
-            for (int i = 1; i < csvArray.Length; i++)
+            for (int i = 1; i < data.Rows; i++)
             {
-                LandType newType = new LandType(csvArray[i]);
+                int id = Int32.Parse(data[data.FindColumnWithHeader("id"), i]);
+                LandType newType = new LandType(data,id);
                 newDB.Add(newType);
                 lands.Add(newType);
             }

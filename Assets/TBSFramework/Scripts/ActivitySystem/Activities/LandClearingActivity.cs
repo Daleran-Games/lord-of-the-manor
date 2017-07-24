@@ -2,18 +2,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DaleranGames.IO;
 
 namespace DaleranGames.TBSFramework
 {
     [System.Serializable]
     public class LandClearingActivity : Activity
     {
-        public LandClearingActivity(string[] csv)
+        public LandClearingActivity(CSVData data, int id)
         {
-            id = Int32.Parse(csv[0]);
-            name = csv[1];
-            workIconName = csv[2];
-            type = csv[3];
+            this.id = id;
+            name = data["name", id];
+            workIconName = data["workIcon", id];
+            type = data["type", id];
         }
 
         protected override void Awake()

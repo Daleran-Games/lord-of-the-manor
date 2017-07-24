@@ -7,15 +7,15 @@ namespace DaleranGames.TBSFramework
     [System.Serializable]
     public class ModifierDatabase<T>
     {
-        protected Dictionary<T, ModifierCollection> modifiers;
+        protected Dictionary<T, StatCollection> modifiers;
         
 
         public ModifierDatabase ()
         {
-            modifiers = new Dictionary<T, ModifierCollection>();
+            modifiers = new Dictionary<T, StatCollection>();
         }
 
-        public virtual ModifierCollection this[T obj]
+        public virtual StatCollection this[T obj]
         {
             get
             {
@@ -31,7 +31,7 @@ namespace DaleranGames.TBSFramework
         {
             if (!modifiers.ContainsKey(obj))
             {
-                modifiers.Add(obj, new ModifierCollection());
+                modifiers.Add(obj, new StatCollection());
             }
             modifiers[obj].Add(mod);
         }

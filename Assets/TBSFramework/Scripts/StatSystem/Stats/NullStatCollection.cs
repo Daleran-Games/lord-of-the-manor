@@ -5,9 +5,17 @@ using UnityEngine;
 
 namespace DaleranGames.TBSFramework
 {
-    public class NullModifierCollection : IModifierCollection
+    public class NullStatCollection : IStatCollection<StatType>
     {
-        public event Action<IModifierCollection, StatType> StatModified;
+        public StatType[] Types
+        {
+            get
+            {
+                return new StatType[0];
+            }
+        }
+
+        public event Action<IStatCollection<StatType>, StatType> StatModified;
 
         public int this[StatType statType]
         {
@@ -37,11 +45,6 @@ namespace DaleranGames.TBSFramework
 
         }
 
-        public Modifier[] GetAll(StatType statType)
-        {
-            return new Modifier[0];
-        }
-
         public void Remove(Modifier mod)
         {
             
@@ -50,6 +53,21 @@ namespace DaleranGames.TBSFramework
         public void Remove(Modifier[] mods)
         {
 
+        }
+
+        public Modifier[] GetAllOfType(StatType statType)
+        {
+            return new Modifier[0];
+        }
+
+        public Modifier[] GetAll()
+        {
+            return new Modifier[0];
+        }
+
+        public bool Contains(StatType statType)
+        {
+            return false;
         }
     }
 }

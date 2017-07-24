@@ -22,8 +22,9 @@ namespace DaleranGames.TBSFramework
 
             UIGraphics = new TileGraphics(atlas, Position);
             TerrainGraphics = new TileGraphics(atlas, Position);
-            owner = Group.NullUnit;
+            owner = Group.Null;
             TileTimer = new TurnTimer(TurnManager.Instance);
+            improvement = ImprovementType.Null;
 
             TurnManager.Instance.TurnEnded += OnTurnEnd;
             TurnManager.Instance.TurnSetUp += OnTurnSetUp;
@@ -85,13 +86,13 @@ namespace DaleranGames.TBSFramework
             get { return improvement; }
             set
             {
-                if (improvement != null)
-                    improvement.OnDeactivation(this);
+                improvement.OnDeactivation(this);
+
+                if (value == null)
+                    improvement = ImprovementType.Null;
 
                 improvement = value;
-
-                if (improvement != null)
-                    improvement.OnActivation(this);
+                improvement.OnActivation(this);
             }
         }
 
@@ -121,7 +122,7 @@ namespace DaleranGames.TBSFramework
                 Group oldOwner = owner;
 
                 if (value == null)
-                    owner = Group.NullUnit;
+                    owner = Group.Null;
                 else
                     owner = value;
 
@@ -188,6 +189,8 @@ namespace DaleranGames.TBSFramework
         [ReadOnly]
         protected byte moisture = 0;
         public byte Moisture { get { return moisture; } set { moisture = value; } }
+
+        public IStatCollection<StatType> Stats;
 
         public Stat MovementCost
         {

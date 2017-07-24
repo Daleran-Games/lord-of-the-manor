@@ -16,12 +16,13 @@ namespace DaleranGames.IO
         public override Database<GroupType> GenerateDatabase()
         {
             Database<GroupType> newDB = new Database<GroupType>();
-            string[][] csvArray = CSVUtility.ParseCSVToArray(File.ReadAllText(CSVFilePath));
+            CSVData data = new CSVData("Groups", CSVUtility.ParseCSVToArray(File.ReadAllText(CSVFilePath)));
             groups.Clear();
 
-            for (int i = 1; i < csvArray.Length; i++)
+            for (int i = 1; i < data.Rows; i++)
             {
-                GroupType newType = new GroupType(csvArray[i]);
+                int id = Int32.Parse(data[data.FindColumnWithHeader("id"), i]);
+                GroupType newType = new GroupType(data, id);
                 newDB.Add(newType);
                 groups.Add(newType);
             }

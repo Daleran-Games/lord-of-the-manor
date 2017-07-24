@@ -45,6 +45,17 @@ namespace DaleranGames.TBSFramework
             return true;
         }
 
+        public abstract bool CanProcessCost(Cost cost);
+
+        public virtual bool CanProcessCost(Cost[] costs)
+        {
+            for (int i = 0; i < costs.Length; i++)
+            {
+                if (!CanProcessCost(costs[i]))
+                    return false;
+            }
+            return true;
+        }
 
         protected void Add(Transaction transaction)
         {
@@ -144,6 +155,8 @@ namespace DaleranGames.TBSFramework
             if (GoodChanged != null)
                 GoodChanged(col, type);
         }
+
+
     }
 }
 

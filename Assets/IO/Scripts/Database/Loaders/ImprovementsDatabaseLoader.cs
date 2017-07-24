@@ -16,12 +16,13 @@ namespace DaleranGames.IO
         public override Database<ImprovementType> GenerateDatabase()
         {
             Database<ImprovementType> newDB = new Database<ImprovementType>();
-            string[][] csvArray = CSVUtility.ParseCSVToArray(File.ReadAllText(CSVFilePath));
+            CSVData data = new CSVData("Improvements", CSVUtility.ParseCSVToArray(File.ReadAllText(CSVFilePath)));
             improvements.Clear();
 
-            for (int i = 1; i < csvArray.Length; i++)
+            for (int i = 1; i < data.Rows; i++)
             {
-                ImprovementType newType = new ImprovementType(csvArray[i]);
+                int id = Int32.Parse(data[data.FindColumnWithHeader("id"), i]);
+                ImprovementType newType = new ImprovementType(data,id);
                 newDB.Add(newType);
                 improvements.Add(newType);
             }

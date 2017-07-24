@@ -16,10 +16,10 @@ namespace DaleranGames.UI
         protected override void OnGameStart(GameState state)
         {
             base.OnGameStart(state);
-            player.Modifiers.StatModified += OnMaxPopChanged;
+            player.Stats.StatModified += OnMaxPopChanged;
         }
 
-        protected void OnMaxPopChanged(IModifierCollection mods,StatType type)
+        protected void OnMaxPopChanged(IStatCollection mods,StatType type)
         {
 
 
@@ -38,7 +38,7 @@ namespace DaleranGames.UI
         protected override void OnDestroy()
         {
             base.OnDestroy();
-            player.Modifiers.StatModified -= OnMaxPopChanged;
+            player.Stats.StatModified -= OnMaxPopChanged;
 
         }
 
