@@ -22,9 +22,14 @@ namespace DaleranGames.TBSFramework
 
             UIGraphics = new TileGraphics(atlas, Position);
             TerrainGraphics = new TileGraphics(atlas, Position);
+
             owner = Group.Null;
-            TileTimer = new TurnTimer(TurnManager.Instance);
             improvement = ImprovementType.Null;
+            TileTimer = new TurnTimer(TurnManager.Instance);
+
+            Stats = new TileStats(owner);
+            OwnerModifiers = new TileGroupModifiers(owner);
+
 
             TurnManager.Instance.TurnEnded += OnTurnEnd;
             TurnManager.Instance.TurnSetUp += OnTurnSetUp;
@@ -90,8 +95,9 @@ namespace DaleranGames.TBSFramework
 
                 if (value == null)
                     improvement = ImprovementType.Null;
+                else
+                    improvement = value;
 
-                improvement = value;
                 improvement.OnActivation(this);
             }
         }
@@ -126,19 +132,10 @@ namespace DaleranGames.TBSFramework
                 else
                     owner = value;
 
-                Land.OnChangeOwner(this,oldOwner, owner);
-                Improvement.OnChangeOwner(this, oldOwner, owner);
+                Stats.Owner = owner;
+                OwnerModifiers.Owner = owner;
             }
         }
-
-        [SerializeField]
-        protected Group occupier;
-        public Group Occupuer
-        {
-            get { return occupier; }
-        }
-
-
 
         void OnTurnEnd(BaseTurn turn)
         {
@@ -190,33 +187,9 @@ namespace DaleranGames.TBSFramework
         protected byte moisture = 0;
         public byte Moisture { get { return moisture; } set { moisture = value; } }
 
-        public IStatCollection<StatType> Stats;
+        public TileStats Stats;
+        public TileGroupModifiers OwnerModifiers;
 
-        public Stat MovementCost
-        {
-            get
-            {
-                if (land != null && improvement != null)
-                    return land.BaseMovementCost + improvement.BaseMovementCost.Value;
-                else if (land != null && improvement == null)
-                    return land.BaseMovementCost;
-                else
-                    return new Stat(StatType.MovementCost, 1);
-            }
-        }
-
-        public Stat DefenseBonus
-        {
-            get
-            {
-                if (land != null && improvement != null)
-                    return land.BaseDefenseBonus + improvement.BaseDefenseBonus.Value;
-                else if (land != null && improvement == null)
-                    return land.BaseDefenseBonus;
-                else
-                    return new Stat(StatType.DefenseBonus, 0);
-            }
-        }
 
         #endregion
 

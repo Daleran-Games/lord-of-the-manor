@@ -10,13 +10,14 @@ namespace DaleranGames.TBSFramework
     {
         event Action <IStatCollection<T>,T> StatModified;
         int this[T statType] { get; }
-        T[] Types { get; }
-        Modifier[] GetAllOfType(T statType);
+        List<T> Types { get; }
+        List<Modifier> GetAllOfType(T statType);
+        List<Modifier> GetAll();
         bool Contains(T statType);
         void Add(Modifier mod);
-        void Add(Modifier[] mods);
+        void Add(IList<Modifier> mods);
         void Remove(Modifier mod);
-        void Remove(Modifier[] mods);
+        void Remove(IList<Modifier> mods);
         void Clear(T statType);
         void ClearAll();
     }

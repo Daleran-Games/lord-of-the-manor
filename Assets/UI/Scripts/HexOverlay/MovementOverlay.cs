@@ -24,7 +24,7 @@ namespace DaleranGames.UI
         protected override void SetLabel(HexTile tile)
         {
             overlay.SetLabelIcon(tile, icon);
-            overlay.SetLabelNunmber(tile, tile.MovementCost);
+            overlay.SetLabelNunmber(tile, tile.Stats[StatType.MovementCost]);
         }
 
     }

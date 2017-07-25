@@ -8,7 +8,7 @@ namespace DaleranGames.TBSFramework
     [System.Serializable]
     public class GroupGoods : GoodsCollection
     {
-        //[System.NonSerialized]
+        [System.NonSerialized]
         protected Group owner;
 
         [SerializeField]
@@ -101,11 +101,11 @@ namespace DaleranGames.TBSFramework
             }
         }
 
-        public override Good[]Goods
+        public override List<Good>Goods
         {
             get
             {
-                return new Good[]
+                return new List<Good>
                 {
                 Food,
                 Wood,
@@ -154,15 +154,15 @@ namespace DaleranGames.TBSFramework
             {
                 for (int f = food; f <= 0; f++)
                 {
-                    if (Random.Bool(owner.StarvationRate))
+                    if (Random.Bool(owner.Stats[StatType.GroupStarvationRate]))
                     {
                         this[GoodType.Population]--;
                     }
                     this[GoodType.Food]++;
                 }
-            } else if (food > owner.MaxFood)
+            } else if (food > owner.Stats[StatType.MaxFood])
             {
-                Add(new Transaction(GoodType.Food, owner.MaxFood - food, false, "Spoilage"));
+                Add(new Transaction(GoodType.Food, owner.Stats[StatType.MaxFood] - food, false, "Spoilage"));
             }
         }
 
@@ -174,16 +174,16 @@ namespace DaleranGames.TBSFramework
                 {
                     for (int w=wood; w <= 0; w++)
                     {
-                        if (Random.Bool(owner.FreezingRate))
+                        if (Random.Bool(owner.Stats[StatType.GroupFreezeRate]))
                             this[GoodType.Population]--;
 
                         this[GoodType.Wood]++;
                     }
                 } else
                     this[GoodType.Wood] = 0;
-            } else if (wood > owner.MaxWood)
+            } else if (wood > owner.Stats[StatType.MaxWood])
             {
-                Add(new Transaction(GoodType.Wood, owner.MaxWood - wood, false, "Wood Waste"));
+                Add(new Transaction(GoodType.Wood, owner.Stats[StatType.MaxWood] - wood, false, "Wood Waste"));
             }
         }
 
@@ -191,9 +191,9 @@ namespace DaleranGames.TBSFramework
         {
             if (stone < 0)
                 this[GoodType.Stone] = 0;
-            else if (stone > owner.MaxStone)
+            else if (stone > owner.Stats[StatType.MaxStone])
             {
-                Add(new Transaction(GoodType.Stone, owner.MaxStone - stone, false, "Stone Waste"));
+                Add(new Transaction(GoodType.Stone, owner.Stats[StatType.MaxStone] - stone, false, "Stone Waste"));
             }
         }
 
@@ -206,9 +206,9 @@ namespace DaleranGames.TBSFramework
         {
             if (population < 0)
                 this[GoodType.Population] = 0;
-            else if (population > owner.MaxPopulation)
+            else if (population > owner.Stats[StatType.MaxPopulation])
             {
-                Add(new Transaction(GoodType.Population, owner.MaxPopulation - population, false, "Overpopulation"));
+                Add(new Transaction(GoodType.Population, owner.Stats[StatType.MaxPopulation] - population, false, "Overpopulation"));
             } else
             {
                 int births = 0;
@@ -216,10 +216,10 @@ namespace DaleranGames.TBSFramework
 
                 for (int p = 0; p < population; p++)
                 {
-                    if (Random.Bool(owner.BirthRate))
+                    if (Random.Bool(owner.Stats[StatType.GroupBirthRate]))
                         births++;
 
-                    if (Random.Bool(owner.DeathRate))
+                    if (Random.Bool(owner.Stats[StatType.GroupDeathRate]))
                         deaths++;
                 }
 

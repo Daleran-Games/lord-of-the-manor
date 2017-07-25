@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using UnityEngine;
 using DaleranGames.IO;
@@ -9,6 +9,7 @@ namespace DaleranGames.TBSFramework
     [System.Serializable]
     public class GroupType : IDatabaseObject, IType<Group>
     {
+        public static readonly GroupType Null = new GroupType("Null Group Type");
 
         //Private constructor for a null type group
         private GroupType(string name)
@@ -17,7 +18,10 @@ namespace DaleranGames.TBSFramework
             this.name = name;
             rank = Ranks.None;
             culture = Cultures.None;
-            this.type = this.ToString();
+            this.type = "GroupType";
+
+            tileModifiers = new List<Modifier>(0);
+            groupModifiers = new List<Modifier>(0);
 
         }
 
@@ -29,10 +33,8 @@ namespace DaleranGames.TBSFramework
             rank = (Ranks)Enum.Parse(typeof(Ranks), data["rank",id]);
             culture = (Cultures)Enum.Parse(typeof(Cultures), data["culture", id]);
 
-
-
-            tileModifiers = Modifier.ParseCSVList(data.ParseList("tileModifierList", id));
-            groupModifiers = Modifier.ParseCSVList(data.ParseList("groupModifierList", id));
+            tileModifiers = Modifier.ParseCSVList(data.ParseList("tileModifierList",id));
+            groupModifiers = Modifier.ParseCSVList(data.ParseList("groupModifierList",id));
 
         }
 
@@ -62,12 +64,12 @@ namespace DaleranGames.TBSFramework
 
         #region UnitStats
         [SerializeField]
-        protected Modifier[] groupModifiers;
-        public virtual Modifier[] GroupModifiers { get { return groupModifiers; } }
+        protected List<Modifier> groupModifiers;
+        public virtual ReadOnlyCollection<Modifier> GroupModifiers { get { return groupModifiers.AsReadOnly(); } }
 
         [SerializeField]
-        protected Modifier[] tileModifiers;
-        public virtual Modifier[] TileModifiers { get { return tileModifiers; } }
+        protected List<Modifier> tileModifiers;
+        public virtual ReadOnlyCollection<Modifier> TileModifiers { get { return tileModifiers.AsReadOnly(); } }
         #endregion
 
         # region Group Callbacks
@@ -82,9 +84,7 @@ namespace DaleranGames.TBSFramework
             {
                 OnGameStart(group);
             }
-
-            if (GroupModifiers != null)
-                group.Stats.Add(GroupModifiers);
+            group.Stats.Add(groupModifiers);
         }
 
         public virtual void OnGameStart(Group group)
@@ -109,8 +109,7 @@ namespace DaleranGames.TBSFramework
 
         public virtual void OnDeactivation(Group group)
         {
-            if (GroupModifiers != null)
-                group.Stats.Remove(GroupModifiers);
+            group.Stats.Remove(groupModifiers);
         }
         #endregion
 

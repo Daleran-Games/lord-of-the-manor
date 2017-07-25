@@ -46,7 +46,7 @@ namespace DaleranGames.TBSFramework
 
         public override bool IsActivityValid(HexTile tile)
         {
-            return improvement.CanBuildOnTile(tile);
+            return false;
         }
 
         public override void DoActivityOnTile(HexTile tile)

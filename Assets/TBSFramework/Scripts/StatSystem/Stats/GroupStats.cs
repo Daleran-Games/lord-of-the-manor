@@ -2,15 +2,39 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GroupStats : MonoBehaviour {
+namespace DaleranGames.TBSFramework
+{
+    [System.Serializable]
+    public class GroupStats : StatCollection
+    {
+        protected Group group;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+        public GroupStats (Group group) : base()
+        {
+            this.group = group;
+        }
+
+
+        public override int this[StatType statType]
+        {
+            get
+            {
+                
+                switch (statType.Value)
+                {
+                    case 0:
+                        return (base[StatType.StrengthPerPop] * group.Goods.Population) + base[StatType.Strength];
+                    case 11:
+                        return (base[StatType.GroupFoodRatePerPop] * group.Goods.Population) + base[StatType.GroupFoodRate];
+                    case 12:
+                        return (base[StatType.GroupWoodRatePerPop] * group.Goods.Population) + base[StatType.GroupWoodRate];
+                    case 47:
+                        return (base[StatType.GroupWorkPerPop] * group.Goods.Population) + base[StatType.GroupWorkRate];
+                    default:
+                        return base[statType];
+                }
+
+            }
+        }
+    }
 }

@@ -8,8 +8,11 @@ namespace DaleranGames
 {
     public class LoadSceneState : GameState
     {
+#pragma warning disable 0649
         [SerializeField]
         HexGrid grid;
+
+#pragma warning restore 0649
 
         private void OnEnable()
         {

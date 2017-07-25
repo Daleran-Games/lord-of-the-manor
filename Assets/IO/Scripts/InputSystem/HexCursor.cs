@@ -22,9 +22,10 @@ namespace DaleranGames.IO
             Clear,
             Cross
         }
-
+#pragma warning disable 0649
         [SerializeField]
         GameObject HexQuadPrefab;
+#pragma warning restore 0649
 
         [Header("Cursor Modes")]
         [SerializeField]

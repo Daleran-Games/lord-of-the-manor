@@ -24,10 +24,9 @@ namespace DaleranGames.IO
         public int Rows { get { return csvArray.Length; } }
 
 
-        public string[] ParseList(string listName, int id)
+        public List<string> ParseList(string header, int id)
         {
-            int row = FindRowWithId(id.ToString());
-            return CSVUtility.ParseList(csvArray[row], listName);
+            return CSVUtility.ParseList(this[header,id]);
         }
 
         public int FindRowWithId(string idString)

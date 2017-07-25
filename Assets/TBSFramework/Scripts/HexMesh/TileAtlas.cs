@@ -64,12 +64,12 @@ namespace DaleranGames.TBSFramework
         float singliePixelinUnity = 0f;
         public float SinglePixelInUnity { get { return singliePixelinUnity; } }
 
-        
+#pragma warning disable 0649
         [Header("UI Atlas")]
         [SerializeField]
         Material uiAtlas;
         public Material UIAtlas { get { return uiAtlas; } }
-
+#pragma warning restore 0649
         private void Awake()
         {
             Calculate();

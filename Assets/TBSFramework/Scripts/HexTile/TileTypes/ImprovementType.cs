@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using UnityEngine;
 using DaleranGames.IO;
@@ -17,14 +17,14 @@ namespace DaleranGames.TBSFramework
             type = "ImprovementType";
             iconName = "null";
 
-            tileModifiers = new Modifier[0];
-            ownerModifiers = new Modifier[0];
-            occupierModifiers = new Modifier[0];
+            tileModifiers = new List<Modifier>(0);
+            ownerModifiers = new List<Modifier>(0);
+            //occupierModifiers = new Modifier[0];
 
             buildable = false;
             upgradeable = false;
             razeable = false;
-            workable = false;
+            //workable = false;
 
         }
 
@@ -40,11 +40,12 @@ namespace DaleranGames.TBSFramework
 
             tileModifiers = Modifier.ParseCSVList(data.ParseList("tileModifierList", id));
             ownerModifiers = Modifier.ParseCSVList(data.ParseList("ownerModifierList", id));
-            occupierModifiers = Modifier.ParseCSVList(data.ParseList("occupierModifierList", id));
+            //occupierModifiers = Modifier.ParseCSVList(data.ParseList("occupierModifierList", id));
 
             buildable = Boolean.Parse(data["buildable", id]);
             if (buildable)
             {
+                buildGraphicName = data["buildGraphic", id];
                 buildTime = Int32.Parse(data["buildTime", id]);
                 buildCosts = Cost.ParseCSVList(data.ParseList("buildCostList", id));
                 validLand = new List<string>(data.ParseList("landList", id));
@@ -54,9 +55,15 @@ namespace DaleranGames.TBSFramework
             if (upgradeable)
                 upgradeName = data["upgradeName", id];
 
-            razeTime = Int32.Parse(data["razeTime", id]);
-            razeCosts = Cost.ParseCSVList(data.ParseList("razeCostList", id));
+            razeable = Boolean.Parse(data["razeable", id]);
+            if(razeable)
+            {
+                razeTime = Int32.Parse(data["razeTime", id]);
+                razeCosts = Cost.ParseCSVList(data.ParseList("razeCostList", id));
+                //razeBonuses = Cost.ParseCSVList(data.ParseList("razeBonusList", id));
+            }
 
+            /*
             workable = Boolean.Parse(data["workable", id]);
             if (workable)
             {
@@ -64,22 +71,22 @@ namespace DaleranGames.TBSFramework
                 workBonuses = Cost.ParseCSVList(data.ParseList("workBonusList", id));
                 workModifiers = Modifier.ParseCSVList(data.ParseList("workModifierList", id));
             }
-
+            */
         }
 
         #region Tile Stats
         [Header("Tile Stats")]
         [SerializeField]
-        protected Modifier[] tileModifiers;
-        public virtual Modifier[] TileModifiers { get { return tileModifiers; } }
+        protected List<Modifier> tileModifiers;
+        public virtual ReadOnlyCollection<Modifier> TileModifiers { get { return tileModifiers.AsReadOnly(); } }
 
         [SerializeField]
-        protected Modifier[] ownerModifiers;
-        public virtual Modifier[] OwnerModifiers { get { return ownerModifiers; } }
+        protected List<Modifier> ownerModifiers;
+        public virtual ReadOnlyCollection<Modifier> OwnerModifiers { get { return ownerModifiers.AsReadOnly(); } }
 
-        [SerializeField]
-        protected Modifier[] occupierModifiers;
-        public virtual Modifier[] OccupierModifiers { get { return occupierModifiers; } }
+        //[SerializeField]
+       // protected Modifier[] occupierModifiers;
+       // public virtual Modifier[] OccupierModifiers { get { return occupierModifiers; } }
 
         [Header("Build Stats")]
         [SerializeField]
@@ -91,12 +98,18 @@ namespace DaleranGames.TBSFramework
         public virtual int Builtdime { get { return buildTime; } }
 
         [SerializeField]
-        protected Cost[] buildCosts;
-        public virtual Cost[] BuildCosts { get { return buildCosts; } }
+        protected string buildGraphicName;
+
+        protected TileGraphic buildGraphic;
+        public TileGraphic BuildGraphic { get { return buildGraphic; } }
+
+        [SerializeField]
+        protected List<Cost> buildCosts;
+        public virtual ReadOnlyCollection<Cost> BuildCosts { get { return buildCosts.AsReadOnly(); } }
 
         [SerializeField]
         protected List<string> validLand;
-        public virtual List<string>ValidLand { get { return validLand; } }
+        public virtual ReadOnlyCollection<string>ValidLand { get { return validLand.AsReadOnly(); } }
 
         [Header("Upgrade Stats")]
         [SerializeField]
@@ -118,26 +131,31 @@ namespace DaleranGames.TBSFramework
         public int razeTime;
         public virtual int RazeTime { get { return razeTime; } }
 
-        protected Cost[] razeCosts;
-        public virtual Cost[] RazeCosts { get { return razeCosts; } }
+        protected List<Cost> razeCosts;
+        public virtual ReadOnlyCollection<Cost> RazeCosts { get { return razeCosts.AsReadOnly(); } }
 
+        //protected List<Cost> razeBonuses;
+        //public virtual ReadOnlyCollection<Cost> RazeBonuses { get { return razeBonuses.AsReadOnly(); } }
+
+            /*
         [Header("Work Stats")]
         [SerializeField]
         protected bool workable = false;
         public virtual bool Workable { get { return workable; } }
 
         [SerializeField]
-        protected Cost[] workCosts;
-        public virtual Cost[] WorkCosts { get { return workCosts; } }
+        protected List<Cost> workCosts;
+        public virtual ReadOnlyCollection<Cost> WorkCosts { get { return workCosts.AsReadOnly(); } }
+        
+        [SerializeField]
+        protected List<Cost> workBonuses;
+        public virtual ReadOnlyCollection<Cost> WorkBonuses { get { return workBonuses.AsReadOnly(); } }
 
         [SerializeField]
-        protected Cost[] workBonuses;
-        public virtual Cost[] WorkBonuses { get { return workBonuses; } }
-
-        [SerializeField]
-        protected Modifier[] workModifiers;
-        public virtual Modifier[] WorkModifiers {get { return workModifiers; } }
-
+        protected List<Modifier> workModifiers;
+        public virtual ReadOnlyCollection<Modifier> WorkModifiers {get { return workModifiers.AsReadOnly(); } }
+        */
+        
 
         #endregion
 
@@ -148,6 +166,9 @@ namespace DaleranGames.TBSFramework
 
             if (upgradeable)
                 upgradedImprovement = GameDatabase.Instance.Improvements[upgradeName];
+
+            if (buildable)
+                buildGraphic = GameDatabase.Instance.TileGraphics[buildGraphicName];
         }
 
         public override void OnActivation(HexTile tile)
@@ -155,8 +176,8 @@ namespace DaleranGames.TBSFramework
             base.OnActivation(tile);
             tile.TerrainGraphics.Add(TileLayers.Improvements,iconGraphic);
 
-            if (tile.Owner != null)
-                tile.Owner.Stats.Add(ownerModifiers);
+            tile.Stats.Add(tileModifiers);
+            tile.OwnerModifiers.Add(ownerModifiers);
         }
 
         public override void OnGameStart(HexTile tile)
@@ -173,44 +194,11 @@ namespace DaleranGames.TBSFramework
         {
             tile.TerrainGraphics.Remove(TileLayers.Improvements);
 
-            if (tile.Owner != null)
-                tile.Owner.Stats.Remove(ownerModifiers);
-        }
-
-        public virtual void OnBuilt (HexTile tile)
-        {
-            if (tile.Owner != null)
-                tile.Owner.Stats.Add(ownerModifiers);
-        }
-
-        public override void OnChangeOwner(HexTile tile, Group oldOwner, Group newOwner)
-        {
-            base.OnChangeOwner(tile, oldOwner, newOwner);
-
-            if (oldOwner != null)
-                oldOwner.Stats.Remove(ownerModifiers);
-
-            if (newOwner != null)
-                newOwner.Stats.Add(ownerModifiers);
-
+            tile.Stats.Remove(tileModifiers);
+            tile.OwnerModifiers.Remove(ownerModifiers);
         }
 
         #endregion
-
-
-        public virtual bool CanBuildOnTile (HexTile tile)
-        {
-            if (validLand.Contains(tile.Land.Name) && tile.Improvement == null)
-                return true;
-
-            return false;
-        }
-
-        public virtual void Upgrade(HexTile tile)
-        {
-            if (UpgradedImprovement != null && Upgradeable)
-                tile.Improvement = UpgradedImprovement;
-        }
 
     }
 }

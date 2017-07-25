@@ -9,52 +9,50 @@ namespace DaleranGames.TBSFramework
     [System.Serializable]
     public struct Modifier : IFormattable, IEquatable<Modifier>, IComparable<Modifier>, IComparable
     {
-        public const string CsvId = "modifier";
+        [SerializeField]
+        StatType type;
+        public StatType Type { get { return type; } }
 
         [SerializeField]
-        Stat stat;
-        public Stat Stat { get { return stat; } }
-
+        int value;
+        public int Value { get { return value; } }
+                
         [SerializeField]
         string description;
         public string Description { get { return description; } }
 
-        public Modifier (Stat mod)
+        public Modifier (StatType type, int value)
         {
-            this.stat = mod;
+            this.type = type;
+            this.value = value;
             description = "None";
-        }
-
-        public Modifier(Stat mod, string description)
-        {
-            this.stat = mod;
-            this.description = description;
         }
 
         public Modifier(StatType type, int value, string description)
         {
-            stat = new Stat(type, value);
+            this.type = type;
+            this.value = value;
             this.description = description;
         }
 
-        public static Modifier ParseCSV(string[] csvLine, int startingIndex)
+        public static Modifier ParseCSV(List<string> csvLine, int startingIndex)
         {
-            return new Modifier(new Stat(Enumeration.FromDisplayName<StatType>(csvLine[startingIndex]),Int32.Parse(csvLine[startingIndex+1])),csvLine[startingIndex+2]);
+            return new Modifier(Enumeration.FromDisplayName<StatType>(csvLine[startingIndex]),Int32.Parse(csvLine[startingIndex+1]),csvLine[startingIndex+2]);
         }
 
-        public static Modifier[] ParseCSVList (string[] csvList)
+        public static List<Modifier> ParseCSVList (List<string> csvList)
         {
             List<Modifier> items = new List<Modifier>();
-            for (int i=0; i < csvList.Length; i+=3)
+            for (int i=0; i < csvList.Count; i+=3)
             {
                 items.Add(ParseCSV(csvList, i));
             }
-            return items.ToArray();
+            return items;
         }
 
         public override string ToString()
         {
-            return string.Format("{0} {1}", Stat, Description);
+            return string.Format("{0} ({1}) {2}", Type, Value, Description);
         }
 
         public string ToString(string format, IFormatProvider formatProvider)
@@ -66,7 +64,7 @@ namespace DaleranGames.TBSFramework
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
-            return other.Stat == Stat  && other.Description == Description;
+            return other.type == type && other.value == value  && other.Description == Description;
         }
 
         public override bool Equals(object obj)
@@ -78,12 +76,19 @@ namespace DaleranGames.TBSFramework
 
         public int CompareTo(Modifier other)
         {
-            if (other.Stat > Stat)
-                return 1;
-            else if (other.Equals(this))
-                return 0;
+            if (other.Type == Type)
+            {
+                return Value.CompareTo(other.Value);
+            }
             else
-                return -1;
+            {
+                if (other.Type.Value > Type.Value)
+                    return 1;
+                else if (other.Type.Value == Type.Value)
+                    return 0;
+                else
+                    return -1;
+            }
         }
 
         public int CompareTo(object obj)
@@ -101,23 +106,23 @@ namespace DaleranGames.TBSFramework
         {
             unchecked
             {
-                return (Description.GetHashCode()) ^ Stat.Type.GetHashCode();
+                return (Description.GetHashCode()) ^ Type.GetHashCode();
             }
         }
 
         public static implicit operator int(Modifier m)
         {
-            return m.Stat.Value;
+            return m.Value;
         }
 
         public static implicit operator StatType(Modifier m)
         {
-            return m.Stat.Type;
+            return m.Type;
         }
 
         public static implicit operator Stat(Modifier m)
         {
-            return m.Stat;
+            return new Stat(m.type, m.value);
         }
 
     }

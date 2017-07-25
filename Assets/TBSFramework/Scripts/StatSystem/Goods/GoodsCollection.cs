@@ -10,13 +10,13 @@ namespace DaleranGames.TBSFramework
 
         [SerializeField]
         protected List<Transaction> pendingTransactions;
-        public virtual Transaction[] PendingTransactions { get { return pendingTransactions.ToArray(); } }
+        public virtual List<Transaction> PendingTransactions { get { return pendingTransactions; } }
 
         public event Action<GoodsCollection, GoodType> PendingTransactionsChanged;
         public event Action<GoodsCollection, GoodType> GoodChanged;
 
         public abstract int this[GoodType type] { get; set; }
-        public abstract Good[] Goods { get; }
+        public abstract List<Good> Goods { get; }
 
         public GoodsCollection()
         {
@@ -25,9 +25,9 @@ namespace DaleranGames.TBSFramework
 
         public virtual bool CanProcessTransaction(Transaction transaction)
         {
-            if (ContainsGoodOfType(transaction.Good))
+            if (ContainsGoodOfType(transaction.Type))
             {
-                if (transaction.Immediate == true && this[transaction.Good.Type] >= transaction.Good.Value)
+                if (transaction.Immediate == true && this[transaction.Type] >= transaction.Value)
                     return true;
                 else if (transaction.Immediate == false)
                     return true;
@@ -35,9 +35,9 @@ namespace DaleranGames.TBSFramework
             return false;
         }
 
-        public virtual bool CanProcessTransaction(Transaction[] transactions)
+        public virtual bool CanProcessTransaction(IList<Transaction> transactions)
         {
-            for (int i = 0; i < transactions.Length; i++)
+            for (int i = 0; i < transactions.Count; i++)
             {
                 if (!CanProcessTransaction(transactions[i]))
                     return false;
@@ -47,9 +47,9 @@ namespace DaleranGames.TBSFramework
 
         public abstract bool CanProcessCost(Cost cost);
 
-        public virtual bool CanProcessCost(Cost[] costs)
+        public virtual bool CanProcessCost(IList<Cost> costs)
         {
-            for (int i = 0; i < costs.Length; i++)
+            for (int i = 0; i < costs.Count; i++)
             {
                 if (!CanProcessCost(costs[i]))
                     return false;
@@ -61,12 +61,12 @@ namespace DaleranGames.TBSFramework
         {
             if (transaction.Immediate)
             {
-                this[transaction.Good.Type] += transaction.Good.Value;
+                this[transaction.Type] += transaction.Value;
             }
             else
             {
                 pendingTransactions.Add(transaction);
-                OnPendingTransactionsChanged(this, transaction.Good.Type);
+                OnPendingTransactionsChanged(this, transaction.Type);
             }
 
         }
@@ -82,11 +82,11 @@ namespace DaleranGames.TBSFramework
             return false;
         }
 
-        public virtual bool TryAdd(Transaction[] transactions)
+        public virtual bool TryAdd(IList<Transaction> transactions)
         {
             if (CanProcessTransaction(transactions))
             {
-                for (int i=0;i<transactions.Length;i++)
+                for (int i=0;i<transactions.Count;i++)
                 {
                     Add(transactions[i]);
                 }
@@ -98,15 +98,15 @@ namespace DaleranGames.TBSFramework
         public virtual void Remove(Transaction transaction)
         {
             pendingTransactions.Remove(transaction);
-            OnPendingTransactionsChanged(this, transaction.Good.Type);
+            OnPendingTransactionsChanged(this, transaction.Type);
         }
 
-        public virtual void Remove(Transaction[] transactions)
+        public virtual void Remove(IList<Transaction> transactions)
         {
-            for (int i=0; i < transactions.Length; i++)
+            for (int i=0; i < transactions.Count; i++)
             {
                 pendingTransactions.Remove(transactions[i]);
-                OnPendingTransactionsChanged(this, transactions[i].Good.Type);
+                OnPendingTransactionsChanged(this, transactions[i].Type);
             }
         }
 
@@ -117,8 +117,8 @@ namespace DaleranGames.TBSFramework
             int total = 0;
             for (int i=0;i<pendingTransactions.Count;i++)
             {
-                if (pendingTransactions[i].Good.Type == type)
-                    total += pendingTransactions[i].Good.Value;
+                if (pendingTransactions[i].Type == type)
+                    total += pendingTransactions[i].Value;
             }
             return new Good(type, total);
         }
@@ -144,7 +144,7 @@ namespace DaleranGames.TBSFramework
 
         protected virtual void OnAllPendingTransactionsChanged(GoodsCollection col)
         {
-            for (int i=0;i< Goods.Length;i++)
+            for (int i=0;i< Goods.Count;i++)
             {
                 OnPendingTransactionsChanged(this, Goods[i].Type);
             }

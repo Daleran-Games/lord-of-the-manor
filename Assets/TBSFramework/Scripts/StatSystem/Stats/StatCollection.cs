@@ -13,13 +13,15 @@ namespace DaleranGames.TBSFramework
 
         public event Action<IStatCollection<StatType>, StatType> StatModified;
 
+        public static readonly NullStatCollection Null = new NullStatCollection();
+
         public StatCollection()
         {
             modifiers = new Dictionary<StatType, List<Modifier>>();
             totals = new Dictionary<StatType, int>();
         }
 
-        public int this[StatType statType]
+        public virtual int this[StatType statType]
         {
             get
             {
@@ -30,109 +32,109 @@ namespace DaleranGames.TBSFramework
             }
         }
 
-        public StatType[] Types
+        public virtual List<StatType> Types
         {
             get
             {
-                StatType[] types = new StatType[modifiers.Keys.Count];
-                modifiers.Keys.CopyTo(types, 0);
-                return types;
+                return new List<StatType>(modifiers.Keys);
             }
         }
 
-        public Modifier[] GetAllOfType(StatType statType)
+        public virtual List<Modifier> GetAllOfType(StatType statType)
         {
             if (modifiers.ContainsKey(statType))
-                return modifiers[statType].ToArray();
+                return new List<Modifier>(modifiers[statType]);
             else
                 return null;
         }
 
-        public Modifier[] GetAll()
+        public virtual List<Modifier> GetAll()
         {
             List<Modifier> mods = new List<Modifier>();
             foreach(KeyValuePair<StatType,List<Modifier>> m in modifiers)
             {
                 mods.AddRange(m.Value);
             }
-            return mods.ToArray();
+            return mods;
         }
 
-        public bool Contains(StatType statType)
+        public virtual bool Contains(StatType statType)
         {
             return modifiers.ContainsKey(statType);
         }
 
-        public void Add (Modifier mod)
+        public virtual void Add (Modifier mod)
         {
-            if (mod.Stat.Value != 0)
+            if (mod.Value != 0)
             {
-                if (!modifiers.ContainsKey(mod.Stat.Type))
+                if (!modifiers.ContainsKey(mod.Type))
                 {
-                    modifiers.Add(mod.Stat.Type, new List<Modifier>());
-                    totals.Add(mod.Stat.Type, 0);
+                    modifiers.Add(mod.Type, new List<Modifier>());
+                    totals.Add(mod.Type, 0);
                 }
-                modifiers[mod.Stat.Type].Add(mod);
-                totals[mod.Stat.Type] += mod.Stat.Value;
+                modifiers[mod.Type].Add(mod);
+                totals[mod.Type] += mod.Value;
 
-                if (StatModified != null)
-                    StatModified(this, mod.Stat.Type);
+                RaiseStatModified(this, mod.Type);
             }
         }
         
-        public void Add (Modifier[] mods)
+        public virtual void Add (IList<Modifier> mods)
         {
-            for (int i=0; i < mods.Length; i++)
+            for (int i=0; i < mods.Count; i++)
             {
                 Add(mods[i]);
             }
         }
 
-        public void Remove (Modifier mod)
+        public virtual void Remove (Modifier mod)
         {
-            if (modifiers.ContainsKey(mod.Stat.Type))
+            if (modifiers.ContainsKey(mod.Type))
             {
-                if (modifiers[mod.Stat.Type].Contains(mod))
+                if (modifiers[mod.Type].Contains(mod))
                 {
-                    modifiers[mod.Stat.Type].Remove(mod);
-                    totals[mod.Stat.Type] -= mod.Stat.Value;
+                    modifiers[mod.Type].Remove(mod);
+                    totals[mod.Type] -= mod.Value;
 
-                    if (StatModified != null)
-                        StatModified(this, mod.Stat.Type);
+                    RaiseStatModified(this, mod.Type);
                 }
             }
         }
 
-        public void Remove(Modifier[] mods)
+        public virtual void Remove(IList<Modifier> mods)
         {
-            for (int i = 0; i < mods.Length; i++)
+            for (int i = 0; i < mods.Count; i++)
             {
                 Remove(mods[i]);
             }
         }
 
-        public void Clear (StatType statType)
+        public virtual void Clear (StatType statType)
         {
             if (totals.ContainsKey(statType))
             {
                 totals[statType] = 0;
 
-                if (StatModified != null)
-                    StatModified(this, statType);
+                RaiseStatModified(this, statType);
             }
             if (modifiers.ContainsKey(statType))
             {
                 modifiers[statType].Clear();
 
-                if (StatModified != null)
-                    StatModified(this, statType);
+                RaiseStatModified(this, statType);
             }
         }
 
-        public void ClearAll()
+        public virtual void ClearAll()
         {
             modifiers.Clear();
             totals.Clear();
+        }
+
+        protected virtual void RaiseStatModified(IStatCollection<StatType> stats, StatType statType)
+        {
+            if (StatModified != null)
+                StatModified(stats, statType);
         }
 
 

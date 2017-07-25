@@ -21,7 +21,8 @@ namespace DaleranGames.TBSFramework
             this.name = name;
 
             Goods = new GroupGoods(this);
-            Stats = new StatCollection();
+            Stats = new GroupStats(this);
+            TileModifiers = new StatCollection();
 
             TurnManager.Instance.TurnEnded += OnTurnEnd;
             TurnManager.Instance.TurnSetUp += OnTurnSetUp;
@@ -81,10 +82,12 @@ namespace DaleranGames.TBSFramework
             else
                 throw new ArgumentException("Object is not a Group");
         }
-        # endregion
+        #endregion
 
         #region Group Stats
+
         public IStatCollection<StatType> Stats;
+        public IStatCollection<StatType> TileModifiers;
         public GroupGoods Goods;
 
 
@@ -103,7 +106,11 @@ namespace DaleranGames.TBSFramework
                 if (groupType != null)
                     groupType.OnDeactivation(this);
 
-                groupType = value;
+                if (value == null)
+                    groupType = GroupType.Null;
+                else
+                    groupType = value;
+
                 groupType.OnActivation(this);
             }
         }
@@ -135,10 +142,10 @@ namespace DaleranGames.TBSFramework
 
         protected virtual void SetUpNextTurn()
         {
-            Goods.TryAdd(new Transaction(GoodType.Food, FoodRate, false, "Food Eaten"));
+            Goods.TryAdd(new Transaction(GoodType.Food, Stats[StatType.GroupFoodRate], false, "Food Eaten"));
 
             if (TurnManager.Instance.CurrentTurn is FallTurn)
-                Goods.TryAdd(new Transaction(GoodType.Wood, WoodRate, false, "Wood for the Winter"));
+                Goods.TryAdd(new Transaction(GoodType.Wood, Stats[StatType.GroupWoodRate], false, "Wood for the Winter"));
         }
 
 

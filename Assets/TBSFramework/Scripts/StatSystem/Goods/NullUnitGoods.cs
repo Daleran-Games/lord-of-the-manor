@@ -32,11 +32,11 @@ namespace DaleranGames.TBSFramework
             }
         }
 
-        public override Good[] Goods
+        public override List<Good> Goods
         {
             get
             {
-                return new Good[0];
+                return new List<Good>(0);
             }
         }
 
@@ -55,7 +55,7 @@ namespace DaleranGames.TBSFramework
             return false;
         }
 
-        public override bool CanProcessTransaction(Transaction[] transactions)
+        public override bool CanProcessTransaction(IList<Transaction> transactions)
         {
             return false;
         }
@@ -65,7 +65,7 @@ namespace DaleranGames.TBSFramework
             return false;
         }
 
-        public override bool TryAdd(Transaction[] transactions)
+        public override bool TryAdd(IList<Transaction> transactions)
         {
             return false;
         }
@@ -75,7 +75,7 @@ namespace DaleranGames.TBSFramework
 
         }
 
-        public override void Remove(Transaction[] transactions)
+        public override void Remove(IList<Transaction> transactions)
         {
 
         }

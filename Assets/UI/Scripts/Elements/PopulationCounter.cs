@@ -19,7 +19,7 @@ namespace DaleranGames.UI
             player.Stats.StatModified += OnMaxPopChanged;
         }
 
-        protected void OnMaxPopChanged(IStatCollection mods,StatType type)
+        protected void OnMaxPopChanged(IStatCollection<StatType> mods,StatType type)
         {
 
 
@@ -29,10 +29,10 @@ namespace DaleranGames.UI
 
         protected override void UpdateLabel()
         {
-            if (player.Goods[TrackedGood] > player.MaxPopulation.Value || player.Goods[TrackedGood] <= 0)
-                label.text = " <color=#" + negColor + ">"+player.Goods[TrackedGood] + "</color> / " + player.MaxPopulation.Value;
+            if (player.Goods[TrackedGood] > player.Stats[StatType.MaxPopulation] || player.Goods[TrackedGood] <= 0)
+                label.text = " <color=#" + negColor + ">"+player.Goods[TrackedGood] + "</color> / " + player.Stats[StatType.MaxPopulation];
             else
-                label.text = player.Goods[TrackedGood] + "/" + player.MaxPopulation.Value;
+                label.text = player.Goods[TrackedGood] + "/" + player.Stats[StatType.MaxPopulation];
         }
 
         protected override void OnDestroy()

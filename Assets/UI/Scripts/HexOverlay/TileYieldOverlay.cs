@@ -85,7 +85,7 @@ namespace DaleranGames.UI
 
         TileGraphic FoodGraphic(HexTile tile)
         {
-            switch (tile.Land.BaseFoodYield.Value)
+            switch (tile.Stats[StatType.FoodYield])
             {
                 case 1:
                     return food1g;
@@ -100,7 +100,7 @@ namespace DaleranGames.UI
 
         TileGraphic WoodGraphic(HexTile tile)
         {
-            switch (tile.Land.BaseWoodYield.Value)
+            switch (tile.Stats[StatType.WoodYield])
             {
                 case 1:
                     return wood1g;
@@ -115,7 +115,7 @@ namespace DaleranGames.UI
 
         TileGraphic StoneGraphic(HexTile tile)
         {
-            switch (tile.Land.BaseStoneYield.Value)
+            switch (tile.Stats[StatType.StoneYield])
             {
                 case 1:
                     return stone1g;
@@ -130,7 +130,7 @@ namespace DaleranGames.UI
 
         TileGraphic GoldGraphic(HexTile tile)
         {
-            switch(tile.Land.BaseGoldYield.Value)
+            switch(tile.Stats[StatType.GoldYield])
             {
                 case 1:
                     return gold1g;

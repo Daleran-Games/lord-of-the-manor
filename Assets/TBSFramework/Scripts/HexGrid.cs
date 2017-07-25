@@ -9,11 +9,11 @@ namespace DaleranGames.TBSFramework
     public class HexGrid : Singleton<HexGrid>
     {
         protected HexGrid() { }
-
+#pragma warning disable 0649
         [SerializeField]
         MapGenerator generator;
         public MapGenerator Generator { get { return generator; } }
-
+#pragma warning restore 0649
         [SerializeField]
         bool mapBuilt = false;
         public bool MapBuilt {get { return mapBuilt; } }

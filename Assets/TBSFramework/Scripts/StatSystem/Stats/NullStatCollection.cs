@@ -7,11 +7,11 @@ namespace DaleranGames.TBSFramework
 {
     public class NullStatCollection : IStatCollection<StatType>
     {
-        public StatType[] Types
+        public List<StatType> Types
         {
             get
             {
-                return new StatType[0];
+                return new List<StatType>(0);
             }
         }
 
@@ -30,7 +30,7 @@ namespace DaleranGames.TBSFramework
 
         }
 
-        public void Add(Modifier[] mods)
+        public void Add(IList<Modifier> mods)
         {
 
         }
@@ -50,19 +50,19 @@ namespace DaleranGames.TBSFramework
             
         }
 
-        public void Remove(Modifier[] mods)
+        public void Remove(IList<Modifier> mods)
         {
 
         }
 
-        public Modifier[] GetAllOfType(StatType statType)
+        public List<Modifier> GetAllOfType(StatType statType)
         {
-            return new Modifier[0];
+            return new List<Modifier>(0);
         }
 
-        public Modifier[] GetAll()
+        public List<Modifier> GetAll()
         {
-            return new Modifier[0];
+            return new List<Modifier>(0);
         }
 
         public bool Contains(StatType statType)

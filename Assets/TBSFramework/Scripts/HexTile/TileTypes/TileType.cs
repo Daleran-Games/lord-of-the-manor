@@ -70,10 +70,5 @@ namespace DaleranGames.TBSFramework
 
         }
 
-        public virtual void OnChangeOwner (HexTile tile, Group oldOwner, Group newOwner)
-        {
-
-        }
-
     }
 }

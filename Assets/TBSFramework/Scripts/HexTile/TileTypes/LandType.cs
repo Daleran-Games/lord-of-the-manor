@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using UnityEngine;
 using DaleranGames.IO;
@@ -19,16 +19,25 @@ namespace DaleranGames.TBSFramework
             iconName = data["iconName", id];
 
 
-            tileModifiers = Modifier.ParseCSVList(data.ParseList("tileModifierList", id));
+            tileModifiers = Modifier.ParseCSVList(data.ParseList("tileModifierList",id));
             ownerModifiers = Modifier.ParseCSVList(data.ParseList("ownerModifierList", id));
-            occupierModifiers = Modifier.ParseCSVList(data.ParseList("occupierModifierList", id));
+            //occupierModifiers = Modifier.ParseCSVList(data.ParseList("occupierModifierList", id));
 
             clearable = Boolean.Parse(data["clearable", id]);
 
             if (clearable)
             {
                 clearedLandName = data["clearLandName", id];
+                clearCosts = Cost.ParseCSVList(data.ParseList("clearCostList", id));
+                clearBonuses = Cost.ParseCSVList(data.ParseList("clearBonusList", id));
+            }
 
+            workable = Boolean.Parse(data["workable", id]);
+            if (workable)
+            {
+                workCosts = Cost.ParseCSVList(data.ParseList("workCostList", id));
+                workBonuses = Cost.ParseCSVList(data.ParseList("workBonusList", id));
+                workModifiers = Modifier.ParseCSVList(data.ParseList("workModifierList", id));
             }
         }
 
@@ -36,16 +45,16 @@ namespace DaleranGames.TBSFramework
         #region TileStats
         [Header("Tile Stats")]
         [SerializeField]
-        protected Modifier[] tileModifiers;
-        public virtual Modifier[] TileModifiers { get { return tileModifiers; } }
+        protected List<Modifier> tileModifiers;
+        public virtual ReadOnlyCollection<Modifier> TileModifiers { get { return tileModifiers.AsReadOnly(); } }
 
         [SerializeField]
-        protected Modifier[] ownerModifiers;
-        public virtual Modifier[] OwnerModifiers { get { return ownerModifiers; } }
+        protected List<Modifier> ownerModifiers;
+        public virtual ReadOnlyCollection<Modifier> OwnerModifiers { get { return ownerModifiers.AsReadOnly(); } }
 
-        [SerializeField]
-        protected Modifier[] occupierModifiers;
-        public virtual Modifier[] OccupierModifiers { get { return occupierModifiers; } }
+        //[SerializeField]
+        //protected Modifier[] occupierModifiers;
+        //public virtual Modifier[] OccupierModifiers { get { return occupierModifiers; } }
 
 
 
@@ -65,20 +74,29 @@ namespace DaleranGames.TBSFramework
         public virtual int ClearLandTime { get { return clearLandTime; } }
 
         [SerializeField]
-        protected Cost[] workCosts;
-        public virtual Cost[] WorkCosts { get { return workCosts; } }
+        protected List<Cost> clearCosts;
+        public virtual ReadOnlyCollection<Cost> ClearCosts { get { return clearCosts.AsReadOnly(); } }
 
         [SerializeField]
-        protected Cost[] workBonuses;
-        public virtual Cost[] WorkBonuses { get { return workBonuses; } }
+        protected List<Cost> clearBonuses;
+        public virtual ReadOnlyCollection<Cost> ClearBonuses { get { return clearBonuses.AsReadOnly(); } }
 
 
         [Header("Work Land Stats")]
         protected bool workable = false;
-        public bool Workable (HexTile tile)
-        {
-            return false;
-        }
+        public bool Workable { get { return workable; } }
+
+        [SerializeField]
+        protected List<Cost> workCosts;
+        public virtual ReadOnlyCollection<Cost> WorkCosts { get { return workCosts.AsReadOnly(); } }
+
+        [SerializeField]
+        protected List<Cost> workBonuses;
+        public virtual ReadOnlyCollection<Cost> WorkBonuses { get { return workBonuses.AsReadOnly(); } }
+
+        [SerializeField]
+        protected List<Modifier> workModifiers;
+        public virtual ReadOnlyCollection<Modifier> WorkModifiers { get { return workModifiers.AsReadOnly(); } }
 
 
 
@@ -98,31 +116,19 @@ namespace DaleranGames.TBSFramework
             base.OnActivation(tile);
             tile.TerrainGraphics.Add(TileLayers.Land, iconGraphic);
 
-            if (tile.Owner != null)
-                tile.Owner.Stats.Add(ownerModifiers);
+            tile.Stats.Add(tileModifiers);
+            tile.OwnerModifiers.Add(ownerModifiers);
         }
 
         public override void OnDeactivation(HexTile tile)
         {
             base.OnDeactivation(tile);
-
             tile.TerrainGraphics.Remove(TileLayers.Land);
 
-            if (tile.Owner != null)
-                tile.Owner.Stats.Remove(ownerModifiers);
+            tile.Stats.Remove(tileModifiers);
+            tile.OwnerModifiers.Remove(ownerModifiers);
         }
 
-        public override void OnChangeOwner(HexTile tile, Group oldOwner, Group newOwner)
-        {
-            base.OnChangeOwner(tile, oldOwner, newOwner);
-
-            if (oldOwner != null)
-                oldOwner.Stats.Remove(ownerModifiers);
-
-            if (newOwner != null)
-                newOwner.Stats.Add(ownerModifiers);
-
-        }
         #endregion
 
     }

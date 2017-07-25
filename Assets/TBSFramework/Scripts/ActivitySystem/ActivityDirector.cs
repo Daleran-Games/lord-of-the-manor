@@ -54,8 +54,8 @@ namespace DaleranGames.TBSFramework
 
         public void DoActivityOnTile(Activity activity, HexTile tile, Group owner)
         {
-            if (activeMode == true && activity.IsActivityValid(tile, owner))
-                activity.DoActivityOnTile(tile, owner);
+            if (activeMode == true && activity.IsActivityValid(tile) && tile.Owner == owner)
+                activity.DoActivityOnTile(tile);
         }
 
         void OnTileEnter(HexTile tile)
@@ -96,7 +96,7 @@ namespace DaleranGames.TBSFramework
                 mouse.CursorTerrainIcon = currentActivity.GetTerrainIcon(tile);
                 
 
-                if (currentActivity.IsActivityValid(tile))
+                if (currentActivity.IsActivityValid(tile) && tile.Owner == activeOwner)
                     mouse.CursorMode = HexCursor.HexCursorMode.Positive;
                 else
                     mouse.CursorMode = HexCursor.HexCursorMode.Negative;

@@ -6,50 +6,60 @@ using System;
 namespace DaleranGames.TBSFramework
 {
     [System.Serializable]
-    public class Cost 
+    public struct Cost 
     {
 
-        StatType type;
-        public StatType Type { get { return type; } }
+        StatType modifiedBy;
+        public StatType ModifiedBy { get { return modifiedBy; } }
 
-        Transaction value;
-        public Transaction Value { get { return value; } }
+        [SerializeField]
+        GoodType type;
+        public GoodType Type { get { return type; } }
 
-        public Cost(StatType type, Transaction transaction)
+        [SerializeField]
+        int value;
+        public int Value { get { return value; } }
+
+        [SerializeField]
+        bool immediate;
+        public bool Immediate { get { return immediate; } }
+
+        [SerializeField]
+        string description;
+        public string Description { get { return description; } }
+
+        public Cost(StatType modifiedBy, GoodType type, int amount, bool immediate, string description)
         {
+            this.modifiedBy = modifiedBy;
             this.type = type;
-            this.value = transaction;
-        }
-
-        public Cost(StatType type, GoodType good, int amount, bool immediate, string description)
-        {
-            this.type = type;
-            value = new Transaction(good, amount, immediate, description);
+            this.value = amount;
+            this.immediate = immediate;
+            this.description = description;
         }
 
         public int GetValueWithModifiers (IStatCollection<StatType> stats)
         {
-            return Value.Good.Value + stats[Type];
+            return Value + stats[ModifiedBy];
         }
 
         public Transaction GetTransactionWithModifiers(IStatCollection<StatType> stats)
         {
-            return new Transaction(Value.Good.Type, Value.Good.Value + stats[Type], Value.Immediate,Value.Description);
+            return new Transaction(Type, Value + stats[ModifiedBy], Immediate,Description);
         }
 
-        public static Cost ParseCSV(string[] csvLine, int startingIndex)
+        public static Cost ParseCSV(List<string> csvLine, int startingIndex)
         {
             return new Cost(Enumeration.FromDisplayName<StatType>(csvLine[startingIndex]), (GoodType)Enum.Parse(typeof(GoodType), csvLine[startingIndex + 1]), Int32.Parse(csvLine[startingIndex + 2]), Boolean.Parse(csvLine[startingIndex + 3]), csvLine[startingIndex + 4]);
         }
 
-        public static Cost[] ParseCSVList(string[] csvList)
+        public static List<Cost> ParseCSVList(List<string> csvList)
         {
             List<Cost> items = new List<Cost>();
-            for (int i = 0; i < csvList.Length; i += 5)
+            for (int i = 0; i < csvList.Count; i += 5)
             {
                 items.Add(ParseCSV(csvList, i));
             }
-            return items.ToArray();
+            return items;
         }
     }
 }

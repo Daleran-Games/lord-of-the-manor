@@ -10,16 +10,16 @@ namespace DaleranGames.TBSFramework
         event Action<GoodsCollection, GoodType> PendingTransactionsChanged;
         event Action<GoodsCollection, GoodType> GoodChanged;
         int this[GoodType type] { get; set; }
-        Good[] Goods { get; }
-        Transaction[] PendingTransactions { get; }
+        List<Good> Goods { get; }
+        List<Transaction> PendingTransactions { get; }
         bool CanProcessTransaction(Transaction transaction);
-        bool CanProcessTransaction(Transaction[] transactions);
+        bool CanProcessTransaction(IList<Transaction> transactions);
         bool CanProcessCost(Cost cost);
-        bool CanProcessCost(Cost[] costs);
+        bool CanProcessCost(IList<Cost> costs);
         bool TryAdd(Transaction transaction);
-        bool TryAdd(Transaction[] transactions);
+        bool TryAdd(IList<Transaction> transactions);
         void Remove(Transaction transaction);
-        void Remove(Transaction[] transactions);
+        void Remove(IList<Transaction> transactions);
         bool ContainsGoodOfType(GoodType type);
         void ProcessAllTransactions();
         void ResolveEdgeCases();

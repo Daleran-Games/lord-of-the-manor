@@ -64,12 +64,12 @@ namespace DaleranGames.TBSFramework
 
         // Build Stats
         public static readonly StatType ConstructionTurns = new StatType(33, "Construction Time");
-        public static readonly StatType ConstructionImmediateCosts = new StatType(34, "Construction Costs");
-        public static readonly StatType ConstructionPerTurnCosts = new StatType(35, "Construction Per Turn Costs");
+        public static readonly StatType ConstructionCosts = new StatType(34, "Construction Costs");
 
         // Raze Module Stats
         public static readonly StatType RazeTurns = new StatType(36, "Raze Time");
-        public static readonly StatType RazeCost = new StatType(37, "Raze Cost");
+        public static readonly StatType RazeCosts = new StatType(37, "Raze Costs");
+        public static readonly StatType RazeBonus = new StatType(35, "Raze Bonus");
 
         // Farm Module Stats
         public static readonly StatType FarmTileFoodRate = new StatType(39, "Farm Tile Food Rate");

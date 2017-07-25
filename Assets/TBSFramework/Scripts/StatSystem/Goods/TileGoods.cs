@@ -43,14 +43,11 @@ namespace DaleranGames.TBSFramework
             }
         }
 
-        public override Good[] Goods
+        public override List<Good> Goods
         {
             get
             {
-                return new Good[]
-{
-                Condition
-};
+                return new List<Good> { Condition };
             }
         }
 

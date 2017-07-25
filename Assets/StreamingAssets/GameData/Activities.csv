@@ -1,8 +1,9 @@
-id,name,type,improvementName
-0,Clear,LandClearingActivity,
-1,Raze,RazeActivity,
-2,Upgrade,UpgradeActivity,
-3,Work,WorkTileActivity,
-4,Initial,InitialActivity,
-5,Build Farm,BuildActivity,Farm
-6,Build Dwelling,BuildActivity,Tent
+id,name,type,workIcon,improvementName
+1,Clear,LandClearingActivity,UIAtlas_Icon_ClearWork,
+2,Raze,RazeActivity,UIAtlas_Icon_Hammer,
+3,Upgrade,UpgradeActivity,UIAtlas_Icon_Hammer,
+4,Work Land,WorkLandActivity,UIAtlas_Icon_WorkForest,
+5,Work Improvement,WorkImprovementActivity,UIAtlas_Icon_WorkImpr,
+6,Work Farm,WorkFarmActivity,UIAtlas_Icon_WorkFarm,
+7,Build Farm,BuildActivity,UIAtlas_Icon_Hammer,Farm
+8,Build Dwelling,BuildActivity,UIAtlas_Icon_Hammer,Tent

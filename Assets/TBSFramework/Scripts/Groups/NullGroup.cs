@@ -19,6 +19,7 @@ namespace DaleranGames.TBSFramework
 
             Goods = new NullUnitGoods(this);
             Stats = new NullStatCollection();
+            TileModifiers = new NullStatCollection();
         }
 
         public override GroupType GroupType
