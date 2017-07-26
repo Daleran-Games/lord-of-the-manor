@@ -17,6 +17,10 @@ namespace DaleranGames.TBSFramework
         public GoodType Type { get { return type; } }
 
         [SerializeField]
+        ActivityType activity;
+        ActivityType Activity { get { return activity; } }
+
+        [SerializeField]
         int value;
         public int Value { get { return value; } }
 
@@ -28,10 +32,11 @@ namespace DaleranGames.TBSFramework
         string description;
         public string Description { get { return description; } }
 
-        public Cost(StatType modifiedBy, GoodType type, int amount, bool immediate, string description)
+        public Cost(StatType modifiedBy, GoodType type, ActivityType activity, int amount, bool immediate, string description)
         {
             this.modifiedBy = modifiedBy;
             this.type = type;
+            this.activity = activity;
             this.value = amount;
             this.immediate = immediate;
             this.description = description;
@@ -49,13 +54,13 @@ namespace DaleranGames.TBSFramework
 
         public static Cost ParseCSV(List<string> csvLine, int startingIndex)
         {
-            return new Cost(Enumeration.FromDisplayName<StatType>(csvLine[startingIndex]), (GoodType)Enum.Parse(typeof(GoodType), csvLine[startingIndex + 1]), Int32.Parse(csvLine[startingIndex + 2]), Boolean.Parse(csvLine[startingIndex + 3]), csvLine[startingIndex + 4]);
+            return new Cost(Enumeration.FromDisplayName<StatType>(csvLine[startingIndex]), (GoodType)Enum.Parse(typeof(GoodType), csvLine[startingIndex + 1]), (ActivityType)Enum.Parse(typeof(ActivityType), csvLine[startingIndex + 2]), Int32.Parse(csvLine[startingIndex + 3]), Boolean.Parse(csvLine[startingIndex + 4]), csvLine[startingIndex + 5]);
         }
 
         public static List<Cost> ParseCSVList(List<string> csvList)
         {
             List<Cost> items = new List<Cost>();
-            for (int i = 0; i < csvList.Count; i += 5)
+            for (int i = 0; i < csvList.Count; i += 6)
             {
                 items.Add(ParseCSV(csvList, i));
             }
