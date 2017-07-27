@@ -10,45 +10,75 @@ namespace DaleranGames.IO
     public class CSVData
     {
         public readonly string Name;
+        public CSVEntry this[int id] { get { return entries[id]; } }
+        public int Entries { get { return entries.Count; } }
+        public string[][] RawData { get { return csvArray; } }
+
         string[][] csvArray;
+        List<CSVEntry> entries;
 
         public CSVData(string name, string[][] csvArray)
         {
             Name = name;
             this.csvArray = csvArray;
+            entries = ParseOneHeader(csvArray);
+
         }
 
-        public string this[int col, int row] { get { return csvArray[row][col]; } }
-        public string this[string header, int id] { get { return csvArray[FindRowWithId(id.ToString())][FindColumnWithHeader(header)]; } }
-        public string[] this[int row] { get { return csvArray[row]; } }
-        public int Rows { get { return csvArray.Length; } }
-
-
-        public List<string> ParseList(string header, int id)
+        public CSVData(string name, string[][] csvArray, List<string> multipleHeaders)
         {
-            return CSVUtility.ParseList(this[header,id]);
+            Name = name;
+            this.csvArray = csvArray;
+            entries = ParseMultipleHeaders(csvArray, multipleHeaders);
         }
 
-        public int FindRowWithId(string idString)
+        List<CSVEntry> ParseOneHeader (string[][] csvArray)
         {
-            for (int i=0; i < csvArray.Length; i++)
+            string[] header = csvArray[0];
+            List<CSVEntry> newEntries = new List<CSVEntry>();
+
+            for (int i=1;i<csvArray.Length;i++)
             {
-                if (csvArray[i][0] == idString)
-                    return i;
+                newEntries.Add(new CSVEntry(i-1,PadJAggedStringArray(header,csvArray[i]),header));
             }
-            Debug.LogError("id " + idString + " not found in CVSData "+ Name + ". Returning 0.");
-            return 0;
+            return newEntries;
         }
 
-        public int FindColumnWithHeader (string header)
+        List<CSVEntry> ParseMultipleHeaders(string[][] csvArray, List<string> multipleHeaders)
         {
-            for (int i = 0; i < csvArray[0].Length; i++)
+            string[] header = csvArray[0];
+            bool headerNext = false;
+            int currentID = 0;
+            List<CSVEntry> newEntries = new List<CSVEntry>();
+            for (int i = 0; i < csvArray.Length; i++)
             {
-                if (csvArray[0][i] == header)
-                    return i;
+                if (multipleHeaders.Contains(csvArray[i][0]))
+                {
+                    headerNext = true;
+                } else if (headerNext == true)
+                {
+                    header = csvArray[i];
+                    headerNext = false;
+                } else
+                {
+                    newEntries.Add(new CSVEntry(currentID, PadJAggedStringArray(header, csvArray[i]), header));
+                    currentID++;
+                }
             }
-            Debug.LogError("header " + header + " not found in CVSData " + Name + ". Returning 0.");
-            return 0;
+            return newEntries;
         }
+
+        string[] PadJAggedStringArray(string[] header, string[] entry)
+        {
+            if (header.Length == entry.Length)
+                return entry;
+
+            string[] newEntry = new string[header.Length];
+            entry.CopyTo(newEntry, 0);
+            return newEntry;
+        }
+
+
+
     }
 }

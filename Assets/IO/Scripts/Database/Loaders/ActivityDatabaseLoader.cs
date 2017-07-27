@@ -28,33 +28,32 @@ namespace DaleranGames.IO
             upgrade = null;
             landClearing = null;
 
-            for (int i = 1; i < data.Rows; i++)
+            for (int i = 0; i < data.Entries; i++)
             {
-                int id = Int32.Parse(data[data.FindColumnWithHeader("id"),i]);
-                switch (data["type",id])
+                switch (data[i]["type"])
                 {
                     case "BuildActivity":
-                        BuildActivity newBuildType = new BuildActivity(data,id);
+                        BuildActivity newBuildType = new BuildActivity(data[i]);
                         newDB.Add(newBuildType);
                         builds.Add(newBuildType);
                         break;
                     case "LandClearingActivity":
-                        LandClearingActivity newClear = new LandClearingActivity(data, id);
+                        LandClearingActivity newClear = new LandClearingActivity(data[i]);
                         landClearing = newClear;
                         newDB.Add(newClear);
                         break;
                     case "RazeActivity":
-                        RazeActivity newRaze = new RazeActivity(data, id);
+                        RazeActivity newRaze = new RazeActivity(data[i]);
                         raze = newRaze;
                         newDB.Add(newRaze);
                         break;
                     case "UpgradeActivity":
-                        UpgradeActivity newUpgrade = new UpgradeActivity(data, id);
+                        UpgradeActivity newUpgrade = new UpgradeActivity(data[i]);
                         upgrade = newUpgrade;
                         newDB.Add(newUpgrade);
                         break;
                     default:
-                        Debug.LogWarning("Database Error: " + data["type", id] + " not a valid type.");
+                        Debug.LogWarning("Database Error: " + data[i]["type"] + " not a valid type.");
                         break;
                 }
             }

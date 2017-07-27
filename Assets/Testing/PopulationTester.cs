@@ -18,6 +18,8 @@ namespace DaleranGames.TBSFramework
         [SerializeField]
         int maxRuns = 500;
 
+
+
         // Use this for initialization
         void Start()
         {
@@ -37,7 +39,8 @@ namespace DaleranGames.TBSFramework
                     pop--;
 
                 run++;
-            } 
+            }
+
         }
     }
 }

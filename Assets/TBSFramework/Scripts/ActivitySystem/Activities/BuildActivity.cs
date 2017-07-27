@@ -15,13 +15,13 @@ namespace DaleranGames.TBSFramework
         [SerializeField]
         ImprovementType improvement;
 
-        public BuildActivity(CSVData data, int id)
+        public BuildActivity(CSVEntry entry)
         {
-            this.id = id;
-            name = data["name", id];
-            workIconName = data["workIcon", id];
-            type = data["type", id];
-            improvementName = data["improvementName", id];
+            this.id = entry.ID;
+            name = entry["name"];
+            type = entry["type"];
+            workIconName = entry["workIcon"];
+            improvementName = entry["improvementName"];
         }
 
         protected override void Awake()

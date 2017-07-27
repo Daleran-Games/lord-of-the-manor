@@ -19,10 +19,9 @@ namespace DaleranGames.IO
             CSVData data = new CSVData("Groups", CSVUtility.ParseCSVToArray(File.ReadAllText(CSVFilePath)));
             groups.Clear();
 
-            for (int i = 1; i < data.Rows; i++)
+            for (int i = 1; i < data.Entries; i++)
             {
-                int id = Int32.Parse(data[data.FindColumnWithHeader("id"), i]);
-                GroupType newType = new GroupType(data, id);
+                GroupType newType = new GroupType(data[i]);
                 newDB.Add(newType);
                 groups.Add(newType);
             }

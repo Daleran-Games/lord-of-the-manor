@@ -25,7 +25,7 @@ namespace DaleranGames.TBSFramework
 
             owner = Group.Null;
             improvement = ImprovementType.Null;
-            TileTimer = new TurnTimer(TurnManager.Instance);
+            TileCounters = new TurnCounters(TurnManager.Instance);
 
             Stats = new TileStats(owner);
             OwnerModifiers = new TileGroupModifiers(owner);
@@ -35,7 +35,6 @@ namespace DaleranGames.TBSFramework
             TurnManager.Instance.TurnSetUp += OnTurnSetUp;
             TurnManager.Instance.TurnStart += OnTurnStart;
             GameManager.Instance.Play.StateEnabled += OnGameStart;
-            TileTimer.TimerExpired += OnTimerExpire;
         }
 
         #region Tile Properties
@@ -102,13 +101,7 @@ namespace DaleranGames.TBSFramework
             }
         }
 
-        public TurnTimer TileTimer;
-        public event Action<HexTile> TileTimerExpired;
-        public void OnTimerExpire()
-        {
-            if (TileTimerExpired != null)
-                TileTimerExpired(this);
-        }
+        
 
         [SerializeField]
         protected Activity currentActivity;
@@ -189,7 +182,7 @@ namespace DaleranGames.TBSFramework
 
         public TileStats Stats;
         public TileGroupModifiers OwnerModifiers;
-
+        public TurnCounters TileCounters;
 
         #endregion
 
@@ -216,7 +209,6 @@ namespace DaleranGames.TBSFramework
                     TurnManager.Instance.TurnSetUp -= OnTurnSetUp;
                     TurnManager.Instance.TurnStart += OnTurnStart;
                     GameManager.Instance.Play.StateEnabled -= OnGameStart;
-                    TileTimer.TimerExpired += OnTimerExpire;
                     UIGraphics = null;
                     TerrainGraphics = null;
                     Land.OnDeactivation(this);

@@ -25,5 +25,10 @@ namespace DaleranGames.TBSFramework
         public static int DefaultFreezingRate = 125;
         public static Stat BaseFreezingRateStats = new Stat(StatType.GroupFreezeRate, DefaultFreezingRate);
 
+        public static int DefaultWorkLandFoodRate = 1;
+        public static int DefaultWorkLandWoodRate = 1;
+        public static int DefaultWorkLandStoneRate = 1;
+        public static int DefaultWorkLandGoldRate = 1;
+
     }
 }

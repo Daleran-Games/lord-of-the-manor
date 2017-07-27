@@ -25,16 +25,16 @@ namespace DaleranGames.TBSFramework
 
         }
 
-        public GroupType(CSVData data, int id)
+        public GroupType(CSVEntry entry)
         {
-            this.id = id;
-            name = data["name", id];
-            type = data["type", id];
-            rank = (Ranks)Enum.Parse(typeof(Ranks), data["rank",id]);
-            culture = (Cultures)Enum.Parse(typeof(Cultures), data["culture", id]);
+            this.id = entry.ID;
+            name = entry["name"];
+            type = entry["type"];
+            rank = (Ranks)Enum.Parse(typeof(Ranks), entry["rank"]);
+            culture = (Cultures)Enum.Parse(typeof(Cultures), entry["culture"]);
 
-            tileModifiers = Modifier.ParseCSVList(data.ParseList("tileModifierList",id));
-            groupModifiers = Modifier.ParseCSVList(data.ParseList("groupModifierList",id));
+            tileModifiers = Modifier.ParseCSVList(entry.ParseList("tileModifierList"));
+            groupModifiers = Modifier.ParseCSVList(entry.ParseList("groupModifierList"));
 
         }
 

@@ -19,10 +19,9 @@ namespace DaleranGames.IO
             CSVData data = new CSVData("Lands", CSVUtility.ParseCSVToArray(File.ReadAllText(CSVFilePath)));
             lands.Clear();
 
-            for (int i = 1; i < data.Rows; i++)
+            for (int i = 0; i < data.Entries; i++)
             {
-                int id = Int32.Parse(data[data.FindColumnWithHeader("id"), i]);
-                LandType newType = new LandType(data,id);
+                LandType newType = new LandType(data[i]);
                 newDB.Add(newType);
                 lands.Add(newType);
             }

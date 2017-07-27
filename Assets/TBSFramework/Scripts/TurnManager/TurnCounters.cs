@@ -1,0 +1,136 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace DaleranGames.TBSFramework
+{
+    [System.Serializable]
+    public class TurnCounters : System.IDisposable
+    {
+        protected TurnManager turnManager;
+        protected List<Counter> counters;
+
+
+        public TurnCounters(TurnManager turnManager)
+        {
+            this.turnManager = turnManager;
+            this.turnManager.TurnEnded += OnTurnEnd;
+            counters = new List<Counter>();
+        }
+
+        public int this[CostType type]
+        {
+            get
+            {
+                if (type.Good != GoodType.Turns)
+                {
+                    return 0;
+                }
+
+                for (int i = 0; i < counters.Count; i++)
+                {
+                    if (counters[i].Type == type)
+                        return counters[i].Value;
+                }
+                return 0;
+            }
+        }
+
+        public void AddCounter(CostType type)
+        {
+            if (type.Good != GoodType.Turns)
+            {
+                Debug.LogWarning("Wrong counter type added to turn counter: "+type);
+                return;
+            }
+
+            if (!ContainsCounterOfType(type))
+            {
+                counters.Add(new Counter(type, 0));
+            } else
+            {
+                Debug.LogWarning("Counter already exsists: " + type);
+                return;
+            }
+
+        }
+
+        public void RemoveCounter (CostType type)
+        {
+            int index = 0;
+            bool found = false;
+            for (int i = 0; i < counters.Count; i++)
+            {
+                if (counters[i].Type == type)
+                {
+                    index = i;
+                    found = true;
+                }   
+            }
+
+            if (found)
+                counters.Remove(counters[index]);
+        }
+
+        public bool ContainsCounterOfType (CostType type)
+        {
+            if (type.Good != GoodType.Turns)
+            {
+                return false;
+            }
+
+            for (int i=0;i<counters.Count;i++)
+            {
+                if (counters[i].Type == type)
+                    return true;
+            }
+            return false;
+        }
+
+        void OnTurnEnd (BaseTurn turn)
+        {
+
+        }
+
+        #region IDisposable Support
+        private bool disposedValue = false; // To detect redundant calls
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (!disposedValue)
+            {
+                if (disposing)
+                {
+                    turnManager.TurnEnded -= OnTurnEnd;
+                }
+
+                // TODO: set large fields to null.
+
+                disposedValue = true;
+            }
+        }
+
+
+        // This code added to correctly implement the disposable pattern.
+        public void Dispose()
+        {
+            // Do not change this code. Put cleanup code in Dispose(bool disposing) above.
+            Dispose(true);
+        }
+        #endregion
+
+        protected class Counter
+        {
+            public CostType Type;
+            public int Value;
+
+            public Counter(CostType type, int value)
+            {
+                Type = type;
+                Value = value;
+            }
+        }
+
+    }
+}
+

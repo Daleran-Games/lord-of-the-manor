@@ -30,50 +30,6 @@ namespace DaleranGames.TBSFramework
 
         public static readonly ImprovementType Null = new ImprovementType();
 
-        public ImprovementType(CSVData data, int id)
-        {
-
-            this.id = id;
-            name = data["name", id];
-            type = data["type", id];
-            iconName = data["iconName", id];
-
-            tileModifiers = Modifier.ParseCSVList(data.ParseList("tileModifierList", id));
-            ownerModifiers = Modifier.ParseCSVList(data.ParseList("ownerModifierList", id));
-            //occupierModifiers = Modifier.ParseCSVList(data.ParseList("occupierModifierList", id));
-
-            buildable = Boolean.Parse(data["buildable", id]);
-            if (buildable)
-            {
-                buildGraphicName = data["buildGraphic", id];
-                buildTime = Int32.Parse(data["buildTime", id]);
-                buildCosts = Cost.ParseCSVList(data.ParseList("buildCostList", id));
-                validLand = new List<string>(data.ParseList("landList", id));
-            }
-
-            upgradeable = Boolean.Parse(data["upgradeable",id]);
-            if (upgradeable)
-                upgradeName = data["upgradeName", id];
-
-            razeable = Boolean.Parse(data["razeable", id]);
-            if(razeable)
-            {
-                razeTime = Int32.Parse(data["razeTime", id]);
-                razeCosts = Cost.ParseCSVList(data.ParseList("razeCostList", id));
-                //razeBonuses = Cost.ParseCSVList(data.ParseList("razeBonusList", id));
-            }
-
-            /*
-            workable = Boolean.Parse(data["workable", id]);
-            if (workable)
-            {
-                workCosts = Cost.ParseCSVList(data.ParseList("workCostList", id));
-                workBonuses = Cost.ParseCSVList(data.ParseList("workBonusList", id));
-                workModifiers = Modifier.ParseCSVList(data.ParseList("workModifierList", id));
-            }
-            */
-        }
-
         #region Tile Stats
         [Header("Tile Stats")]
         [SerializeField]

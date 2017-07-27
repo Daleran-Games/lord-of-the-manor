@@ -1,5 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 using DaleranGames.IO;
 using System;
@@ -11,51 +10,42 @@ namespace DaleranGames.TBSFramework
     {
 
 
-        public LandType(CSVData data, int id)
+        public LandType(CSVEntry entry)
         {
-            this.id = id;
-            name = data["name", id];
-            type = data["type", id];
-            iconName = data["iconName", id];
+            this.id = entry.ID;
+            name = entry["name"];
+            type = entry["type"];
+            iconName = entry["iconName"];
 
-
-            tileModifiers = Modifier.ParseCSVList(data.ParseList("tileModifierList",id));
-            ownerModifiers = Modifier.ParseCSVList(data.ParseList("ownerModifierList", id));
+            
+            tileModifiers = Modifier.ParseCSVList(entry.ParseList("tileModifierList",id));
+            ownerModifiers = Modifier.ParseCSVList(entry.ParseList("ownerModifierList", id));
             //occupierModifiers = Modifier.ParseCSVList(data.ParseList("occupierModifierList", id));
 
-            clearable = Boolean.Parse(data["clearable", id]);
+            clearable = Boolean.Parse(entry["clearable"]);
 
             if (clearable)
             {
-                clearedLandName = data["clearLandName", id];
-                clearCosts = Cost.ParseCSVList(data.ParseList("clearCostList", id));
-                clearBonuses = Cost.ParseCSVList(data.ParseList("clearBonusList", id));
+
             }
 
-            workable = Boolean.Parse(data["workable", id]);
+            workable = Boolean.Parse(entry["workable", id]);
             if (workable)
             {
-                workCosts = Cost.ParseCSVList(data.ParseList("workCostList", id));
-                workBonuses = Cost.ParseCSVList(data.ParseList("workBonusList", id));
-                workModifiers = Modifier.ParseCSVList(data.ParseList("workModifierList", id));
+
             }
+            
         }
 
 
         #region TileStats
-        [Header("Tile Stats")]
-        [SerializeField]
-        protected List<Modifier> tileModifiers;
-        public virtual ReadOnlyCollection<Modifier> TileModifiers { get { return tileModifiers.AsReadOnly(); } }
-
-        [SerializeField]
-        protected List<Modifier> ownerModifiers;
-        public virtual ReadOnlyCollection<Modifier> OwnerModifiers { get { return ownerModifiers.AsReadOnly(); } }
-
-        //[SerializeField]
-        //protected Modifier[] occupierModifiers;
-        //public virtual Modifier[] OccupierModifiers { get { return occupierModifiers; } }
-
+        List<Modifier> tileModifiers;
+        public virtual List<Modifier> TileModifiers { get { return new List<Modifier>(tileModifiers); } }
+        List<Modifier> ownerModifiers;
+        public virtual List<Modifier> OwnerModifiers { get { return new List<Modifier>(ownerModifiers); } }
+        //public virtual List<Modifier> OccupierModifiers { get { return null; } }
+        CostCollection costs;
+        public virtual CostCollection Costs { get { return costs; } }
 
 
         [Header("Clear Land Stats")]
@@ -68,36 +58,6 @@ namespace DaleranGames.TBSFramework
 
         protected LandType clearedLand;
         public LandType ClearedLand { get { return clearedLand; } }
-
-        [SerializeField]
-        protected int clearLandTime;
-        public virtual int ClearLandTime { get { return clearLandTime; } }
-
-        [SerializeField]
-        protected List<Cost> clearCosts;
-        public virtual ReadOnlyCollection<Cost> ClearCosts { get { return clearCosts.AsReadOnly(); } }
-
-        [SerializeField]
-        protected List<Cost> clearBonuses;
-        public virtual ReadOnlyCollection<Cost> ClearBonuses { get { return clearBonuses.AsReadOnly(); } }
-
-
-        [Header("Work Land Stats")]
-        protected bool workable = false;
-        public bool Workable { get { return workable; } }
-
-        [SerializeField]
-        protected List<Cost> workCosts;
-        public virtual ReadOnlyCollection<Cost> WorkCosts { get { return workCosts.AsReadOnly(); } }
-
-        [SerializeField]
-        protected List<Cost> workBonuses;
-        public virtual ReadOnlyCollection<Cost> WorkBonuses { get { return workBonuses.AsReadOnly(); } }
-
-        [SerializeField]
-        protected List<Modifier> workModifiers;
-        public virtual ReadOnlyCollection<Modifier> WorkModifiers { get { return workModifiers.AsReadOnly(); } }
-
 
 
         #endregion
@@ -116,8 +76,8 @@ namespace DaleranGames.TBSFramework
             base.OnActivation(tile);
             tile.TerrainGraphics.Add(TileLayers.Land, iconGraphic);
 
-            tile.Stats.Add(tileModifiers);
-            tile.OwnerModifiers.Add(ownerModifiers);
+            tile.Stats.Add(TileModifiers);
+            tile.OwnerModifiers.Add(OwnerModifiers);
         }
 
         public override void OnDeactivation(HexTile tile)
@@ -125,8 +85,8 @@ namespace DaleranGames.TBSFramework
             base.OnDeactivation(tile);
             tile.TerrainGraphics.Remove(TileLayers.Land);
 
-            tile.Stats.Remove(tileModifiers);
-            tile.OwnerModifiers.Remove(ownerModifiers);
+            tile.Stats.Remove(TileModifiers);
+            tile.OwnerModifiers.Remove(OwnerModifiers);
         }
 
         #endregion

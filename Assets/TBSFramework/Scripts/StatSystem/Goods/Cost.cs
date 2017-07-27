@@ -9,16 +9,8 @@ namespace DaleranGames.TBSFramework
     public struct Cost 
     {
 
-        StatType modifiedBy;
-        public StatType ModifiedBy { get { return modifiedBy; } }
-
-        [SerializeField]
-        GoodType type;
-        public GoodType Type { get { return type; } }
-
-        [SerializeField]
-        ActivityType activity;
-        ActivityType Activity { get { return activity; } }
+        CostType modifiedBy;
+        public CostType ModifiedBy { get { return modifiedBy; } }
 
         [SerializeField]
         int value;
@@ -32,11 +24,9 @@ namespace DaleranGames.TBSFramework
         string description;
         public string Description { get { return description; } }
 
-        public Cost(StatType modifiedBy, GoodType type, ActivityType activity, int amount, bool immediate, string description)
+        public Cost(CostType modifiedBy, int amount, bool immediate, string description)
         {
             this.modifiedBy = modifiedBy;
-            this.type = type;
-            this.activity = activity;
             this.value = amount;
             this.immediate = immediate;
             this.description = description;
@@ -49,12 +39,12 @@ namespace DaleranGames.TBSFramework
 
         public Transaction GetTransactionWithModifiers(IStatCollection<StatType> stats)
         {
-            return new Transaction(Type, Value + stats[ModifiedBy], Immediate,Description);
+            return new Transaction(modifiedBy.Good, Value + stats[ModifiedBy], Immediate,Description);
         }
 
         public static Cost ParseCSV(List<string> csvLine, int startingIndex)
         {
-            return new Cost(Enumeration.FromDisplayName<StatType>(csvLine[startingIndex]), (GoodType)Enum.Parse(typeof(GoodType), csvLine[startingIndex + 1]), (ActivityType)Enum.Parse(typeof(ActivityType), csvLine[startingIndex + 2]), Int32.Parse(csvLine[startingIndex + 3]), Boolean.Parse(csvLine[startingIndex + 4]), csvLine[startingIndex + 5]);
+            return new Cost(Enumeration.FromDisplayName<CostType>(csvLine[startingIndex]), Int32.Parse(csvLine[startingIndex + 1]), Boolean.Parse(csvLine[startingIndex + 2]), csvLine[startingIndex + 3]);
         }
 
         public static List<Cost> ParseCSVList(List<string> csvList)

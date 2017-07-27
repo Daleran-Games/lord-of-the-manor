@@ -9,12 +9,12 @@ namespace DaleranGames.TBSFramework
     [System.Serializable]
     public class LandClearingActivity : Activity
     {
-        public LandClearingActivity(CSVData data, int id)
+        public LandClearingActivity(CSVEntry entry)
         {
-            this.id = id;
-            name = data["name", id];
-            workIconName = data["workIcon", id];
-            type = data["type", id];
+            this.id = entry.ID;
+            name = entry["name"];
+            type = entry["type"];
+            workIconName = entry["workIcon"];
         }
 
         protected override void Awake()

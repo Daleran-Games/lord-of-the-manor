@@ -14,6 +14,7 @@ namespace DaleranGames.TBSFramework
         Work = 4,
         Population = 5,
         ActionPoints = 6,
-        Condition = 7
+        Condition = 7,
+        Turns = 8
     }
 }

@@ -11,12 +11,12 @@ namespace DaleranGames.TBSFramework
     {
         protected TileGraphic icon;
 
-        public RazeActivity(CSVData data, int id)
+        public RazeActivity(CSVEntry entry)
         {
-            this.id = id;
-            name = data["name", id];
-            workIconName = data["workIcon", id];
-            type = data["type", id];
+            this.id = entry.ID;
+            name = entry["name"];
+            type = entry["type"];
+            workIconName = entry["workIcon"];
         }
 
         protected override void Awake()
