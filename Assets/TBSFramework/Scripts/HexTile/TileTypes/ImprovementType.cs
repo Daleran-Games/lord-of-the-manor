@@ -34,15 +34,19 @@ namespace DaleranGames.TBSFramework
         [Header("Tile Stats")]
         [SerializeField]
         protected List<Modifier> tileModifiers;
-        public virtual ReadOnlyCollection<Modifier> TileModifiers { get { return tileModifiers.AsReadOnly(); } }
+        public virtual List<Modifier> TileModifiers { get { return new List<Modifier>(tileModifiers); } }
 
         [SerializeField]
         protected List<Modifier> ownerModifiers;
-        public virtual ReadOnlyCollection<Modifier> OwnerModifiers { get { return ownerModifiers.AsReadOnly(); } }
+        public virtual List<Modifier> OwnerModifiers { get { return new List<Modifier>(ownerModifiers); } }
 
         //[SerializeField]
-       // protected Modifier[] occupierModifiers;
-       // public virtual Modifier[] OccupierModifiers { get { return occupierModifiers; } }
+        // protected Modifier[] occupierModifiers;
+        // public virtual Modifier[] OccupierModifiers { get { return occupierModifiers; } }
+
+        [SerializeField]
+        protected CostCollection costs;
+        public CostCollection Costs { get { return costs; } } 
 
         [Header("Build Stats")]
         [SerializeField]
@@ -50,22 +54,10 @@ namespace DaleranGames.TBSFramework
         public virtual bool Buildable { get { return buildable; } }
 
         [SerializeField]
-        protected int buildTime;
-        public virtual int Builtdime { get { return buildTime; } }
-
-        [SerializeField]
         protected string buildGraphicName;
 
         protected TileGraphic buildGraphic;
         public TileGraphic BuildGraphic { get { return buildGraphic; } }
-
-        [SerializeField]
-        protected List<Cost> buildCosts;
-        public virtual ReadOnlyCollection<Cost> BuildCosts { get { return buildCosts.AsReadOnly(); } }
-
-        [SerializeField]
-        protected List<string> validLand;
-        public virtual ReadOnlyCollection<string>ValidLand { get { return validLand.AsReadOnly(); } }
 
         [Header("Upgrade Stats")]
         [SerializeField]
@@ -79,39 +71,13 @@ namespace DaleranGames.TBSFramework
         protected ImprovementType upgradedImprovement;
         public virtual ImprovementType UpgradedImprovement { get { return upgradedImprovement; } }
 
-        [Header("Raze Stats")]
         [SerializeField]
         protected bool razeable = false;
         public virtual bool Razeable { get { return razeable; } }
 
-        public int razeTime;
-        public virtual int RazeTime { get { return razeTime; } }
-
-        protected List<Cost> razeCosts;
-        public virtual ReadOnlyCollection<Cost> RazeCosts { get { return razeCosts.AsReadOnly(); } }
-
-        //protected List<Cost> razeBonuses;
-        //public virtual ReadOnlyCollection<Cost> RazeBonuses { get { return razeBonuses.AsReadOnly(); } }
-
-            /*
-        [Header("Work Stats")]
         [SerializeField]
         protected bool workable = false;
-        public virtual bool Workable { get { return workable; } }
-
-        [SerializeField]
-        protected List<Cost> workCosts;
-        public virtual ReadOnlyCollection<Cost> WorkCosts { get { return workCosts.AsReadOnly(); } }
-        
-        [SerializeField]
-        protected List<Cost> workBonuses;
-        public virtual ReadOnlyCollection<Cost> WorkBonuses { get { return workBonuses.AsReadOnly(); } }
-
-        [SerializeField]
-        protected List<Modifier> workModifiers;
-        public virtual ReadOnlyCollection<Modifier> WorkModifiers {get { return workModifiers.AsReadOnly(); } }
-        */
-        
+        public virtual bool Workable { get { return workable; } }     
 
         #endregion
 

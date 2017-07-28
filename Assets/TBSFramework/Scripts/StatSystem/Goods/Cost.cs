@@ -8,7 +8,7 @@ namespace DaleranGames.TBSFramework
     [System.Serializable]
     public struct Cost 
     {
-
+        [SerializeField]
         CostType modifiedBy;
         public CostType ModifiedBy { get { return modifiedBy; } }
 
@@ -23,6 +23,8 @@ namespace DaleranGames.TBSFramework
         [SerializeField]
         string description;
         public string Description { get { return description; } }
+
+        public static readonly Cost Null = new Cost(CostType.NullCost, 0, false, "");
 
         public Cost(CostType modifiedBy, int amount, bool immediate, string description)
         {

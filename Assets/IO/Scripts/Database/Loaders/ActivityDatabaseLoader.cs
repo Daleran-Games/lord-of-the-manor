@@ -11,8 +11,6 @@ namespace DaleranGames.IO
     public class ActivityDatabaseLoader : DatabaseLoader<Activity>
     {
         [SerializeField]
-        protected LandClearingActivity landClearing;
-        [SerializeField]
         protected RazeActivity raze;
         [SerializeField]
         protected UpgradeActivity upgrade;
@@ -26,7 +24,6 @@ namespace DaleranGames.IO
             builds.Clear();
             raze = null;
             upgrade = null;
-            landClearing = null;
 
             for (int i = 0; i < data.Entries; i++)
             {
@@ -36,11 +33,6 @@ namespace DaleranGames.IO
                         BuildActivity newBuildType = new BuildActivity(data[i]);
                         newDB.Add(newBuildType);
                         builds.Add(newBuildType);
-                        break;
-                    case "LandClearingActivity":
-                        LandClearingActivity newClear = new LandClearingActivity(data[i]);
-                        landClearing = newClear;
-                        newDB.Add(newClear);
                         break;
                     case "RazeActivity":
                         RazeActivity newRaze = new RazeActivity(data[i]);

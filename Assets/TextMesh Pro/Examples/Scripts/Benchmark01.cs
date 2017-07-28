@@ -12,11 +12,11 @@ namespace TMPro.Examples
 
         public TMP_FontAsset TMProFont;
         public Font TextMeshFont;
-
+#pragma warning disable 0169
         private TextMeshPro m_textMeshPro;
         private TextContainer m_textContainer;
         private TextMesh m_textMesh;
-
+#pragma warning restore 0169
         private const string label01 = "The <#0050FF>count is: </color>{0}";
         private const string label02 = "The <color=#0050FF>count is: </color>";
 

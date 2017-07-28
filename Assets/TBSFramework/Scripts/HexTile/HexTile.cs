@@ -81,8 +81,6 @@ namespace DaleranGames.TBSFramework
             }
         }
 
-
-
         [SerializeField]
         protected ImprovementType improvement;
         public ImprovementType Improvement
@@ -100,16 +98,6 @@ namespace DaleranGames.TBSFramework
                 improvement.OnActivation(this);
             }
         }
-
-        
-
-        [SerializeField]
-        protected Activity currentActivity;
-        public Activity CurrentActivity
-        {
-            get { return currentActivity; }
-        }
-
 
         [SerializeField]
         protected Group owner;

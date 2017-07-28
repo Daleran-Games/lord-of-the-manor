@@ -27,7 +27,7 @@ namespace DaleranGames.TBSFramework
 
         [SerializeField]
         protected TileGraphic iconGraphic;
-        public TileGraphic IconGraphic { get { return iconGraphic; } }
+        public virtual TileGraphic IconGraphic { get { return iconGraphic; } }
 
         public virtual void OnDatabaseInitialization()
         {
