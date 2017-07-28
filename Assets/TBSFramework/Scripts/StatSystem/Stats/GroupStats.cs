@@ -29,7 +29,7 @@ namespace DaleranGames.TBSFramework
                     case 12:
                         return (base[StatType.GroupWoodRatePerPop] * group.Goods.Population) + base[StatType.GroupWoodRate];
                     case 47:
-                        return (base[StatType.GroupWorkPerPop] * group.Goods.Population) + base[StatType.GroupWorkRate];
+                        return (base[StatType.GroupLaborPerPop] * group.Goods.Population) + base[StatType.GroupLaborRate];
                     default:
                         return base[statType];
                 }

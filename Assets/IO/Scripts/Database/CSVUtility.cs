@@ -15,7 +15,7 @@ namespace DaleranGames.IO
         const string columnSplit = @",(?=(?:[^""]*""[^""]*"")*(?![^""]*""))";
         const string rowSplit = @"\r\n|\n\r|\n|\r";
         static char[] trimChars = { '\"' };
-        const string listSplit = @"|(?=(?:[^""]*""[^""]*"")*(?![^""]*""))";
+        const string listSplit = @";";
 
 
         public static string[][] ParseCSVToArray(string csv)
@@ -38,10 +38,15 @@ namespace DaleranGames.IO
             return output;
         }
 
+
         public static List<string> ParseList (string csvListElement)
         {
             List<string> items = new List<string>(Regex.Split(csvListElement,listSplit));
-            return items;
+            //Debug.Log("List Lenght: "+items.Count);
+            if (items.Count == 1 && items[0] == "")
+                return new List<string>(0);
+            else
+                return items;
         }
 
         public static void PrintCSVArray (string[][] csv)

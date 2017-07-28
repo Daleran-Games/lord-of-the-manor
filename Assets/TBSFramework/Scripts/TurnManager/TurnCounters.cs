@@ -89,7 +89,11 @@ namespace DaleranGames.TBSFramework
 
         void OnTurnEnd (BaseTurn turn)
         {
-
+            for (int i = 0; i < counters.Count; i++)
+            {
+                if (!counters[i].Paused)
+                    counters[i].Value++;
+            }
         }
 
         #region IDisposable Support
@@ -123,12 +127,15 @@ namespace DaleranGames.TBSFramework
         {
             public CostType Type;
             public int Value;
+            public bool Paused = false;
 
             public Counter(CostType type, int value)
             {
                 Type = type;
                 Value = value;
+                Paused = false;
             }
+            
         }
 
     }

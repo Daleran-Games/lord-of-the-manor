@@ -11,7 +11,7 @@ namespace DaleranGames.TBSFramework
         Wood = 1,
         Gold = 2,
         Stone =3,
-        Work = 4,
+        Labor = 4,
         Population = 5,
         ActionPoints = 6,
         Condition = 7,

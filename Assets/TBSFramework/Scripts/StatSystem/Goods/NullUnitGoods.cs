@@ -12,7 +12,7 @@ namespace DaleranGames.TBSFramework
         public override Good Stone { get { return new Good(GoodType.Stone, 0); } }
         public override Good Gold { get { return new Good(GoodType.Gold, 0); } }
         public override Good Population { get { return new Good(GoodType.Population, 0); } }
-        public override Good Work { get { return new Good(GoodType.Work, 0); } }
+        public override Good Labor { get { return new Good(GoodType.Labor, 0); } }
 
 
         public NullUnitGoods(Group unit) : base (unit)

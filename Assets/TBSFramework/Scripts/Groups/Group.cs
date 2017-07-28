@@ -36,7 +36,7 @@ namespace DaleranGames.TBSFramework
             Goods[GoodType.Stone] = Stats[StatType.MaxStone];
             Goods[GoodType.Gold] = Stats[StatType.StartingGold];
             Goods[GoodType.Population] = Stats[StatType.MaxPopulation];
-            Goods[GoodType.Work] = Stats[StatType.GroupWorkRate];
+            Goods[GoodType.Labor] = Stats[StatType.GroupLaborRate];
 
             //Debug.Log("Player goods set");
 

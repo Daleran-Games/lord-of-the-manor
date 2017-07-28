@@ -33,7 +33,7 @@ namespace DaleranGames.TBSFramework
 
         public override bool IsActivityValid(HexTile tile)
         {
-            return tile.Land.Clearable;
+            return false;
         }
 
         public override void DoActivityOnTile(HexTile tile)

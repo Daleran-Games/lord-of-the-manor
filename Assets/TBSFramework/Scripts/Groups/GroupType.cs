@@ -27,15 +27,24 @@ namespace DaleranGames.TBSFramework
 
         public GroupType(CSVEntry entry)
         {
+
             this.id = entry.ID;
             name = entry["name"];
             type = entry["type"];
             rank = (Ranks)Enum.Parse(typeof(Ranks), entry["rank"]);
             culture = (Cultures)Enum.Parse(typeof(Cultures), entry["culture"]);
 
-            tileModifiers = Modifier.ParseCSVList(entry.ParseList("tileModifierList"));
-            groupModifiers = Modifier.ParseCSVList(entry.ParseList("groupModifierList"));
+            tileModifiers = Modifier.ParseCSVList(entry.ParseList("tileModifiers"));
+            groupModifiers = Modifier.ParseCSVList(entry.ParseList("groupModifiers"));
 
+            groupModifiers.Add(new Modifier(StatType.GroupFoodRatePerPop, Int32.Parse(entry["foodPerTurn"]), name));
+            groupModifiers.Add(new Modifier(StatType.GroupWoodRatePerPop, Int32.Parse(entry["woodPerWinter"]), name));
+            groupModifiers.Add(new Modifier(StatType.GroupLaborPerPop, Int32.Parse(entry["laborPerPop"]), name));
+            groupModifiers.Add(new Modifier(StatType.MaxFood, Int32.Parse(entry["maxFood"]), name));
+            groupModifiers.Add(new Modifier(StatType.MaxWood, Int32.Parse(entry["maxWood"]), name));
+            groupModifiers.Add(new Modifier(StatType.MaxStone, Int32.Parse(entry["maxStone"]), name));
+            groupModifiers.Add(new Modifier(StatType.StartingGold, Int32.Parse(entry["startingGold"]), name));
+            groupModifiers.Add(new Modifier(StatType.MaxPopulation, Int32.Parse(entry["maxPopulation"]), name));
         }
 
         [Header("Group Info")]

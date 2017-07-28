@@ -17,48 +17,27 @@ namespace DaleranGames.TBSFramework
             type = entry["type"];
             iconName = entry["iconName"];
 
-            
-            tileModifiers = Modifier.ParseCSVList(entry.ParseList("tileModifierList",id));
-            ownerModifiers = Modifier.ParseCSVList(entry.ParseList("ownerModifierList", id));
+            tileModifiers = Modifier.ParseCSVList(entry.ParseList("tileModifiers"));
+            ownerModifiers = Modifier.ParseCSVList(entry.ParseList("groupModifiers"));
             //occupierModifiers = Modifier.ParseCSVList(data.ParseList("occupierModifierList", id));
 
-            clearable = Boolean.Parse(entry["clearable"]);
-
-            if (clearable)
-            {
-
-            }
-
-            workable = Boolean.Parse(entry["workable", id]);
-            if (workable)
-            {
-
-            }
-            
+            tileModifiers.Add(new Modifier(StatType.DefenseBonus, Int32.Parse(entry["defenseBonus"]), name));
+            tileModifiers.Add(new Modifier(StatType.MovementCost, Int32.Parse(entry["movementCost"]), name));
+            tileModifiers.Add(new Modifier(StatType.FoodYield, Int32.Parse(entry["foodYield"]), name));
+            tileModifiers.Add(new Modifier(StatType.WoodYield, Int32.Parse(entry["woodYield"]), name));
+            tileModifiers.Add(new Modifier(StatType.StoneYield, Int32.Parse(entry["stoneYield"]), name));
+            tileModifiers.Add(new Modifier(StatType.GoldYield, Int32.Parse(entry["goldYield"]), name));
         }
 
 
         #region TileStats
+        [SerializeField]
         List<Modifier> tileModifiers;
         public virtual List<Modifier> TileModifiers { get { return new List<Modifier>(tileModifiers); } }
+        [SerializeField]
         List<Modifier> ownerModifiers;
         public virtual List<Modifier> OwnerModifiers { get { return new List<Modifier>(ownerModifiers); } }
         //public virtual List<Modifier> OccupierModifiers { get { return null; } }
-        CostCollection costs;
-        public virtual CostCollection Costs { get { return costs; } }
-
-
-        [Header("Clear Land Stats")]
-        [SerializeField]
-        protected bool clearable = false;
-        public bool Clearable { get { return clearable; } }
-
-        [SerializeField]
-        protected string clearedLandName;
-
-        protected LandType clearedLand;
-        public LandType ClearedLand { get { return clearedLand; } }
-
 
         #endregion
 
@@ -66,10 +45,6 @@ namespace DaleranGames.TBSFramework
         public override void OnDatabaseInitialization()
         {
             base.OnDatabaseInitialization();
-
-
-            if (clearable)
-                clearedLand = GameDatabase.Instance.Lands[clearedLandName];
         }
         public override void OnActivation(HexTile tile)
         {

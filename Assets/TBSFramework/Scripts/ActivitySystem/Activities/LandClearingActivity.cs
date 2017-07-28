@@ -24,9 +24,7 @@ namespace DaleranGames.TBSFramework
 
         public override TileGraphic GetTerrainIcon(HexTile tile)
         {
-            if (tile.Land.Clearable)
-                return tile.Land.ClearedLand.IconGraphic;
-            else
+
                 return TileGraphic.clear;
         }
 
@@ -37,7 +35,7 @@ namespace DaleranGames.TBSFramework
 
         public override bool IsActivityValid(HexTile tile)
         {
-            return tile.Land.Clearable;
+            return false;
         }
 
         public override void DoActivityOnTile(HexTile tile)

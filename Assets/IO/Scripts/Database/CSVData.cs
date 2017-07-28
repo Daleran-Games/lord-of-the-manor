@@ -37,6 +37,7 @@ namespace DaleranGames.IO
             string[] header = csvArray[0];
             List<CSVEntry> newEntries = new List<CSVEntry>();
 
+
             for (int i=1;i<csvArray.Length;i++)
             {
                 newEntries.Add(new CSVEntry(i-1,PadJAggedStringArray(header,csvArray[i]),header));

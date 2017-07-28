@@ -32,8 +32,8 @@ namespace DaleranGames.TBSFramework
         public virtual Good Population { get { return new Good(GoodType.Population, population); } }
 
         [SerializeField]
-        protected int work;
-        public virtual Good Work { get { return new Good(GoodType.Work, work); } }
+        protected int labor;
+        public virtual Good Labor { get { return new Good(GoodType.Labor, labor); } }
 
 
         public GroupGoods (Group unit) : base()
@@ -44,7 +44,7 @@ namespace DaleranGames.TBSFramework
             stone = 0;
             gold = 0;
             population = 0;
-            work = 0;
+            labor = 0;
         }
 
         public override int this[GoodType type]
@@ -63,8 +63,8 @@ namespace DaleranGames.TBSFramework
                         return Gold;
                     case GoodType.Population:
                         return Population;
-                    case GoodType.Work:
-                        return Work;
+                    case GoodType.Labor:
+                        return Labor;
                     default:
                         return 0;
                 }
@@ -93,9 +93,9 @@ namespace DaleranGames.TBSFramework
                         population = value;
                         OnGoodChanged(this, Population);
                         break;
-                    case GoodType.Work:
-                        work = value;
-                        OnGoodChanged(this, Work);
+                    case GoodType.Labor:
+                        labor = value;
+                        OnGoodChanged(this, Labor);
                         break;
                 }
             }
@@ -112,7 +112,7 @@ namespace DaleranGames.TBSFramework
                 Stone,
                 Gold,
                 Population,
-                Work
+                Labor
                 };
             }
 
@@ -125,7 +125,7 @@ namespace DaleranGames.TBSFramework
                 type == GoodType.Wood ||
                 type == GoodType.Stone ||
                 type == GoodType.Gold ||
-                type == GoodType.Work ||
+                type == GoodType.Labor ||
                 type == GoodType.Population 
                 )
                 return true;
@@ -234,8 +234,8 @@ namespace DaleranGames.TBSFramework
 
         void CheckWork ()
         {
-            if (work < 0)
-                this[GoodType.Work] = 0;
+            if (labor < 0)
+                this[GoodType.Labor] = 0;
         }
     }
 }
