@@ -60,7 +60,7 @@ namespace DaleranGames.IO
                         break;
                     case HexCursorMode.Clear:
                         hexCursorMode = value;
-                        SetSelectionCursor(TileGraphic.clear);
+                        SetSelectionCursor(TileGraphic.Clear);
                         break;
                     case HexCursorMode.Cross:
                         hexCursorMode = value;
@@ -68,7 +68,7 @@ namespace DaleranGames.IO
                         break;
                     default:
                         hexCursorMode = HexCursorMode.Clear;
-                        SetSelectionCursor(TileGraphic.clear);
+                        SetSelectionCursor(TileGraphic.Clear);
                         break;
 
                 }
@@ -77,7 +77,7 @@ namespace DaleranGames.IO
 
         [SerializeField]
         [ReadOnly]
-        TileGraphic cursorUIIcon = TileGraphic.clear;
+        TileGraphic cursorUIIcon = TileGraphic.Clear;
         public TileGraphic CursorUIIcon
         {
             get { return cursorUIIcon; }
@@ -90,7 +90,7 @@ namespace DaleranGames.IO
 
         [SerializeField]
         [ReadOnly]
-        TileGraphic cursorTerrainIcon = TileGraphic.clear;
+        TileGraphic cursorTerrainIcon = TileGraphic.Clear;
         public TileGraphic CursorTerrainIcon
         {
             get { return cursorTerrainIcon; }

@@ -7,21 +7,22 @@ using DaleranGames.IO;
 namespace DaleranGames.TBSFramework
 {
     [System.Serializable]
-    public class BuildActivity : Activity
+    public class BuildCommand : Command
     {
         [SerializeField]
         string improvementName;
 
         [SerializeField]
-        ImprovementType improvement;
+        FeatureType improvement;
 
-        public BuildActivity(CSVEntry entry)
+        public BuildCommand(CSVEntry entry)
         {
             this.id = entry.ID;
             name = entry["name"];
             type = entry["type"];
-            workIconName = entry["workIcon"];
+            commandIconName = entry["workIcon"];
             improvementName = entry["improvementName"];
+            activity = CommandType.Pause;
         }
 
         protected override void Awake()
@@ -41,15 +42,15 @@ namespace DaleranGames.TBSFramework
 
         public override TileGraphic GetUIIcon(HexTile tile)
         {
-            return TileGraphic.clear;
+            return TileGraphic.Clear;
         }
 
-        public override bool IsActivityValid(HexTile tile)
+        public override bool IsValidCommand(HexTile tile)
         {
             return false;
         }
 
-        public override void DoActivityOnTile(HexTile tile)
+        public override void PreformCommand(HexTile tile)
         {
             tile.Improvement = improvement;
         }

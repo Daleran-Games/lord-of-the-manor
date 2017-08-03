@@ -6,9 +6,28 @@ using System;
 namespace DaleranGames.TBSFramework
 {
     [System.Serializable]
-    public class LandType : TileType
+    public class LandType : IDatabaseObject
     {
+        [Header("Tile Type Info")]
+        [SerializeField]
+        protected string name;
+        public virtual string Name { get { return name; } }
 
+        [SerializeField]
+        protected int id;
+        public virtual int ID { get { return id; } }
+
+        [SerializeField]
+        [HideInInspector]
+        protected string type = "TileType";
+        public virtual string Type { get { return type; } }
+
+        [SerializeField]
+        protected string iconName;
+
+        [SerializeField]
+        protected TileGraphic iconGraphic = TileGraphic.Clear;
+        public virtual TileGraphic IconGraphic { get { return iconGraphic; } }
 
         public LandType(CSVEntry entry)
         {
@@ -42,22 +61,21 @@ namespace DaleranGames.TBSFramework
         #endregion
 
         #region Tile Callbacks
-        public override void OnDatabaseInitialization()
+        public virtual void OnDatabaseInitialization()
         {
-            base.OnDatabaseInitialization();
+            if (iconName != null)
+                iconGraphic = GameDatabase.Instance.TileGraphics[iconName];
         }
-        public override void OnActivation(HexTile tile)
+        public virtual void OnActivation(HexTile tile)
         {
-            base.OnActivation(tile);
             tile.TerrainGraphics.Add(TileLayers.Land, iconGraphic);
 
             tile.Stats.Add(TileModifiers);
             tile.OwnerModifiers.Add(OwnerModifiers);
         }
 
-        public override void OnDeactivation(HexTile tile)
+        public virtual void OnDeactivation(HexTile tile)
         {
-            base.OnDeactivation(tile);
             tile.TerrainGraphics.Remove(TileLayers.Land);
 
             tile.Stats.Remove(TileModifiers);

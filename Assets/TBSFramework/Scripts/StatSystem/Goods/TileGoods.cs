@@ -61,11 +61,6 @@ namespace DaleranGames.TBSFramework
                 return false;
         }
 
-        public override bool CanProcessCost(Cost cost)
-        {
-            return CanProcessTransaction(cost.GetTransactionWithModifiers(parentTile.Stats));
-        }
-
         public override void ResolveEdgeCases()
         {
 

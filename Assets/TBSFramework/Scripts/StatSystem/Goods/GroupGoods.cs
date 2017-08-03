@@ -133,11 +133,6 @@ namespace DaleranGames.TBSFramework
                 return false;
         }
 
-        public override bool CanProcessCost(Cost cost)
-        {
-            return CanProcessTransaction(cost.GetTransactionWithModifiers(owner.Stats));
-        }
-
         public override void ResolveEdgeCases()
         {
             CheckFood();
@@ -162,7 +157,7 @@ namespace DaleranGames.TBSFramework
                 }
             } else if (food > owner.Stats[StatType.MaxFood])
             {
-                Add(new Transaction(GoodType.Food, owner.Stats[StatType.MaxFood] - food, false, "Spoilage"));
+                AddFuture(new Transaction(GoodType.Food, owner.Stats[StatType.MaxFood] - food, "Spoilage from not enoguh storage"));
             }
         }
 
@@ -183,7 +178,7 @@ namespace DaleranGames.TBSFramework
                     this[GoodType.Wood] = 0;
             } else if (wood > owner.Stats[StatType.MaxWood])
             {
-                Add(new Transaction(GoodType.Wood, owner.Stats[StatType.MaxWood] - wood, false, "Wood Waste"));
+                AddFuture(new Transaction(GoodType.Wood, owner.Stats[StatType.MaxWood] - wood, "Waste from not enoguh storage"));
             }
         }
 
@@ -193,7 +188,7 @@ namespace DaleranGames.TBSFramework
                 this[GoodType.Stone] = 0;
             else if (stone > owner.Stats[StatType.MaxStone])
             {
-                Add(new Transaction(GoodType.Stone, owner.Stats[StatType.MaxStone] - stone, false, "Stone Waste"));
+                AddFuture(new Transaction(GoodType.Stone, owner.Stats[StatType.MaxStone] - stone, "Waste from not enoguh storage"));
             }
         }
 
@@ -208,7 +203,7 @@ namespace DaleranGames.TBSFramework
                 this[GoodType.Population] = 0;
             else if (population > owner.Stats[StatType.MaxPopulation])
             {
-                Add(new Transaction(GoodType.Population, owner.Stats[StatType.MaxPopulation] - population, false, "Overpopulation"));
+                AddFuture(new Transaction(GoodType.Population, owner.Stats[StatType.MaxPopulation] - population, "Emigration from overpopulation"));
             } else
             {
                 int births = 0;
@@ -224,10 +219,10 @@ namespace DaleranGames.TBSFramework
                 }
 
                 if (births > 0)
-                    Add(new Transaction(GoodType.Population, births, false, "Births"));
+                    AddFuture(new Transaction(GoodType.Population, births, "Births"));
 
                 if (deaths > 0)
-                    Add(new Transaction(GoodType.Population, -deaths, false, "Deaths"));
+                    AddFuture(new Transaction(GoodType.Population, -deaths, "Deaths"));
 
             }
         }

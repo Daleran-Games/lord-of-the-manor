@@ -1,22 +1,19 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using DaleranGames.IO;
+﻿using DaleranGames.IO;
 
 namespace DaleranGames.TBSFramework
 {
     [System.Serializable]
-    public class RazeActivity : Activity
+    public class RazeCommand : Command
     {
         protected TileGraphic icon;
 
-        public RazeActivity(CSVEntry entry)
+        public RazeCommand(CSVEntry entry)
         {
             this.id = entry.ID;
             name = entry["name"];
             type = entry["type"];
-            workIconName = entry["workIcon"];
+            commandIconName = entry["workIcon"];
+            activity = CommandType.Cancel;
         }
 
         protected override void Awake()
@@ -31,7 +28,7 @@ namespace DaleranGames.TBSFramework
 
         public override TileGraphic GetTerrainIcon(HexTile tile)
         {
-            return TileGraphic.clear;
+            return TileGraphic.Clear;
         }
 
         public override TileGraphic GetUIIcon(HexTile tile)
@@ -39,7 +36,7 @@ namespace DaleranGames.TBSFramework
             return icon;
         }
 
-        public override bool IsActivityValid(HexTile tile)
+        public override bool IsValidCommand(HexTile tile)
         {
             if (tile.Improvement != null)
                 return true;
@@ -47,7 +44,7 @@ namespace DaleranGames.TBSFramework
                 return false;
         }
 
-        public override void DoActivityOnTile(HexTile tile)
+        public override void PreformCommand(HexTile tile)
         {
             tile.Improvement = null;
         }

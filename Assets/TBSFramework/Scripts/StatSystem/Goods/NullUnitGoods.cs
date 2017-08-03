@@ -50,37 +50,46 @@ namespace DaleranGames.TBSFramework
 
         }
 
-        public override bool CanProcessTransaction(Transaction transaction)
+        public override bool CanProcessNow(Transaction transaction)
         {
             return false;
         }
 
-        public override bool CanProcessTransaction(IList<Transaction> transactions)
+        public override bool CanProcessnNow(IList<Transaction> transactions)
         {
             return false;
         }
 
-        public override bool TryAdd(Transaction transaction)
+        public override bool TryProcessNow(Transaction transaction)
         {
             return false;
         }
 
-        public override bool TryAdd(IList<Transaction> transactions)
+        public override bool TryProcessNow(IList<Transaction> transactions)
         {
             return false;
         }
 
-        public override void Remove(Transaction transaction)
+        public override void AddFuture(Transaction transaction)
         {
 
         }
 
-        public override void Remove(IList<Transaction> transactions)
+        public override void AddFuture(IList<Transaction> transactions)
+        {
+
+        }
+        public override void RemoveFuture(Transaction transaction)
         {
 
         }
 
-        public override void ProcessAllTransactions()
+        public override void RemoveFuture(IList<Transaction> transactions)
+        {
+
+        }
+
+        public override void ProcessAllPendingTransactions()
         {
 
         }

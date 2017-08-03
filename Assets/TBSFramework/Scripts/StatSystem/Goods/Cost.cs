@@ -17,36 +17,31 @@ namespace DaleranGames.TBSFramework
         public int Value { get { return value; } }
 
         [SerializeField]
-        bool immediate;
-        public bool Immediate { get { return immediate; } }
-
-        [SerializeField]
         string description;
         public string Description { get { return description; } }
 
-        public static readonly Cost Null = new Cost(CostType.NullCost, 0, false, "");
+        public static readonly Cost Null = new Cost(CostType.NullCost, 0, "");
 
-        public Cost(CostType modifiedBy, int amount, bool immediate, string description)
+        public Cost(CostType modifiedBy, int amount, string description)
         {
             this.modifiedBy = modifiedBy;
             this.value = amount;
-            this.immediate = immediate;
             this.description = description;
         }
 
-        public int GetValueWithModifiers (IStatCollection<StatType> stats)
+        public int ModifiedValue (IStatCollection<StatType> stats)
         {
             return Value + stats[ModifiedBy];
         }
 
-        public Transaction GetTransactionWithModifiers(IStatCollection<StatType> stats)
+        public Transaction ModifiedTransaction(IStatCollection<StatType> stats)
         {
-            return new Transaction(modifiedBy.Good, Value + stats[ModifiedBy], Immediate,Description);
+            return new Transaction(modifiedBy.Good, Value + stats[ModifiedBy],Description);
         }
 
         public static Cost ParseCSV(List<string> csvLine, int startingIndex)
         {
-            return new Cost(Enumeration.FromDisplayName<CostType>(csvLine[startingIndex]), Int32.Parse(csvLine[startingIndex + 1]), Boolean.Parse(csvLine[startingIndex + 2]), csvLine[startingIndex + 3]);
+            return new Cost(Enumeration.FromDisplayName<CostType>(csvLine[startingIndex]), Int32.Parse(csvLine[startingIndex + 1]), csvLine[startingIndex + 2]);
         }
 
         public static List<Cost> ParseCSVList(List<string> csvList)

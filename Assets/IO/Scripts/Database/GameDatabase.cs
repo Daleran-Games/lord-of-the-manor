@@ -30,15 +30,15 @@ namespace DaleranGames.IO
         [SerializeField]
         GroupsDatabaseLoader groupsLoader;
         [SerializeField]
-        ActivityDatabaseLoader activityLoader;
+        CommandDatabaseLoader commandLoader;
 #pragma warning restore 0649
 
         public Dictionary<string, Sprite> Sprites;
         public Database<TileGraphic> TileGraphics;
         public Database<LandType> Lands;
-        public Database<ImprovementType> Improvements;
+        public Database<FeatureType> Improvements;
         public Database<GroupType> Groups;
-        public Database<Activity> Activities;
+        public Database<Command> Commands;
 
         public static readonly string SpritePath = "Assets/Graphics/Sprites/";
         public static string GameDataPath { get { return Application.streamingAssetsPath + "/GameData/"; } }
@@ -59,13 +59,13 @@ namespace DaleranGames.IO
             Lands = landsLoader.GenerateDatabase();
             Improvements = improvementsLoader.GenerateDatabase();
             Groups = groupsLoader.GenerateDatabase();
-            Activities = activityLoader.GenerateDatabase();
+            Commands = commandLoader.GenerateDatabase();
 
             graphicsLoader.InitializeDatabase(TileGraphics);
             landsLoader.InitializeDatabase(Lands);
             improvementsLoader.InitializeDatabase(Improvements);
             groupsLoader.InitializeDatabase(Groups);
-            activityLoader.InitializeDatabase(Activities);
+            commandLoader.InitializeDatabase(Commands);
 
 
 

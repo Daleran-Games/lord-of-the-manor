@@ -8,14 +8,14 @@ using System.IO;
 namespace DaleranGames.IO
 {
     [CreateAssetMenu(fileName = "ImprovementsDatabaseLoader", menuName = "DaleranGames/Database/Improvements", order = 0)]
-    public class ImprovementsDatabaseLoader : DatabaseLoader<ImprovementType>
+    public class ImprovementsDatabaseLoader : DatabaseLoader<FeatureType>
     {
         [SerializeField]
-        protected List<ImprovementType> improvements = new List<ImprovementType>();
+        protected List<FeatureType> improvements = new List<FeatureType>();
 
-        public override Database<ImprovementType> GenerateDatabase()
+        public override Database<FeatureType> GenerateDatabase()
         {
-            Database<ImprovementType> newDB = new Database<ImprovementType>();
+            Database<FeatureType> newDB = new Database<FeatureType>();
             CSVData data = new CSVData("Improvements", CSVUtility.ParseCSVToArray(File.ReadAllText(CSVFilePath)),new List<string> { "DwellingType", "FarmType" });
             improvements.Clear();
 

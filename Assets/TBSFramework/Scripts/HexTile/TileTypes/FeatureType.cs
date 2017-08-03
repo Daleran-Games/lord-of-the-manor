@@ -1,17 +1,18 @@
-﻿using System.Collections;
+﻿using System.Collections.ObjectModel;
 using System.Collections.Generic;
 using UnityEngine;
 using DaleranGames.IO;
+using System;
 
 namespace DaleranGames.TBSFramework
 {
     [System.Serializable]
-    public abstract class TileType : IDatabaseObject, IType<HexTile>
+    public abstract class FeatureType : IDatabaseObject
     {
         [Header("Tile Type Info")]
         [SerializeField]
         protected string name;
-        public  virtual string Name { get { return name; } }
+        public virtual string Name { get { return name; } }
 
         [SerializeField]
         protected int id;
@@ -22,19 +23,25 @@ namespace DaleranGames.TBSFramework
         protected string type = "TileType";
         public virtual string Type { get { return type; } }
 
-        [SerializeField]
-        protected string iconName;
+        public abstract TileGraphic GetIconGraphic(HexTile tile);
 
-        [SerializeField]
-        protected TileGraphic iconGraphic = TileGraphic.Clear;
-        public virtual TileGraphic IconGraphic { get { return iconGraphic; } }
+        public static readonly NullFeature Null = new NullFeature();
 
+        #region Tile Stats
+        public abstract List<Modifier> TileModifiers { get; }
+        public abstract List<Modifier> OwnerModifiers { get; }
+        // public abstract List<Modifier> OccupierModifiers { get; }
+
+        public abstract CostCollection Costs { get; }
+        public abstract bool CanSwitchToActivity(CommandType type, HexTile tile);
+        public abstract void SwitchToActivity(CommandType type, HexTile tile);
+
+        #endregion
+
+        #region Tile Callbacks
         public virtual void OnDatabaseInitialization()
         {
-            if (iconName != null)
-                iconGraphic = GameDatabase.Instance.TileGraphics[iconName];
-            else
-                iconGraphic = TileGraphic.Clear;
+
         }
 
         public virtual void OnActivation(HexTile tile)
@@ -45,7 +52,7 @@ namespace DaleranGames.TBSFramework
 
         public virtual void OnGameStart(HexTile tile)
         {
-
+ 
         }
 
         public virtual void OnTurnEnd(BaseTurn turn, HexTile tile)
@@ -67,6 +74,7 @@ namespace DaleranGames.TBSFramework
         {
 
         }
+        #endregion
 
     }
 }

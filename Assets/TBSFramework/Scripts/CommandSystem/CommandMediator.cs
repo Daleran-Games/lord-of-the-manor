@@ -5,7 +5,7 @@ using DaleranGames.IO;
 
 namespace DaleranGames.TBSFramework
 {
-    public class ActivityDirector : MonoBehaviour
+    public class CommandMediator : MonoBehaviour
     {
         [SerializeField]
         bool activeMode = false;
@@ -15,7 +15,7 @@ namespace DaleranGames.TBSFramework
 
         HexCursor mouse;
 
-        Activity currentActivity = null;
+        Command currentCommand = null;
         Group activeOwner = null;
 
         private void Awake()
@@ -23,23 +23,23 @@ namespace DaleranGames.TBSFramework
             mouse = GameObject.FindObjectOfType<HexCursor>();
         }
 
-        public void EnterActivityMode (string activityName)
+        public void EnterCommandMode (string commandName)
         {
-            currentActivity = GameDatabase.Instance.Activities[activityName];
+            currentCommand = GameDatabase.Instance.Commands[commandName];
             activeOwner = GroupManager.Instance.PlayerGroup;
 
-            EnterActivityMode(currentActivity);
+            EnterActivityMode(currentCommand);
         }
 
-        public void EnterActivityMode (Activity activity, Group owner)
+        public void EnterCommandMode (Command command, Group owner)
         {
-            currentActivity = activity;
+            currentCommand = command;
             activeOwner = owner;
 
-            EnterActivityMode(currentActivity);
+            EnterActivityMode(currentCommand);
         }
 
-        protected void EnterActivityMode(Activity activity)
+        protected void EnterActivityMode(Command activity)
         {
             if (activity != null)
             {
@@ -52,10 +52,10 @@ namespace DaleranGames.TBSFramework
             }
         }
 
-        public void DoActivityOnTile(Activity activity, HexTile tile, Group owner)
+        public void DoActivityOnTile(Command activity, HexTile tile, Group owner)
         {
-            if (activeMode == true && activity.IsActivityValid(tile) && tile.Owner == owner)
-                activity.DoActivityOnTile(tile);
+            if (activeMode == true && activity.IsValidCommand(tile) && tile.Owner == owner)
+                activity.PreformCommand(tile);
         }
 
         void OnTileEnter(HexTile tile)
@@ -69,7 +69,7 @@ namespace DaleranGames.TBSFramework
             if (Time.time - lastClickTime > timeSkip)
             {
                 lastClickTime = Time.time;
-                DoActivityOnTile(currentActivity, tile, activeOwner);
+                DoActivityOnTile(currentCommand, tile, activeOwner);
                 UpdateCursor(tile);
                 //Debug.Log("Recieved Left Click");
             }
@@ -79,9 +79,9 @@ namespace DaleranGames.TBSFramework
         void OnRightClick()
         {
             activeMode = false;
-            currentActivity = null;
-            mouse.CursorUIIcon = TileGraphic.clear;
-            mouse.CursorTerrainIcon = TileGraphic.clear;
+            currentCommand = null;
+            mouse.CursorUIIcon = TileGraphic.Clear;
+            mouse.CursorTerrainIcon = TileGraphic.Clear;
             mouse.CursorMode = HexCursor.HexCursorMode.Ring;
             mouse.HexTileLMBClicked -= OnLeftTileClick;
             mouse.HexTileEntered -= OnTileEnter;
@@ -92,11 +92,11 @@ namespace DaleranGames.TBSFramework
         {
             if (mouse.CurrentTile != null)
             {
-                mouse.CursorUIIcon = currentActivity.GetUIIcon(tile);
-                mouse.CursorTerrainIcon = currentActivity.GetTerrainIcon(tile);
+                mouse.CursorUIIcon = currentCommand.GetUIIcon(tile);
+                mouse.CursorTerrainIcon = currentCommand.GetTerrainIcon(tile);
                 
 
-                if (currentActivity.IsActivityValid(tile) && tile.Owner == activeOwner)
+                if (currentCommand.IsValidCommand(tile) && tile.Owner == activeOwner)
                     mouse.CursorMode = HexCursor.HexCursorMode.Positive;
                 else
                     mouse.CursorMode = HexCursor.HexCursorMode.Negative;

@@ -7,50 +7,54 @@ using System;
 namespace DaleranGames.TBSFramework
 {
     [System.Serializable]
-    public abstract class Activity : IDatabaseObject
+    public abstract class Command : IDatabaseObject
     {
         [SerializeField]
         protected string name;
         public virtual string Name { get { return name; } }
 
         [SerializeField]
-        protected string type = "Activity";
+        protected string type = "Command";
         public string Type { get { return type; } }
 
         [SerializeField]
-        protected string workIconName;
+        protected CommandType activity = CommandType.None;
+        public virtual CommandType Activity { get { return activity; } } 
 
         [SerializeField]
-        protected TileGraphic workIcon;
+        protected string commandIconName;
+
+        [SerializeField]
+        protected TileGraphic commandIcon;
 
         [SerializeField]
         protected int id;
         public virtual int ID { get { return id; } }
 
-        public static readonly Activity Null = new NullActivity("Null Activity", "NullActivity", -1);
+        public static readonly Command Null = new NullCommand("Null Command", "NullCommand", -1);
 
-        public virtual void DoActivityOnTile(HexTile tile)
+        public virtual void PreformCommand(HexTile tile)
         {
 
         }
-        public virtual bool IsActivityValid(HexTile tile)
+        public virtual bool IsValidCommand(HexTile tile)
         {
             return false;
         }
 
         public virtual TileGraphic GetUIIcon(HexTile tile)
         {
-            return TileGraphic.clear;
+            return TileGraphic.Clear;
         }
 
         public virtual TileGraphic GetTerrainIcon(HexTile tile)
         {
-            return TileGraphic.clear;
+            return TileGraphic.Clear;
         }
 
         public virtual TileGraphic GetWorkIcon(HexTile tile)
         {
-            return workIcon;
+            return commandIcon;
         }
 
         protected virtual void Awake()
@@ -60,7 +64,7 @@ namespace DaleranGames.TBSFramework
 
         public virtual void OnDatabaseInitialization()
         {
-            workIcon = GameDatabase.Instance.TileGraphics[workIconName];
+            commandIcon = GameDatabase.Instance.TileGraphics[commandIconName];
         }
 
     }

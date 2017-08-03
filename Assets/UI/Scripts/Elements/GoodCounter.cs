@@ -34,7 +34,7 @@ namespace DaleranGames.UI
         {
             player = GroupManager.Instance.PlayerGroup;
             player.Goods.GoodChanged += OnGoodChanged;
-            player.Goods.PendingTransactionsChanged += OnPendingTransactionsChanged;
+            player.Goods.FutureTransactionsChanged += OnPendingTransactionsChanged;
             UpdateLabel();
             //Debug.Log("Game start update labels");
         }
@@ -68,7 +68,7 @@ namespace DaleranGames.UI
         protected virtual void OnDestroy()
         {
             player.Goods.GoodChanged -= OnGoodChanged;
-            player.Goods.PendingTransactionsChanged -= OnPendingTransactionsChanged;
+            player.Goods.FutureTransactionsChanged -= OnPendingTransactionsChanged;
             GameManager.Instance.Play.StateEnabled -= OnGameStart;
         }
     }

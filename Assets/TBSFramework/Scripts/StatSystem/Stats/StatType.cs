@@ -50,26 +50,17 @@ namespace DaleranGames.TBSFramework
         public static readonly StatType StoneYield = new StatType(42, "Stone Yield", "SY");
         public static readonly StatType GoldYield = new StatType(43, "Gold Yield", "GY");
 
-        // Work Land Module Stats
-        public static readonly StatType WorkLandFoodRate = new StatType(50, "Work Land Food Rate", "WLF");
-        public static readonly StatType WorkLandWoodRate = new StatType(51, "Work Land Wood Rate", "WLW");
-        public static readonly StatType WorkLandStoneRate = new StatType(52, "Work Land Stone Rate", "WLS");
-        public static readonly StatType WorkLandGoldRate = new StatType(53, "Work Land Gold Rate", "WLG");
+        // Work Land Stats
+        public static readonly StatType FishFoodRate = new StatType(50, "Fishing Rate");
+        public static readonly StatType HuntFoodRate = new StatType(51, "Hunting Rate");
+        public static readonly StatType FarmFoodRate = new StatType(52, "Farm Rate");
+        public static readonly StatType ChopWoodRate = new StatType(53, "Chop Wood Rate");
+        public static readonly StatType QuarryStoneRate = new StatType(54, "Quarry Rate");
 
-        // Clear Module Stats
-        
+        public static readonly StatType HerdMaxPopRate = new StatType(60, "Max Herd");
 
         //Improvement Stats
-        public static readonly StatType MaxCondition = new StatType(70, "Max Condition", "MX CD");
-
-        // Build Stats
-        
-
-        // Raze Module Stats
-        
-
-        // Farm Module Stats
-        public static readonly StatType FarmFoodRate = new StatType(100, "Farm Tile Food Rate");
+        public static readonly StatType MaxCondition = new StatType(70, "Max Condition", "MX CD");     
 
 
         #endregion

@@ -152,7 +152,7 @@ namespace DaleranGames.UI
 
         TileGraphic[] GetDigitCoordArray (int number)
         {
-            TileGraphic[] output = { TileGraphic.clear, TileGraphic.clear, TileGraphic.clear };
+            TileGraphic[] output = { TileGraphic.Clear, TileGraphic.Clear, TileGraphic.Clear };
 
             if (number < -99)
                 Debug.LogError("HexGridOverlay: Trying to set to a number less than -99");
@@ -230,7 +230,7 @@ namespace DaleranGames.UI
                 case 9:
                     return nine;
                 default:
-                    return TileGraphic.clear;
+                    return TileGraphic.Clear;
             }
         }
 

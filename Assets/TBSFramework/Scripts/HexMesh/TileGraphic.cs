@@ -46,7 +46,7 @@ namespace DaleranGames.TBSFramework
             atlasCoord = graphic.AtlasCoord;
         }
 
-        public static TileGraphic clear = new TileGraphic("Clear", -1, Vector2Int.zero);
+        public static TileGraphic Clear = new TileGraphic("Clear", -1, Vector2Int.zero);
 
 
         public void OnDatabaseInitialization()

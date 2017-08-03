@@ -38,7 +38,7 @@ namespace DaleranGames.TBSFramework
 
         public virtual void OnTurnEnd(BaseTurn turn)
         {
-            playerGroup.Goods.ProcessAllTransactions();
+            playerGroup.Goods.ProcessAllPendingTransactions();
             playerGroup.Goods.ResolveEdgeCases();
         }
 

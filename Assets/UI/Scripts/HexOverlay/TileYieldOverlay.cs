@@ -94,7 +94,7 @@ namespace DaleranGames.UI
                 case 3:
                     return food3g;
                 default:
-                    return TileGraphic.clear;
+                    return TileGraphic.Clear;
             }
         }
 
@@ -109,7 +109,7 @@ namespace DaleranGames.UI
                 case 3:
                     return wood3g;
                 default:
-                    return TileGraphic.clear;
+                    return TileGraphic.Clear;
             }
         }
 
@@ -124,7 +124,7 @@ namespace DaleranGames.UI
                 case 3:
                     return stone3g;
                 default:
-                    return TileGraphic.clear;
+                    return TileGraphic.Clear;
             }
         }
 
@@ -139,7 +139,7 @@ namespace DaleranGames.UI
                 case 3:
                     return gold3g;
                 default:
-                    return TileGraphic.clear;
+                    return TileGraphic.Clear;
             }
         }
 

@@ -12,7 +12,7 @@ namespace DaleranGames.TBSFramework
         protected List<Transaction> pendingTransactions;
         public virtual List<Transaction> PendingTransactions { get { return pendingTransactions; } }
 
-        public event Action<GoodsCollection, GoodType> PendingTransactionsChanged;
+        public event Action<GoodsCollection, GoodType> FutureTransactionsChanged;
         public event Action<GoodsCollection, GoodType> GoodChanged;
 
         public abstract int this[GoodType type] { get; set; }
@@ -23,90 +23,89 @@ namespace DaleranGames.TBSFramework
             pendingTransactions = new List<Transaction>();
         }
 
-        public virtual bool CanProcessTransaction(Transaction transaction)
+        public virtual bool CanProcessNow(Transaction transaction)
         {
-            if (ContainsGoodOfType(transaction.Type))
+            if (ContainsGoodOfType(transaction.Type) && this[transaction.Type] >= transaction.Value)
             {
-                if (transaction.Immediate == true && this[transaction.Type] >= transaction.Value)
-                    return true;
-                else if (transaction.Immediate == false)
-                    return true;
-            }
-            return false;
+                return true;
+            } else
+                return false;
         }
 
-        public virtual bool CanProcessTransaction(IList<Transaction> transactions)
+        public virtual bool CanProcessnNow(IList<Transaction> transactions)
         {
             for (int i = 0; i < transactions.Count; i++)
             {
-                if (!CanProcessTransaction(transactions[i]))
+                if (!CanProcessNow(transactions[i]))
                     return false;
             }
             return true;
         }
 
-        public abstract bool CanProcessCost(Cost cost);
-
-        public virtual bool CanProcessCost(IList<Cost> costs)
+        protected virtual void Process(Transaction transaction)
         {
-            for (int i = 0; i < costs.Count; i++)
-            {
-                if (!CanProcessCost(costs[i]))
-                    return false;
-            }
-            return true;
+            this[transaction.Type] += transaction.Value;
         }
 
-        protected void Add(Transaction transaction)
+        public virtual bool TryProcessNow(Transaction transaction)
         {
-            if (transaction.Immediate)
+            if (CanProcessNow(transaction))
             {
-                this[transaction.Type] += transaction.Value;
-            }
-            else
-            {
-                pendingTransactions.Add(transaction);
-                OnPendingTransactionsChanged(this, transaction.Type);
-            }
-
-        }
-
-        public virtual bool TryAdd(Transaction transaction)
-        {
-            if (CanProcessTransaction(transaction))
-            {
-                Add(transaction);
+                Process(transaction);
 
                 return true;
             }
             return false;
         }
 
-        public virtual bool TryAdd(IList<Transaction> transactions)
+        public virtual bool TryProcessNow(IList<Transaction> transactions)
         {
-            if (CanProcessTransaction(transactions))
+            if (CanProcessnNow(transactions))
             {
                 for (int i=0;i<transactions.Count;i++)
                 {
-                    Add(transactions[i]);
+                    Process(transactions[i]);
                 }
                 return true;
             }
             return false;
         }
 
-        public virtual void Remove(Transaction transaction)
+        private void Add (Transaction transaction)
+        {
+            pendingTransactions.Add(transaction);
+            OnPendingTransactionsChanged(this, transaction.Type);
+        }
+
+        public virtual void AddFuture(Transaction transaction)
+        {
+            Add(transaction);
+        }
+
+        public virtual void AddFuture(IList<Transaction> transactions)
+        {
+            for (int i = 0; i < transactions.Count; i++)
+            {
+                Add(transactions[i]);
+            }
+        }
+
+        private void Remove(Transaction transaction)
         {
             pendingTransactions.Remove(transaction);
             OnPendingTransactionsChanged(this, transaction.Type);
         }
 
-        public virtual void Remove(IList<Transaction> transactions)
+        public virtual void RemoveFuture(Transaction transaction)
+        {
+            Remove(transaction);
+        }
+
+        public virtual void RemoveFuture(IList<Transaction> transactions)
         {
             for (int i=0; i < transactions.Count; i++)
             {
-                pendingTransactions.Remove(transactions[i]);
-                OnPendingTransactionsChanged(this, transactions[i].Type);
+                Remove(transactions[i]);
             }
         }
 
@@ -123,7 +122,7 @@ namespace DaleranGames.TBSFramework
             return new Good(type, total);
         }
 
-        public virtual void ProcessAllTransactions()
+        public virtual void ProcessAllPendingTransactions()
         {
             for (int i=0;i < pendingTransactions.Count; i++)
             {
@@ -138,8 +137,8 @@ namespace DaleranGames.TBSFramework
 
         protected virtual void OnPendingTransactionsChanged(GoodsCollection col, GoodType type)
         {
-            if (PendingTransactionsChanged != null)
-                PendingTransactionsChanged(col, type);
+            if (FutureTransactionsChanged != null)
+                FutureTransactionsChanged(col, type);
         }
 
         protected virtual void OnAllPendingTransactionsChanged(GoodsCollection col)

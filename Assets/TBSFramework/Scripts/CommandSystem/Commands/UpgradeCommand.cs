@@ -6,14 +6,15 @@ using DaleranGames.IO;
 namespace DaleranGames.TBSFramework
 {
     [System.Serializable]
-    public class UpgradeActivity : Activity
+    public class UpgradeCommand : Command
     {
-        public UpgradeActivity(CSVEntry entry)
+        public UpgradeCommand(CSVEntry entry)
         {
             this.id = entry.ID;
             name = entry["name"];
             type = entry["type"];
-            workIconName = entry["workIcon"];
+            commandIconName = entry["workIcon"];
+            activity = CommandType.Upgrade;
         }
 
         protected override void Awake()
@@ -21,12 +22,12 @@ namespace DaleranGames.TBSFramework
             base.Awake();
         }
 
-        public override void DoActivityOnTile(HexTile tile)
+        public override void PreformCommand(HexTile tile)
         {
 
         }
 
-        public override bool IsActivityValid(HexTile tile)
+        public override bool IsValidCommand(HexTile tile)
         {
             if (tile.Improvement != null)
                 return tile.Improvement.Upgradeable;
@@ -41,7 +42,7 @@ namespace DaleranGames.TBSFramework
                 if (tile.Improvement.Upgradeable)
                     return tile.Improvement.UpgradedImprovement.IconGraphic;
             }
-            return TileGraphic.clear;
+            return TileGraphic.Clear;
         }
 
 

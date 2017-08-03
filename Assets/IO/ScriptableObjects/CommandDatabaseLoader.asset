@@ -9,73 +9,103 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 497bd10b1068a764e822bb9195ddcbf2, type: 3}
-  m_Name: ActivityDatabaseLoader
+  m_Name: CommandDatabaseLoader
   m_EditorClassIdentifier: 
   csvFilePath: Activities.csv
-  landClearing:
-    name: Clear
-    type: LandClearingActivity
-    workIconName: 
   raze:
     name: Raze
     type: RazeActivity
-    workIconName: 
+    activity: 0
+    commandIconName: 
+    commandIcon:
+      name: 
+      type: 
+      id: 0
+      atlasCoord:
+        x: 0
+        y: 0
+    id: 0
   upgrade:
     name: Upgrade
     type: UpgradeActivity
-    workIconName: 
+    activity: 0
+    commandIconName: 
+    commandIcon:
+      name: 
+      type: 
+      id: 0
+      atlasCoord:
+        x: 0
+        y: 0
+    id: 0
   builds:
   - name: Build Farm
     type: BuildActivity
-    workIconName: 
+    activity: 0
+    commandIconName: 
+    commandIcon:
+      name: 
+      type: 
+      id: 0
+      atlasCoord:
+        x: 0
+        y: 0
+    id: 0
     improvementName: Farm
     improvement:
       name: 
       id: 0
       type: 
+      iconName: null
       iconGraphic:
         name: 
         type: 
+        id: 0
         atlasCoord:
           x: 0
           y: 0
-      defenseBonus: 0
-      movementCost: 0
-      maxCondition: 0
-      buildWorkCost: 0
-      buildWoodCost: 0
-      builtTime: 0
-      validLand: []
+      tileModifiers: []
+      ownerModifiers: []
+      costs:
+        costs: []
+      buildable: 0
+      buildGraphicName: 
       upgradeable: 0
       upgradeName: 
-      razeWorkCost: 0
-      razeTime: 0
-      razeRecoveryPercentage: 0
-      ownerModifiers: []
+      razeable: 0
+      workable: 0
   - name: Build Dwelling
     type: BuildActivity
-    workIconName: 
+    activity: 0
+    commandIconName: 
+    commandIcon:
+      name: 
+      type: 
+      id: 0
+      atlasCoord:
+        x: 0
+        y: 0
+    id: 0
     improvementName: Tent
     improvement:
       name: 
       id: 0
       type: 
+      iconName: null
       iconGraphic:
         name: 
         type: 
+        id: 0
         atlasCoord:
           x: 0
           y: 0
-      defenseBonus: 0
-      movementCost: 0
-      maxCondition: 0
-      buildWorkCost: 0
-      buildWoodCost: 0
-      builtTime: 0
-      validLand: []
+      tileModifiers: []
+      ownerModifiers: []
+      costs:
+        costs: []
+      buildable: 0
+      buildGraphicName: 
       upgradeable: 0
       upgradeName: 
-      razeWorkCost: 0
-      razeTime: 0
-      razeRecoveryPercentage: 0
-      ownerModifiers: []
+      razeable: 0
+      workable: 0

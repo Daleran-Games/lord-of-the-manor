@@ -18,32 +18,26 @@ namespace DaleranGames.TBSFramework
         public int Value { get { return value; } }
 
         [SerializeField]
-        bool immediate;
-        public bool Immediate { get { return immediate; } }
-
-        [SerializeField]
         string description;
         public string Description { get { return description; } }
 
-        public Transaction(GoodType type, int amount, bool immediate)
+        public Transaction(GoodType type, int amount)
         {
             this.type = type;
             this.value = amount;
-            this.immediate = immediate;
             description = "None";
         }
 
-        public Transaction(GoodType type, int amount, bool immediate, string description)
+        public Transaction(GoodType type, int amount, string description)
         {
             this.type = type;
             this.value = amount;
-            this.immediate = immediate;
             this.description = description;
         }
 
         public static Transaction ParseCSV(List<string> csvLine, int startingIndex)
         {
-            return new Transaction((GoodType)Enum.Parse(typeof(GoodType), csvLine[startingIndex]), Int32.Parse(csvLine[startingIndex + 1]),Boolean.Parse(csvLine[startingIndex + 2]), csvLine[startingIndex + 3]);
+            return new Transaction((GoodType)Enum.Parse(typeof(GoodType), csvLine[startingIndex]), Int32.Parse(csvLine[startingIndex + 1]), csvLine[startingIndex + 2]);
         }
 
         public static List<Transaction> ParseCSVList(List<string> csvList)
@@ -58,10 +52,7 @@ namespace DaleranGames.TBSFramework
 
         public override string ToString()
         {
-            if (Immediate)
-                return string.Format("{0} ({1}) {2}, Immediate", type,value, description);
-            else
-                return string.Format("{0} ({1}) {2}, End Turn", type, value, description);
+            return string.Format("{0} ({1}) {2}", type, value, description);
         }
 
         public string ToString(string format, IFormatProvider formatProvider)

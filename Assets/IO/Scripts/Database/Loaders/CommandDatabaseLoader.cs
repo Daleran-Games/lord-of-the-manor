@@ -7,20 +7,20 @@ using System.IO;
 
 namespace DaleranGames.IO
 {
-    [CreateAssetMenu(fileName = "ActivityDatabaseLoader", menuName = "DaleranGames/Database/Activities", order = 0)]
-    public class ActivityDatabaseLoader : DatabaseLoader<Activity>
+    [CreateAssetMenu(fileName = "CommandDatabaseLoader", menuName = "DaleranGames/Database/Commands", order = 0)]
+    public class CommandDatabaseLoader : DatabaseLoader<Command>
     {
         [SerializeField]
-        protected RazeActivity raze;
+        protected RazeCommand raze;
         [SerializeField]
-        protected UpgradeActivity upgrade;
+        protected UpgradeCommand upgrade;
         [SerializeField]
-        protected List<BuildActivity> builds = new List<BuildActivity>();
+        protected List<BuildCommand> builds = new List<BuildCommand>();
 
-        public override Database<Activity> GenerateDatabase()
+        public override Database<Command> GenerateDatabase()
         {
-            Database<Activity> newDB = new Database<Activity>();
-            CSVData data = new CSVData("Activities", CSVUtility.ParseCSVToArray(File.ReadAllText(CSVFilePath)));
+            Database<Command> newDB = new Database<Command>();
+            CSVData data = new CSVData("Commands", CSVUtility.ParseCSVToArray(File.ReadAllText(CSVFilePath)));
             builds.Clear();
             raze = null;
             upgrade = null;
@@ -29,18 +29,18 @@ namespace DaleranGames.IO
             {
                 switch (data[i]["type"])
                 {
-                    case "BuildActivity":
-                        BuildActivity newBuildType = new BuildActivity(data[i]);
+                    case "BuildCommand":
+                        BuildCommand newBuildType = new BuildCommand(data[i]);
                         newDB.Add(newBuildType);
                         builds.Add(newBuildType);
                         break;
-                    case "RazeActivity":
-                        RazeActivity newRaze = new RazeActivity(data[i]);
+                    case "RazeCommand":
+                        RazeCommand newRaze = new RazeCommand(data[i]);
                         raze = newRaze;
                         newDB.Add(newRaze);
                         break;
-                    case "UpgradeActivity":
-                        UpgradeActivity newUpgrade = new UpgradeActivity(data[i]);
+                    case "UpgradeCommand":
+                        UpgradeCommand newUpgrade = new UpgradeCommand(data[i]);
                         upgrade = newUpgrade;
                         newDB.Add(newUpgrade);
                         break;

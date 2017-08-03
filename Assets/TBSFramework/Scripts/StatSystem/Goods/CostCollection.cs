@@ -7,6 +7,7 @@ namespace DaleranGames.TBSFramework
     [System.Serializable]
     public class CostCollection
     {
+
         [SerializeField]
         protected List<Cost> costs;
 
@@ -29,18 +30,34 @@ namespace DaleranGames.TBSFramework
             this.costs = new List<Cost>(costs);
         }
 
-        public List<Cost> GetAllCostsOfActivity(CostType.CategoryType category)
+        public List<Cost> GetAllCostsOfActivity(CommandType activity)
         {
             List<Cost> query = new List<Cost>();
 
             for (int i=0;i<costs.Count;i++)
             {
-                if (costs[i].ModifiedBy.Category == category)
+                if (costs[i].ModifiedBy.Activity == activity)
                     query.Add(costs[i]);
             }
 
             if (query.Count == 0)
-                Debug.LogWarning("No costs associated with "+category+" found");
+                Debug.LogWarning("No costs associated with "+activity+" found");
+
+            return query;
+        }
+
+        public List<Transaction> GetAllCostsOfActivityAsTransaction(CommandType activity, IStatCollection<StatType> stats)
+        {
+            List<Transaction> query = new List<Transaction>();
+
+            for (int i = 0; i < costs.Count; i++)
+            {
+                if (costs[i].ModifiedBy.Activity == activity)
+                    query.Add(costs[i].ModifiedTransaction(stats));
+            }
+
+            if (query.Count == 0)
+                Debug.LogWarning("No costs associated with " + activity + " found");
 
             return query;
         }
@@ -48,6 +65,16 @@ namespace DaleranGames.TBSFramework
         public List<Cost> GetAllCosts()
         {
             return new List<Cost>(costs);
+        }
+
+        public List<Transaction> GetAllCostsAsTransaction(IStatCollection<StatType> stats)
+        {
+            List<Transaction> query = new List<Transaction>();
+            for (int i = 0; i < costs.Count; i++)
+            {
+                query.Add(costs[i].ModifiedTransaction(stats));
+            }
+            return query;
         }
 
     }

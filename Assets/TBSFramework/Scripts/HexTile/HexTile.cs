@@ -24,7 +24,7 @@ namespace DaleranGames.TBSFramework
             TerrainGraphics = new TileGraphics(atlas, Position);
 
             owner = Group.Null;
-            improvement = ImprovementType.Null;
+            improvement = FeatureType.Null;
             TileCounters = new TurnCounters(TurnManager.Instance);
 
             Stats = new TileStats(owner);
@@ -82,8 +82,8 @@ namespace DaleranGames.TBSFramework
         }
 
         [SerializeField]
-        protected ImprovementType improvement;
-        public ImprovementType Improvement
+        protected FeatureType improvement;
+        public FeatureType Improvement
         {
             get { return improvement; }
             set
@@ -91,13 +91,17 @@ namespace DaleranGames.TBSFramework
                 improvement.OnDeactivation(this);
 
                 if (value == null)
-                    improvement = ImprovementType.Null;
+                    improvement = FeatureType.Null;
                 else
                     improvement = value;
 
                 improvement.OnActivation(this);
             }
         }
+
+        [SerializeField]
+        protected CommandType currentActivity = CommandType.None;
+        public CommandType CurrentActivity { get { return currentActivity; } } 
 
         [SerializeField]
         protected Group owner;
@@ -120,36 +124,24 @@ namespace DaleranGames.TBSFramework
 
         void OnTurnEnd(BaseTurn turn)
         {
-            if (Land != null)
-                Land.OnTurnEnd(turn, this);
-
             if (Improvement != null)
                 Improvement.OnTurnEnd(turn, this);
         }
 
         void OnTurnSetUp(BaseTurn turn)
         {
-            if (Land != null)
-                Land.OnTurnSetUp(turn, this);
-
             if (Improvement != null)
                 Improvement.OnTurnSetUp(turn, this);
         }
 
         void OnTurnStart(BaseTurn turn)
         {
-            if (Land != null)
-                Land.OnTurnStart(turn, this);
-
             if (Improvement != null)
                 Improvement.OnTurnStart(turn, this);
         }
 
         void OnGameStart(GameState state)
         {
-            if (Land != null)
-                Land.OnGameStart(this);
-
             if (Improvement != null)
                 Improvement.OnGameStart(this);
         }
