@@ -18,15 +18,10 @@ namespace DaleranGames.TBSFramework
             counters = new List<Counter>();
         }
 
-        public int this[CostType type]
+        public int this[StatType type]
         {
             get
             {
-                if (type.Good != GoodType.Turns)
-                {
-                    return 0;
-                }
-
                 for (int i = 0; i < counters.Count; i++)
                 {
                     if (counters[i].Type == type)
@@ -36,14 +31,8 @@ namespace DaleranGames.TBSFramework
             }
         }
 
-        public void AddCounter(CostType type)
+        public void AddCounter(StatType type)
         {
-            if (type.Good != GoodType.Turns)
-            {
-                Debug.LogWarning("Wrong counter type added to turn counter: "+type);
-                return;
-            }
-
             if (!ContainsCounterOfType(type))
             {
                 counters.Add(new Counter(type, 0));
@@ -55,7 +44,7 @@ namespace DaleranGames.TBSFramework
 
         }
 
-        public void RemoveCounter (CostType type)
+        public void RemoveCounter (StatType type)
         {
             int index = 0;
             bool found = false;
@@ -72,13 +61,8 @@ namespace DaleranGames.TBSFramework
                 counters.Remove(counters[index]);
         }
 
-        public bool ContainsCounterOfType (CostType type)
+        public bool ContainsCounterOfType (StatType type)
         {
-            if (type.Good != GoodType.Turns)
-            {
-                return false;
-            }
-
             for (int i=0;i<counters.Count;i++)
             {
                 if (counters[i].Type == type)
@@ -125,11 +109,11 @@ namespace DaleranGames.TBSFramework
 
         protected class Counter
         {
-            public CostType Type;
+            public StatType Type;
             public int Value;
             public bool Paused = false;
 
-            public Counter(CostType type, int value)
+            public Counter(StatType type, int value)
             {
                 Type = type;
                 Value = value;

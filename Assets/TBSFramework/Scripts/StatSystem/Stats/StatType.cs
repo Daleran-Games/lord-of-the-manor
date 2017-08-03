@@ -50,17 +50,58 @@ namespace DaleranGames.TBSFramework
         public static readonly StatType StoneYield = new StatType(42, "Stone Yield", "SY");
         public static readonly StatType GoldYield = new StatType(43, "Gold Yield", "GY");
 
-        // Work Land Stats
-        public static readonly StatType FishFoodRate = new StatType(50, "Fishing Rate");
-        public static readonly StatType HuntFoodRate = new StatType(51, "Hunting Rate");
-        public static readonly StatType FarmFoodRate = new StatType(52, "Farm Rate");
-        public static readonly StatType ChopWoodRate = new StatType(53, "Chop Wood Rate");
-        public static readonly StatType QuarryStoneRate = new StatType(54, "Quarry Rate");
+        //Feature Stats
+        public static readonly StatType MaxCondition = new StatType(50, "Max Condition", "MX CD");
 
-        public static readonly StatType HerdMaxPopRate = new StatType(60, "Max Herd");
+        //Building Stats
+        public static readonly StatType BuildLaborCost = new StatType(200, "Build Labor");
+        public static readonly StatType BuildWoodCost = new StatType(201, "Build Wood Cost");
+        public static readonly StatType BuildStoneCost = new StatType(202, "Build Stone Cost");
+        public static readonly StatType BuildGoldCost = new StatType(203, "Build Gold");
+        public static readonly StatType BuildTime = new StatType(204, "Build Time");
 
-        //Improvement Stats
-        public static readonly StatType MaxCondition = new StatType(70, "Max Condition", "MX CD");     
+        //Razing Stats
+        // Raze Module Stats
+        public static readonly StatType RazeLaborCost = new StatType(210, "Raze Labor");
+        public static readonly StatType RazeTime = new StatType(211, "Raze Time");
+
+        //Farming Stats
+        public static readonly StatType FarmLaborCost = new StatType(220, "Farm Labor");
+        public static readonly StatType FarmGrowTime = new StatType(221, "Farm Grow Time");
+        public static readonly StatType FarmFallowTime = new StatType(222, "Farm Fallow Time");
+        public static readonly StatType FarmingRate = new StatType(223, "Farming Rate");
+
+
+        //Logging Stats
+        public static readonly StatType LoggingLaborCost = new StatType(230, "Logging Labor");
+        public static readonly StatType LoggingTime = new StatType(231, "Logging Time");
+        public static readonly StatType LoggingRate = new StatType(232, "Logging Rate");
+
+        //Quarrying Stats
+        public static readonly StatType QuarryLaborCost = new StatType(240, "Quarry Labor");
+        public static readonly StatType QuarryTime = new StatType(241, "Quarry Time");
+        public static readonly StatType QuarryingRate = new StatType(242, "Quarrying Rate");
+
+        //Need to implement
+
+        /*
+        //Fishing Stats
+        public static readonly StatType LoggingLaborCost = new StatType(230, "Logging Labor");
+        public static readonly StatType LoggingTime = new StatType(231, "Logging Time");
+        public static readonly StatType LoggingRate = new StatType(232, "Logging Rate");
+
+        //Hunting Stats
+        public static readonly StatType LoggingLaborCost = new StatType(230, "Logging Labor");
+        public static readonly StatType LoggingTime = new StatType(231, "Logging Time");
+        public static readonly StatType LoggingRate = new StatType(232, "Logging Rate");
+
+        //Herding Stats
+        public static readonly StatType HerdRate = new StatType(60, "Herd Per Food Yield");
+        public static readonly StatType MaxHerd = new StatType(60, "Max Herd Population");
+        */
+
+
+        
 
 
         #endregion

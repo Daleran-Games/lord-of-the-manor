@@ -23,18 +23,12 @@ namespace DaleranGames.TBSFramework
         protected string type = "TileType";
         public virtual string Type { get { return type; } }
 
-        public abstract TileGraphic GetIconGraphic(HexTile tile);
+        public abstract TileGraphic GetMainGraphic(HexTile tile);
 
         public static readonly NullFeature Null = new NullFeature();
 
-        #region Tile Stats
-        public abstract List<Modifier> TileModifiers { get; }
-        public abstract List<Modifier> OwnerModifiers { get; }
-        // public abstract List<Modifier> OccupierModifiers { get; }
+        #region FeatureStates
 
-        public abstract CostCollection Costs { get; }
-        public abstract bool CanSwitchToActivity(CommandType type, HexTile tile);
-        public abstract void SwitchToActivity(CommandType type, HexTile tile);
 
         #endregion
 
@@ -46,13 +40,7 @@ namespace DaleranGames.TBSFramework
 
         public virtual void OnActivation(HexTile tile)
         {
-            if (GameManager.Instance.CurrentState is PlayState)
-                OnGameStart(tile);
-        }
 
-        public virtual void OnGameStart(HexTile tile)
-        {
- 
         }
 
         public virtual void OnTurnEnd(BaseTurn turn, HexTile tile)

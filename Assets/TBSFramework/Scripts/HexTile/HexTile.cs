@@ -24,7 +24,7 @@ namespace DaleranGames.TBSFramework
             TerrainGraphics = new TileGraphics(atlas, Position);
 
             owner = Group.Null;
-            improvement = FeatureType.Null;
+            feature = FeatureType.Null;
             TileCounters = new TurnCounters(TurnManager.Instance);
 
             Stats = new TileStats(owner);
@@ -34,7 +34,6 @@ namespace DaleranGames.TBSFramework
             TurnManager.Instance.TurnEnded += OnTurnEnd;
             TurnManager.Instance.TurnSetUp += OnTurnSetUp;
             TurnManager.Instance.TurnStart += OnTurnStart;
-            GameManager.Instance.Play.StateEnabled += OnGameStart;
         }
 
         #region Tile Properties
@@ -82,26 +81,44 @@ namespace DaleranGames.TBSFramework
         }
 
         [SerializeField]
-        protected FeatureType improvement;
-        public FeatureType Improvement
+        protected FeatureType feature;
+        public FeatureType Feature
         {
-            get { return improvement; }
+            get { return feature; }
             set
             {
-                improvement.OnDeactivation(this);
+                feature.OnDeactivation(this);
 
                 if (value == null)
-                    improvement = FeatureType.Null;
+                    feature = FeatureType.Null;
                 else
-                    improvement = value;
+                    feature = value;
 
-                improvement.OnActivation(this);
+                feature.OnActivation(this);
             }
         }
 
         [SerializeField]
-        protected CommandType currentActivity = CommandType.None;
-        public CommandType CurrentActivity { get { return currentActivity; } } 
+        protected bool paused = false;
+        public bool Paused { get { return paused; } } 
+
+        void OnTurnEnd(BaseTurn turn)
+        {
+            if (Feature != null && !Paused)
+                Feature.OnTurnEnd(turn, this);
+        }
+
+        void OnTurnSetUp(BaseTurn turn)
+        {
+            if (Feature != null && !Paused)
+                Feature.OnTurnSetUp(turn, this);
+        }
+
+        void OnTurnStart(BaseTurn turn)
+        {
+            if (Feature != null && !Paused)
+                Feature.OnTurnStart(turn, this);
+        }
 
         [SerializeField]
         protected Group owner;
@@ -120,30 +137,6 @@ namespace DaleranGames.TBSFramework
                 Stats.Owner = owner;
                 OwnerModifiers.Owner = owner;
             }
-        }
-
-        void OnTurnEnd(BaseTurn turn)
-        {
-            if (Improvement != null)
-                Improvement.OnTurnEnd(turn, this);
-        }
-
-        void OnTurnSetUp(BaseTurn turn)
-        {
-            if (Improvement != null)
-                Improvement.OnTurnSetUp(turn, this);
-        }
-
-        void OnTurnStart(BaseTurn turn)
-        {
-            if (Improvement != null)
-                Improvement.OnTurnStart(turn, this);
-        }
-
-        void OnGameStart(GameState state)
-        {
-            if (Improvement != null)
-                Improvement.OnGameStart(this);
         }
 
         #endregion
@@ -188,13 +181,12 @@ namespace DaleranGames.TBSFramework
                     TurnManager.Instance.TurnEnded -= OnTurnEnd;
                     TurnManager.Instance.TurnSetUp -= OnTurnSetUp;
                     TurnManager.Instance.TurnStart += OnTurnStart;
-                    GameManager.Instance.Play.StateEnabled -= OnGameStart;
                     UIGraphics = null;
                     TerrainGraphics = null;
                     Land.OnDeactivation(this);
-                    Improvement.OnDeactivation(this);
+                    Feature.OnDeactivation(this);
                     Land = null;
-                    Improvement = null;
+                    Feature = null;
 
                 }
 

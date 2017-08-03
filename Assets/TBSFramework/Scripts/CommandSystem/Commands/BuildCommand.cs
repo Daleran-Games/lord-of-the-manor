@@ -22,7 +22,6 @@ namespace DaleranGames.TBSFramework
             type = entry["type"];
             commandIconName = entry["workIcon"];
             improvementName = entry["improvementName"];
-            activity = CommandType.Pause;
         }
 
         protected override void Awake()
@@ -52,7 +51,7 @@ namespace DaleranGames.TBSFramework
 
         public override void PreformCommand(HexTile tile)
         {
-            tile.Improvement = improvement;
+            tile.Feature = improvement;
         }
 
     }

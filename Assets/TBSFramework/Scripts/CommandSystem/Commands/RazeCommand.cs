@@ -38,7 +38,7 @@ namespace DaleranGames.TBSFramework
 
         public override bool IsValidCommand(HexTile tile)
         {
-            if (tile.Improvement != null)
+            if (tile.Feature != null)
                 return true;
             else
                 return false;
@@ -46,7 +46,7 @@ namespace DaleranGames.TBSFramework
 
         public override void PreformCommand(HexTile tile)
         {
-            tile.Improvement = null;
+            tile.Feature = null;
         }
 
 

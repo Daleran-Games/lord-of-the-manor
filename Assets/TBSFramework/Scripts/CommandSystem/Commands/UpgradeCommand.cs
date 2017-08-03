@@ -14,7 +14,6 @@ namespace DaleranGames.TBSFramework
             name = entry["name"];
             type = entry["type"];
             commandIconName = entry["workIcon"];
-            activity = CommandType.Upgrade;
         }
 
         protected override void Awake()
@@ -29,18 +28,18 @@ namespace DaleranGames.TBSFramework
 
         public override bool IsValidCommand(HexTile tile)
         {
-            if (tile.Improvement != null)
-                return tile.Improvement.Upgradeable;
+            if (tile.Feature != null)
+                return tile.Feature.Upgradeable;
 
             return false;
         }
 
         public override TileGraphic GetTerrainIcon(HexTile tile)
         {
-            if (tile.Improvement !=null)
+            if (tile.Feature !=null)
             {
-                if (tile.Improvement.Upgradeable)
-                    return tile.Improvement.UpgradedImprovement.IconGraphic;
+                if (tile.Feature.Upgradeable)
+                    return tile.Feature.UpgradedImprovement.IconGraphic;
             }
             return TileGraphic.Clear;
         }

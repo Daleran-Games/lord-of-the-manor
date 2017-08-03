@@ -18,10 +18,6 @@ namespace DaleranGames.TBSFramework
         public string Type { get { return type; } }
 
         [SerializeField]
-        protected CommandType activity = CommandType.None;
-        public virtual CommandType Activity { get { return activity; } } 
-
-        [SerializeField]
         protected string commandIconName;
 
         [SerializeField]
