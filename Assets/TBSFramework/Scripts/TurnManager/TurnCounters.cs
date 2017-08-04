@@ -44,6 +44,17 @@ namespace DaleranGames.TBSFramework
 
         }
 
+        public void PauseCounter(bool paused, StatType type)
+        {
+            for (int i = 0; i < counters.Count; i++)
+            {
+                if (counters[i].Type == type)
+                {
+                    counters[i].Paused = paused;
+                }
+            }
+        }
+
         public void RemoveCounter (StatType type)
         {
             int index = 0;

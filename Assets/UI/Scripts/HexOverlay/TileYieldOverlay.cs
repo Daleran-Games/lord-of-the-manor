@@ -53,14 +53,9 @@ namespace DaleranGames.UI
             base.Awake();
         }
 
-        protected override void OnDestroy()
+        protected override void Start()
         {
-            base.OnDestroy();
-        }
-
-        protected override void OnDatabaseInitialized()
-        {
-            base.OnDatabaseInitialized();
+            base.Start();
             food1g = GameDatabase.Instance.TileGraphics[food1];
             food2g = GameDatabase.Instance.TileGraphics[food2];
             food3g = GameDatabase.Instance.TileGraphics[food3];
@@ -73,6 +68,11 @@ namespace DaleranGames.UI
             gold1g = GameDatabase.Instance.TileGraphics[gold1];
             gold2g = GameDatabase.Instance.TileGraphics[gold2];
             gold3g = GameDatabase.Instance.TileGraphics[gold3];
+        }
+
+        protected override void OnDestroy()
+        {
+            base.OnDestroy();
         }
 
         protected override void SetLabel(HexTile tile)

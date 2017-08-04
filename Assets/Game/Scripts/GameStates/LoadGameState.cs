@@ -1,16 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DaleranGames.TBSFramework;
+using DaleranGames.IO;
 
-public class LoadGameState : MonoBehaviour {
+namespace DaleranGames
+{
+    public class LoadGameState : GameState
+    {
+        private void OnEnable()
+        {
+            if (StateEnabled != null)
+                StateEnabled(this);
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+            GameDatabase.Instance.InitializeDatabases();
+
+            if (StateDisabled != null)
+                StateDisabled(this);
+        }
+
+        private void OnDisable()
+        {
+
+        }
+
+    }
 }

@@ -1,30 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DaleranGames.IO;
 
 namespace DaleranGames.TBSFramework
 {
     [System.Serializable]
-    public class NullCommand : Command
+    public class CheatStealLandCommand : Command
     {
-
-        public NullCommand()
+        public CheatStealLandCommand()
         {
 
         }
 
         public override void PreformCommand(HexTile tile, Group owner)
         {
-
+            tile.Owner = owner;
         }
         public override bool IsValidCommand(HexTile tile, Group owner)
         {
-            return false;
+            return true;
         }
 
         public override TileGraphic GetUIIcon(HexTile tile)
         {
-            return TileGraphic.Clear;
+            return GameDatabase.Instance.TileGraphics["UIAtlas_Icon_PlayerTerritory"];
+            
         }
 
         public override TileGraphic GetTerrainIcon(HexTile tile)

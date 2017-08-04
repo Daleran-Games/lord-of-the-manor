@@ -7,17 +7,17 @@ using System.IO;
 
 namespace DaleranGames.IO
 {
-    [CreateAssetMenu(fileName = "ImprovementsDatabaseLoader", menuName = "DaleranGames/Database/Improvements", order = 0)]
-    public class ImprovementsDatabaseLoader : DatabaseLoader<FeatureType>
+    [CreateAssetMenu(fileName = "FeaturesDatabaseLoader", menuName = "DaleranGames/Database/Features", order = 0)]
+    public class FeaturesDatabaseLoader : DatabaseLoader<FeatureType>
     {
         [SerializeField]
-        protected List<FeatureType> improvements = new List<FeatureType>();
+        protected List<FeatureType> features = new List<FeatureType>();
 
         public override Database<FeatureType> GenerateDatabase()
         {
             Database<FeatureType> newDB = new Database<FeatureType>();
             CSVData data = new CSVData("Improvements", CSVUtility.ParseCSVToArray(File.ReadAllText(CSVFilePath)),new List<string> { "DwellingType", "FarmType" });
-            improvements.Clear();
+            features.Clear();
 
             for (int i = 0; i < data.Entries; i++)
             {

@@ -27,11 +27,6 @@ namespace DaleranGames.TBSFramework
 
         public static readonly NullFeature Null = new NullFeature();
 
-        #region FeatureStates
-
-
-        #endregion
-
         #region Tile Callbacks
         public virtual void OnDatabaseInitialization()
         {

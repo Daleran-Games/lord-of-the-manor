@@ -16,6 +16,15 @@ namespace DaleranGames.TBSFramework
         protected FeatureType builtFeature;
 
         [SerializeField]
+        string buildGraphicName;
+
+        [SerializeField]
+        TileGraphic buildGraphic;
+
+        [SerializeField]
+        Cost BuildTimeCost;
+
+        [SerializeField]
         CostCollection InitialBuildCosts;
 
         [SerializeField]
@@ -25,7 +34,7 @@ namespace DaleranGames.TBSFramework
         List<string> validLandNames;
 
         [SerializeField]
-        List<LandType> ValidLands;
+        List<LandType> validLands;
 
         public BuildFeature(CSVEntry entry)
         {
@@ -35,7 +44,18 @@ namespace DaleranGames.TBSFramework
 
             builtFeatureName = entry["name"];
             validLandNames = entry.ParseList("validLand");
+            buildGraphicName = entry["buildGraphic"];
 
+            BuildTimeCost = new Cost(GoodType.Turns, StatType.BuildTime, Int32.Parse(entry["buildTime"]), name);
+
+            InitialBuildCosts = new CostCollection(
+                new Cost(GoodType.Labor,StatType.BuildLaborCost,Int32.Parse(entry["buildLaborCost"]),name),
+                new Cost(GoodType.Wood, StatType.BuildWoodCost, Int32.Parse(entry["buildWoodCost"]), name),
+                new Cost(GoodType.Stone, StatType.BuildStoneCost, Int32.Parse(entry["buildStoneCost"]), name),
+                new Cost(GoodType.Gold, StatType.BuildGoldCost, Int32.Parse(entry["buildGoldCost"]), name)
+                );
+            PerTurnBuildCosts = new CostCollection(new Cost(GoodType.Labor, StatType.BuildLaborCost, Int32.Parse(entry["buildLaborCost"]), name));
+            
         }
 
         public override TileGraphic GetMainGraphic(HexTile tile)
@@ -49,12 +69,22 @@ namespace DaleranGames.TBSFramework
         #region Tile Callbacks
         public override void OnDatabaseInitialization()
         {
+            builtFeature = GameDatabase.Instance.Features[builtFeatureName];
+            buildGraphic = GameDatabase.Instance.TileGraphics[buildGraphicName];
 
+            validLands = new List<LandType>();
+            for (int i=0; i<validLands.Count;i++)
+            {
+                validLands.Add(GameDatabase.Instance.Lands[validLandNames[i]]);
+            }
         }
 
         public override void OnActivation(HexTile tile)
         {
+            tile.TerrainGraphics.Add(TileLayers.Building, builtFeature.GetMainGraphic(tile));
             tile.Owner.Goods.TryProcessNow(InitialBuildCosts.GetAllCostsAsTransaction(tile.Owner.Stats));
+            tile.Owner.Goods.AddFuture(PerTurnBuildCosts.GetAllCostsAsTransaction(tile.Owner.Stats));
+            tile.Counters.AddCounter(BuildTimeCost.ModifiedBy);
         }
 
         public override void OnTurnEnd(BaseTurn turn, HexTile tile)
@@ -64,7 +94,10 @@ namespace DaleranGames.TBSFramework
 
         public override void OnTurnSetUp(BaseTurn turn, HexTile tile)
         {
-
+            if (tile.Counters[BuildTimeCost.ModifiedBy] < BuildTimeCost.ModifiedValue(tile.Owner.Stats))
+                tile.Owner.Goods.AddFuture(PerTurnBuildCosts.GetAllCostsAsTransaction(tile.Owner.Stats));
+            else if (tile.Counters[BuildTimeCost.ModifiedBy] == BuildTimeCost.ModifiedValue(tile.Owner.Stats))
+                OnDeactivation(tile);
         }
 
         public override void OnTurnStart(BaseTurn turn, HexTile tile)
@@ -74,22 +107,28 @@ namespace DaleranGames.TBSFramework
 
         public override void OnDeactivation(HexTile tile)
         {
-
+            tile.Owner.Goods.RemoveFuture(PerTurnBuildCosts.GetAllCostsAsTransaction(tile.Owner.Stats));
+            tile.TerrainGraphics.Remove(TileLayers.Building);
         }
 
         public bool CanPlace(HexTile tile)
         {
-            throw new NotImplementedException();
+            if (tile.Owner.Goods.CanProcessNow(InitialBuildCosts.GetAllCostsAsTransaction(tile.Owner.Stats)) && validLands.Contains(tile.Land))
+                return true;
+            else
+                return false;
+
         }
 
         public void Place(HexTile tile)
         {
-            throw new NotImplementedException();
+            tile.Feature = builtFeature;
         }
 
         public void Cancel(HexTile tile)
         {
-            OnDeactivation(tile);
+            tile.Owner.Goods.TryProcessNow(InitialBuildCosts.GetAllReverseCostsAsTransaction(tile.Owner.Stats));
+            tile.Feature = FeatureType.Null;
         }
 
         public bool CanCancel(HexTile tile)
@@ -99,12 +138,21 @@ namespace DaleranGames.TBSFramework
 
         public void Pause(HexTile tile)
         {
-            throw new NotImplementedException();
+            tile.Counters.PauseCounter(true, BuildTimeCost.ModifiedBy);
+            tile.Owner.Goods.RemoveFuture(PerTurnBuildCosts.GetAllCostsAsTransaction(tile.Owner.Stats));
+            tile.Paused = true;
         }
 
         public void Resume(HexTile tile)
         {
-            throw new NotImplementedException();
+            tile.Counters.PauseCounter(false, BuildTimeCost.ModifiedBy);
+            tile.Owner.Goods.AddFuture(PerTurnBuildCosts.GetAllCostsAsTransaction(tile.Owner.Stats));
+            tile.Paused = false;
+        }
+
+        public bool CanResume(HexTile tile)
+        {
+            return true;
         }
 
 

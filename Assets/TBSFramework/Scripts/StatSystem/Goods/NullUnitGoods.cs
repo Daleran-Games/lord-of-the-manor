@@ -55,7 +55,7 @@ namespace DaleranGames.TBSFramework
             return false;
         }
 
-        public override bool CanProcessnNow(IList<Transaction> transactions)
+        public override bool CanProcessNow(IList<Transaction> transactions)
         {
             return false;
         }

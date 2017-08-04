@@ -8,6 +8,7 @@ namespace DaleranGames.TBSFramework
     public interface IWorkable
     {
         void Pause(HexTile tile);
+        bool CanResume(HexTile tile);
         void Resume(HexTile tile);
     }
 }

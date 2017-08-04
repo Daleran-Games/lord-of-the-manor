@@ -26,20 +26,18 @@ namespace DaleranGames.UI
             grid = FindObjectOfType<HexGrid>();
             overlay = FindObjectOfType<HexGridOverlay>();
             overlayToggle = gameObject.GetRequiredComponent<Toggle>();
-            GameDatabase.Instance.DatabasesInitialized += OnDatabaseInitialized;
             overlayToggle.onValueChanged.AddListener(DisplayOveraly);
 
+        }
+
+        protected virtual void Start()
+        {
+            icon = GameDatabase.Instance.TileGraphics[iconName];
         }
 
         protected virtual void OnDestroy()
         {
             overlayToggle.onValueChanged.RemoveListener(DisplayOveraly);
-            GameDatabase.Instance.DatabasesInitialized -= OnDatabaseInitialized;
-        }
-
-        protected virtual void OnDatabaseInitialized()
-        {
-            icon = GameDatabase.Instance.TileGraphics[iconName];
         }
 
         protected abstract void SetLabel(HexTile tile);

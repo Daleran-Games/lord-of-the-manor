@@ -172,10 +172,21 @@ namespace DaleranGames.IO
             grid.MapGenerationComplete += OnMapGenerationComplete;
             mainCamera = GameObject.FindGameObjectWithTag("MainCamera").GetRequiredComponent<Camera>();
             atlas = grid.Generator.Atlas;
-            GameDatabase.Instance.DatabasesInitialized += OnDatabaseComplete;
 
             BuildQuads();
 
+        }
+
+        private void Start()
+        {
+            ring = GameDatabase.Instance.TileGraphics[ringName];
+            dark = GameDatabase.Instance.TileGraphics[darkName];
+            white = GameDatabase.Instance.TileGraphics[whiteName];
+            positive = GameDatabase.Instance.TileGraphics[positiveName];
+            negative = GameDatabase.Instance.TileGraphics[negativeName];
+            cross = GameDatabase.Instance.TileGraphics[crossName];
+
+            CursorMode = HexCursorMode.Ring;
         }
 
         private void Update()
@@ -215,19 +226,6 @@ namespace DaleranGames.IO
             InputManager.Instance.LMBClick.MouseButtonUp -= OnLMBClick;
             InputManager.Instance.RMBClick.MouseButtonUp -= OnRMBClick;
             InputManager.Instance.MMBClick.MouseButtonUp -= OnMMBClick;
-            GameDatabase.Instance.DatabasesInitialized -= OnDatabaseComplete;
-        }
-
-        void OnDatabaseComplete()
-        {
-            ring = GameDatabase.Instance.TileGraphics[ringName];
-            dark = GameDatabase.Instance.TileGraphics[darkName];
-            white = GameDatabase.Instance.TileGraphics[whiteName];
-            positive = GameDatabase.Instance.TileGraphics[positiveName];
-            negative = GameDatabase.Instance.TileGraphics[negativeName];
-            cross = GameDatabase.Instance.TileGraphics[crossName];
-
-            CursorMode = HexCursorMode.Ring;
         }
 
         void OnLMBClick ()

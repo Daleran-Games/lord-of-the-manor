@@ -22,6 +22,13 @@ namespace DaleranGames
         }
 
         //Initialize Game State
+        [SerializeField]
+        private LoadGameState loadGame;
+        public LoadGameState LoadGame
+        {
+            get { return loadGame; }
+            private set { loadGame = value; }
+        }
 
         //Menu State
 
@@ -51,11 +58,13 @@ namespace DaleranGames
         {
             DontDestroyOnLoad(this);
 
+            LoadGame = gameObject.GetRequiredComponent<LoadGameState>();
             LoadScene = gameObject.GetRequiredComponent<LoadSceneState>();
             Play = gameObject.GetRequiredComponent<PlayState>();
 
-            CurrentState = LoadScene;
+            CurrentState = LoadGame;
 
+            LoadGame.enabled = false;
             LoadScene.enabled = false;
             Play.enabled = false;
         }
@@ -68,6 +77,7 @@ namespace DaleranGames
         private void Start()
         {
             LoadScene.StateDisabled += OnLoadSceneComplete;
+            LoadGame.StateDisabled += OnLoadGameComplete;
 
             CurrentState.enabled = true;
         }
@@ -76,6 +86,7 @@ namespace DaleranGames
         {
             base.OnDestroy();
             LoadScene.StateDisabled -= OnLoadSceneComplete;
+            LoadGame.StateDisabled -= OnLoadGameComplete;
         }
 
         void ChangeState(GameState newState)
@@ -88,6 +99,11 @@ namespace DaleranGames
                 StateChanged(newState);
 
             Debug.Log("Transitioning to: " + newState.GetType().ToString());
+        }
+
+        void OnLoadGameComplete(GameState newState)
+        {
+            ChangeState(LoadScene);
         }
 
         void OnLoadSceneComplete(GameState newState)

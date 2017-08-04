@@ -1,26 +1,25 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using System;
-
 using DaleranGames.IO;
 
 namespace DaleranGames.TBSFramework
 {
     [System.Serializable]
-    public class UpgradeCommand : Command
+    public class CancelCommand : Command
     {
-        public UpgradeCommand()
+        public CancelCommand()
         {
 
         }
 
         public override bool IsValidCommand(HexTile tile, Group owner)
         {
-            IUpgradeable upgradeable = tile.Feature as IUpgradeable;
-            if (upgradeable != null)
+            ICancelable cancelable = tile.Feature as ICancelable;
+            if (cancelable != null)
             {
-                if (upgradeable.CanUpgrade(tile) && owner == tile.Owner)
+                if (cancelable.CanCancel(tile) && owner == tile.Owner)
                     return true;
             }
             return false;
@@ -28,13 +27,14 @@ namespace DaleranGames.TBSFramework
 
         public override void PreformCommand(HexTile tile, Group owner)
         {
-            IUpgradeable upgradeable = tile.Feature as IUpgradeable;
-            upgradeable.Upgrade(tile);
+            ICancelable cancelable = tile.Feature as ICancelable;
+            cancelable.Cancel(tile);
         }
 
         public override TileGraphic GetUIIcon(HexTile tile)
         {
-            return GameDatabase.Instance.TileGraphics["UIAtlas_Icon_Upgrade"];
+            return GameDatabase.Instance.TileGraphics["UIAtlas_Icon_Raze"];
         }
+
     }
 }

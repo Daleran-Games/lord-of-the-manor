@@ -55,6 +55,5 @@ MonoBehaviour:
   spriteLoader: {fileID: 11400000, guid: 9f554e18f7671e44480acedafbc99131, type: 2}
   graphicsLoader: {fileID: 11400000, guid: 3d60c9b75d4fe2e49864e1e5bab3d13a, type: 2}
   landsLoader: {fileID: 11400000, guid: 08c597ea60009594eb9d1bd08f356f3f, type: 2}
-  improvementsLoader: {fileID: 11400000, guid: 5ceef3c1983e8be46ad8006aaee9cfdd, type: 2}
+  featuresLoader: {fileID: 11400000, guid: 5ceef3c1983e8be46ad8006aaee9cfdd, type: 2}
   groupsLoader: {fileID: 11400000, guid: 9da7017ec200f97439910e0a5939e609, type: 2}
-  activityLoader: {fileID: 11400000, guid: 75c2ec1e3cfeff64598c1879eafc44aa, type: 2}

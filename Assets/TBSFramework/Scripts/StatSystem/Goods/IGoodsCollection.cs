@@ -12,7 +12,7 @@ namespace DaleranGames.TBSFramework
         List<Transaction> PendingTransactions { get; }
 
         bool CanProcessNow(Transaction transaction);
-        bool CanProcessnNow(IList<Transaction> transactions);
+        bool CanProcessNow(IList<Transaction> transactions);
 
         bool TryProcessNow(Transaction transaction);
         bool TryProcessNow(IList<Transaction> transactions);

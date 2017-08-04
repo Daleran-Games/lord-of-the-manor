@@ -45,5 +45,15 @@ namespace DaleranGames.TBSFramework
             return query;
         }
 
+        public List<Transaction> GetAllReverseCostsAsTransaction(IStatCollection<StatType> stats)
+        {
+            List<Transaction> query = new List<Transaction>();
+            for (int i = 0; i < costs.Count; i++)
+            {
+                query.Add(costs[i].ReverseModifiedTransaction(stats));
+            }
+            return query;
+        }
+
     }
 }

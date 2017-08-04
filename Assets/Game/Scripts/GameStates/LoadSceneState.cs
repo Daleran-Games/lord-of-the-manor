@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using DaleranGames.TBSFramework;
 using DaleranGames.IO;
 
@@ -23,7 +24,8 @@ namespace DaleranGames
             System.Diagnostics.Stopwatch timer = new System.Diagnostics.Stopwatch();
             timer.Start();
 
-            GameDatabase.Instance.InitializeDatabases();
+            SceneManager.LoadScene("Play");
+
             grid.GenerateMap();
 
             GroupManager.Instance.SetUpGroupManager();

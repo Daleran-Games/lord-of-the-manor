@@ -32,7 +32,7 @@ namespace DaleranGames.TBSFramework
                 return false;
         }
 
-        public virtual bool CanProcessnNow(IList<Transaction> transactions)
+        public virtual bool CanProcessNow(IList<Transaction> transactions)
         {
             for (int i = 0; i < transactions.Count; i++)
             {
@@ -60,7 +60,7 @@ namespace DaleranGames.TBSFramework
 
         public virtual bool TryProcessNow(IList<Transaction> transactions)
         {
-            if (CanProcessnNow(transactions))
+            if (CanProcessNow(transactions))
             {
                 for (int i=0;i<transactions.Count;i++)
                 {

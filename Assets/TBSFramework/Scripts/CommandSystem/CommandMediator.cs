@@ -15,31 +15,57 @@ namespace DaleranGames.TBSFramework
 
         HexCursor mouse;
 
-        Command currentCommand = null;
-        Group activeOwner = null;
+        Command currentCommand = Command.Null;
+        Group activeOwner = Group.Null;
 
         private void Awake()
         {
             mouse = GameObject.FindObjectOfType<HexCursor>();
         }
 
-        public void EnterCommandMode (string commandName)
+        public void EnterPlaceCommandMode (string featureName)
         {
-            currentCommand = GameDatabase.Instance.Commands[commandName];
+            currentCommand = new PlaceCommand(featureName);
             activeOwner = GroupManager.Instance.PlayerGroup;
+            EnterCommandMode(currentCommand);
+        }
 
-            EnterActivityMode(currentCommand);
+        public void EnterWorkCommandMode ()
+        {
+            currentCommand = new WorkCommand();
+            activeOwner = GroupManager.Instance.PlayerGroup;
+            EnterCommandMode(currentCommand);
+        }
+
+        public void EnterCancelCommandMode ()
+        {
+            currentCommand = new CancelCommand();
+            activeOwner = GroupManager.Instance.PlayerGroup;
+            EnterCommandMode(currentCommand);
+        }
+
+        public void EnterUpgradeCommandMode()
+        {
+            currentCommand = new UpgradeCommand();
+            activeOwner = GroupManager.Instance.PlayerGroup;
+            EnterCommandMode(currentCommand);
+        }
+
+        public void EnterCheatStealLandMode()
+        {
+            currentCommand = new CheatStealLandCommand();
+            activeOwner = GroupManager.Instance.PlayerGroup;
+            EnterCommandMode(currentCommand);
         }
 
         public void EnterCommandMode (Command command, Group owner)
         {
             currentCommand = command;
             activeOwner = owner;
-
-            EnterActivityMode(currentCommand);
+            EnterCommandMode(currentCommand);
         }
 
-        protected void EnterActivityMode(Command activity)
+        protected void EnterCommandMode(Command activity)
         {
             if (activity != null)
             {
@@ -52,10 +78,10 @@ namespace DaleranGames.TBSFramework
             }
         }
 
-        public void DoActivityOnTile(Command activity, HexTile tile, Group owner)
+        public void PreformCommandOnTile(Command activity, HexTile tile, Group owner)
         {
-            if (activeMode == true && activity.IsValidCommand(tile) && tile.Owner == owner)
-                activity.PreformCommand(tile);
+            if (activeMode == true && activity.IsValidCommand(tile,owner))
+                activity.PreformCommand(tile,owner);
         }
 
         void OnTileEnter(HexTile tile)
@@ -69,7 +95,7 @@ namespace DaleranGames.TBSFramework
             if (Time.time - lastClickTime > timeSkip)
             {
                 lastClickTime = Time.time;
-                DoActivityOnTile(currentCommand, tile, activeOwner);
+                PreformCommandOnTile(currentCommand, tile, activeOwner);
                 UpdateCursor(tile);
                 //Debug.Log("Recieved Left Click");
             }
@@ -79,7 +105,8 @@ namespace DaleranGames.TBSFramework
         void OnRightClick()
         {
             activeMode = false;
-            currentCommand = null;
+            currentCommand = Command.Null;
+            activeOwner = Group.Null;
             mouse.CursorUIIcon = TileGraphic.Clear;
             mouse.CursorTerrainIcon = TileGraphic.Clear;
             mouse.CursorMode = HexCursor.HexCursorMode.Ring;
@@ -96,7 +123,7 @@ namespace DaleranGames.TBSFramework
                 mouse.CursorTerrainIcon = currentCommand.GetTerrainIcon(tile);
                 
 
-                if (currentCommand.IsValidCommand(tile) && tile.Owner == activeOwner)
+                if (currentCommand.IsValidCommand(tile, activeOwner))
                     mouse.CursorMode = HexCursor.HexCursorMode.Positive;
                 else
                     mouse.CursorMode = HexCursor.HexCursorMode.Negative;

@@ -25,7 +25,7 @@ namespace DaleranGames.TBSFramework
 
             owner = Group.Null;
             feature = FeatureType.Null;
-            TileCounters = new TurnCounters(TurnManager.Instance);
+            Counters = new TurnCounters(TurnManager.Instance);
 
             Stats = new TileStats(owner);
             OwnerModifiers = new TileGroupModifiers(owner);
@@ -100,7 +100,7 @@ namespace DaleranGames.TBSFramework
 
         [SerializeField]
         protected bool paused = false;
-        public bool Paused { get { return paused; } } 
+        public bool Paused { get { return paused; } set { paused = value; } } 
 
         void OnTurnEnd(BaseTurn turn)
         {
@@ -155,7 +155,7 @@ namespace DaleranGames.TBSFramework
 
         public TileStats Stats;
         public TileGroupModifiers OwnerModifiers;
-        public TurnCounters TileCounters;
+        public TurnCounters Counters;
 
         #endregion
 
