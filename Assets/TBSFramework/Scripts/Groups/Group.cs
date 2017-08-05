@@ -13,36 +13,15 @@ namespace DaleranGames.TBSFramework
 
         public Group (string name, GroupType type)
         {
-            Initialize(name, type);
-        }
-
-        protected virtual void Initialize (string name, GroupType type)
-        {
             this.name = name;
 
             Goods = new GroupGoods(this);
             Stats = new GroupStats(this);
             TileModifiers = new StatCollection();
 
-            TurnManager.Instance.TurnEnded += OnTurnEnd;
-            TurnManager.Instance.TurnSetUp += OnTurnSetUp;
-            TurnManager.Instance.TurnStart += OnTurnStart;
-            GameManager.Instance.Play.StateEnabled += OnGameStart;
-
             GroupType = type;
-
-            Goods[GoodType.Food] = Stats[StatType.MaxFood];
-            Goods[GoodType.Wood] = Stats[StatType.MaxWood];
-            Goods[GoodType.Stone] = Stats[StatType.MaxStone];
-            Goods[GoodType.Gold] = Stats[StatType.StartingGold];
-            Goods[GoodType.Population] = Stats[StatType.MaxPopulation];
-            Goods[GoodType.Labor] = Stats[StatType.GroupLaborRate];
-
-            //Debug.Log("Player goods set");
-
-            if (GameManager.Instance.CurrentState is PlayState)
-                OnGameStart(GameManager.Instance.CurrentState);
         }
+
 
         #region Interface implementations
         public bool Equals(Group other)
@@ -86,11 +65,9 @@ namespace DaleranGames.TBSFramework
 
         #region Group Stats
 
-        public IStatCollection<StatType> Stats;
-        public IStatCollection<StatType> TileModifiers;
+        public GroupStats Stats;
+        public StatCollection TileModifiers;
         public GroupGoods Goods;
-
-
         #endregion
 
 
@@ -115,29 +92,36 @@ namespace DaleranGames.TBSFramework
             }
         }
 
-        protected virtual void OnGameStart(GameState state)
+       public virtual void OnGameStart(GameState state)
         {
-            if (GroupType != null)
-                GroupType.OnGameStart(this);
+            GroupType.OnGameStart(this);
 
-
+            Goods[GoodType.Food] = Stats[StatType.MaxFood];
+            Goods[GoodType.Wood] = Stats[StatType.MaxWood];
+            Goods[GoodType.Stone] = Stats[StatType.MaxStone];
+            Goods[GoodType.Gold] = Stats[StatType.StartingGold];
+            Goods[GoodType.Population] = Stats[StatType.MaxPopulation];
+            Goods[GoodType.Labor] = Stats[StatType.GroupLaborRate];
+            Goods.AddFuture(new Transaction(GoodType.Labor, Stats[StatType.GroupLaborRate], "Work"));
         }
 
-        protected virtual void OnTurnEnd(BaseTurn turn)
+        public virtual void OnTurnEnd(BaseTurn turn)
         {
+            //Debug.Log("This got called");
             GroupType.OnTurnEnd(turn, this);
+            Goods.ProcessAllPendingTransactions();
+            Goods.ResolveEdgeCases();
         }
 
-        protected virtual void OnTurnSetUp(BaseTurn turn)
+        public virtual void OnTurnSetUp(BaseTurn turn)
         {
-
             GroupType.OnTurnSetUp(turn, this);
+            SetUpNextTurn();
         }
 
-        protected virtual void OnTurnStart(BaseTurn turn)
+        public virtual void OnTurnStart(BaseTurn turn)
         {
             GroupType.OnTurnStart(turn, this);
-            SetUpNextTurn();
         }
 
         protected virtual void SetUpNextTurn()
@@ -160,10 +144,6 @@ namespace DaleranGames.TBSFramework
             {
                 if (disposing)
                 {
-                    TurnManager.Instance.TurnEnded -= OnTurnEnd;
-                    TurnManager.Instance.TurnSetUp -= OnTurnSetUp;
-                    TurnManager.Instance.TurnStart += OnTurnStart;
-                    GameManager.Instance.Play.StateEnabled -= OnGameStart;
                     GroupType.OnDeactivation(this);
                 }
 

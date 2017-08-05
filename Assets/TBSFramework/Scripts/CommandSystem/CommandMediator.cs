@@ -15,7 +15,10 @@ namespace DaleranGames.TBSFramework
 
         HexCursor mouse;
 
+        [SerializeField]
         Command currentCommand = Command.Null;
+
+        [SerializeField]
         Group activeOwner = Group.Null;
 
         private void Awake()

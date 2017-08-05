@@ -17,7 +17,6 @@ namespace DaleranGames.IO
         static char[] trimChars = { '\"' };
         const string listSplit = @";";
 
-
         public static string[][] ParseCSVToArray(string csv)
         {
             string[] rows = Regex.Split(csv, rowSplit);
@@ -33,7 +32,6 @@ namespace DaleranGames.IO
                 if (row.Length == 0 || row[0] == "")
                     continue;
                 output[i] = row;
-
             }
             return output;
         }

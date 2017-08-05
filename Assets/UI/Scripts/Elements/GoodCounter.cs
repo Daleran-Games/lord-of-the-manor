@@ -21,9 +21,6 @@ namespace DaleranGames.UI
             label = GetComponentInChildren<TextMeshProUGUI>();
             GameManager.Instance.Play.StateEnabled += OnGameStart;
 
-            posColor = ColorUtility.ToHtmlStringRGB(UIManager.Instance.Style.StatIncreaseColor);
-            negColor = ColorUtility.ToHtmlStringRGB(UIManager.Instance.Style.StatDecreaseColor);
-
             //Debug.Log(posColor);
 
             if (GameManager.Instance.CurrentState == GameManager.Instance.Play)
@@ -32,6 +29,9 @@ namespace DaleranGames.UI
         
         protected virtual void OnGameStart (GameState state)
         {
+            posColor = ColorUtility.ToHtmlStringRGB(UIManager.Instance.Style.StatIncreaseColor);
+            negColor = ColorUtility.ToHtmlStringRGB(UIManager.Instance.Style.StatDecreaseColor);
+
             player = GroupManager.Instance.PlayerGroup;
             player.Goods.GoodChanged += OnGoodChanged;
             player.Goods.FutureTransactionsChanged += OnPendingTransactionsChanged;

@@ -25,7 +25,8 @@ namespace DaleranGames.TBSFramework
 
         public virtual bool CanProcessNow(Transaction transaction)
         {
-            if (ContainsGoodOfType(transaction.Type) && this[transaction.Type] >= transaction.Value)
+
+            if (ContainsGoodOfType(transaction.Type) && (this[transaction.Type] + transaction.Value) >= 0)
             {
                 return true;
             } else
@@ -126,7 +127,7 @@ namespace DaleranGames.TBSFramework
         {
             for (int i=0;i < pendingTransactions.Count; i++)
             {
-                this[pendingTransactions[i]] += pendingTransactions[i];
+                this[pendingTransactions[i].Type] += pendingTransactions[i].Value;
             }
             pendingTransactions.Clear();
             OnAllPendingTransactionsChanged(this);

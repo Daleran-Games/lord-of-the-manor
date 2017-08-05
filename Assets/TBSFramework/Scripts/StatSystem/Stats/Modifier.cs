@@ -109,7 +109,7 @@ namespace DaleranGames.TBSFramework
                 return (Description.GetHashCode()) ^ Type.GetHashCode();
             }
         }
-
+        /*
         public static implicit operator int(Modifier m)
         {
             return m.Value;
@@ -124,6 +124,6 @@ namespace DaleranGames.TBSFramework
         {
             return new Stat(m.type, m.value);
         }
-
+        */
     }
 }

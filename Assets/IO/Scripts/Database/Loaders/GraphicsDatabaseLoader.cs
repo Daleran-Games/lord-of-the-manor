@@ -64,10 +64,10 @@ namespace DaleranGames.IO
             System.Array.Copy(ui, objs, ui.Length);
             System.Array.Copy(spr, 0, objs, ui.Length, spr.Length);
 
-            StreamWriter writer = new StreamWriter(RefFilePath, false);
-            writer.WriteLine("Graphics");
-            writer.WriteLine("id  Name");
-            writer.WriteLine(" ");
+            //StreamWriter writer = new StreamWriter(RefFilePath, false);
+           // writer.WriteLine("Graphics");
+            //writer.WriteLine("id  Name");
+            //writer.WriteLine(" ");
             
             int id = 0;
 
@@ -77,12 +77,12 @@ namespace DaleranGames.IO
                 {
                     Sprite sprite = objs[i] as Sprite;
                     newGraphics.Add(new TileGraphic(sprite.name, id, GameDatabase.Instance.Atlas.GetCoordFromRect(sprite.rect)));
-                    writer.WriteLine(id + "  " +sprite.name);
+                    //writer.WriteLine(id + "  " +sprite.name);
                     id++;
 
                 }
             }
-            writer.Close();
+            //writer.Close();
 
             graphics = newGraphics.ToArray();
         }

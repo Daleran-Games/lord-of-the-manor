@@ -45,6 +45,11 @@ namespace DaleranGames.TBSFramework
             groupModifiers.Add(new Modifier(StatType.MaxStone, Int32.Parse(entry["maxStone"]), name));
             groupModifiers.Add(new Modifier(StatType.StartingGold, Int32.Parse(entry["startingGold"]), name));
             groupModifiers.Add(new Modifier(StatType.MaxPopulation, Int32.Parse(entry["maxPopulation"]), name));
+
+            groupModifiers.Add(new Modifier(StatType.GroupBirthRate,GameplayMetrics.DefaultBirthRate,name));
+            groupModifiers.Add(new Modifier(StatType.GroupDeathRate, GameplayMetrics.DefaultDeathRate, name));
+            groupModifiers.Add(new Modifier(StatType.GroupStarvationRate, GameplayMetrics.DefaultStarvationRate, name));
+            groupModifiers.Add(new Modifier(StatType.GroupFreezeRate, GameplayMetrics.DefaultFreezingRate, name));
         }
 
         [Header("Group Info")]

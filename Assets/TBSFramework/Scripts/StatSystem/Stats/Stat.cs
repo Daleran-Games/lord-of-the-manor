@@ -182,6 +182,7 @@ namespace DaleranGames.TBSFramework
             return new Stat(s.Type, s.Value - 1);
         }
 
+        /*
         public static implicit operator int(Stat s)
         {
             return s.Value;
@@ -191,6 +192,7 @@ namespace DaleranGames.TBSFramework
         {
             return s.Type;
         }
+        */
     }
 }
 

@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DaleranGames.IO;
 
 namespace DaleranGames.TBSFramework
 {
@@ -81,6 +82,8 @@ namespace DaleranGames.TBSFramework
         }
 
         [SerializeField]
+        string debugFeatureName;
+
         protected FeatureType feature;
         public FeatureType Feature
         {
@@ -90,9 +93,15 @@ namespace DaleranGames.TBSFramework
                 feature.OnDeactivation(this);
 
                 if (value == null)
+                {
                     feature = FeatureType.Null;
+                    debugFeatureName = "Null";
+                }
                 else
+                {
                     feature = value;
+                    debugFeatureName = feature.Name;
+                }
 
                 feature.OnActivation(this);
             }
@@ -129,10 +138,16 @@ namespace DaleranGames.TBSFramework
             {
                 Group oldOwner = owner;
 
-                if (value == null)
+                if (value == null || value == Group.Null)
+                {
                     owner = Group.Null;
+                    UIGraphics.Remove(TileLayers.Border);
+                }  
                 else
+                {
                     owner = value;
+                    UIGraphics.Add(TileLayers.Border, GameDatabase.Instance.TileGraphics["UIAtlas_Border_Test"]);
+                }
 
                 Stats.Owner = owner;
                 OwnerModifiers.Owner = owner;

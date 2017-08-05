@@ -27,7 +27,14 @@ namespace DaleranGames.TBSFramework
 
         public CostCollection(params Cost[] costs)
         {
-            this.costs = new List<Cost>(costs);
+            this.costs = new List<Cost>();
+
+            for (int i = 0; i < costs.Length; i++)
+            {
+                if (costs[i].Value != 0)
+                    this.costs.Add(costs[i]);
+            }
+
         }
 
         public List<Cost> GetAllCosts()

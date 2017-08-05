@@ -16,7 +16,7 @@ namespace DaleranGames.UI
 
         void Awake()
         {
-
+            DontDestroyOnLoad(gameObject);
         }
 
     }

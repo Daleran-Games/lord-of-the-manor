@@ -21,8 +21,6 @@ namespace DaleranGames.UI
 
         protected void OnMaxPopChanged(IStatCollection<StatType> mods,StatType type)
         {
-
-
             if (type == StatType.MaxPopulation)
                 UpdateLabel();
         }

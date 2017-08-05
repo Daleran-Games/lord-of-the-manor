@@ -33,7 +33,7 @@ namespace DaleranGames.TBSFramework
 
         public override TileGraphic GetUIIcon(HexTile tile)
         {
-            return GameDatabase.Instance.TileGraphics["UIAtlas_Icon_Raze"];
+            return GameDatabase.Instance.TileGraphics["UIAtlas_Icon_Cancel"];
         }
 
     }

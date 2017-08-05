@@ -15,7 +15,7 @@ namespace DaleranGames.TBSFramework
         public event Action<BaseTurn> TurnStart;
 
         [SerializeField]
-        protected int turn = 0;
+        protected int turn = 1;
         public int Turn { get { return turn; } protected set { turn = value; } }
 
         [SerializeField]
@@ -62,7 +62,13 @@ namespace DaleranGames.TBSFramework
 
         private void Start()
         {
-            ChangeTurn(Spring);
+            currentTurn.enabled = true;
+
+            if (TurnSetUp != null)
+                TurnSetUp(currentTurn);
+
+            if (TurnStart != null)
+                TurnStart(currentTurn);
         }
 
         protected override void OnDestroy()
@@ -89,8 +95,6 @@ namespace DaleranGames.TBSFramework
 
             if (TurnStart != null)
                 TurnStart(newState);
-
-
             //Debug.Log("Transitioning to: " + newState.GetType().ToString());
         }
 

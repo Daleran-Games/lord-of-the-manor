@@ -10,28 +10,30 @@ namespace DaleranGames.IO
     [CreateAssetMenu(fileName = "FeaturesDatabaseLoader", menuName = "DaleranGames/Database/Features", order = 0)]
     public class FeaturesDatabaseLoader : DatabaseLoader<FeatureType>
     {
-        [SerializeField]
-        protected List<FeatureType> features = new List<FeatureType>();
+        public List<BuildFeature> buildFeatures = new List<BuildFeature>();
+        public List<DwellingFeature> dwellingFeatures = new List<DwellingFeature>();
+        public List<FarmFeature> farmFeatures = new List<FarmFeature>();
+        public List<LoggingFeature> loggingFeatures = new List<LoggingFeature>();
+
 
         public override Database<FeatureType> GenerateDatabase()
         {
             Database<FeatureType> newDB = new Database<FeatureType>();
-            CSVData data = new CSVData("Improvements", CSVUtility.ParseCSVToArray(File.ReadAllText(CSVFilePath)),new List<string> { "DwellingType", "FarmType" });
-            features.Clear();
+            CSVData data = new CSVData("Features", CSVUtility.ParseCSVToArray(File.ReadAllText(CSVFilePath)),new List<string> { "DwellingType", "FarmType", "LoggingType", "QuarryType" });
+            buildFeatures.Clear();
+            dwellingFeatures.Clear();
 
             for (int i = 0; i < data.Entries; i++)
             {
                 switch (data[i]["type"])
                 {
                     case "DwellingType":
-                        //ImprovementType newDwelling = new ImprovementType(data[i]);
-                        //newDB.Add(newDwelling);
-                        //improvements.Add(newDwelling);
-                        break;
-                    case "FarmType":
-                        //ImprovementType newFarm = new ImprovementType(data[i]);
-                        //newDB.Add(newFarm);
-                        //improvements.Add(newFarm);
+                        BuildFeature newBuildDwelling = new BuildFeature(data[i]);
+                        newDB.Add(newBuildDwelling);
+                        buildFeatures.Add(newBuildDwelling);
+                        DwellingFeature newDwelling = new DwellingFeature(data[i]);
+                        newDB.Add(newDwelling);
+                        dwellingFeatures.Add(newDwelling);
                         break;
                     default:
                         Debug.LogWarning("Database Error: " + data[i]["type"] + " not a valid type.");

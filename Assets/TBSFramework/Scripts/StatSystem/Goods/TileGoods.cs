@@ -26,7 +26,7 @@ namespace DaleranGames.TBSFramework
                 switch (type)
                 {
                     case GoodType.Condition:
-                        return Condition;
+                        return Condition.Value;
                     default:
                         return 0;
                 }

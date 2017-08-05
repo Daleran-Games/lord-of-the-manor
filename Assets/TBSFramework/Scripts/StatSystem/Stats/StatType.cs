@@ -12,6 +12,7 @@ namespace DaleranGames.TBSFramework
 
         public static readonly StatType NullStat = new StatType(-1, "Null", "NL");
 
+
         //Unit Stats
         public static readonly StatType Strength = new StatType(0, "Strength","STR");
         public static readonly StatType StrengthPerPop = new StatType(1, "Strength Per Population","STR/P");

@@ -32,10 +32,10 @@ namespace DaleranGames.TBSFramework
         {
             if (run < maxRuns)
             {
-                if (Random.Bool(GameplayMetrics.BaseBirthRateStat))
+                if (Random.Bool(GameplayMetrics.BaseBirthRateStat.Value))
                     pop++;
 
-                if (Random.Bool(GameplayMetrics.BaseDeathRateStats))
+                if (Random.Bool(GameplayMetrics.BaseDeathRateStats.Value))
                     pop--;
 
                 run++;

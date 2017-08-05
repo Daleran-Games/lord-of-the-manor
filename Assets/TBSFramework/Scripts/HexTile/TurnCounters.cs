@@ -8,6 +8,8 @@ namespace DaleranGames.TBSFramework
     public class TurnCounters : System.IDisposable
     {
         protected TurnManager turnManager;
+
+        [SerializeField]
         protected List<Counter> counters;
 
 
@@ -117,7 +119,7 @@ namespace DaleranGames.TBSFramework
             Dispose(true);
         }
         #endregion
-
+        [System.Serializable]
         protected class Counter
         {
             public StatType Type;

@@ -1,13 +1,12 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 namespace DaleranGames.TBSFramework
 {
-    public class NullStatCollection : StatCollection
+    public class NullGroupStats : GroupStats
     {
-        public NullStatCollection() : base()
+        public NullGroupStats(Group gp) : base(gp)
         {
 
         }
@@ -50,7 +49,7 @@ namespace DaleranGames.TBSFramework
 
         public override void Remove(Modifier mod)
         {
-            
+
         }
 
         public override void Remove(IList<Modifier> mods)
@@ -75,8 +74,8 @@ namespace DaleranGames.TBSFramework
 
         protected override void RaiseStatModified(IStatCollection<StatType> stats, StatType statType)
         {
-            
+
         }
+
     }
 }
-

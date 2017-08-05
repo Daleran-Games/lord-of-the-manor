@@ -23,33 +23,24 @@ namespace DaleranGames.TBSFramework
             TurnManager.Instance.TurnStart += OnTurnStart;
         }
 
-        public void Start()
-        {
-
-
-            if (GameManager.Instance.CurrentState == GameManager.Instance.Play)
-                OnGameStart(GameManager.Instance.CurrentState);
-        }
-
         public virtual void OnGameStart(GameState state)
         {
-
+            playerGroup.OnGameStart(state);
         }
 
         public virtual void OnTurnEnd(BaseTurn turn)
         {
-            playerGroup.Goods.ProcessAllPendingTransactions();
-            playerGroup.Goods.ResolveEdgeCases();
+            playerGroup.OnTurnEnd(turn);
         }
 
         public virtual void OnTurnSetUp(BaseTurn turn)
         {
-
+            playerGroup.OnTurnSetUp(turn);
         }
 
         public virtual void OnTurnStart(BaseTurn turn)
         {
-
+            playerGroup.OnTurnStart(turn);
         }
 
         protected override void OnDestroy()

@@ -184,16 +184,16 @@ namespace DaleranGames.TBSFramework
         {
             return new Good(s.Type, s.Value + 1);
         }
-
-        public static implicit operator int(Good good)
+        /*
+        public static explicit operator int(Good good)
         {
             return good.Value;
         }
 
-        public static implicit operator GoodType(Good good)
+        public static explicit operator GoodType(Good good)
         {
             return good.Type;
         }
-
+        */
     }
 }

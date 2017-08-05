@@ -19,7 +19,10 @@ namespace DaleranGames.TBSFramework
         }
         public override bool IsValidCommand(HexTile tile, Group owner)
         {
-            return true;
+            if (tile.Owner != owner)
+                return true;
+            else
+                return false;
         }
 
         public override TileGraphic GetUIIcon(HexTile tile)

@@ -9,16 +9,11 @@ namespace DaleranGames.TBSFramework
     {
         public NullGroup(string name, GroupType type) : base(name, type)
         {
-
-        }
-
-        protected override void Initialize(string name, GroupType type)
-        {
             this.name = name;
             GroupType = GroupType.NullGroupType;
 
             Goods = new NullUnitGoods(this);
-            Stats = new NullStatCollection();
+            Stats = new NullGroupStats(this);
             TileModifiers = new NullStatCollection();
         }
 

@@ -52,7 +52,7 @@ namespace DaleranGames.TBSFramework
 
         public static Cost ParseCSV(List<string> csvLine, int startingIndex)
         {
-            return new Cost((GoodType)Enum.Parse(typeof(GoodType), csvLine[startingIndex]), Enumeration.FromDisplayName<StatType>(csvLine[startingIndex]), Int32.Parse(csvLine[startingIndex + 1]), csvLine[startingIndex + 2]);
+            return new Cost((GoodType)Enum.Parse(typeof(GoodType), csvLine[startingIndex]), Enumeration.FromDisplayName<StatType>(csvLine[startingIndex+1]), Int32.Parse(csvLine[startingIndex + 2]), csvLine[startingIndex + 3]);
         }
 
         public static List<Cost> ParseCSVList(List<string> csvList)
@@ -60,7 +60,8 @@ namespace DaleranGames.TBSFramework
             List<Cost> items = new List<Cost>();
             for (int i = 0; i < csvList.Count; i += 4)
             {
-                items.Add(ParseCSV(csvList, i));
+                if(Int32.Parse(csvList[i + 2]) != 0)
+                 items.Add(ParseCSV(csvList, i));
             }
             return items;
         }

@@ -47,7 +47,7 @@ namespace DaleranGames.IO
 
         List<CSVEntry> ParseMultipleHeaders(string[][] csvArray, List<string> multipleHeaders)
         {
-            string[] header = csvArray[0];
+            string[] header = csvArray[1];
             bool headerNext = false;
             int currentID = 0;
             List<CSVEntry> newEntries = new List<CSVEntry>();

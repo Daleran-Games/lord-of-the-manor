@@ -19,12 +19,19 @@ namespace DaleranGames
         {
             if (StateEnabled != null)
                 StateEnabled(this);
+            SceneManager.LoadScene("Play",LoadSceneMode.Single);
+            SceneManager.sceneLoaded += OnSceneLoadComplete;
 
+        }
+
+        void OnSceneLoadComplete(Scene scene, LoadSceneMode mode)
+        {
+            SceneManager.sceneLoaded -= OnSceneLoadComplete;
 
             System.Diagnostics.Stopwatch timer = new System.Diagnostics.Stopwatch();
             timer.Start();
 
-            SceneManager.LoadScene("Play");
+            grid = FindObjectOfType<HexGrid>();
 
             grid.GenerateMap();
 
@@ -33,12 +40,6 @@ namespace DaleranGames
             timer.Stop();
             Debug.Log("TOTAL LOAD: Time: " + timer.ElapsedMilliseconds + " ms");
 
-            OnMapBuildComplete();
-
-        }
-
-        void OnMapBuildComplete ()
-        {
             if (StateDisabled != null)
                 StateDisabled(this);
         }

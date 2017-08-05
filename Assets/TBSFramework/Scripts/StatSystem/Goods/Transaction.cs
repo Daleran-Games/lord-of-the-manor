@@ -110,19 +110,21 @@ namespace DaleranGames.TBSFramework
             }
         }
 
-        public static implicit operator int(Transaction t)
+        /*
+        public static explicit operator int(Transaction t)
         {
             return t.Value;
         }
 
-        public static implicit operator GoodType(Transaction t)
+        public static explicit operator GoodType(Transaction t)
         {
             return t.Type;
         }
 
-        public static implicit operator Good(Transaction t)
+        public static explicit operator Good(Transaction t)
         {
             return new Good(t.Type, t.Value);
         }
+        */
     }
 }

@@ -8,7 +8,6 @@ namespace DaleranGames.TBSFramework
     [System.Serializable]
     public class GroupGoods : GoodsCollection
     {
-        [System.NonSerialized]
         protected Group owner;
 
         [SerializeField]
@@ -54,17 +53,17 @@ namespace DaleranGames.TBSFramework
                 switch(type)
                 {
                     case GoodType.Food:
-                        return Food;
+                        return Food.Value;
                     case GoodType.Wood:
-                        return Wood;
+                        return Wood.Value;
                     case GoodType.Stone:
-                        return Stone;
+                        return Stone.Value;
                     case GoodType.Gold:
-                        return Gold;
+                        return Gold.Value;
                     case GoodType.Population:
-                        return Population;
+                        return Population.Value;
                     case GoodType.Labor:
-                        return Labor;
+                        return Labor.Value;
                     default:
                         return 0;
                 }
@@ -75,27 +74,27 @@ namespace DaleranGames.TBSFramework
                 {
                     case GoodType.Food:
                         food = value;
-                        OnGoodChanged(this, Food);
+                        OnGoodChanged(this, Food.Type);
                         break;
                     case GoodType.Wood:
                         wood = value;
-                        OnGoodChanged(this, Wood);
+                        OnGoodChanged(this, Wood.Type);
                         break;
                     case GoodType.Stone:
                         stone = value;
-                        OnGoodChanged(this, Stone);
+                        OnGoodChanged(this, Stone.Type);
                         break;
                     case GoodType.Gold:
                         gold = value;
-                        OnGoodChanged(this, Gold);
+                        OnGoodChanged(this, Gold.Type);
                         break;
                     case GoodType.Population:
                         population = value;
-                        OnGoodChanged(this, Population);
+                        OnGoodChanged(this, Population.Type);
                         break;
                     case GoodType.Labor:
                         labor = value;
-                        OnGoodChanged(this, Labor);
+                        OnGoodChanged(this, Labor.Type);
                         break;
                 }
             }
@@ -153,8 +152,8 @@ namespace DaleranGames.TBSFramework
                     {
                         this[GoodType.Population]--;
                     }
-                    this[GoodType.Food]++;
                 }
+                this[GoodType.Food] = 0;
             } else if (food > owner.Stats[StatType.MaxFood])
             {
                 AddFuture(new Transaction(GoodType.Food, owner.Stats[StatType.MaxFood] - food, "Spoilage from not enoguh storage"));
@@ -171,9 +170,8 @@ namespace DaleranGames.TBSFramework
                     {
                         if (Random.Bool(owner.Stats[StatType.GroupFreezeRate]))
                             this[GoodType.Population]--;
-
-                        this[GoodType.Wood]++;
                     }
+                    this[GoodType.Wood] = 0;
                 } else
                     this[GoodType.Wood] = 0;
             } else if (wood > owner.Stats[StatType.MaxWood])
@@ -229,8 +227,8 @@ namespace DaleranGames.TBSFramework
 
         void CheckWork ()
         {
-            if (labor < 0)
-                this[GoodType.Labor] = 0;
+            this[GoodType.Labor] = owner.Stats[StatType.GroupLaborRate];
+            AddFuture(new Transaction(GoodType.Labor, owner.Stats[StatType.GroupLaborRate], "Work"));
         }
     }
 }

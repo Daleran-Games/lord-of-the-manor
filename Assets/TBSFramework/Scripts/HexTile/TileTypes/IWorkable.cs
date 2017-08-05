@@ -10,5 +10,6 @@ namespace DaleranGames.TBSFramework
         void Pause(HexTile tile);
         bool CanResume(HexTile tile);
         void Resume(HexTile tile);
+        TileGraphic GetWorkIcon(HexTile tile);
     }
 }

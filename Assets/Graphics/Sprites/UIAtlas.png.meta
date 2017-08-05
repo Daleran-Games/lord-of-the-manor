@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 2cd13286f6099a242a1fd4a55f0bfb71
-timeCreated: 1501698173
+timeCreated: 1501863057
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -88,9 +88,11 @@ TextureImporter:
     21300162: UIAtlas_Icon_ClearWork
     21300164: UIAtlas_Icon_WorkImpr
     21300166: UIAtlas_Icon_Hourglass
-    21300168: UIAtlas_Icon_Raze
+    21300168: UIAtlas_Icon_Cancel2
     21300170: UIAtlas_SmallIcon_Upgrade
-    21300172: UIAtlas_SmallIcon_Raze
+    21300172: UIAtlas_SmallIcon_Cancel
+    21300174: UIAtlas_SmallIcon_Sleep
+    21300176: UIAtlas_Border_Test
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -1198,7 +1200,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Icon_Raze
+      name: UIAtlas_Icon_Cancel2
       rect:
         serializedVersion: 2
         x: 200
@@ -1206,7 +1208,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1220,19 +1222,47 @@ TextureImporter:
         width: 18
         height: 17
       alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UIAtlas_SmallIcon_Cancel
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: UIAtlas_SmallIcon_Sleep
+      rect:
+        serializedVersion: 2
+        x: 687
+        y: 111
+        width: 18
+        height: 18
+      alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_SmallIcon_Raze
+      name: UIAtlas_Border_Test
       rect:
         serializedVersion: 2
-        x: 639
-        y: 112
-        width: 18
-        height: 17
+        x: 440
+        y: 8
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

@@ -1,16 +1,14 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DaleranGames.IO;
+using System;
 
-public class RazeFeature : MonoBehaviour {
+namespace DaleranGames.TBSFramework
+{
+    [System.Serializable]
+    public class RazeFeature 
+    {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    }
 }

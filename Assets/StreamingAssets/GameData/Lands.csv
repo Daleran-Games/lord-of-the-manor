@@ -1,5 +1,5 @@
 name,type,iconName,defenseBonus,movementCost,foodYield,woodYield,stoneYield,goldYield,groupModifiers,tileModifiers
-Deep Water,LandType,Spring_L_DeepWater,-2,-100,0,0,0,0,,
+Deep Water,LandType,Spring_L_DeepWater,-2,-90,0,0,0,0,,
 Shallow Water,LandType,Spring_L_ShallowWater,-1,-10,1,0,0,0,,
 Fen,LandType,Spring_L_Fen,-1,-5,0,0,0,0,,
 Plains,LandType,Spring_L_Plains,0,-1,2,0,0,0,,
