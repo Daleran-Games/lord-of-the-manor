@@ -91,19 +91,37 @@ namespace DaleranGames.TBSFramework
             set
             {
                 feature.OnDeactivation(this);
+                SwitchFeatureWithNoDeactiviation(value);
+            }
+        }
 
-                if (value == null)
-                {
-                    feature = FeatureType.Null;
-                    debugFeatureName = "Null";
-                }
-                else
-                {
-                    feature = value;
-                    debugFeatureName = feature.Name;
-                }
+        public void SwitchFeatureWithNoDeactiviation (FeatureType newFeature)
+        {
+            if (newFeature == null)
+            {
+                feature = FeatureType.Null;
+                debugFeatureName = "Null";
+            }
+            else
+            {
+                feature = newFeature;
+                debugFeatureName = feature.Name;
+            }
+            feature.OnActivation(this);
+        }
 
-                feature.OnActivation(this);
+        public void SwitchFeatureWithNoActiviation(FeatureType newFeature)
+        {
+            feature.OnDeactivation(this);
+            if (newFeature == null)
+            {
+                feature = FeatureType.Null;
+                debugFeatureName = "Null";
+            }
+            else
+            {
+                feature = newFeature;
+                debugFeatureName = feature.Name;
             }
         }
 

@@ -7,5 +7,6 @@ namespace DaleranGames.TBSFramework
     {
         bool CanUpgrade(HexTile tile);
         void Upgrade(HexTile tile);
+        TileGraphic GetUpgradeGraphic(HexTile tile);
     }
 }

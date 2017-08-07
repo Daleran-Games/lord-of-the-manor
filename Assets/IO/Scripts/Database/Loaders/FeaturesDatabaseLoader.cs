@@ -28,9 +28,6 @@ namespace DaleranGames.IO
                 switch (data[i]["type"])
                 {
                     case "DwellingType":
-                        BuildFeature newBuildDwelling = new BuildFeature(data[i]);
-                        newDB.Add(newBuildDwelling);
-                        buildFeatures.Add(newBuildDwelling);
                         DwellingFeature newDwelling = new DwellingFeature(data[i]);
                         newDB.Add(newDwelling);
                         dwellingFeatures.Add(newDwelling);

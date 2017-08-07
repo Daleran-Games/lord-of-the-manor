@@ -34,7 +34,12 @@ namespace DaleranGames.TBSFramework
 
         public override TileGraphic GetUIIcon(HexTile tile)
         {
-            return GameDatabase.Instance.TileGraphics["UIAtlas_Icon_Upgrade"];
+
+            IUpgradeable upgradeable = tile.Feature as IUpgradeable;
+            if (upgradeable != null)
+                return upgradeable.GetUpgradeGraphic(tile);
+            else
+                return TileGraphic.Clear;
         }
     }
 }

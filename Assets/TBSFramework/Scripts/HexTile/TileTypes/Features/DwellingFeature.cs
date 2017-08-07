@@ -7,10 +7,8 @@ using DaleranGames.IO;
 namespace DaleranGames.TBSFramework
 {
     [System.Serializable]
-    public class DwellingFeature : FeatureType, IUpgradeable, ICancelable
+    public class DwellingFeature : FeatureType, IUpgradeable, ICancelable, IPlaceable, IBuildable
     {
-        [SerializeField]
-        Cost razeLaborCost;
         [SerializeField]
         List<Modifier> tileModifiers;
         public virtual List<Modifier> TileModifiers { get { return new List<Modifier>(tileModifiers); } }
@@ -21,14 +19,35 @@ namespace DaleranGames.TBSFramework
         string dwellingGraphicName;
         TileGraphic dwellingGraphic;
 
+        [SerializeField]
+        BuildFeature buildFeature;
+        public virtual BuildFeature Build { get { return buildFeature; } }
+
+        [SerializeField]
+        RazeFeature razeFeature;
+        [SerializeField]
+        UpgradeFeature upgradeFeature;
+
+        [SerializeField]
+        bool upgradeable = false;
+
 
         public DwellingFeature(CSVEntry entry)
         {
-            this.id = entry.ID+1000;
+            this.id = entry.ID;
             name = entry["name"];
             type = entry["type"];
 
             dwellingGraphicName = entry["iconName"];
+
+            buildFeature = new BuildFeature(entry);
+            razeFeature = new RazeFeature(entry);
+
+            if (Boolean.Parse(entry["upgradeable"]))
+            {
+                upgradeable = true;
+                upgradeFeature = new UpgradeFeature(entry);
+            }
 
             tileModifiers = Modifier.ParseCSVList(entry.ParseList("tileModifiers"));
             ownerModifiers = Modifier.ParseCSVList(entry.ParseList("groupModifiers"));
@@ -42,8 +61,6 @@ namespace DaleranGames.TBSFramework
             ownerModifiers.Add(new Modifier(StatType.MaxFood, Int32.Parse(entry["maxFood"]), name));
             ownerModifiers.Add(new Modifier(StatType.MaxWood, Int32.Parse(entry["maxWood"]), name));
             ownerModifiers.Add(new Modifier(StatType.MaxStone, Int32.Parse(entry["maxStone"]), name));
-
-            razeLaborCost = new Cost(GoodType.Labor, StatType.RazeLaborCost, Int32.Parse(entry["razeLaborCost"]), name);
         }
 
         public override TileGraphic GetMainGraphic(HexTile tile)
@@ -54,6 +71,11 @@ namespace DaleranGames.TBSFramework
         public override void OnDatabaseInitialization()
         {
             dwellingGraphic = GameDatabase.Instance.TileGraphics[dwellingGraphicName];
+            buildFeature.OnDatabaseInitialization();
+            razeFeature.OnDatabaseInitialization();
+
+            if (upgradeable)
+                upgradeFeature.OnDatabaseInitialization();
         }
 
         public override void OnActivation(HexTile tile)
@@ -89,26 +111,44 @@ namespace DaleranGames.TBSFramework
 
         public bool CanCancel(HexTile tile)
         {
-            if (tile.Owner.Goods.CanProcessNow(razeLaborCost.ModifiedTransaction(tile.Owner.Stats)))
-                return true;
-            else
-                return false;
+            return razeFeature.CanPlace(tile);
         }
 
         public void Cancel(HexTile tile)
         {
-            tile.Owner.Goods.TryProcessNow(razeLaborCost.ModifiedTransaction(tile.Owner.Stats));
-            tile.Feature = FeatureType.Null;
+            razeFeature.Place(tile);
         }
 
         public bool CanUpgrade(HexTile tile)
         {
-            return false;
+            if (upgradeable)
+                return upgradeFeature.CanPlace(tile);
+            else
+                return false;
         }
 
         public void Upgrade(HexTile tile)
         {
-            throw new NotImplementedException();
+            if (upgradeable)
+                upgradeFeature.Place(tile);
+        }
+
+        public TileGraphic GetUpgradeGraphic(HexTile tile)
+        {
+            if (upgradeable)
+                return upgradeFeature.GetMainGraphic(tile);
+            else
+                return TileGraphic.Clear;
+        }
+
+        public bool CanPlace(HexTile tile)
+        {
+            return buildFeature.CanPlace(tile);
+        }
+
+        public void Place(HexTile tile)
+        {
+            buildFeature.Place(tile);
         }
     }
 }
