@@ -10,7 +10,7 @@ namespace DaleranGames.UI
 {
     public class HexOverlay : MonoBehaviour
     {
-
+#pragma warning disable 0649
         [Header("Settings")]
         [SerializeField]
         GameObject tileLabel;
@@ -30,6 +30,7 @@ namespace DaleranGames.UI
 
         [SerializeField]
         Toggle coordinateToggle;
+#pragma warning restore 0649
 
         public enum Overlays
         {

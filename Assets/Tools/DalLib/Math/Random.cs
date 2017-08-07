@@ -47,6 +47,18 @@ namespace DaleranGames
             }
         }
 
+        public static bool Bool (int thousandthsChance)
+        {
+            lock (syncLock)
+            {
+                if (random.Next(0,1000) <= thousandthsChance)
+                {
+                    return true;
+                }
+                return false;
+            }
+        }
+
         public static int Int()
         {
             lock (syncLock)

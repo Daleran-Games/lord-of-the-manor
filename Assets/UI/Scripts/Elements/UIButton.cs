@@ -9,28 +9,31 @@ namespace DaleranGames.UI
 {
     public class UIButton : MonoBehaviour
     {
+#pragma warning disable 0649
         [SerializeField]
         Text label;
         [SerializeField]
         Image backgroundImage;
+#pragma warning restore 0649
+
         [SerializeField]
         public Button ButtonControl;
 
 
         public static UIButton CreateTextButton(Transform parent, string label)
         {
-            GameObject newGO = (GameObject)Instantiate(UIManager.Instance.CurrentUIStyle.ButtonText, parent);
+            GameObject newGO = (GameObject)Instantiate(UIManager.Instance.Style.ButtonText, parent);
             UIButton newButton = newGO.GetRequiredComponent<UIButton>();
-            newButton.ChangeColor(UIManager.Instance.CurrentUIStyle.PrimaryUIColor);
+            newButton.ChangeColor(UIManager.Instance.Style.PrimaryUIColor);
             newButton.SetLabel(label);
             return newButton;
         }
 
         public static UIButton CreateIconButton(Transform parent, Sprite icon, Color buttonColor)
         {
-            GameObject newGO = (GameObject)Instantiate(UIManager.Instance.CurrentUIStyle.ButtonIcon, parent);
+            GameObject newGO = (GameObject)Instantiate(UIManager.Instance.Style.ButtonIcon, parent);
             UIButton newButton = newGO.GetRequiredComponent<UIButton>();
-            newButton.ChangeColor(UIManager.Instance.CurrentUIStyle.PrimaryUIColor);
+            newButton.ChangeColor(UIManager.Instance.Style.PrimaryUIColor);
             newButton.EnableLabel(false);
             newButton.ChangeSprite(icon);
             newButton.ChangeColor(buttonColor);
@@ -39,9 +42,9 @@ namespace DaleranGames.UI
 
         public static UIButton CreateSmallButton(Transform parent, string label)
         {
-            GameObject newGO = (GameObject)Instantiate(UIManager.Instance.CurrentUIStyle.ButtonIcon, parent);
+            GameObject newGO = (GameObject)Instantiate(UIManager.Instance.Style.ButtonIcon, parent);
             UIButton newButton = newGO.GetRequiredComponent<UIButton>();
-            newButton.ChangeColor(UIManager.Instance.CurrentUIStyle.PrimaryUIColor);
+            newButton.ChangeColor(UIManager.Instance.Style.PrimaryUIColor);
             newButton.SetLabel(label);
             return newButton;
         }

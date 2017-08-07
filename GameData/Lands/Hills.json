@@ -1,7 +1,0 @@
-{
-    "name": "Hills",
-    "type": "DaleranGames.TBSFramework.LandType",
-    "iconName": "Spring_L_Hills",
-    "clearable": false,
-    "clearedLandName": ""
-}

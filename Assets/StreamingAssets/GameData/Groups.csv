@@ -1,0 +1,6 @@
+name,type,rank,culture,foodPerTurn,woodPerWinter,laborPerPop,maxFood,maxWood,maxStone,startingGold,maxPopulation,groupModifiers,tileModifiers
+Deow,GroupType,Slave,Settler,-1,-1,6,30,10,0,0,8,Happiness;-5;Poor,
+Ceorl,GroupType,Villager,Settler,-1,-1,6,30,10,0,25,8,,
+Thegn,GroupType,Warrior,Settler,-1,-1,6,150,100,100,100,8,,
+Ealdorman,GroupType,Chief,Settler,-1,-1,4,30,10,0,150,8,,
+Cyning,GroupType,King,Settler,-1,-1,4,30,10,0,500,8,,

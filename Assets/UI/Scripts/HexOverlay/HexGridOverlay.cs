@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DaleranGames.TBSFramework;
-using DaleranGames.Database;
+using DaleranGames.IO;
 
 namespace DaleranGames.UI
 {
     public class HexGridOverlay : MonoBehaviour
     {
-
+#pragma warning disable 0649
         [Header("Numbers")]
         [SerializeField]
         string zeroKey;
@@ -46,7 +46,7 @@ namespace DaleranGames.UI
         [SerializeField]
         string plusKey;
         TileGraphic plus;
-
+#pragma warning restore 0649
         HexGrid grid;
         Dictionary<int, int[]> lookupTable;
 
@@ -68,18 +68,18 @@ namespace DaleranGames.UI
 
         void OnMeshGenrationComplete()
         {
-            zero = GameDatabase.Instance.TileGraphics.Get(zeroKey);
-            one = GameDatabase.Instance.TileGraphics.Get(oneKey);
-            two = GameDatabase.Instance.TileGraphics.Get(twoKey);
-            three = GameDatabase.Instance.TileGraphics.Get(threeKey);
-            four = GameDatabase.Instance.TileGraphics.Get(fourKey);
-            five = GameDatabase.Instance.TileGraphics.Get(fiveKey);
-            six = GameDatabase.Instance.TileGraphics.Get(sixKey);
-            seven = GameDatabase.Instance.TileGraphics.Get(sevenKey);
-            eight = GameDatabase.Instance.TileGraphics.Get(eightKey);
-            nine = GameDatabase.Instance.TileGraphics.Get(nineKey);
-            dash = GameDatabase.Instance.TileGraphics.Get(dashKey);
-            plus = GameDatabase.Instance.TileGraphics.Get(plusKey);
+            zero = GameDatabase.Instance.TileGraphics[zeroKey];
+            one = GameDatabase.Instance.TileGraphics[oneKey];
+            two = GameDatabase.Instance.TileGraphics[twoKey];
+            three = GameDatabase.Instance.TileGraphics[threeKey];
+            four = GameDatabase.Instance.TileGraphics[fourKey];
+            five = GameDatabase.Instance.TileGraphics[fiveKey];
+            six = GameDatabase.Instance.TileGraphics[sixKey];
+            seven = GameDatabase.Instance.TileGraphics[sevenKey];
+            eight = GameDatabase.Instance.TileGraphics[eightKey];
+            nine = GameDatabase.Instance.TileGraphics[nineKey];
+            dash = GameDatabase.Instance.TileGraphics[dashKey];
+            plus = GameDatabase.Instance.TileGraphics[plusKey];
         }
 
         public void SetLabelIcon (HexTile tile, TileGraphic graphic)
@@ -152,7 +152,7 @@ namespace DaleranGames.UI
 
         TileGraphic[] GetDigitCoordArray (int number)
         {
-            TileGraphic[] output = { TileGraphic.clear, TileGraphic.clear, TileGraphic.clear };
+            TileGraphic[] output = { TileGraphic.Clear, TileGraphic.Clear, TileGraphic.Clear };
 
             if (number < -99)
                 Debug.LogError("HexGridOverlay: Trying to set to a number less than -99");
@@ -230,7 +230,7 @@ namespace DaleranGames.UI
                 case 9:
                     return nine;
                 default:
-                    return TileGraphic.clear;
+                    return TileGraphic.Clear;
             }
         }
 

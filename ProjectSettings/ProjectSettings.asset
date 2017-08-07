@@ -3,22 +3,22 @@
 --- !u!129 &1
 PlayerSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 11
+  serializedVersion: 12
   productGUID: c4cf7a96001f2b249bec0c55dc132125
   AndroidProfiler: 0
   defaultScreenOrientation: 4
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: DefaultCompany
-  productName: lord-of-the-manor1
+  companyName: Daleran Games
+  productName: Lord Of The Manor
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
-  m_SplashScreenBackgroundColor: {r: 0.13333334, g: 0.17254902, b: 0.21176471, a: 1}
+  m_SplashScreenBackgroundColor: {r: 0.13333334, g: 0.1254902, b: 0.20392159, a: 1}
   m_ShowUnitySplashScreen: 1
   m_ShowUnitySplashLogo: 1
   m_SplashScreenOverlayOpacity: 1
-  m_SplashScreenAnimation: 1
+  m_SplashScreenAnimation: 0
   m_SplashScreenLogoStyle: 1
   m_SplashScreenDrawMode: 0
   m_SplashScreenBackgroundAnimationZoom: 1
@@ -37,7 +37,9 @@ PlayerSettings:
     y: 0
     width: 1
     height: 1
-  m_SplashScreenLogos: []
+  m_SplashScreenLogos:
+  - logo: {fileID: 21300000, guid: a776ccecc0ff03f4b82b194ce25cabd4, type: 3}
+    duration: 4
   m_SplashScreenBackgroundLandscape: {fileID: 0}
   m_SplashScreenBackgroundPortrait: {fileID: 0}
   m_VirtualRealitySplashScreen: {fileID: 0}
@@ -70,12 +72,14 @@ PlayerSettings:
   captureSingleScreen: 0
   muteOtherAudioSources: 0
   Prepare IOS For Recording: 0
+  Force IOS Speakers When Recording: 0
   submitAnalytics: 1
   usePlayerLog: 1
   bakeCollisionMeshes: 0
   forceSingleInstance: 0
   resizableWindow: 0
   useMacAppStoreValidation: 0
+  macAppStoreCategory: public.app-category.games
   gpuSkinning: 0
   graphicsJobs: 0
   xboxPIXTextureCapture: 0
@@ -100,6 +104,7 @@ PlayerSettings:
   xboxOneResolution: 0
   xboxOneMonoLoggingLevel: 0
   xboxOneLoggingLevel: 1
+  xboxOneDisableEsram: 0
   videoMemoryForVertexBuffers: 0
   psp2PowerMode: 0
   psp2AcquireBGM: 1
@@ -118,7 +123,7 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 1.0
+  bundleVersion: 0.3
   preloadedAssets: []
   metroInputSource: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -135,6 +140,8 @@ PlayerSettings:
       depthFormat: 1
   protectGraphicsMemory: 0
   useHDRDisplay: 0
+  targetPixelDensity: 0
+  resolutionScalingMode: 0
   applicationIdentifier: {}
   buildNumber: {}
   AndroidBundleVersionCode: 1
@@ -203,6 +210,7 @@ PlayerSettings:
   iOSMetalForceHardShadows: 0
   metalEditorSupport: 1
   metalAPIValidation: 1
+  iOSRenderExtraFrameOnPause: 1
   appleDeveloperTeamID: 
   iOSManualSigningProvisioningProfileID: 
   tvOSManualSigningProvisioningProfileID: 
@@ -221,7 +229,43 @@ PlayerSettings:
     banner: {fileID: 0}
   androidGamepadSupportLevel: 0
   resolutionDialogBanner: {fileID: 0}
-  m_BuildTargetIcons: []
+  m_BuildTargetIcons:
+  - m_BuildTarget: 
+    m_Icons:
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: ff005ddb2718a37458ea7e07f5242417, type: 3}
+      m_Width: 128
+      m_Height: 128
+  - m_BuildTarget: Standalone
+    m_Icons:
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: ff005ddb2718a37458ea7e07f5242417, type: 3}
+      m_Width: 1024
+      m_Height: 1024
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: ff005ddb2718a37458ea7e07f5242417, type: 3}
+      m_Width: 512
+      m_Height: 512
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: ff005ddb2718a37458ea7e07f5242417, type: 3}
+      m_Width: 256
+      m_Height: 256
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: ff005ddb2718a37458ea7e07f5242417, type: 3}
+      m_Width: 128
+      m_Height: 128
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: 360bbb058feaf704e8ed767556c6f694, type: 3}
+      m_Width: 48
+      m_Height: 48
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: c9424f79db4be8a40ac670ffb0229183, type: 3}
+      m_Width: 32
+      m_Height: 32
+    - serializedVersion: 2
+      m_Icon: {fileID: 2800000, guid: dc75832c73e769e4982f9ac9b75a6e40, type: 3}
+      m_Width: 16
+      m_Height: 16
   m_BuildTargetBatching: []
   m_BuildTargetGraphicsAPIs: []
   m_BuildTargetVRSettings: []
@@ -247,6 +291,7 @@ PlayerSettings:
   wiiUGamePadStartupScreen: {fileID: 0}
   wiiUDrcBufferDisabled: 0
   wiiUProfilerLibPath: 
+  playModeTestRunnerEnabled: 0
   actionOnDotNetUnhandledException: 1
   enableInternalProfiler: 0
   logObjCUncaughtExceptions: 1
@@ -258,6 +303,7 @@ PlayerSettings:
   switchSocketMemoryPoolSize: 6144
   switchSocketAllocatorPoolSize: 128
   switchSocketConcurrencyLimit: 14
+  switchScreenResolutionBehavior: 2
   switchUseCPUProfiler: 0
   switchApplicationID: 0x0005000C10000001
   switchNSODependencies: 
@@ -273,9 +319,6 @@ PlayerSettings:
   switchTitleNames_9: 
   switchTitleNames_10: 
   switchTitleNames_11: 
-  switchTitleNames_12: 
-  switchTitleNames_13: 
-  switchTitleNames_14: 
   switchPublisherNames_0: 
   switchPublisherNames_1: 
   switchPublisherNames_2: 
@@ -288,9 +331,6 @@ PlayerSettings:
   switchPublisherNames_9: 
   switchPublisherNames_10: 
   switchPublisherNames_11: 
-  switchPublisherNames_12: 
-  switchPublisherNames_13: 
-  switchPublisherNames_14: 
   switchIcons_0: {fileID: 0}
   switchIcons_1: {fileID: 0}
   switchIcons_2: {fileID: 0}
@@ -303,9 +343,6 @@ PlayerSettings:
   switchIcons_9: {fileID: 0}
   switchIcons_10: {fileID: 0}
   switchIcons_11: {fileID: 0}
-  switchIcons_12: {fileID: 0}
-  switchIcons_13: {fileID: 0}
-  switchIcons_14: {fileID: 0}
   switchSmallIcons_0: {fileID: 0}
   switchSmallIcons_1: {fileID: 0}
   switchSmallIcons_2: {fileID: 0}
@@ -318,9 +355,6 @@ PlayerSettings:
   switchSmallIcons_9: {fileID: 0}
   switchSmallIcons_10: {fileID: 0}
   switchSmallIcons_11: {fileID: 0}
-  switchSmallIcons_12: {fileID: 0}
-  switchSmallIcons_13: {fileID: 0}
-  switchSmallIcons_14: {fileID: 0}
   switchManualHTML: 
   switchAccessibleURLs: 
   switchLegalInformation: 
@@ -336,7 +370,7 @@ PlayerSettings:
   switchApplicationErrorCodeCategory: 
   switchUserAccountSaveDataSize: 0
   switchUserAccountSaveDataJournalSize: 0
-  switchAttribute: 0
+  switchApplicationAttribute: 0
   switchCardSpecSize: 4
   switchCardSpecClock: 25
   switchRatingsMask: 0
@@ -363,6 +397,15 @@ PlayerSettings:
   switchParentalControl: 0
   switchAllowsScreenshot: 1
   switchDataLossConfirmation: 0
+  switchSupportedNpadStyles: 3
+  switchSocketConfigEnabled: 0
+  switchTcpInitialSendBufferSize: 32
+  switchTcpInitialReceiveBufferSize: 64
+  switchTcpAutoSendBufferSizeMax: 256
+  switchTcpAutoReceiveBufferSizeMax: 256
+  switchUdpSendBufferSize: 9
+  switchUdpReceiveBufferSize: 42
+  switchSocketBufferEfficiency: 4
   ps4NPAgeRating: 12
   ps4NPTitleSecret: 
   ps4NPTrophyPackPath: 
@@ -400,7 +443,6 @@ PlayerSettings:
   ps4GarlicHeapSize: 2048
   ps4ProGarlicHeapSize: 2560
   ps4Passcode: frAQBc8Wsa1xVPfvJcrgRYwTiizs2trQ
-  ps4UseDebugIl2cppLibs: 0
   ps4pnSessions: 1
   ps4pnPresence: 1
   ps4pnFriends: 1
@@ -475,7 +517,7 @@ PlayerSettings:
   psp2UseLibLocation: 0
   psp2InfoBarOnStartup: 0
   psp2InfoBarColor: 0
-  psp2UseDebugIl2cppLibs: 0
+  psp2ScriptOptimizationLevel: 0
   psmSplashimage: {fileID: 0}
   splashScreenBackgroundSourceLandscape: {fileID: 0}
   splashScreenBackgroundSourcePortrait: {fileID: 0}
@@ -497,6 +539,7 @@ PlayerSettings:
   scriptingBackend: {}
   incrementalIl2cppBuild: {}
   additionalIl2CppArgs: 
+  scriptingRuntimeVersion: 1
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
@@ -578,11 +621,14 @@ PlayerSettings:
     daydream:
       daydreamIconForeground: {fileID: 0}
       daydreamIconBackground: {fileID: 0}
-  cloudServicesEnabled: {}
+  cloudServicesEnabled:
+    Build: 1
+    UNet: 1
   facebookSdkVersion: 7.9.1
-  apiCompatibilityLevel: 2
-  cloudProjectId: 
-  projectName: 
-  organizationId: 
+  apiCompatibilityLevel: 3
+  cloudProjectId: 70d95285-e930-489c-8c78-96a5ea7ea3f3
+  projectName: Lord Of The Manor
+  organizationId: daleran-games
   cloudEnabled: 0
-  enableNewInputSystem: 0
+  enableNativePlatformBackendsForNewInputSystem: 0
+  disableOldInputManagerSupport: 0

@@ -8,18 +8,15 @@ namespace DaleranGames.UI
     public class UIManager : Singleton<UIManager>
     {
         protected UIManager() { }
-
+#pragma warning disable 0649
         [SerializeField]
-        UIStyle currentUIStlye;
-
-        public UIStyle CurrentUIStyle
-        {
-            get { return currentUIStlye; }
-        }
+        UIStyle style;
+        public UIStyle Style { get { return style; } }
+#pragma warning restore 0649
 
         void Awake()
         {
-
+            DontDestroyOnLoad(gameObject);
         }
 
     }

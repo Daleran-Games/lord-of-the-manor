@@ -1,7 +1,0 @@
-{
-    "name": "Deep Water",
-    "type": "DaleranGames.TBSFramework.LandType",
-    "iconName": "Spring_L_DeepWater",
-    "clearable": false,
-    "clearedLandName": ""
-}

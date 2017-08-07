@@ -8,7 +8,7 @@ namespace DaleranGames.UI
 {
     public class UIStatBar : MonoBehaviour
     {
-
+#pragma warning disable 0649
         [SerializeField]
         Text label;
         [SerializeField]
@@ -19,14 +19,14 @@ namespace DaleranGames.UI
         Image fillArea;
         [SerializeField]
         Image fillBar;
-
+#pragma warning restore 0649
         string labelText;
 
         public static UIStatBar CreateStatBar(Transform parent, string barLabel, float initialValue, float initialMax, Color barColor)
         {
-            GameObject newGO = (GameObject)Instantiate(UIManager.Instance.CurrentUIStyle.StatBar, parent);
+            GameObject newGO = (GameObject)Instantiate(UIManager.Instance.Style.StatBar, parent);
             UIStatBar newStatBar = newGO.GetRequiredComponent<UIStatBar>();
-            newStatBar.ChangeBackgroundColor(UIManager.Instance.CurrentUIStyle.PrimaryUIColor);
+            newStatBar.ChangeBackgroundColor(UIManager.Instance.Style.PrimaryUIColor);
             newStatBar.ChangeBarColor(barColor);
             newStatBar.ChangeMaxValue(initialMax);
             newStatBar.ChangeValue(initialValue);

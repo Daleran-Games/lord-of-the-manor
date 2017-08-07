@@ -7,16 +7,17 @@ namespace DaleranGames.UI
 {
     public class UITextBox : MonoBehaviour
     {
+#pragma warning disable 0649
         [SerializeField]
         Text text;
         [SerializeField]
         Image box;
-
+#pragma warning restore 0649
         public static UITextBox CreateTextBox(Transform parent)
         {
-            GameObject newGO = (GameObject)Instantiate(UIManager.Instance.CurrentUIStyle.TextBox, parent);
+            GameObject newGO = (GameObject)Instantiate(UIManager.Instance.Style.TextBox, parent);
             UITextBox newTextBox = newGO.GetRequiredComponent<UITextBox>();
-            newTextBox.box.color = UIManager.Instance.CurrentUIStyle.PrimaryUIColor;
+            newTextBox.box.color = UIManager.Instance.Style.PrimaryUIColor;
             return newTextBox;
 
         }

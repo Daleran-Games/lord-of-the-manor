@@ -6,5 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/TBSFramework/HexMap/Scenes/MapTester.unity
-    guid: de1965212dbb6f64da9cde938a301b07
+    path: Assets/Game/Scenes/Main.unity
+    guid: 66898379c9454b04e9d9a92c1feae164
+  - enabled: 1
+    path: Assets/Game/Scenes/Play.unity
+    guid: f0eb6681298fbe14da8c710d2bdb08a4

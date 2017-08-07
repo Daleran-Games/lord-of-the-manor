@@ -1,0 +1,750 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15cbe7e10f21c8241b174157283faa41, type: 3}
+  m_Name: LandDatabaseLoader
+  m_EditorClassIdentifier: 
+  csvFilePath: Lands.csv
+  lands:
+  - name: Deep Water
+    id: 0
+    type: LandType
+    iconName: Spring_L_DeepWater
+    iconGraphic:
+      name: 
+      type: 
+      id: 0
+      atlasCoord:
+        x: 0
+        y: 0
+    tileModifiers:
+    - type:
+        _value: 30
+        _displayName: Defense Bonus
+        _abbreviation: DB
+      value: -2
+      description: Deep Water
+    - type:
+        _value: 31
+        _displayName: Movement Cost
+        _abbreviation: MC
+      value: -100
+      description: Deep Water
+    - type:
+        _value: 40
+        _displayName: Food Yield
+        _abbreviation: FY
+      value: 0
+      description: Deep Water
+    - type:
+        _value: 41
+        _displayName: Wood Yield
+        _abbreviation: WY
+      value: 0
+      description: Deep Water
+    - type:
+        _value: 42
+        _displayName: Stone Yield
+        _abbreviation: SY
+      value: 0
+      description: Deep Water
+    - type:
+        _value: 43
+        _displayName: Gold Yield
+        _abbreviation: GY
+      value: 0
+      description: Deep Water
+    ownerModifiers: []
+  - name: Shallow Water
+    id: 1
+    type: LandType
+    iconName: Spring_L_ShallowWater
+    iconGraphic:
+      name: 
+      type: 
+      id: 0
+      atlasCoord:
+        x: 0
+        y: 0
+    tileModifiers:
+    - type:
+        _value: 30
+        _displayName: Defense Bonus
+        _abbreviation: DB
+      value: -1
+      description: Shallow Water
+    - type:
+        _value: 31
+        _displayName: Movement Cost
+        _abbreviation: MC
+      value: -10
+      description: Shallow Water
+    - type:
+        _value: 40
+        _displayName: Food Yield
+        _abbreviation: FY
+      value: 1
+      description: Shallow Water
+    - type:
+        _value: 41
+        _displayName: Wood Yield
+        _abbreviation: WY
+      value: 0
+      description: Shallow Water
+    - type:
+        _value: 42
+        _displayName: Stone Yield
+        _abbreviation: SY
+      value: 0
+      description: Shallow Water
+    - type:
+        _value: 43
+        _displayName: Gold Yield
+        _abbreviation: GY
+      value: 0
+      description: Shallow Water
+    ownerModifiers: []
+  - name: Fen
+    id: 2
+    type: LandType
+    iconName: Spring_L_Fen
+    iconGraphic:
+      name: 
+      type: 
+      id: 0
+      atlasCoord:
+        x: 0
+        y: 0
+    tileModifiers:
+    - type:
+        _value: 30
+        _displayName: Defense Bonus
+        _abbreviation: DB
+      value: -1
+      description: Fen
+    - type:
+        _value: 31
+        _displayName: Movement Cost
+        _abbreviation: MC
+      value: -5
+      description: Fen
+    - type:
+        _value: 40
+        _displayName: Food Yield
+        _abbreviation: FY
+      value: 0
+      description: Fen
+    - type:
+        _value: 41
+        _displayName: Wood Yield
+        _abbreviation: WY
+      value: 0
+      description: Fen
+    - type:
+        _value: 42
+        _displayName: Stone Yield
+        _abbreviation: SY
+      value: 0
+      description: Fen
+    - type:
+        _value: 43
+        _displayName: Gold Yield
+        _abbreviation: GY
+      value: 0
+      description: Fen
+    ownerModifiers: []
+  - name: Plains
+    id: 3
+    type: LandType
+    iconName: Spring_L_Plains
+    iconGraphic:
+      name: 
+      type: 
+      id: 0
+      atlasCoord:
+        x: 0
+        y: 0
+    tileModifiers:
+    - type:
+        _value: 30
+        _displayName: Defense Bonus
+        _abbreviation: DB
+      value: 0
+      description: Plains
+    - type:
+        _value: 31
+        _displayName: Movement Cost
+        _abbreviation: MC
+      value: -1
+      description: Plains
+    - type:
+        _value: 40
+        _displayName: Food Yield
+        _abbreviation: FY
+      value: 2
+      description: Plains
+    - type:
+        _value: 41
+        _displayName: Wood Yield
+        _abbreviation: WY
+      value: 0
+      description: Plains
+    - type:
+        _value: 42
+        _displayName: Stone Yield
+        _abbreviation: SY
+      value: 0
+      description: Plains
+    - type:
+        _value: 43
+        _displayName: Gold Yield
+        _abbreviation: GY
+      value: 0
+      description: Plains
+    ownerModifiers: []
+  - name: Parkland
+    id: 4
+    type: LandType
+    iconName: Spring_L_Parkland
+    iconGraphic:
+      name: 
+      type: 
+      id: 0
+      atlasCoord:
+        x: 0
+        y: 0
+    tileModifiers:
+    - type:
+        _value: 30
+        _displayName: Defense Bonus
+        _abbreviation: DB
+      value: 1
+      description: Parkland
+    - type:
+        _value: 31
+        _displayName: Movement Cost
+        _abbreviation: MC
+      value: -2
+      description: Parkland
+    - type:
+        _value: 40
+        _displayName: Food Yield
+        _abbreviation: FY
+      value: 1
+      description: Parkland
+    - type:
+        _value: 41
+        _displayName: Wood Yield
+        _abbreviation: WY
+      value: 1
+      description: Parkland
+    - type:
+        _value: 42
+        _displayName: Stone Yield
+        _abbreviation: SY
+      value: 0
+      description: Parkland
+    - type:
+        _value: 43
+        _displayName: Gold Yield
+        _abbreviation: GY
+      value: 0
+      description: Parkland
+    ownerModifiers: []
+  - name: Forest
+    id: 5
+    type: LandType
+    iconName: Spring_L_Forest
+    iconGraphic:
+      name: 
+      type: 
+      id: 0
+      atlasCoord:
+        x: 0
+        y: 0
+    tileModifiers:
+    - type:
+        _value: 30
+        _displayName: Defense Bonus
+        _abbreviation: DB
+      value: 2
+      description: Forest
+    - type:
+        _value: 31
+        _displayName: Movement Cost
+        _abbreviation: MC
+      value: -3
+      description: Forest
+    - type:
+        _value: 40
+        _displayName: Food Yield
+        _abbreviation: FY
+      value: 1
+      description: Forest
+    - type:
+        _value: 41
+        _displayName: Wood Yield
+        _abbreviation: WY
+      value: 3
+      description: Forest
+    - type:
+        _value: 42
+        _displayName: Stone Yield
+        _abbreviation: SY
+      value: 0
+      description: Forest
+    - type:
+        _value: 43
+        _displayName: Gold Yield
+        _abbreviation: GY
+      value: 0
+      description: Forest
+    ownerModifiers: []
+  - name: Hills
+    id: 6
+    type: LandType
+    iconName: Spring_L_Hills
+    iconGraphic:
+      name: 
+      type: 
+      id: 0
+      atlasCoord:
+        x: 0
+        y: 0
+    tileModifiers:
+    - type:
+        _value: 30
+        _displayName: Defense Bonus
+        _abbreviation: DB
+      value: 2
+      description: Hills
+    - type:
+        _value: 31
+        _displayName: Movement Cost
+        _abbreviation: MC
+      value: -2
+      description: Hills
+    - type:
+        _value: 40
+        _displayName: Food Yield
+        _abbreviation: FY
+      value: 1
+      description: Hills
+    - type:
+        _value: 41
+        _displayName: Wood Yield
+        _abbreviation: WY
+      value: 0
+      description: Hills
+    - type:
+        _value: 42
+        _displayName: Stone Yield
+        _abbreviation: SY
+      value: 1
+      description: Hills
+    - type:
+        _value: 43
+        _displayName: Gold Yield
+        _abbreviation: GY
+      value: 0
+      description: Hills
+    ownerModifiers: []
+  - name: Wooded Hills
+    id: 7
+    type: LandType
+    iconName: Spring_L_WoodedHills
+    iconGraphic:
+      name: 
+      type: 
+      id: 0
+      atlasCoord:
+        x: 0
+        y: 0
+    tileModifiers:
+    - type:
+        _value: 30
+        _displayName: Defense Bonus
+        _abbreviation: DB
+      value: 3
+      description: Wooded Hills
+    - type:
+        _value: 31
+        _displayName: Movement Cost
+        _abbreviation: MC
+      value: -4
+      description: Wooded Hills
+    - type:
+        _value: 40
+        _displayName: Food Yield
+        _abbreviation: FY
+      value: 0
+      description: Wooded Hills
+    - type:
+        _value: 41
+        _displayName: Wood Yield
+        _abbreviation: WY
+      value: 2
+      description: Wooded Hills
+    - type:
+        _value: 42
+        _displayName: Stone Yield
+        _abbreviation: SY
+      value: 1
+      description: Wooded Hills
+    - type:
+        _value: 43
+        _displayName: Gold Yield
+        _abbreviation: GY
+      value: 0
+      description: Wooded Hills
+    ownerModifiers: []
+  - name: Mountains
+    id: 8
+    type: LandType
+    iconName: Spring_L_Mountains
+    iconGraphic:
+      name: 
+      type: 
+      id: 0
+      atlasCoord:
+        x: 0
+        y: 0
+    tileModifiers:
+    - type:
+        _value: 30
+        _displayName: Defense Bonus
+        _abbreviation: DB
+      value: 4
+      description: Mountains
+    - type:
+        _value: 31
+        _displayName: Movement Cost
+        _abbreviation: MC
+      value: -4
+      description: Mountains
+    - type:
+        _value: 40
+        _displayName: Food Yield
+        _abbreviation: FY
+      value: 0
+      description: Mountains
+    - type:
+        _value: 41
+        _displayName: Wood Yield
+        _abbreviation: WY
+      value: 0
+      description: Mountains
+    - type:
+        _value: 42
+        _displayName: Stone Yield
+        _abbreviation: SY
+      value: 2
+      description: Mountains
+    - type:
+        _value: 43
+        _displayName: Gold Yield
+        _abbreviation: GY
+      value: 0
+      description: Mountains
+    ownerModifiers: []
+  - name: Wooded Mountains
+    id: 9
+    type: LandType
+    iconName: Spring_L_WoodedMountains
+    iconGraphic:
+      name: 
+      type: 
+      id: 0
+      atlasCoord:
+        x: 0
+        y: 0
+    tileModifiers:
+    - type:
+        _value: 30
+        _displayName: Defense Bonus
+        _abbreviation: DB
+      value: 5
+      description: Wooded Mountains
+    - type:
+        _value: 31
+        _displayName: Movement Cost
+        _abbreviation: MC
+      value: -5
+      description: Wooded Mountains
+    - type:
+        _value: 40
+        _displayName: Food Yield
+        _abbreviation: FY
+      value: 0
+      description: Wooded Mountains
+    - type:
+        _value: 41
+        _displayName: Wood Yield
+        _abbreviation: WY
+      value: 1
+      description: Wooded Mountains
+    - type:
+        _value: 42
+        _displayName: Stone Yield
+        _abbreviation: SY
+      value: 2
+      description: Wooded Mountains
+    - type:
+        _value: 43
+        _displayName: Gold Yield
+        _abbreviation: GY
+      value: 0
+      description: Wooded Mountains
+    ownerModifiers: []
+  - name: Moor
+    id: 10
+    type: LandType
+    iconName: Spring_L_Moor
+    iconGraphic:
+      name: 
+      type: 
+      id: 0
+      atlasCoord:
+        x: 0
+        y: 0
+    tileModifiers:
+    - type:
+        _value: 30
+        _displayName: Defense Bonus
+        _abbreviation: DB
+      value: 0
+      description: Moor
+    - type:
+        _value: 31
+        _displayName: Movement Cost
+        _abbreviation: MC
+      value: -1
+      description: Moor
+    - type:
+        _value: 40
+        _displayName: Food Yield
+        _abbreviation: FY
+      value: 1
+      description: Moor
+    - type:
+        _value: 41
+        _displayName: Wood Yield
+        _abbreviation: WY
+      value: 0
+      description: Moor
+    - type:
+        _value: 42
+        _displayName: Stone Yield
+        _abbreviation: SY
+      value: 0
+      description: Moor
+    - type:
+        _value: 43
+        _displayName: Gold Yield
+        _abbreviation: GY
+      value: 0
+      description: Moor
+    ownerModifiers: []
+  - name: Moor Hills
+    id: 11
+    type: LandType
+    iconName: Spring_L_MoorHills
+    iconGraphic:
+      name: 
+      type: 
+      id: 0
+      atlasCoord:
+        x: 0
+        y: 0
+    tileModifiers:
+    - type:
+        _value: 30
+        _displayName: Defense Bonus
+        _abbreviation: DB
+      value: 2
+      description: Moor Hills
+    - type:
+        _value: 31
+        _displayName: Movement Cost
+        _abbreviation: MC
+      value: -2
+      description: Moor Hills
+    - type:
+        _value: 40
+        _displayName: Food Yield
+        _abbreviation: FY
+      value: 1
+      description: Moor Hills
+    - type:
+        _value: 41
+        _displayName: Wood Yield
+        _abbreviation: WY
+      value: 0
+      description: Moor Hills
+    - type:
+        _value: 42
+        _displayName: Stone Yield
+        _abbreviation: SY
+      value: 2
+      description: Moor Hills
+    - type:
+        _value: 43
+        _displayName: Gold Yield
+        _abbreviation: GY
+      value: 0
+      description: Moor Hills
+    ownerModifiers: []
+  - name: Moor Mountains
+    id: 12
+    type: LandType
+    iconName: Spring_L_MoorMountains
+    iconGraphic:
+      name: 
+      type: 
+      id: 0
+      atlasCoord:
+        x: 0
+        y: 0
+    tileModifiers:
+    - type:
+        _value: 30
+        _displayName: Defense Bonus
+        _abbreviation: DB
+      value: 4
+      description: Moor Mountains
+    - type:
+        _value: 31
+        _displayName: Movement Cost
+        _abbreviation: MC
+      value: -4
+      description: Moor Mountains
+    - type:
+        _value: 40
+        _displayName: Food Yield
+        _abbreviation: FY
+      value: 0
+      description: Moor Mountains
+    - type:
+        _value: 41
+        _displayName: Wood Yield
+        _abbreviation: WY
+      value: 0
+      description: Moor Mountains
+    - type:
+        _value: 42
+        _displayName: Stone Yield
+        _abbreviation: SY
+      value: 3
+      description: Moor Mountains
+    - type:
+        _value: 43
+        _displayName: Gold Yield
+        _abbreviation: GY
+      value: 0
+      description: Moor Mountains
+    ownerModifiers: []
+  - name: Ford
+    id: 13
+    type: LandType
+    iconName: Spring_L_ShallowWater
+    iconGraphic:
+      name: 
+      type: 
+      id: 0
+      atlasCoord:
+        x: 0
+        y: 0
+    tileModifiers:
+    - type:
+        _value: 30
+        _displayName: Defense Bonus
+        _abbreviation: DB
+      value: -1
+      description: Ford
+    - type:
+        _value: 31
+        _displayName: Movement Cost
+        _abbreviation: MC
+      value: -5
+      description: Ford
+    - type:
+        _value: 40
+        _displayName: Food Yield
+        _abbreviation: FY
+      value: 2
+      description: Ford
+    - type:
+        _value: 41
+        _displayName: Wood Yield
+        _abbreviation: WY
+      value: 0
+      description: Ford
+    - type:
+        _value: 42
+        _displayName: Stone Yield
+        _abbreviation: SY
+      value: 0
+      description: Ford
+    - type:
+        _value: 43
+        _displayName: Gold Yield
+        _abbreviation: GY
+      value: 0
+      description: Ford
+    ownerModifiers: []
+  - name: Floodplains
+    id: 14
+    type: LandType
+    iconName: Spring_L_Plains
+    iconGraphic:
+      name: 
+      type: 
+      id: 0
+      atlasCoord:
+        x: 0
+        y: 0
+    tileModifiers:
+    - type:
+        _value: 30
+        _displayName: Defense Bonus
+        _abbreviation: DB
+      value: 0
+      description: Floodplains
+    - type:
+        _value: 31
+        _displayName: Movement Cost
+        _abbreviation: MC
+      value: -1
+      description: Floodplains
+    - type:
+        _value: 40
+        _displayName: Food Yield
+        _abbreviation: FY
+      value: 3
+      description: Floodplains
+    - type:
+        _value: 41
+        _displayName: Wood Yield
+        _abbreviation: WY
+      value: 0
+      description: Floodplains
+    - type:
+        _value: 42
+        _displayName: Stone Yield
+        _abbreviation: SY
+      value: 0
+      description: Floodplains
+    - type:
+        _value: 43
+        _displayName: Gold Yield
+        _abbreviation: GY
+      value: 0
+      description: Floodplains
+    ownerModifiers: []

@@ -1,7 +1,0 @@
-{
-    "name": "Parkland",
-    "type": "DaleranGames.TBSFramework.LandType",
-    "iconName": "Spring_L_Parkland",
-    "clearable": true,
-    "clearedLandName": "Plains"
-}

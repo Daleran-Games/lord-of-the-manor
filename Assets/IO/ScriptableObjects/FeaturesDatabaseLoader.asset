@@ -1,0 +1,506 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ad935d5704897048a37f0d77cd0ea17, type: 3}
+  m_Name: FeaturesDatabaseLoader
+  m_EditorClassIdentifier: 
+  csvFilePath: Features.csv
+  buildFeatures:
+  - name: Build Tent
+    id: 0
+    type: DwellingType
+    builtFeatureName: Tent
+    BuildTimeCost:
+      good: 8
+      modifiedBy:
+        _value: 204
+        _displayName: Build Time
+        _abbreviation: 
+      value: 0
+      description: Build Tent
+    InitialBuildCosts:
+      costs:
+      - good: 4
+        modifiedBy:
+          _value: 200
+          _displayName: Build Labor
+          _abbreviation: 
+        value: -2
+        description: Build Tent
+      - good: 1
+        modifiedBy:
+          _value: 201
+          _displayName: Build Wood Cost
+          _abbreviation: 
+        value: -4
+        description: Build Tent
+    PerTurnBuildCosts:
+      costs:
+      - good: 4
+        modifiedBy:
+          _value: 200
+          _displayName: Build Labor
+          _abbreviation: 
+        value: -2
+        description: Build Tent
+    validLandNames:
+    - Plains
+    - Moor
+    - Hills
+    - Moor Hills
+  - name: Build Small House
+    id: 1
+    type: DwellingType
+    builtFeatureName: Small House
+    BuildTimeCost:
+      good: 8
+      modifiedBy:
+        _value: 204
+        _displayName: Build Time
+        _abbreviation: 
+      value: 2
+      description: Build Small House
+    InitialBuildCosts:
+      costs:
+      - good: 4
+        modifiedBy:
+          _value: 200
+          _displayName: Build Labor
+          _abbreviation: 
+        value: -4
+        description: Build Small House
+      - good: 1
+        modifiedBy:
+          _value: 201
+          _displayName: Build Wood Cost
+          _abbreviation: 
+        value: -10
+        description: Build Small House
+    PerTurnBuildCosts:
+      costs:
+      - good: 4
+        modifiedBy:
+          _value: 200
+          _displayName: Build Labor
+          _abbreviation: 
+        value: -4
+        description: Build Small House
+    validLandNames:
+    - Plains
+    - Moor
+    - Hills
+    - Moor Hills
+  - name: Build Round House
+    id: 2
+    type: DwellingType
+    builtFeatureName: Round House
+    BuildTimeCost:
+      good: 8
+      modifiedBy:
+        _value: 204
+        _displayName: Build Time
+        _abbreviation: 
+      value: 3
+      description: Build Round House
+    InitialBuildCosts:
+      costs:
+      - good: 4
+        modifiedBy:
+          _value: 200
+          _displayName: Build Labor
+          _abbreviation: 
+        value: -6
+        description: Build Round House
+      - good: 1
+        modifiedBy:
+          _value: 201
+          _displayName: Build Wood Cost
+          _abbreviation: 
+        value: -14
+        description: Build Round House
+    PerTurnBuildCosts:
+      costs:
+      - good: 4
+        modifiedBy:
+          _value: 200
+          _displayName: Build Labor
+          _abbreviation: 
+        value: -6
+        description: Build Round House
+    validLandNames:
+    - Plains
+    - Moor
+    - Hills
+    - Moor Hills
+  - name: Build Large House
+    id: 3
+    type: DwellingType
+    builtFeatureName: Large House
+    BuildTimeCost:
+      good: 8
+      modifiedBy:
+        _value: 204
+        _displayName: Build Time
+        _abbreviation: 
+      value: 4
+      description: Build Large House
+    InitialBuildCosts:
+      costs:
+      - good: 4
+        modifiedBy:
+          _value: 200
+          _displayName: Build Labor
+          _abbreviation: 
+        value: -6
+        description: Build Large House
+      - good: 1
+        modifiedBy:
+          _value: 201
+          _displayName: Build Wood Cost
+          _abbreviation: 
+        value: -18
+        description: Build Large House
+    PerTurnBuildCosts:
+      costs:
+      - good: 4
+        modifiedBy:
+          _value: 200
+          _displayName: Build Labor
+          _abbreviation: 
+        value: -6
+        description: Build Large House
+    validLandNames:
+    - Plains
+    - Moor
+    - Hills
+    - Moor Hills
+  - name: Build Hall
+    id: 4
+    type: DwellingType
+    builtFeatureName: Hall
+    BuildTimeCost:
+      good: 8
+      modifiedBy:
+        _value: 204
+        _displayName: Build Time
+        _abbreviation: 
+      value: 8
+      description: Build Hall
+    InitialBuildCosts:
+      costs:
+      - good: 4
+        modifiedBy:
+          _value: 200
+          _displayName: Build Labor
+          _abbreviation: 
+        value: -8
+        description: Build Hall
+      - good: 1
+        modifiedBy:
+          _value: 201
+          _displayName: Build Wood Cost
+          _abbreviation: 
+        value: -32
+        description: Build Hall
+    PerTurnBuildCosts:
+      costs:
+      - good: 4
+        modifiedBy:
+          _value: 200
+          _displayName: Build Labor
+          _abbreviation: 
+        value: -8
+        description: Build Hall
+    validLandNames:
+    - Plains
+    - Moor
+    - Hills
+    - Moor Hills
+  dwellingFeatures:
+  - name: Tent
+    id: 1000
+    type: DwellingType
+    razeLaborCost:
+      good: 4
+      modifiedBy:
+        _value: 210
+        _displayName: Raze Labor
+        _abbreviation: 
+      value: -1
+      description: Tent
+    tileModifiers:
+    - type:
+        _value: 30
+        _displayName: Defense Bonus
+        _abbreviation: DB
+      value: 0
+      description: Tent
+    - type:
+        _value: 31
+        _displayName: Movement Cost
+        _abbreviation: MC
+      value: 0
+      description: Tent
+    - type:
+        _value: 50
+        _displayName: Max Condition
+        _abbreviation: MX CD
+      value: 2
+      description: Tent
+    ownerModifiers:
+    - type:
+        _value: 10
+        _displayName: Max Population
+        _abbreviation: POP
+      value: 4
+      description: Tent
+    - type:
+        _value: 11
+        _displayName: Max Food
+        _abbreviation: MX FD
+      value: 20
+      description: Tent
+    - type:
+        _value: 12
+        _displayName: Max Wood
+        _abbreviation: MX WD
+      value: 10
+      description: Tent
+    - type:
+        _value: 13
+        _displayName: Max Stone
+        _abbreviation: MX ST
+      value: 0
+      description: Tent
+    dwellingGraphicName: Spring_I_Tent
+  - name: Small House
+    id: 1001
+    type: DwellingType
+    razeLaborCost:
+      good: 4
+      modifiedBy:
+        _value: 210
+        _displayName: Raze Labor
+        _abbreviation: 
+      value: -2
+      description: Small House
+    tileModifiers:
+    - type:
+        _value: 30
+        _displayName: Defense Bonus
+        _abbreviation: DB
+      value: 1
+      description: Small House
+    - type:
+        _value: 31
+        _displayName: Movement Cost
+        _abbreviation: MC
+      value: 0
+      description: Small House
+    - type:
+        _value: 50
+        _displayName: Max Condition
+        _abbreviation: MX CD
+      value: 3
+      description: Small House
+    ownerModifiers:
+    - type:
+        _value: 10
+        _displayName: Max Population
+        _abbreviation: POP
+      value: 6
+      description: Small House
+    - type:
+        _value: 11
+        _displayName: Max Food
+        _abbreviation: MX FD
+      value: 40
+      description: Small House
+    - type:
+        _value: 12
+        _displayName: Max Wood
+        _abbreviation: MX WD
+      value: 20
+      description: Small House
+    - type:
+        _value: 13
+        _displayName: Max Stone
+        _abbreviation: MX ST
+      value: 10
+      description: Small House
+    dwellingGraphicName: Spring_I_SmallHouse
+  - name: Round House
+    id: 1002
+    type: DwellingType
+    razeLaborCost:
+      good: 4
+      modifiedBy:
+        _value: 210
+        _displayName: Raze Labor
+        _abbreviation: 
+      value: -3
+      description: Round House
+    tileModifiers:
+    - type:
+        _value: 30
+        _displayName: Defense Bonus
+        _abbreviation: DB
+      value: 2
+      description: Round House
+    - type:
+        _value: 31
+        _displayName: Movement Cost
+        _abbreviation: MC
+      value: 0
+      description: Round House
+    - type:
+        _value: 50
+        _displayName: Max Condition
+        _abbreviation: MX CD
+      value: 4
+      description: Round House
+    ownerModifiers:
+    - type:
+        _value: 10
+        _displayName: Max Population
+        _abbreviation: POP
+      value: 8
+      description: Round House
+    - type:
+        _value: 11
+        _displayName: Max Food
+        _abbreviation: MX FD
+      value: 60
+      description: Round House
+    - type:
+        _value: 12
+        _displayName: Max Wood
+        _abbreviation: MX WD
+      value: 30
+      description: Round House
+    - type:
+        _value: 13
+        _displayName: Max Stone
+        _abbreviation: MX ST
+      value: 15
+      description: Round House
+    dwellingGraphicName: Spring_I_RoundHouse
+  - name: Large House
+    id: 1003
+    type: DwellingType
+    razeLaborCost:
+      good: 4
+      modifiedBy:
+        _value: 210
+        _displayName: Raze Labor
+        _abbreviation: 
+      value: -4
+      description: Large House
+    tileModifiers:
+    - type:
+        _value: 30
+        _displayName: Defense Bonus
+        _abbreviation: DB
+      value: 3
+      description: Large House
+    - type:
+        _value: 31
+        _displayName: Movement Cost
+        _abbreviation: MC
+      value: 0
+      description: Large House
+    - type:
+        _value: 50
+        _displayName: Max Condition
+        _abbreviation: MX CD
+      value: 5
+      description: Large House
+    ownerModifiers:
+    - type:
+        _value: 10
+        _displayName: Max Population
+        _abbreviation: POP
+      value: 10
+      description: Large House
+    - type:
+        _value: 11
+        _displayName: Max Food
+        _abbreviation: MX FD
+      value: 80
+      description: Large House
+    - type:
+        _value: 12
+        _displayName: Max Wood
+        _abbreviation: MX WD
+      value: 40
+      description: Large House
+    - type:
+        _value: 13
+        _displayName: Max Stone
+        _abbreviation: MX ST
+      value: 20
+      description: Large House
+    dwellingGraphicName: Spring_I_LargeHouse
+  - name: Hall
+    id: 1004
+    type: DwellingType
+    razeLaborCost:
+      good: 4
+      modifiedBy:
+        _value: 210
+        _displayName: Raze Labor
+        _abbreviation: 
+      value: -6
+      description: Hall
+    tileModifiers:
+    - type:
+        _value: 30
+        _displayName: Defense Bonus
+        _abbreviation: DB
+      value: 4
+      description: Hall
+    - type:
+        _value: 31
+        _displayName: Movement Cost
+        _abbreviation: MC
+      value: 0
+      description: Hall
+    - type:
+        _value: 50
+        _displayName: Max Condition
+        _abbreviation: MX CD
+      value: 6
+      description: Hall
+    ownerModifiers:
+    - type:
+        _value: 10
+        _displayName: Max Population
+        _abbreviation: POP
+      value: 14
+      description: Hall
+    - type:
+        _value: 11
+        _displayName: Max Food
+        _abbreviation: MX FD
+      value: 100
+      description: Hall
+    - type:
+        _value: 12
+        _displayName: Max Wood
+        _abbreviation: MX WD
+      value: 60
+      description: Hall
+    - type:
+        _value: 13
+        _displayName: Max Stone
+        _abbreviation: MX ST
+      value: 25
+      description: Hall
+    dwellingGraphicName: Spring_I_Hall

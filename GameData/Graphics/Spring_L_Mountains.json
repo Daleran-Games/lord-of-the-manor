@@ -1,8 +1,0 @@
-{
-    "name": "Spring_L_Mountains",
-    "type": "DaleranGames.TBSFramework.TileGraphic",
-    "atlasCoord": {
-        "x": 5,
-        "y": 1
-    }
-}
