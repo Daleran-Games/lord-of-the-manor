@@ -91,10 +91,16 @@ namespace DaleranGames.TBSFramework
 
         public override void OnTurnSetUp(BaseTurn turn, HexTile tile)
         {
-            if (tile.Counters[buildTimeCost.ModifiedBy] < buildTimeCost.ModifiedValue(tile.Owner.Stats))
-                tile.Owner.Goods.AddFuture(perTurnBuildCosts.GetAllCostsAsTransaction(tile.Owner.Stats));
-            else if (tile.Counters[buildTimeCost.ModifiedBy] >= buildTimeCost.ModifiedValue(tile.Owner.Stats))
-                OnBuildCompleted(tile);
+            if (CanResume(tile))
+            {
+                if (tile.Counters[buildTimeCost.ModifiedBy] < buildTimeCost.ModifiedValue(tile.Owner.Stats))
+                    tile.Owner.Goods.AddFuture(perTurnBuildCosts.GetAllCostsAsTransaction(tile.Owner.Stats));
+                else if (tile.Counters[buildTimeCost.ModifiedBy] >= buildTimeCost.ModifiedValue(tile.Owner.Stats))
+                    OnBuildCompleted(tile);
+            }
+            else
+                Pause(tile);
+
         }
 
         public override void OnTurnStart(BaseTurn turn, HexTile tile)

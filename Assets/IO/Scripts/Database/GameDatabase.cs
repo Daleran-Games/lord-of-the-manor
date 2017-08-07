@@ -56,7 +56,7 @@ namespace DaleranGames.IO
             Features = featuresLoader.GenerateDatabase();
             Groups = groupsLoader.GenerateDatabase();
 
-            graphicsLoader.InitializeDatabase(TileGraphics);
+
             landsLoader.InitializeDatabase(Lands);
             featuresLoader.InitializeDatabase(Features);
             groupsLoader.InitializeDatabase(Groups);

@@ -11,8 +11,649 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2a5cf7170034b74d9cf5d90a8948453, type: 3}
   m_Name: GraphicsDatabaseLoader
   m_EditorClassIdentifier: 
-  csvFilePath: 
   uiSpriteFilePath: UIAtlas.png
   springSpriteFilePath: SpringAtlas.png
-  graphicRefFilePath: GraphicNames.txt
-  graphics: []
+  atlas: {fileID: 11400000, guid: 922081251dba41d43b85034f5ddea963, type: 2}
+  graphics:
+  - name: UIAtlas_Border_Test
+    type: TileGraphic
+    id: 0
+    atlasCoord:
+      x: 9
+      y: 0
+  - name: UIAtlas_Highlight_Cross
+    type: TileGraphic
+    id: 1
+    atlasCoord:
+      x: 7
+      y: 0
+  - name: UIAtlas_Highlight_Dark
+    type: TileGraphic
+    id: 2
+    atlasCoord:
+      x: 5
+      y: 0
+  - name: UIAtlas_Highlight_Fog
+    type: TileGraphic
+    id: 3
+    atlasCoord:
+      x: 6
+      y: 0
+  - name: UIAtlas_Highlight_Light
+    type: TileGraphic
+    id: 4
+    atlasCoord:
+      x: 4
+      y: 0
+  - name: UIAtlas_Highlight_Negative
+    type: TileGraphic
+    id: 5
+    atlasCoord:
+      x: 3
+      y: 0
+  - name: UIAtlas_Highlight_Positive
+    type: TileGraphic
+    id: 6
+    atlasCoord:
+      x: 2
+      y: 0
+  - name: UIAtlas_Highlight_Ring
+    type: TileGraphic
+    id: 7
+    atlasCoord:
+      x: 1
+      y: 0
+  - name: UIAtlas_Highlight_White
+    type: TileGraphic
+    id: 8
+    atlasCoord:
+      x: 8
+      y: 0
+  - name: UIAtlas_Icon_AnvilTool
+    type: TileGraphic
+    id: 9
+    atlasCoord:
+      x: 6
+      y: 8
+  - name: UIAtlas_Icon_BlueBox
+    type: TileGraphic
+    id: 10
+    atlasCoord:
+      x: 5
+      y: 2
+  - name: UIAtlas_Icon_Cancel
+    type: TileGraphic
+    id: 11
+    atlasCoord:
+      x: 0
+      y: 8
+  - name: UIAtlas_Icon_Cancel2
+    type: TileGraphic
+    id: 12
+    atlasCoord:
+      x: 4
+      y: 8
+  - name: UIAtlas_Icon_ClearForest
+    type: TileGraphic
+    id: 13
+    atlasCoord:
+      x: 2
+      y: 8
+  - name: UIAtlas_Icon_ClearWork
+    type: TileGraphic
+    id: 14
+    atlasCoord:
+      x: 9
+      y: 2
+  - name: UIAtlas_Icon_Coins
+    type: TileGraphic
+    id: 15
+    atlasCoord:
+      x: 3
+      y: 1
+  - name: UIAtlas_Icon_CommonForest
+    type: TileGraphic
+    id: 16
+    atlasCoord:
+      x: 1
+      y: 9
+  - name: UIAtlas_Icon_CommonPasture
+    type: TileGraphic
+    id: 17
+    atlasCoord:
+      x: 2
+      y: 9
+  - name: UIAtlas_Icon_Compass
+    type: TileGraphic
+    id: 18
+    atlasCoord:
+      x: 13
+      y: 1
+  - name: UIAtlas_Icon_Drop
+    type: TileGraphic
+    id: 19
+    atlasCoord:
+      x: 12
+      y: 1
+  - name: UIAtlas_Icon_Fall
+    type: TileGraphic
+    id: 20
+    atlasCoord:
+      x: 17
+      y: 1
+  - name: UIAtlas_Icon_FarmLand
+    type: TileGraphic
+    id: 21
+    atlasCoord:
+      x: 1
+      y: 8
+  - name: UIAtlas_Icon_Food
+    type: TileGraphic
+    id: 22
+    atlasCoord:
+      x: 0
+      y: 1
+  - name: UIAtlas_Icon_Gear
+    type: TileGraphic
+    id: 23
+    atlasCoord:
+      x: 0
+      y: 2
+  - name: UIAtlas_Icon_Hammer
+    type: TileGraphic
+    id: 24
+    atlasCoord:
+      x: 6
+      y: 1
+  - name: UIAtlas_Icon_Herd
+    type: TileGraphic
+    id: 25
+    atlasCoord:
+      x: 4
+      y: 1
+  - name: UIAtlas_Icon_Hourglass
+    type: TileGraphic
+    id: 26
+    atlasCoord:
+      x: 11
+      y: 2
+  - name: UIAtlas_Icon_House
+    type: TileGraphic
+    id: 27
+    atlasCoord:
+      x: 7
+      y: 1
+  - name: UIAtlas_Icon_HousingArea
+    type: TileGraphic
+    id: 28
+    atlasCoord:
+      x: 3
+      y: 9
+  - name: UIAtlas_Icon_Hunting
+    type: TileGraphic
+    id: 29
+    atlasCoord:
+      x: 5
+      y: 1
+  - name: UIAtlas_Icon_Menu
+    type: TileGraphic
+    id: 30
+    atlasCoord:
+      x: 1
+      y: 2
+  - name: UIAtlas_Icon_Mountain
+    type: TileGraphic
+    id: 31
+    atlasCoord:
+      x: 11
+      y: 1
+  - name: UIAtlas_Icon_MoveSpeed
+    type: TileGraphic
+    id: 32
+    atlasCoord:
+      x: 14
+      y: 1
+  - name: UIAtlas_Icon_PlayerTerritory
+    type: TileGraphic
+    id: 33
+    atlasCoord:
+      x: 0
+      y: 9
+  - name: UIAtlas_Icon_Quarry
+    type: TileGraphic
+    id: 34
+    atlasCoord:
+      x: 5
+      y: 8
+  - name: UIAtlas_Icon_RedBox
+    type: TileGraphic
+    id: 35
+    atlasCoord:
+      x: 4
+      y: 2
+  - name: UIAtlas_Icon_Shield
+    type: TileGraphic
+    id: 36
+    atlasCoord:
+      x: 9
+      y: 1
+  - name: UIAtlas_Icon_Spring
+    type: TileGraphic
+    id: 37
+    atlasCoord:
+      x: 15
+      y: 1
+  - name: UIAtlas_Icon_Stone
+    type: TileGraphic
+    id: 38
+    atlasCoord:
+      x: 2
+      y: 1
+  - name: UIAtlas_Icon_Summer
+    type: TileGraphic
+    id: 39
+    atlasCoord:
+      x: 16
+      y: 1
+  - name: UIAtlas_Icon_TileFood1
+    type: TileGraphic
+    id: 40
+    atlasCoord:
+      x: 0
+      y: 3
+  - name: UIAtlas_Icon_TileFood2
+    type: TileGraphic
+    id: 41
+    atlasCoord:
+      x: 1
+      y: 3
+  - name: UIAtlas_Icon_TileFood3
+    type: TileGraphic
+    id: 42
+    atlasCoord:
+      x: 2
+      y: 3
+  - name: UIAtlas_Icon_TileGold1
+    type: TileGraphic
+    id: 43
+    atlasCoord:
+      x: 9
+      y: 3
+  - name: UIAtlas_Icon_TileGold2
+    type: TileGraphic
+    id: 44
+    atlasCoord:
+      x: 10
+      y: 3
+  - name: UIAtlas_Icon_TileGold3
+    type: TileGraphic
+    id: 45
+    atlasCoord:
+      x: 11
+      y: 3
+  - name: UIAtlas_Icon_TileStone1
+    type: TileGraphic
+    id: 46
+    atlasCoord:
+      x: 6
+      y: 3
+  - name: UIAtlas_Icon_TileStone2
+    type: TileGraphic
+    id: 47
+    atlasCoord:
+      x: 7
+      y: 3
+  - name: UIAtlas_Icon_TileStone3
+    type: TileGraphic
+    id: 48
+    atlasCoord:
+      x: 8
+      y: 3
+  - name: UIAtlas_Icon_TileWood1
+    type: TileGraphic
+    id: 49
+    atlasCoord:
+      x: 3
+      y: 3
+  - name: UIAtlas_Icon_TileWood2
+    type: TileGraphic
+    id: 50
+    atlasCoord:
+      x: 4
+      y: 3
+  - name: UIAtlas_Icon_TileWood3
+    type: TileGraphic
+    id: 51
+    atlasCoord:
+      x: 5
+      y: 3
+  - name: UIAtlas_Icon_Tower
+    type: TileGraphic
+    id: 52
+    atlasCoord:
+      x: 10
+      y: 1
+  - name: UIAtlas_Icon_Upgrade
+    type: TileGraphic
+    id: 53
+    atlasCoord:
+      x: 3
+      y: 8
+  - name: UIAtlas_Icon_VassalTerritory
+    type: TileGraphic
+    id: 54
+    atlasCoord:
+      x: 4
+      y: 9
+  - name: UIAtlas_Icon_Weapons
+    type: TileGraphic
+    id: 55
+    atlasCoord:
+      x: 8
+      y: 1
+  - name: UIAtlas_Icon_Winter
+    type: TileGraphic
+    id: 56
+    atlasCoord:
+      x: 18
+      y: 1
+  - name: UIAtlas_Icon_Wood
+    type: TileGraphic
+    id: 57
+    atlasCoord:
+      x: 1
+      y: 1
+  - name: UIAtlas_Icon_WorkFarm
+    type: TileGraphic
+    id: 58
+    atlasCoord:
+      x: 8
+      y: 2
+  - name: UIAtlas_Icon_WorkForest
+    type: TileGraphic
+    id: 59
+    atlasCoord:
+      x: 6
+      y: 2
+  - name: UIAtlas_Icon_WorkImpr
+    type: TileGraphic
+    id: 60
+    atlasCoord:
+      x: 10
+      y: 2
+  - name: UIAtlas_Icon_WorkStone
+    type: TileGraphic
+    id: 61
+    atlasCoord:
+      x: 7
+      y: 2
+  - name: UIAtlas_Icon_YellowBox
+    type: TileGraphic
+    id: 62
+    atlasCoord:
+      x: 3
+      y: 2
+  - name: UIAtlas_Icon_Zone
+    type: TileGraphic
+    id: 63
+    atlasCoord:
+      x: 2
+      y: 2
+  - name: UIAtlas_SmallIcon_Cancel
+    type: TileGraphic
+    id: 64
+    atlasCoord:
+      x: 13
+      y: 2
+  - name: UIAtlas_SmallIcon_Sleep
+    type: TileGraphic
+    id: 65
+    atlasCoord:
+      x: 14
+      y: 2
+  - name: UIAtlas_SmallIcon_Upgrade
+    type: TileGraphic
+    id: 66
+    atlasCoord:
+      x: 12
+      y: 2
+  - name: UIAtlas_Text_+
+    type: TileGraphic
+    id: 67
+    atlasCoord:
+      x: 11
+      y: 6
+  - name: UIAtlas_Text_-
+    type: TileGraphic
+    id: 68
+    atlasCoord:
+      x: 10
+      y: 6
+  - name: UIAtlas_Text_0
+    type: TileGraphic
+    id: 69
+    atlasCoord:
+      x: 0
+      y: 6
+  - name: UIAtlas_Text_1
+    type: TileGraphic
+    id: 70
+    atlasCoord:
+      x: 1
+      y: 6
+  - name: UIAtlas_Text_2
+    type: TileGraphic
+    id: 71
+    atlasCoord:
+      x: 2
+      y: 6
+  - name: UIAtlas_Text_3
+    type: TileGraphic
+    id: 72
+    atlasCoord:
+      x: 3
+      y: 6
+  - name: UIAtlas_Text_4
+    type: TileGraphic
+    id: 73
+    atlasCoord:
+      x: 4
+      y: 6
+  - name: UIAtlas_Text_5
+    type: TileGraphic
+    id: 74
+    atlasCoord:
+      x: 5
+      y: 6
+  - name: UIAtlas_Text_6
+    type: TileGraphic
+    id: 75
+    atlasCoord:
+      x: 6
+      y: 6
+  - name: UIAtlas_Text_7
+    type: TileGraphic
+    id: 76
+    atlasCoord:
+      x: 7
+      y: 6
+  - name: UIAtlas_Text_8
+    type: TileGraphic
+    id: 77
+    atlasCoord:
+      x: 8
+      y: 6
+  - name: UIAtlas_Text_9
+    type: TileGraphic
+    id: 78
+    atlasCoord:
+      x: 9
+      y: 6
+  - name: Spring_I_FarmFallow
+    type: TileGraphic
+    id: 79
+    atlasCoord:
+      x: 3
+      y: 5
+  - name: Spring_I_FarmGrowing
+    type: TileGraphic
+    id: 80
+    atlasCoord:
+      x: 1
+      y: 5
+  - name: Spring_I_FarmHarvest
+    type: TileGraphic
+    id: 81
+    atlasCoord:
+      x: 2
+      y: 5
+  - name: Spring_I_FarmSowing
+    type: TileGraphic
+    id: 82
+    atlasCoord:
+      x: 0
+      y: 5
+  - name: Spring_I_Hall
+    type: TileGraphic
+    id: 83
+    atlasCoord:
+      x: 4
+      y: 5
+  - name: Spring_I_Hall_Constr
+    type: TileGraphic
+    id: 84
+    atlasCoord:
+      x: 4
+      y: 6
+  - name: Spring_I_LargeHouse
+    type: TileGraphic
+    id: 85
+    atlasCoord:
+      x: 5
+      y: 5
+  - name: Spring_I_LargeHouse_Contr
+    type: TileGraphic
+    id: 86
+    atlasCoord:
+      x: 5
+      y: 6
+  - name: Spring_I_LoggingSite
+    type: TileGraphic
+    id: 87
+    atlasCoord:
+      x: 1
+      y: 4
+  - name: Spring_I_Quarry
+    type: TileGraphic
+    id: 88
+    atlasCoord:
+      x: 0
+      y: 4
+  - name: Spring_I_RoundHouse
+    type: TileGraphic
+    id: 89
+    atlasCoord:
+      x: 6
+      y: 5
+  - name: Spring_I_RoundHouse_Contr
+    type: TileGraphic
+    id: 90
+    atlasCoord:
+      x: 6
+      y: 6
+  - name: Spring_I_SmallHouse
+    type: TileGraphic
+    id: 91
+    atlasCoord:
+      x: 7
+      y: 5
+  - name: Spring_I_SmallHouse_Constr
+    type: TileGraphic
+    id: 92
+    atlasCoord:
+      x: 7
+      y: 6
+  - name: Spring_I_Tent
+    type: TileGraphic
+    id: 93
+    atlasCoord:
+      x: 8
+      y: 5
+  - name: Spring_L_DeepWater
+    type: TileGraphic
+    id: 94
+    atlasCoord:
+      x: 11
+      y: 1
+  - name: Spring_L_Fen
+    type: TileGraphic
+    id: 95
+    atlasCoord:
+      x: 10
+      y: 1
+  - name: Spring_L_Forest
+    type: TileGraphic
+    id: 96
+    atlasCoord:
+      x: 2
+      y: 1
+  - name: Spring_L_Hills
+    type: TileGraphic
+    id: 97
+    atlasCoord:
+      x: 3
+      y: 1
+  - name: Spring_L_Moor
+    type: TileGraphic
+    id: 98
+    atlasCoord:
+      x: 7
+      y: 1
+  - name: Spring_L_MoorHills
+    type: TileGraphic
+    id: 99
+    atlasCoord:
+      x: 8
+      y: 1
+  - name: Spring_L_MoorMountains
+    type: TileGraphic
+    id: 100
+    atlasCoord:
+      x: 9
+      y: 1
+  - name: Spring_L_Mountains
+    type: TileGraphic
+    id: 101
+    atlasCoord:
+      x: 5
+      y: 1
+  - name: Spring_L_Parkland
+    type: TileGraphic
+    id: 102
+    atlasCoord:
+      x: 1
+      y: 1
+  - name: Spring_L_Plains
+    type: TileGraphic
+    id: 103
+    atlasCoord:
+      x: 0
+      y: 1
+  - name: Spring_L_ShallowWater
+    type: TileGraphic
+    id: 104
+    atlasCoord:
+      x: 12
+      y: 1
+  - name: Spring_L_WoodedHills
+    type: TileGraphic
+    id: 105
+    atlasCoord:
+      x: 4
+      y: 1
+  - name: Spring_L_WoodedMountains
+    type: TileGraphic
+    id: 106
+    atlasCoord:
+      x: 6
+      y: 1

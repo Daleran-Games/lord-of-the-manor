@@ -7,7 +7,7 @@ using System;
 namespace DaleranGames.TBSFramework
 {
     [System.Serializable]
-    public class FarmFeature : FeatureType, ICancelable, IWorkable, IPlaceable
+    public class FarmFeature : FeatureType, IWorkable, IPlaceable
     {
         [SerializeField]
         string sowingGraphicName;
@@ -73,17 +73,27 @@ namespace DaleranGames.TBSFramework
 
         public override void OnDatabaseInitialization()
         {
+            sowingGraphic = GameDatabase.Instance.TileGraphics[sowingGraphicName];
+            growingGraphic = GameDatabase.Instance.TileGraphics[growingGraphicName];
             harvestGraphic = GameDatabase.Instance.TileGraphics[harvestGraphicName];
+            fallowGraphic = GameDatabase.Instance.TileGraphics[fallowGraphicName];
+
+            validLands = new List<LandType>();
+            for (int i = 0; i < validLandNames.Count; i++)
+            {
+                validLands.Add(GameDatabase.Instance.Lands[validLandNames[i]]);
+            }
         }
 
         public override void OnActivation(HexTile tile)
         {
             tile.TerrainGraphics.Add(TileLayers.Improvements, sowingGraphic);
-            tile.Owner.Goods.TryProcessNow(buildLaborCost.ModifiedTransaction(tile.Owner.Stats));
             tile.Counters.AddCounter(StatType.FarmGrowTime);
 
             tile.Stats.Add(TileModifiers);
             tile.OwnerModifiers.Add(OwnerModifiers);
+
+            tile.Owner.Goods.TryProcessNow(buildLaborCost.ModifiedTransaction(tile.Owner.Stats));
 
         }
 
@@ -94,7 +104,7 @@ namespace DaleranGames.TBSFramework
 
         public override void OnTurnSetUp(BaseTurn turn, HexTile tile)
         {
-
+            
         }
 
         public override void OnTurnStart(BaseTurn turn, HexTile tile)
@@ -113,15 +123,6 @@ namespace DaleranGames.TBSFramework
             tile.OwnerModifiers.Remove(OwnerModifiers);
         }
 
-        public bool CanCancel(HexTile tile)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Cancel(HexTile tile)
-        {
-            throw new NotImplementedException();
-        }
 
         public void Pause(HexTile tile)
         {
@@ -140,17 +141,25 @@ namespace DaleranGames.TBSFramework
 
         public TileGraphic GetWorkIcon(HexTile tile)
         {
-            throw new NotImplementedException();
+            if (tile.Paused)
+                return GameDatabase.Instance.TileGraphics["UIAtlas_SmallIcon_Sleep"];
+            else
+                return GameDatabase.Instance.TileGraphics["UIAtlas_Icon_WorkFarm"];
         }
 
         public bool CanPlace(HexTile tile)
         {
-            throw new NotImplementedException();
+            if (tile.Owner.Goods.CanProcessNow(buildLaborCost.ModifiedTransaction(tile.Owner.Stats)) && validLands.Contains(tile.Land) && (TurnManager.Instance.CurrentTurn == TurnManager.Instance.Spring || TurnManager.Instance.CurrentTurn == TurnManager.Instance.Fall))
+            {
+                return true;
+            }
+            else
+                return false;
         }
 
         public void Place(HexTile tile)
         {
-            throw new NotImplementedException();
+            tile.Feature = this;
         }
     }
 }

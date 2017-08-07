@@ -13,7 +13,7 @@ namespace DaleranGames.IO
 
     //TODO: Move Database loaders into a scriptable object
     [CreateAssetMenu(fileName = "GraphicsDatabaseLoader", menuName = "DaleranGames/Database/Graphics", order = 0)]
-    public class GraphicsDatabaseLoader : DatabaseLoader<TileGraphic>
+    public class GraphicsDatabaseLoader : ScriptableObject
     {
         [SerializeField]
         string uiSpriteFilePath = "UIAtlas.png";
@@ -22,15 +22,18 @@ namespace DaleranGames.IO
         string springSpriteFilePath = "SpringAtlas.png";
         public string SpringSpritePath { get { return GameDatabase.SpritePath + springSpriteFilePath; } }
 
-        [SerializeField]
-        protected string graphicRefFilePath = "GraphicNames.txt";
-        protected string RefFilePath { get { return GameDatabase.GameDataPath + graphicRefFilePath; } }
+        //[SerializeField]
+        //protected string graphicRefFilePath = "GraphicNames.txt";
+        //protected string RefFilePath { get { return GameDatabase.GameDataPath + graphicRefFilePath; } }
 
         [SerializeField]
-        protected TileGraphic[] graphics;
+        TileAtlas atlas;
+
+        [SerializeField]
+        TileGraphic[] graphics;
 
 
-        public override Database<TileGraphic> GenerateDatabase()
+        public Database<TileGraphic> GenerateDatabase()
         {
 
             Database<TileGraphic> newDB = new Database<TileGraphic>();
@@ -42,15 +45,6 @@ namespace DaleranGames.IO
             return newDB;
         }
 
-        public override void InitializeDatabase(Database<TileGraphic> newDB)
-        {
-
-        }
-
-        public override void LoadCSV()
-        {
-            
-        }
 
 #if UNITY_EDITOR
         [ContextMenu("Build Graphics")]
@@ -76,7 +70,7 @@ namespace DaleranGames.IO
                 if (objs[i] as Sprite != null)
                 {
                     Sprite sprite = objs[i] as Sprite;
-                    newGraphics.Add(new TileGraphic(sprite.name, id, GameDatabase.Instance.Atlas.GetCoordFromRect(sprite.rect)));
+                    newGraphics.Add(new TileGraphic(sprite.name, id,atlas.GetCoordFromRect(sprite.rect)));
                     //writer.WriteLine(id + "  " +sprite.name);
                     id++;
 

@@ -11,10 +11,6 @@ namespace DaleranGames.IO
     [CreateAssetMenu(fileName = "SpriteDatabaseLoader", menuName = "DaleranGames/Database/Sprite", order = 0)]
     public class SpriteDatabaseLoader : ScriptableObject
     {
-        [SerializeField]
-        protected List<Sprite> sprites;
-
-        
 
         [SerializeField]
         string uiSpriteFilePath = "UIAtlas.png";
@@ -22,6 +18,9 @@ namespace DaleranGames.IO
         [SerializeField]
         string springSpriteFilePath = "SpringAtlas.png";
         public string SpringSpritePath { get { return GameDatabase.SpritePath + springSpriteFilePath; } }
+
+        [SerializeField]
+        protected List<Sprite> sprites;
 
         public Dictionary<string, Sprite> GenerateDatabase ()
         {

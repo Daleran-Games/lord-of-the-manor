@@ -32,7 +32,7 @@ namespace DaleranGames.TBSFramework
             upgradeable.Upgrade(tile);
         }
 
-        public override TileGraphic GetUIIcon(HexTile tile)
+        public override TileGraphic GetTerrainIcon(HexTile tile)
         {
 
             IUpgradeable upgradeable = tile.Feature as IUpgradeable;

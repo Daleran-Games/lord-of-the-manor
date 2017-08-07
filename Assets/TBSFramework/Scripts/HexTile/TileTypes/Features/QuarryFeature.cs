@@ -7,7 +7,7 @@ using System;
 namespace DaleranGames.TBSFramework
 {
     [System.Serializable]
-    public class QuarryFeature : FeatureType, ICancelable, IWorkable, IPlaceable
+    public class QuarryFeature : FeatureType, IWorkable, IPlaceable
     {
         [SerializeField]
         string quarryGraphicName;
@@ -17,7 +17,7 @@ namespace DaleranGames.TBSFramework
         Cost quarryTime;
 
         [SerializeField]
-        Cost buildLaborCost;
+        Cost quarryLaborCost;
 
         [SerializeField]
         List<string> validLandNames;
@@ -41,6 +41,11 @@ namespace DaleranGames.TBSFramework
             type = entry["type"];
 
             quarryGraphicName = entry["iconName"];
+            validLandNames = entry.ParseList("startLand");
+            completeLandNames = entry.ParseList("endLand");
+
+            quarryTime = new Cost(GoodType.Turns, StatType.QuarryTime, Int32.Parse(entry["quarryTime"]), name);
+            quarryLaborCost = new Cost(GoodType.Labor, StatType.QuarryLaborCost, Int32.Parse(entry["quarryLaborCost"]), name);
 
             tileModifiers = Modifier.ParseCSVList(entry.ParseList("tileModifiers"));
             ownerModifiers = Modifier.ParseCSVList(entry.ParseList("groupModifiers"));
@@ -54,19 +59,37 @@ namespace DaleranGames.TBSFramework
         public override TileGraphic GetMainGraphic(HexTile tile)
         {
             return quarryGraphic;
+
         }
 
         public override void OnDatabaseInitialization()
         {
             quarryGraphic = GameDatabase.Instance.TileGraphics[quarryGraphicName];
+
+            validLands = new List<LandType>();
+            for (int i = 0; i < validLandNames.Count; i++)
+            {
+                validLands.Add(GameDatabase.Instance.Lands[validLandNames[i]]);
+            }
+
+            completeLands = new List<LandType>();
+            for (int i = 0; i < completeLandNames.Count; i++)
+            {
+                completeLands.Add(GameDatabase.Instance.Lands[completeLandNames[i]]);
+            }
         }
 
         public override void OnActivation(HexTile tile)
         {
             tile.TerrainGraphics.Add(TileLayers.Improvements, quarryGraphic);
-            tile.Owner.Goods.TryProcessNow(buildLaborCost.ModifiedTransaction(tile.Owner.Stats));
+
+            tile.Counters.AddCounter(quarryTime.ModifiedBy);
             tile.Stats.Add(TileModifiers);
             tile.OwnerModifiers.Add(OwnerModifiers);
+
+            tile.Owner.Goods.TryProcessNow(quarryLaborCost.ModifiedTransaction(tile.Owner.Stats));
+            tile.Owner.Goods.AddFuture(quarryLaborCost.ModifiedTransaction(tile.Owner.Stats));
+            tile.Owner.Goods.AddFuture(new Transaction(GoodType.Stone, tile.Stats[StatType.QuarryingRate] * tile.Stats[StatType.StoneYield], name));
 
         }
 
@@ -77,6 +100,18 @@ namespace DaleranGames.TBSFramework
 
         public override void OnTurnSetUp(BaseTurn turn, HexTile tile)
         {
+            if (CanResume(tile))
+            {
+                if (tile.Counters[quarryTime.ModifiedBy] < quarryTime.ModifiedValue(tile.Owner.Stats))
+                {
+                    tile.Owner.Goods.AddFuture(quarryLaborCost.ModifiedTransaction(tile.Owner.Stats));
+                    tile.Owner.Goods.AddFuture(new Transaction(GoodType.Stone, tile.Stats[StatType.QuarryingRate] * tile.Stats[StatType.StoneYield], name));
+                }
+                else if (tile.Counters[quarryTime.ModifiedBy] >= quarryTime.ModifiedValue(tile.Owner.Stats))
+                    OnQuarryComplete(tile);
+            }
+            else
+                Pause(tile);
 
         }
 
@@ -85,51 +120,83 @@ namespace DaleranGames.TBSFramework
 
         }
 
+        public virtual void OnQuarryComplete(HexTile tile)
+        {
+            for (int i=0;i<validLands.Count; i++)
+            {
+                if (validLands[i] == tile.Land)
+                {
+                    tile.Land = completeLands[i];
+                }
+            }
+
+            tile.Feature = FeatureType.Null;
+        }
+
         public override void OnDeactivation(HexTile tile)
         {
             tile.TerrainGraphics.Remove(TileLayers.Improvements);
+            tile.Owner.Goods.RemoveFuture(quarryLaborCost.ModifiedTransaction(tile.Owner.Stats));
+            tile.Counters.RemoveCounter(quarryTime.ModifiedBy);
             tile.Stats.Remove(TileModifiers);
             tile.OwnerModifiers.Remove(OwnerModifiers);
         }
 
-        public bool CanCancel(HexTile tile)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Cancel(HexTile tile)
-        {
-            throw new NotImplementedException();
-        }
-
         public void Pause(HexTile tile)
         {
-            throw new NotImplementedException();
-        }
+            tile.Counters.PauseCounter(true, quarryTime.ModifiedBy);
 
-        public bool CanResume(HexTile tile)
-        {
-            throw new NotImplementedException();
+            tile.Owner.Goods.RemoveFuture(quarryLaborCost.ModifiedTransaction(tile.Owner.Stats));
+            tile.Owner.Goods.TryProcessNow(quarryLaborCost.ReverseModifiedTransaction(tile.Owner.Stats));
+
+            tile.Owner.Goods.RemoveFuture(new Transaction(GoodType.Stone, tile.Stats[StatType.QuarryingRate] * tile.Stats[StatType.StoneYield], name));
+
+            tile.Paused = true;
         }
 
         public void Resume(HexTile tile)
         {
-            throw new NotImplementedException();
+            tile.Counters.PauseCounter(false, quarryTime.ModifiedBy);
+
+            tile.Owner.Goods.TryProcessNow(quarryLaborCost.ModifiedTransaction(tile.Owner.Stats));
+            tile.Owner.Goods.AddFuture(quarryLaborCost.ModifiedTransaction(tile.Owner.Stats));
+
+            tile.Owner.Goods.AddFuture(new Transaction(GoodType.Stone, tile.Stats[StatType.QuarryingRate] * tile.Stats[StatType.StoneYield], name));
+
+            tile.Paused = false;
         }
+
+        public bool CanResume(HexTile tile)
+        {
+            if (tile.Owner.Goods.CanProcessNow(quarryLaborCost.ModifiedTransaction(tile.Owner.Stats)))
+                return true;
+            else
+                return false;
+        }
+
+
 
         public TileGraphic GetWorkIcon(HexTile tile)
         {
-            throw new NotImplementedException();
+            if (tile.Paused)
+                return GameDatabase.Instance.TileGraphics["UIAtlas_SmallIcon_Sleep"];
+            else
+                return GameDatabase.Instance.TileGraphics["UIAtlas_Icon_WorkStone"];
         }
 
         public bool CanPlace(HexTile tile)
         {
-            throw new NotImplementedException();
+            if (tile.Owner.Goods.CanProcessNow(quarryLaborCost.ModifiedTransaction(tile.Owner.Stats)) && validLands.Contains(tile.Land))
+            {
+                return true;
+            }
+            else
+                return false;
         }
 
         public void Place(HexTile tile)
         {
-            throw new NotImplementedException();
+            tile.Feature = this;
         }
 
     }

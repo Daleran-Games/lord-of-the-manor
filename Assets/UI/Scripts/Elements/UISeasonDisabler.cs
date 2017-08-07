@@ -28,6 +28,7 @@ namespace DaleranGames.UI
         void Start()
         {
             TurnManager.Instance.TurnStart += OnSeasonStart;
+            OnSeasonStart(TurnManager.Instance.CurrentTurn);
         }
 
         void OnSeasonStart(BaseTurn turn)
