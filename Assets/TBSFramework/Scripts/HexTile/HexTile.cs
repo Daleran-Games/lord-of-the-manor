@@ -31,7 +31,6 @@ namespace DaleranGames.TBSFramework
             Stats = new TileStats(owner);
             OwnerModifiers = new TileGroupModifiers(owner);
 
-
             TurnManager.Instance.TurnEnded += OnTurnEnd;
             TurnManager.Instance.TurnSetUp += OnTurnSetUp;
             TurnManager.Instance.TurnStart += OnTurnStart;

@@ -83,7 +83,6 @@ namespace DaleranGames.TBSFramework
             tile.TerrainGraphics.Add(TileLayers.Improvements, dwellingGraphic);
             tile.Stats.Add(TileModifiers);
             tile.OwnerModifiers.Add(OwnerModifiers);
-
         }
 
         public override void OnTurnEnd(BaseTurn turn, HexTile tile)

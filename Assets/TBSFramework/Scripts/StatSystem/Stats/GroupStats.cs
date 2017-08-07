@@ -9,7 +9,7 @@ namespace DaleranGames.TBSFramework
     {
 
         protected Group group;
-
+        
         public GroupStats (Group group) : base()
         {
             this.group = group;

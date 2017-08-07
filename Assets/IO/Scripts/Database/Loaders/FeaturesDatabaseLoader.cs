@@ -43,6 +43,11 @@ namespace DaleranGames.IO
                         QuarryFeature newQuarry = new QuarryFeature(data[i]);
                         newDB.Add(newQuarry);
                         quarryFeatures.Add(newQuarry);
+                    break;
+                    case "FarmType":
+                        FarmFeature newfarm= new FarmFeature(data[i]);
+                        newDB.Add(newfarm);
+                        farmFeatures.Add(newfarm);
                         break;
                     default:
                         Debug.LogWarning("Database Error: " + data[i]["type"] + " not a valid type.");

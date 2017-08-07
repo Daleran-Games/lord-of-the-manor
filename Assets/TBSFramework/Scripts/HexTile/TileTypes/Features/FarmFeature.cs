@@ -25,7 +25,7 @@ namespace DaleranGames.TBSFramework
         [SerializeField]
         Cost growingTime;
         [SerializeField]
-        Cost fallowTime;
+        Cost cycleTime;
 
         [SerializeField]
         Cost buildLaborCost;
@@ -56,8 +56,18 @@ namespace DaleranGames.TBSFramework
             harvestGraphicName = entry["harvestGraphic"];
             fallowGraphicName = entry["fallowGraphic"];
 
+            validLandNames = entry.ParseList("validLand");
+
             tileModifiers = Modifier.ParseCSVList(entry.ParseList("tileModifiers"));
             ownerModifiers = Modifier.ParseCSVList(entry.ParseList("groupModifiers"));
+
+
+            growingTime = new Cost(GoodType.Turns, StatType.FarmGrowTime, Int32.Parse(entry["growTime"]), name);
+            cycleTime = new Cost(GoodType.Turns, StatType.FarmCycleTime, Int32.Parse(entry["fallowTime"]), name);
+
+            buildLaborCost = new Cost(GoodType.Labor, StatType.FarmLaborCost, Int32.Parse(entry["buildLaborCost"]), name);
+            cultivateLaborCost = new Cost(GoodType.Labor, StatType.FarmLaborCost, Int32.Parse(entry["cultivateLaborCost"]), name);
+            harvestLaborCost = new Cost(GoodType.Labor, StatType.FarmLaborCost, Int32.Parse(entry["harvestLaborCost"]), name);
 
             tileModifiers.Add(new Modifier(StatType.DefenseBonus, Int32.Parse(entry["defenseBonus"]), name));
             tileModifiers.Add(new Modifier(StatType.MovementCost, Int32.Parse(entry["movementCost"]), name));
@@ -88,12 +98,14 @@ namespace DaleranGames.TBSFramework
         public override void OnActivation(HexTile tile)
         {
             tile.TerrainGraphics.Add(TileLayers.Improvements, sowingGraphic);
-            tile.Counters.AddCounter(StatType.FarmGrowTime);
+
+            tile.Counters.AddCounter(cycleTime.ModifiedBy);
 
             tile.Stats.Add(TileModifiers);
             tile.OwnerModifiers.Add(OwnerModifiers);
 
             tile.Owner.Goods.TryProcessNow(buildLaborCost.ModifiedTransaction(tile.Owner.Stats));
+
 
         }
 
@@ -104,7 +116,35 @@ namespace DaleranGames.TBSFramework
 
         public override void OnTurnSetUp(BaseTurn turn, HexTile tile)
         {
-            
+            if (tile.Counters[cycleTime.ModifiedBy] == 0)
+            {
+                tile.Counters.AddCounter(cycleTime.ModifiedBy);
+
+                tile.TerrainGraphics.Remove(TileLayers.Improvements);
+                tile.TerrainGraphics.Add(TileLayers.Improvements, sowingGraphic);
+            }
+            else if (tile.Counters[cycleTime.ModifiedBy] == 1)
+            {
+                tile.TerrainGraphics.Remove(TileLayers.Improvements);
+                tile.TerrainGraphics.Add(TileLayers.Improvements, growingGraphic);
+
+            } else if (tile.Counters[cycleTime.ModifiedBy] == growingTime.ModifiedValue(tile.Owner.Stats))
+            {
+                tile.TerrainGraphics.Remove(TileLayers.Improvements);
+                tile.TerrainGraphics.Add(TileLayers.Improvements, harvestGraphic);
+                tile.Owner.Goods.AddFuture(harvestLaborCost.ModifiedTransaction(tile.Owner.Stats));
+                tile.Owner.Goods.AddFuture(new Transaction(GoodType.Food, tile.Stats[StatType.FarmingRate] * tile.Stats[StatType.FoodYield], name));
+
+            }else if (tile.Counters[cycleTime.ModifiedBy] < cycleTime.ModifiedValue(tile.Owner.Stats)-1 && tile.Counters[cycleTime.ModifiedBy] > growingTime.ModifiedValue(tile.Owner.Stats))
+            {
+                tile.TerrainGraphics.Remove(TileLayers.Improvements);
+                tile.TerrainGraphics.Add(TileLayers.Improvements, fallowGraphic);
+            }
+            if (tile.Counters[cycleTime.ModifiedBy] >= cycleTime.ModifiedValue(tile.Owner.Stats)-1)
+            {
+                tile.Counters.RemoveCounter(cycleTime.ModifiedBy);
+                tile.Owner.Goods.AddFuture(harvestLaborCost.ModifiedTransaction(tile.Owner.Stats));
+            }
         }
 
         public override void OnTurnStart(BaseTurn turn, HexTile tile)
@@ -116,8 +156,7 @@ namespace DaleranGames.TBSFramework
         {
             tile.TerrainGraphics.Remove(TileLayers.Improvements);
 
-            tile.Counters.RemoveCounter(StatType.FarmGrowTime);
-            tile.Counters.RemoveCounter(StatType.FarmFallowTime);
+            tile.Counters.RemoveCounter(cycleTime.ModifiedBy);
 
             tile.Stats.Remove(TileModifiers);
             tile.OwnerModifiers.Remove(OwnerModifiers);

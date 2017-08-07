@@ -13,7 +13,7 @@ namespace DaleranGames.TBSFramework
             get { return owner; }
             set
             {
-                owner.Stats.Remove(this.GetAll());
+                owner.Stats.Remove(GetAll());
                 owner = value;
                 owner.Stats.Add(GetAll());
             }
@@ -33,7 +33,6 @@ namespace DaleranGames.TBSFramework
         public override void Add(IList<Modifier> mods)
         {
             base.Add(mods);
-            owner.Stats.Add(mods);
         }
 
         public override void Remove(Modifier mod)
@@ -45,7 +44,6 @@ namespace DaleranGames.TBSFramework
         public override void Remove(IList<Modifier> mods)
         {
             base.Remove(mods);
-            owner.Stats.Remove(mods);
         }
 
         public override void Clear(StatType statType)

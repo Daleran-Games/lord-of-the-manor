@@ -11,7 +11,6 @@ namespace DaleranGames.TBSFramework
         [SerializeField]
         protected List<Modifier> debugModifiers;
 
-
         protected Dictionary<StatType, List<Modifier>> modifiers;
         protected Dictionary<StatType, int> totals;
 
@@ -91,6 +90,7 @@ namespace DaleranGames.TBSFramework
             {
                 Add(mods[i]);
             }
+            Debug.Log("Stats Added");
         }
 
         public virtual void Remove (Modifier mod)

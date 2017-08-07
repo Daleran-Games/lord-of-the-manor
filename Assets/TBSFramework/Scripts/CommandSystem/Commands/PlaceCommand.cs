@@ -24,7 +24,7 @@ namespace DaleranGames.TBSFramework
 
         public override bool IsValidCommand(HexTile tile, Group owner)
         {
-            if (placeable.CanPlace(tile) && tile.Owner == owner)
+            if (placeable.CanPlace(tile) && tile.Owner == owner && (tile.Feature == FeatureType.Null || tile.Feature == null))
                 return true;
             else
                 return false;

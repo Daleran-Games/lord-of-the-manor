@@ -69,7 +69,7 @@ namespace DaleranGames.TBSFramework
         //Farming Stats
         public static readonly StatType FarmLaborCost = new StatType(220, "Farm Labor");
         public static readonly StatType FarmGrowTime = new StatType(221, "Farm Grow Time");
-        public static readonly StatType FarmFallowTime = new StatType(222, "Farm Fallow Time");
+        public static readonly StatType FarmCycleTime = new StatType(222, "Farm Cycle Time");
         public static readonly StatType FarmingRate = new StatType(223, "Farming Rate");
 
 

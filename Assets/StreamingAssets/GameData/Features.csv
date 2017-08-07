@@ -7,7 +7,7 @@ Large House,DwellingType,Spring_I_LargeHouse,0,3,5,,,Spring_I_LargeHouse_Contr,P
 Hall,DwellingType,Spring_I_Hall,0,4,6,,,Spring_I_Hall_Constr,Plains;Moor;Hills;Moor Hills,8,-8,-32,0,0,False,,2,-6,14,100,60,25
 FarmType
 name,type,iconName,movementCost,defenseBonus,maxCondition,groupModifiers,tileModifiers,validLand,buildLaborCost,cultivateLaborCost,harvestLaborCost,growTime,fallowTime,farmFoodRate,sowingGraphic,growingGraphic,harvestGraphic,fallowGraphic
-Farm,FarmType,Spring_I_FarmSowing,0,-1,1,,,Plains;Moor,-8,-4,-4,2,6,8,Spring_I_FarmSowing,Spring_I_FarmGrowing,Spring_I_FarmHarvest,Spring_I_FarmFallow
+Farm,FarmType,Spring_I_FarmSowing,0,-1,1,,,Plains;Moor,-8,-4,-4,2,8,8,Spring_I_FarmSowing,Spring_I_FarmGrowing,Spring_I_FarmHarvest,Spring_I_FarmFallow
 LoggingType
 name,type,iconName,movementCost,defenseBonus,maxCondition,groupModifiers,tileModifiers,startLand,endLand,loggingLaborCost,loggingTime,loggingWoodRate
 Logging Camp,LoggingType,Spring_I_LoggingSite,0,0,1,,,Parkland;Forest;Wooded Hills;Wooded Mountains,Plains;Moor;Hills;Mountains,-4,4,2
