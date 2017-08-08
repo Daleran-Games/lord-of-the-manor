@@ -7,7 +7,6 @@ using DaleranGames.IO;
 
 namespace DaleranGames.UI
 {
-
     public class MovementOverlay : BaseOverlay
     {
 

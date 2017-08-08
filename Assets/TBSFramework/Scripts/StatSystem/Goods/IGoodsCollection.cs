@@ -14,8 +14,8 @@ namespace DaleranGames.TBSFramework
         bool CanProcessNow(Transaction transaction);
         bool CanProcessNow(IList<Transaction> transactions);
 
-        bool TryProcessNow(Transaction transaction);
-        bool TryProcessNow(IList<Transaction> transactions);
+        void ProcessNow(Transaction transaction);
+        void ProcessNow(IList<Transaction> transactions);
 
         void AddFuture(Transaction transaction);
         void AddFuture(IList<Transaction> transactions);

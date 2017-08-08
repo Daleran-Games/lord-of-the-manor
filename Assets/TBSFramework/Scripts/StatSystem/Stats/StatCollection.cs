@@ -90,7 +90,6 @@ namespace DaleranGames.TBSFramework
             {
                 Add(mods[i]);
             }
-            Debug.Log("Stats Added");
         }
 
         public virtual void Remove (Modifier mod)

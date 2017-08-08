@@ -60,14 +60,14 @@ namespace DaleranGames.TBSFramework
             return false;
         }
 
-        public override bool TryProcessNow(Transaction transaction)
+        public override void ProcessNow(Transaction transaction)
         {
-            return false;
+
         }
 
-        public override bool TryProcessNow(IList<Transaction> transactions)
+        public override void ProcessNow(IList<Transaction> transactions)
         {
-            return false;
+
         }
 
         public override void AddFuture(Transaction transaction)

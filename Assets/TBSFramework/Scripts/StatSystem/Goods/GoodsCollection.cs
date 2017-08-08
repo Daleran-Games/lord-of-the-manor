@@ -43,33 +43,17 @@ namespace DaleranGames.TBSFramework
             return true;
         }
 
-        protected virtual void Process(Transaction transaction)
+        public virtual void ProcessNow(Transaction transaction)
         {
             this[transaction.Type] += transaction.Value;
         }
 
-        public virtual bool TryProcessNow(Transaction transaction)
+        public virtual void ProcessNow(IList<Transaction> transactions)
         {
-            if (CanProcessNow(transaction))
-            {
-                Process(transaction);
-
-                return true;
-            }
-            return false;
-        }
-
-        public virtual bool TryProcessNow(IList<Transaction> transactions)
-        {
-            if (CanProcessNow(transactions))
-            {
                 for (int i=0;i<transactions.Count;i++)
                 {
-                    Process(transactions[i]);
+                    ProcessNow(transactions[i]);
                 }
-                return true;
-            }
-            return false;
         }
 
         private void Add (Transaction transaction)

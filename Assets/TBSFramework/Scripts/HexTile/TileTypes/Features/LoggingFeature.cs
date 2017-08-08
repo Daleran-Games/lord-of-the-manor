@@ -85,9 +85,11 @@ namespace DaleranGames.TBSFramework
             tile.Stats.Add(TileModifiers);
             tile.OwnerModifiers.Add(OwnerModifiers);
 
-            tile.Owner.Goods.TryProcessNow(loggingLaborCost.ModifiedTransaction(tile.Owner.Stats));
+            tile.Owner.Goods.ProcessNow(loggingLaborCost.ModifiedTransaction(tile.Owner.Stats));
             tile.Owner.Goods.AddFuture(loggingLaborCost.ModifiedTransaction(tile.Owner.Stats));
             tile.Owner.Goods.AddFuture(new Transaction(GoodType.Wood, tile.Stats[StatType.LoggingRate] * tile.Stats[StatType.WoodYield], name));
+
+            RaiseWorkIconChangeEvent(tile, GetWorkIcon(tile));
         }
 
         public override void OnTurnEnd(BaseTurn turn, HexTile tile)
@@ -97,8 +99,7 @@ namespace DaleranGames.TBSFramework
 
         public override void OnTurnSetUp(BaseTurn turn, HexTile tile)
         {
-            if (CanResume(tile))
-            {
+
                 if (tile.Counters[loggingTime.ModifiedBy] < loggingTime.ModifiedValue(tile.Owner.Stats))
                 {
                     tile.Owner.Goods.AddFuture(loggingLaborCost.ModifiedTransaction(tile.Owner.Stats));
@@ -106,9 +107,7 @@ namespace DaleranGames.TBSFramework
                 }
                 else if (tile.Counters[loggingTime.ModifiedBy] >= loggingTime.ModifiedValue(tile.Owner.Stats))
                     OnLoggingComplete(tile);
-            }
-            else
-                Pause(tile);
+
 
         }
 
@@ -137,30 +136,44 @@ namespace DaleranGames.TBSFramework
             tile.Counters.RemoveCounter(loggingTime.ModifiedBy);
             tile.Stats.Remove(TileModifiers);
             tile.OwnerModifiers.Remove(OwnerModifiers);
+
+            RaiseWorkIconChangeEvent(tile, TileGraphic.Clear);
         }
 
         public void Pause(HexTile tile)
         {
             tile.Counters.PauseCounter(true, loggingTime.ModifiedBy);
 
+
+
             tile.Owner.Goods.RemoveFuture(loggingLaborCost.ModifiedTransaction(tile.Owner.Stats));
-            tile.Owner.Goods.TryProcessNow(loggingLaborCost.ReverseModifiedTransaction(tile.Owner.Stats));
+            tile.Owner.Goods.ProcessNow(loggingLaborCost.ReverseModifiedTransaction(tile.Owner.Stats));
+
+            tile.Stats.Remove(TileModifiers);
+            tile.OwnerModifiers.Remove(OwnerModifiers);
 
             tile.Owner.Goods.RemoveFuture(new Transaction(GoodType.Wood, tile.Stats[StatType.LoggingRate] * tile.Stats[StatType.WoodYield], name));
 
             tile.Paused = true;
+
+            RaiseWorkIconChangeEvent(tile, GetWorkIcon(tile));
         }
 
         public void Resume(HexTile tile)
         {
             tile.Counters.PauseCounter(false, loggingTime.ModifiedBy);
 
-            tile.Owner.Goods.TryProcessNow(loggingLaborCost.ModifiedTransaction(tile.Owner.Stats));
+            tile.Stats.Add(TileModifiers);
+            tile.OwnerModifiers.Add(OwnerModifiers);
+
+            tile.Owner.Goods.ProcessNow(loggingLaborCost.ModifiedTransaction(tile.Owner.Stats));
             tile.Owner.Goods.AddFuture(loggingLaborCost.ModifiedTransaction(tile.Owner.Stats));
 
             tile.Owner.Goods.AddFuture(new Transaction(GoodType.Wood, tile.Stats[StatType.LoggingRate] * tile.Stats[StatType.WoodYield], name));
 
             tile.Paused = false;
+
+            RaiseWorkIconChangeEvent(tile, GetWorkIcon(tile));
         }
 
         public bool CanResume(HexTile tile)
@@ -171,7 +184,7 @@ namespace DaleranGames.TBSFramework
                 return false;
         }
 
-        public TileGraphic GetWorkIcon(HexTile tile)
+        public override TileGraphic GetWorkIcon(HexTile tile)
         {
             if (tile.Paused)
                 return GameDatabase.Instance.TileGraphics["UIAtlas_SmallIcon_Sleep"];

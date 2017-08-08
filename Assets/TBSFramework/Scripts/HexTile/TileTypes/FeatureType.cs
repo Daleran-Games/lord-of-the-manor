@@ -23,6 +23,8 @@ namespace DaleranGames.TBSFramework
         protected string type = "TileType";
         public virtual string Type { get { return type; } }
 
+        public static event Action<HexTile, TileGraphic> WorkIconChanged;
+
         public abstract TileGraphic GetMainGraphic(HexTile tile);
 
         public static readonly NullFeature Null = new NullFeature();
@@ -58,6 +60,14 @@ namespace DaleranGames.TBSFramework
 
         }
         #endregion
+        public virtual TileGraphic GetWorkIcon(HexTile tile)
+        {
+            return TileGraphic.Clear;
+        }
 
+        protected virtual void RaiseWorkIconChangeEvent(HexTile tile, TileGraphic newIcon)
+        {
+            WorkIconChanged(tile, newIcon);
+        }
     }
 }

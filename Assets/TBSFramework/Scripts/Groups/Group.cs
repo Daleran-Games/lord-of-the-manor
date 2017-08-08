@@ -109,6 +109,7 @@ namespace DaleranGames.TBSFramework
         {
             //Debug.Log("This got called");
             GroupType.OnTurnEnd(turn, this);
+            Goods[GoodType.Labor] = 0;
             Goods.ProcessAllPendingTransactions();
             Goods.ResolveEdgeCases();
         }

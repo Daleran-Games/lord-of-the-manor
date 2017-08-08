@@ -227,7 +227,6 @@ namespace DaleranGames.TBSFramework
 
         void CheckWork ()
         {
-            this[GoodType.Labor] = owner.Stats[StatType.GroupLaborRate];
             AddFuture(new Transaction(GoodType.Labor, owner.Stats[StatType.GroupLaborRate], "Work"));
         }
     }
