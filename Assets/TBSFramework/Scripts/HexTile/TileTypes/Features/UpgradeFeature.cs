@@ -72,6 +72,7 @@ namespace DaleranGames.TBSFramework
         {
             originalFeature.OnDeactivation(tile);
             upgradedBuildFeature.OnDeactivation(tile);
+            RaiseWorkIconChangeEvent(tile, TileGraphic.Clear);
         }
 
         public bool CanPlace(HexTile tile)
@@ -110,7 +111,7 @@ namespace DaleranGames.TBSFramework
             return upgradedBuildFeature.CanResume(tile);
         }
 
-        public TileGraphic GetWorkIcon(HexTile tile)
+        public override TileGraphic GetWorkIcon(HexTile tile)
         {
             return upgradedBuildFeature.GetWorkIcon(tile);
         }

@@ -31,8 +31,6 @@ namespace DaleranGames.TBSFramework
         Cost buildLaborCost;
         [SerializeField]
         Cost cultivateLaborCost;
-        [SerializeField]
-        Cost harvestLaborCost;
 
         [SerializeField]
         List<string> validLandNames;
@@ -67,7 +65,6 @@ namespace DaleranGames.TBSFramework
 
             buildLaborCost = new Cost(GoodType.Labor, StatType.FarmLaborCost, Int32.Parse(entry["buildLaborCost"]), name);
             cultivateLaborCost = new Cost(GoodType.Labor, StatType.FarmLaborCost, Int32.Parse(entry["cultivateLaborCost"]), name);
-            harvestLaborCost = new Cost(GoodType.Labor, StatType.FarmLaborCost, Int32.Parse(entry["harvestLaborCost"]), name);
 
             tileModifiers.Add(new Modifier(StatType.DefenseBonus, Int32.Parse(entry["defenseBonus"]), name));
             tileModifiers.Add(new Modifier(StatType.MovementCost, Int32.Parse(entry["movementCost"]), name));
@@ -104,7 +101,9 @@ namespace DaleranGames.TBSFramework
             tile.Stats.Add(TileModifiers);
             tile.OwnerModifiers.Add(OwnerModifiers);
 
-            tile.Owner.Goods.TryProcessNow(buildLaborCost.ModifiedTransaction(tile.Owner.Stats));
+            tile.Owner.Goods.ProcessNow(buildLaborCost.ModifiedTransaction(tile.Owner.Stats));
+
+            RaiseWorkIconChangeEvent(tile, GetWorkIcon(tile));
 
 
         }
@@ -132,7 +131,7 @@ namespace DaleranGames.TBSFramework
             {
                 tile.TerrainGraphics.Remove(TileLayers.Improvements);
                 tile.TerrainGraphics.Add(TileLayers.Improvements, harvestGraphic);
-                tile.Owner.Goods.AddFuture(harvestLaborCost.ModifiedTransaction(tile.Owner.Stats));
+                tile.Owner.Goods.AddFuture(cultivateLaborCost.ModifiedTransaction(tile.Owner.Stats));
                 tile.Owner.Goods.AddFuture(new Transaction(GoodType.Food, tile.Stats[StatType.FarmingRate] * tile.Stats[StatType.FoodYield], name));
 
             }else if (tile.Counters[cycleTime.ModifiedBy] < cycleTime.ModifiedValue(tile.Owner.Stats)-1 && tile.Counters[cycleTime.ModifiedBy] > growingTime.ModifiedValue(tile.Owner.Stats))
@@ -143,7 +142,7 @@ namespace DaleranGames.TBSFramework
             if (tile.Counters[cycleTime.ModifiedBy] >= cycleTime.ModifiedValue(tile.Owner.Stats)-1)
             {
                 tile.Counters.RemoveCounter(cycleTime.ModifiedBy);
-                tile.Owner.Goods.AddFuture(harvestLaborCost.ModifiedTransaction(tile.Owner.Stats));
+                tile.Owner.Goods.AddFuture(cultivateLaborCost.ModifiedTransaction(tile.Owner.Stats));
             }
         }
 
@@ -160,25 +159,58 @@ namespace DaleranGames.TBSFramework
 
             tile.Stats.Remove(TileModifiers);
             tile.OwnerModifiers.Remove(OwnerModifiers);
+
+            RaiseWorkIconChangeEvent(tile, TileGraphic.Clear);
         }
 
 
         public void Pause(HexTile tile)
         {
-            throw new NotImplementedException();
-        }
 
-        public bool CanResume(HexTile tile)
-        {
-            throw new NotImplementedException();
+            tile.Counters.RemoveCounter(cycleTime.ModifiedBy);
+
+            tile.Stats.Remove(TileModifiers);
+            tile.OwnerModifiers.Remove(OwnerModifiers);
+
+            tile.TerrainGraphics.Remove(TileLayers.Improvements);
+            tile.TerrainGraphics.Add(TileLayers.Improvements, fallowGraphic);
+
+            tile.Owner.Goods.RemoveFuture(cultivateLaborCost.ModifiedTransaction(tile.Owner.Stats));
+            tile.Owner.Goods.ProcessNow(cultivateLaborCost.ReverseModifiedTransaction(tile.Owner.Stats));
+
+            tile.Owner.Goods.RemoveFuture(new Transaction(GoodType.Food, tile.Stats[StatType.FarmingRate] * tile.Stats[StatType.FoodYield], name));
+
+            tile.Paused = true;
+
+            RaiseWorkIconChangeEvent(tile, GetWorkIcon(tile));
         }
 
         public void Resume(HexTile tile)
         {
-            throw new NotImplementedException();
+            tile.TerrainGraphics.Remove(TileLayers.Improvements);
+            tile.TerrainGraphics.Add(TileLayers.Improvements, sowingGraphic);
+
+            tile.Counters.AddCounter(cycleTime.ModifiedBy);
+
+            tile.Stats.Add(TileModifiers);
+            tile.OwnerModifiers.Add(OwnerModifiers);
+
+            tile.Owner.Goods.ProcessNow(cultivateLaborCost.ModifiedTransaction(tile.Owner.Stats));
+
+            tile.Paused = false;
+
+            RaiseWorkIconChangeEvent(tile, GetWorkIcon(tile));
         }
 
-        public TileGraphic GetWorkIcon(HexTile tile)
+        public bool CanResume(HexTile tile)
+        {
+            if (tile.Owner.Goods.CanProcessNow(cultivateLaborCost.ModifiedTransaction(tile.Owner.Stats)) && (TurnManager.Instance.CurrentTurn == TurnManager.Instance.Spring || TurnManager.Instance.CurrentTurn == TurnManager.Instance.Fall))
+                return true;
+            else
+                return false;
+        }
+
+        public override TileGraphic GetWorkIcon(HexTile tile)
         {
             if (tile.Paused)
                 return GameDatabase.Instance.TileGraphics["UIAtlas_SmallIcon_Sleep"];
