@@ -61,7 +61,7 @@ namespace DaleranGames.TBSFramework
 
 
             growingTime = new Cost(GoodType.Turns, StatType.FarmGrowTime, Int32.Parse(entry["growTime"]), name);
-            cycleTime = new Cost(GoodType.Turns, StatType.FarmCycleTime, Int32.Parse(entry["fallowTime"]), name);
+            cycleTime = new Cost(GoodType.Turns, StatType.FarmCycleTime, Int32.Parse(entry["cycleTime"]), name);
 
             buildLaborCost = new Cost(GoodType.Labor, StatType.FarmLaborCost, Int32.Parse(entry["buildLaborCost"]), name);
             cultivateLaborCost = new Cost(GoodType.Labor, StatType.FarmLaborCost, Int32.Parse(entry["cultivateLaborCost"]), name);
@@ -104,8 +104,6 @@ namespace DaleranGames.TBSFramework
             tile.Owner.Goods.ProcessNow(buildLaborCost.ModifiedTransaction(tile.Owner.Stats));
 
             RaiseWorkIconChangeEvent(tile, GetWorkIcon(tile));
-
-
         }
 
         public override void OnTurnEnd(BaseTurn turn, HexTile tile)

@@ -164,7 +164,7 @@ Prefab:
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -24
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
@@ -244,6 +244,11 @@ Prefab:
         type: 2}
       propertyPath: m_IsOn
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114432693601360806, guid: 002b5fd1f6d45164f8d3b38827542e43,
+        type: 2}
+      propertyPath: m_Navigation.m_Mode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -1361,7 +1366,7 @@ Prefab:
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -24
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
@@ -1436,6 +1441,11 @@ Prefab:
         type: 2}
       propertyPath: m_LocalScale.z
       value: 1.0000148
+      objectReference: {fileID: 0}
+    - target: {fileID: 114432693601360806, guid: 002b5fd1f6d45164f8d3b38827542e43,
+        type: 2}
+      propertyPath: m_Navigation.m_Mode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -2638,7 +2648,7 @@ Prefab:
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -24
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
@@ -2717,6 +2727,11 @@ Prefab:
     - target: {fileID: 114432693601360806, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_IsOn
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114432693601360806, guid: 002b5fd1f6d45164f8d3b38827542e43,
+        type: 2}
+      propertyPath: m_Navigation.m_Mode
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
@@ -3904,7 +3919,7 @@ Prefab:
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -24
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
@@ -3997,6 +4012,11 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: iconName
       value: UIAtlas_Icon_Mountain
+      objectReference: {fileID: 0}
+    - target: {fileID: 114432693601360806, guid: 002b5fd1f6d45164f8d3b38827542e43,
+        type: 2}
+      propertyPath: m_Navigation.m_Mode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -4217,7 +4237,7 @@ Prefab:
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -24
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
@@ -4292,6 +4312,11 @@ Prefab:
         type: 2}
       propertyPath: m_LocalScale.z
       value: 1.0000148
+      objectReference: {fileID: 0}
+    - target: {fileID: 114432693601360806, guid: 002b5fd1f6d45164f8d3b38827542e43,
+        type: 2}
+      propertyPath: m_Navigation.m_Mode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
@@ -5557,7 +5582,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -5700,7 +5725,7 @@ Prefab:
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -24
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
@@ -5761,6 +5786,11 @@ Prefab:
       value: 
       objectReference: {fileID: 21300060, guid: 2cd13286f6099a242a1fd4a55f0bfb71,
         type: 3}
+    - target: {fileID: 114432693601360806, guid: 002b5fd1f6d45164f8d3b38827542e43,
+        type: 2}
+      propertyPath: m_Navigation.m_Mode
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 002b5fd1f6d45164f8d3b38827542e43, type: 2}
@@ -5870,7 +5900,7 @@ Prefab:
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -24
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
@@ -5924,6 +5954,11 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: iconName
       value: UIAtlas_Icon_Drop
+      objectReference: {fileID: 0}
+    - target: {fileID: 114432693601360806, guid: 002b5fd1f6d45164f8d3b38827542e43,
+        type: 2}
+      propertyPath: m_Navigation.m_Mode
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 002b5fd1f6d45164f8d3b38827542e43, type: 2}
