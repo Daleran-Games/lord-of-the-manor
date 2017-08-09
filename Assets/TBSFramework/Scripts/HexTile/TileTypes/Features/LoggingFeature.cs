@@ -99,7 +99,6 @@ namespace DaleranGames.TBSFramework
 
         public override void OnTurnSetUp(BaseTurn turn, HexTile tile)
         {
-
                 if (tile.Counters[loggingTime.ModifiedBy] < loggingTime.ModifiedValue(tile.Owner.Stats))
                 {
                     tile.Owner.Goods.AddFuture(loggingLaborCost.ModifiedTransaction(tile.Owner.Stats));
@@ -107,8 +106,6 @@ namespace DaleranGames.TBSFramework
                 }
                 else if (tile.Counters[loggingTime.ModifiedBy] >= loggingTime.ModifiedValue(tile.Owner.Stats))
                     OnLoggingComplete(tile);
-
-
         }
 
         public override void OnTurnStart(BaseTurn turn, HexTile tile)
@@ -143,8 +140,6 @@ namespace DaleranGames.TBSFramework
         public void Pause(HexTile tile)
         {
             tile.Counters.PauseCounter(true, loggingTime.ModifiedBy);
-
-
 
             tile.Owner.Goods.RemoveFuture(loggingLaborCost.ModifiedTransaction(tile.Owner.Stats));
             tile.Owner.Goods.ProcessNow(loggingLaborCost.ReverseModifiedTransaction(tile.Owner.Stats));

@@ -156,7 +156,7 @@ namespace DaleranGames.TBSFramework
                 this[GoodType.Food] = 0;
             } else if (food > owner.Stats[StatType.MaxFood])
             {
-                AddFuture(new Transaction(GoodType.Food, owner.Stats[StatType.MaxFood] - food, "Spoilage from not enoguh storage"));
+                AddFuture(new Transaction(GoodType.Food, owner.Stats[StatType.MaxFood] - food, "Spoilage from improper storage"));
             }
         }
 
@@ -174,20 +174,13 @@ namespace DaleranGames.TBSFramework
                     this[GoodType.Wood] = 0;
                 } else
                     this[GoodType.Wood] = 0;
-            } else if (wood > owner.Stats[StatType.MaxWood])
-            {
-                AddFuture(new Transaction(GoodType.Wood, owner.Stats[StatType.MaxWood] - wood, "Waste from not enoguh storage"));
-            }
+            } 
         }
 
         void CheckStone ()
         {
             if (stone < 0)
                 this[GoodType.Stone] = 0;
-            else if (stone > owner.Stats[StatType.MaxStone])
-            {
-                AddFuture(new Transaction(GoodType.Stone, owner.Stats[StatType.MaxStone] - stone, "Waste from not enoguh storage"));
-            }
         }
 
         void CheckGold()
