@@ -45,7 +45,8 @@ namespace DaleranGames.TBSFramework
 
         public virtual void ProcessNow(Transaction transaction)
         {
-            this[transaction.Type] += transaction.Value;
+            if(transaction.Value !=0)
+                this[transaction.Type] += transaction.Value;
         }
 
         public virtual void ProcessNow(IList<Transaction> transactions)

@@ -40,7 +40,10 @@ namespace DaleranGames.TBSFramework
 
         public override TileGraphic GetUIIcon(HexTile tile)
         {
-            return GameDatabase.Instance.TileGraphics["UIAtlas_Icon_AnvilTool"];
+            if (tile.Paused)
+                return GameDatabase.Instance.TileGraphics["UIAtlas_Icon_LargeHammer"];
+            else
+                return GameDatabase.Instance.TileGraphics["UIAtlas_SmallIcon_Sleep"]; 
         }
     }
 }
