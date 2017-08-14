@@ -15,7 +15,7 @@ namespace DaleranGames.TBSFramework
 
         [SerializeField]
         int value;
-        public int Value { get { return value; } }
+        public int Value { get { return value + stats[modifiedBy]; } }
 
         [SerializeField]
         string description;
@@ -25,22 +25,32 @@ namespace DaleranGames.TBSFramework
         StatType modifiedBy;
         public StatType ModifiedBy { get { return modifiedBy; } }
 
-        IStatCollection<StatType> statCollection;
-
-        public Transaction(GoodType type, int amount)
-        {
-            this.type = type;
-            this.value = amount;
-            description = "";
-        }
+        [SerializeField]
+        protected IStatCollection<StatType> stats;
+        public IStatCollection<StatType> Stats { get { return stats; } } 
 
         public Transaction(GoodType type, int amount, string description)
         {
             this.type = type;
             this.value = amount;
             this.description = description;
+
+            modifiedBy = StatType.NullStat;
+            stats = StatCollection.Null;
         }
 
+        public Transaction(GoodType type, int amount, string description, StatType modifiedBy, IStatCollection<StatType> stats)
+        {
+            this.type = type;
+            this.value = amount;
+            this.description = description;
+
+            this.modifiedBy = modifiedBy;
+            this.stats = stats;
+        }
+
+
+        /*
         public static Transaction ParseCSV(List<string> csvLine, int startingIndex)
         {
             return new Transaction((GoodType)Enum.Parse(typeof(GoodType), csvLine[startingIndex]), Int32.Parse(csvLine[startingIndex + 1]), csvLine[startingIndex + 2]);
@@ -55,6 +65,7 @@ namespace DaleranGames.TBSFramework
             }
             return items;
         }
+        */
 
         public override string ToString()
         {
@@ -70,7 +81,7 @@ namespace DaleranGames.TBSFramework
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
-            return other.Type == Type && other.Value == Value && other.Description == Description;
+            return other.Type == Type && other.Value == Value && other.Description == Description && other.ModifiedBy == ModifiedBy && other.Stats == Stats;
         }
 
         public override bool Equals(object obj)
@@ -132,5 +143,6 @@ namespace DaleranGames.TBSFramework
             return new Good(t.Type, t.Value);
         }
         */
+
     }
 }

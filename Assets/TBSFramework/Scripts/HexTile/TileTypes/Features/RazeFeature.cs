@@ -11,9 +11,9 @@ namespace DaleranGames.TBSFramework
     {
 
         [SerializeField]
-        Cost razeTimeCost;
+        int razeTimeCost;
         [SerializeField]
-        Cost razeLaborCost;
+        int razeLaborCost;
 
         [SerializeField]
         string builtFeatureName;
@@ -27,8 +27,8 @@ namespace DaleranGames.TBSFramework
             type = entry["type"];
             builtFeatureName = entry["name"];
 
-            razeTimeCost = new Cost(GoodType.Turns, StatType.RazeTime, Int32.Parse(entry["razeTime"]), name);
-            razeLaborCost = new Cost(GoodType.Labor, StatType.RazeLaborCost, Int32.Parse(entry["razeLaborCost"]), name);
+            razeTimeCost = Int32.Parse(entry["razeTime"]);
+            razeLaborCost = Int32.Parse(entry["razeLaborCost"]);
         }
 
         public override TileGraphic GetMainGraphic(HexTile tile)
