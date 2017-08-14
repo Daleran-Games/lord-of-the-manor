@@ -70,18 +70,21 @@ namespace DaleranGames.TBSFramework
         public static readonly StatType FarmLaborCost = new StatType(220, "Farm Labor");
         public static readonly StatType FarmGrowTime = new StatType(221, "Farm Grow Time");
         public static readonly StatType FarmCycleTime = new StatType(222, "Farm Cycle Time");
-        public static readonly StatType FarmingRate = new StatType(223, "Farming Rate");
+        public static readonly StatType FarmingFoodPerYield = new StatType(223, "Farming Food Per Tile Yield");
+        public static readonly StatType FarmingFoodRate = new StatType(224, "Farming Food Rate");
 
 
         //Logging Stats
         public static readonly StatType LoggingLaborCost = new StatType(230, "Logging Labor");
         public static readonly StatType LoggingTime = new StatType(231, "Logging Time");
-        public static readonly StatType LoggingRate = new StatType(232, "Logging Rate");
+        public static readonly StatType LoggingWoodPerYield = new StatType(232, "Logging Wood Per Tile Yield");
+        public static readonly StatType LoggingWoodRate = new StatType(233, "Logging Wood Rate");
 
         //Quarrying Stats
         public static readonly StatType QuarryLaborCost = new StatType(240, "Quarry Labor");
         public static readonly StatType QuarryTime = new StatType(241, "Quarry Time");
-        public static readonly StatType QuarryingRate = new StatType(242, "Quarrying Rate");
+        public static readonly StatType QuarryingStonePerYield = new StatType(242, "Quarrying Stone Per Tile Yield");
+        public static readonly StatType QuarryingStoneRate = new StatType(243, "Quarrying Stone Rate");
 
         //Need to implement
 
@@ -102,7 +105,7 @@ namespace DaleranGames.TBSFramework
         */
 
 
-        
+
 
 
         #endregion

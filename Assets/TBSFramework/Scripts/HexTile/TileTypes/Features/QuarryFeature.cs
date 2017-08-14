@@ -53,7 +53,7 @@ namespace DaleranGames.TBSFramework
             tileModifiers.Add(new Modifier(StatType.DefenseBonus, Int32.Parse(entry["defenseBonus"]), name));
             tileModifiers.Add(new Modifier(StatType.MovementCost, Int32.Parse(entry["movementCost"]), name));
             tileModifiers.Add(new Modifier(StatType.MaxCondition, Int32.Parse(entry["maxCondition"]), name));
-            tileModifiers.Add(new Modifier(StatType.QuarryingRate, Int32.Parse(entry["quarryStoneRate"]), name));
+            tileModifiers.Add(new Modifier(StatType.QuarryingStonePerYield, Int32.Parse(entry["quarryStoneRate"]), name));
         }
 
         public override TileGraphic GetMainGraphic(HexTile tile)
@@ -89,7 +89,7 @@ namespace DaleranGames.TBSFramework
 
             tile.Owner.Goods.ProcessNow(quarryLaborCost.ModifiedTransaction(tile.Owner.Stats));
             tile.Owner.Goods.AddFuture(quarryLaborCost.ModifiedTransaction(tile.Owner.Stats));
-            tile.Owner.Goods.AddFuture(new Transaction(GoodType.Stone, tile.Stats[StatType.QuarryingRate] * tile.Stats[StatType.StoneYield], name));
+            tile.Owner.Goods.AddFuture(new Transaction(GoodType.Stone, tile.Stats[StatType.QuarryingStoneRate], name));
 
             RaiseWorkIconChangeEvent(tile, GetWorkIcon(tile));
 
@@ -106,7 +106,7 @@ namespace DaleranGames.TBSFramework
                 if (tile.Counters[quarryTime.ModifiedBy] < quarryTime.ModifiedValue(tile.Owner.Stats))
                 {
                     tile.Owner.Goods.AddFuture(quarryLaborCost.ModifiedTransaction(tile.Owner.Stats));
-                    tile.Owner.Goods.AddFuture(new Transaction(GoodType.Stone, tile.Stats[StatType.QuarryingRate] * tile.Stats[StatType.StoneYield], name));
+                    tile.Owner.Goods.AddFuture(new Transaction(GoodType.Stone, tile.Stats[StatType.QuarryingStoneRate], name));
                 }
                 else if (tile.Counters[quarryTime.ModifiedBy] >= quarryTime.ModifiedValue(tile.Owner.Stats))
                     OnQuarryComplete(tile);
@@ -150,10 +150,10 @@ namespace DaleranGames.TBSFramework
             tile.Owner.Goods.RemoveFuture(quarryLaborCost.ModifiedTransaction(tile.Owner.Stats));
             tile.Owner.Goods.ProcessNow(quarryLaborCost.ReverseModifiedTransaction(tile.Owner.Stats));
 
+            tile.Owner.Goods.RemoveFuture(new Transaction(GoodType.Stone, tile.Stats[StatType.QuarryingStoneRate], name));
+
             tile.Stats.Remove(TileModifiers);
             tile.OwnerModifiers.Remove(OwnerModifiers);
-
-            tile.Owner.Goods.RemoveFuture(new Transaction(GoodType.Stone, tile.Stats[StatType.QuarryingRate] * tile.Stats[StatType.StoneYield], name));
 
             tile.Paused = true;
 
@@ -170,7 +170,7 @@ namespace DaleranGames.TBSFramework
             tile.Owner.Goods.ProcessNow(quarryLaborCost.ModifiedTransaction(tile.Owner.Stats));
             tile.Owner.Goods.AddFuture(quarryLaborCost.ModifiedTransaction(tile.Owner.Stats));
 
-            tile.Owner.Goods.AddFuture(new Transaction(GoodType.Stone, tile.Stats[StatType.QuarryingRate] * tile.Stats[StatType.StoneYield], name));
+            tile.Owner.Goods.AddFuture(new Transaction(GoodType.Stone, tile.Stats[StatType.QuarryingStoneRate], name));
 
             tile.Paused = false;
 

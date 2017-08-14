@@ -68,6 +68,7 @@ namespace DaleranGames.TBSFramework
                         return 0;
                 }
             }
+
             set
             {
                 switch (type)

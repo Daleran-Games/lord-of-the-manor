@@ -7,7 +7,7 @@ using DaleranGames.IO;
 namespace DaleranGames.TBSFramework
 {
     [System.Serializable]
-    public struct Transaction : IFormattable, IEquatable<Transaction>, IComparable<Transaction>, IComparable
+    public class Transaction : IFormattable, IEquatable<Transaction>, IComparable<Transaction>, IComparable
     {
         [SerializeField]
         GoodType type;
@@ -21,11 +21,17 @@ namespace DaleranGames.TBSFramework
         string description;
         public string Description { get { return description; } }
 
+        [SerializeField]
+        StatType modifiedBy;
+        public StatType ModifiedBy { get { return modifiedBy; } }
+
+        IStatCollection<StatType> statCollection;
+
         public Transaction(GoodType type, int amount)
         {
             this.type = type;
             this.value = amount;
-            description = "None";
+            description = "";
         }
 
         public Transaction(GoodType type, int amount, string description)
@@ -64,7 +70,7 @@ namespace DaleranGames.TBSFramework
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
-            return other.type == type && other.value == value && other.Description == Description;
+            return other.Type == Type && other.Value == Value && other.Description == Description;
         }
 
         public override bool Equals(object obj)

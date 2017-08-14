@@ -53,7 +53,7 @@ namespace DaleranGames.TBSFramework
             tileModifiers.Add(new Modifier(StatType.DefenseBonus, Int32.Parse(entry["defenseBonus"]), name));
             tileModifiers.Add(new Modifier(StatType.MovementCost, Int32.Parse(entry["movementCost"]), name));
             tileModifiers.Add(new Modifier(StatType.MaxCondition, Int32.Parse(entry["maxCondition"]), name));
-            tileModifiers.Add(new Modifier(StatType.LoggingRate, Int32.Parse(entry["loggingWoodRate"]), name));
+            tileModifiers.Add(new Modifier(StatType.LoggingWoodPerYield, Int32.Parse(entry["loggingWoodRate"]), name));
         }
 
         public override TileGraphic GetMainGraphic(HexTile tile)
@@ -87,7 +87,7 @@ namespace DaleranGames.TBSFramework
 
             tile.Owner.Goods.ProcessNow(loggingLaborCost.ModifiedTransaction(tile.Owner.Stats));
             tile.Owner.Goods.AddFuture(loggingLaborCost.ModifiedTransaction(tile.Owner.Stats));
-            tile.Owner.Goods.AddFuture(new Transaction(GoodType.Wood, tile.Stats[StatType.LoggingRate] * tile.Stats[StatType.WoodYield], name));
+            tile.Owner.Goods.AddFuture(new Transaction(GoodType.Wood, tile.Stats[StatType.LoggingWoodRate], name));
 
             RaiseWorkIconChangeEvent(tile, GetWorkIcon(tile));
         }
@@ -102,7 +102,7 @@ namespace DaleranGames.TBSFramework
                 if (tile.Counters[loggingTime.ModifiedBy] < loggingTime.ModifiedValue(tile.Owner.Stats))
                 {
                     tile.Owner.Goods.AddFuture(loggingLaborCost.ModifiedTransaction(tile.Owner.Stats));
-                    tile.Owner.Goods.AddFuture(new Transaction(GoodType.Wood, tile.Stats[StatType.LoggingRate] * tile.Stats[StatType.WoodYield], name));
+                    tile.Owner.Goods.AddFuture(new Transaction(GoodType.Wood, tile.Stats[StatType.LoggingWoodRate], name));
                 }
                 else if (tile.Counters[loggingTime.ModifiedBy] >= loggingTime.ModifiedValue(tile.Owner.Stats))
                     OnLoggingComplete(tile);
@@ -143,11 +143,10 @@ namespace DaleranGames.TBSFramework
 
             tile.Owner.Goods.RemoveFuture(loggingLaborCost.ModifiedTransaction(tile.Owner.Stats));
             tile.Owner.Goods.ProcessNow(loggingLaborCost.ReverseModifiedTransaction(tile.Owner.Stats));
+            tile.Owner.Goods.RemoveFuture(new Transaction(GoodType.Wood, tile.Stats[StatType.LoggingWoodRate], name));
 
             tile.Stats.Remove(TileModifiers);
             tile.OwnerModifiers.Remove(OwnerModifiers);
-
-            tile.Owner.Goods.RemoveFuture(new Transaction(GoodType.Wood, tile.Stats[StatType.LoggingRate] * tile.Stats[StatType.WoodYield], name));
 
             tile.Paused = true;
 
@@ -164,7 +163,7 @@ namespace DaleranGames.TBSFramework
             tile.Owner.Goods.ProcessNow(loggingLaborCost.ModifiedTransaction(tile.Owner.Stats));
             tile.Owner.Goods.AddFuture(loggingLaborCost.ModifiedTransaction(tile.Owner.Stats));
 
-            tile.Owner.Goods.AddFuture(new Transaction(GoodType.Wood, tile.Stats[StatType.LoggingRate] * tile.Stats[StatType.WoodYield], name));
+            tile.Owner.Goods.AddFuture(new Transaction(GoodType.Wood, tile.Stats[StatType.LoggingWoodRate], name));
 
             tile.Paused = false;
 

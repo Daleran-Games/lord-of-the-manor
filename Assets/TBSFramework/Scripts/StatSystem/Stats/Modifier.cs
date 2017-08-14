@@ -64,7 +64,7 @@ namespace DaleranGames.TBSFramework
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
-            return other.type == type && other.value == value  && other.Description == Description;
+            return other.Type == Type && other.Value == Value  && other.Description == Description;
         }
 
         public override bool Equals(object obj)

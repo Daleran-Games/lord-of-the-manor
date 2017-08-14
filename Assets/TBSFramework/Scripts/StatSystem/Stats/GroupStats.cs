@@ -13,6 +13,7 @@ namespace DaleranGames.TBSFramework
         public GroupStats (Group group) : base()
         {
             this.group = group;
+            group.Goods.GoodChanged += OnPopulationChange;
         }
 
 
@@ -35,6 +36,32 @@ namespace DaleranGames.TBSFramework
                         return base[statType];
                 }
 
+            }
+        }
+
+        protected override void RaiseStatModified(IStatCollection<StatType> stats, StatType statType)
+        {
+            base.RaiseStatModified(stats, statType);
+
+            if (statType == StatType.StrengthPerPop)
+                base.RaiseStatModified(stats, StatType.Strength);
+            else if (statType == StatType.GroupFoodRatePerPop)
+                base.RaiseStatModified(stats, StatType.GroupFoodRate);
+            else if (statType == StatType.GroupWoodRatePerPop)
+                base.RaiseStatModified(stats, StatType.GroupWoodRate);
+            else if (statType == StatType.GroupLaborPerPop)
+                base.RaiseStatModified(stats, StatType.GroupLaborRate);
+
+        }
+
+        protected virtual void OnPopulationChange(GoodsCollection col, GoodType type)
+        {
+            if (type == GoodType.Population)
+            {
+                RaiseStatModified(this, StatType.Strength);
+                RaiseStatModified(this, StatType.GroupFoodRate);
+                RaiseStatModified(this, StatType.GroupWoodRate);
+                RaiseStatModified(this, StatType.GroupLaborRate);
             }
         }
     }

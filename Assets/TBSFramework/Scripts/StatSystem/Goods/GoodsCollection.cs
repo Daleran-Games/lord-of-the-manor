@@ -78,6 +78,18 @@ namespace DaleranGames.TBSFramework
 
         private void Remove(Transaction transaction)
         {
+            /*
+            for (int i=0;i<pendingTransactions.Count;i++)
+            {
+                if (pendingTransactions[i].Type == transaction.Type && pendingTransactions[i].Value == transaction.Value && pendingTransactions[i].Description == transaction.Description)
+                {
+                    pendingTransactions.RemoveAt(i);
+                    OnPendingTransactionsChanged(this, transaction.Type);
+                    Debug.Log("It fired!");
+                    return;
+                }
+            }
+            */
             pendingTransactions.Remove(transaction);
             OnPendingTransactionsChanged(this, transaction.Type);
         }
@@ -140,7 +152,6 @@ namespace DaleranGames.TBSFramework
             if (GoodChanged != null)
                 GoodChanged(col, type);
         }
-
 
     }
 }

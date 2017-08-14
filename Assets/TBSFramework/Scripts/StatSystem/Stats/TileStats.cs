@@ -12,25 +12,47 @@ namespace DaleranGames.TBSFramework
             get { return owner; }
             set
             {
+                if (owner != null)
+                    owner.TileModifiers.StatModified -= RaiseStatModified;
+
                 owner = value;
+
+                if (owner != null)
+                    owner.TileModifiers.StatModified += RaiseStatModified;
             }
         }
 
 
         public TileStats(Group owner) : base()
         {
-            this.owner = owner;
+            this.Owner = owner;
         }
 
         public override int this[StatType statType]
         {
             get
             {
-                if (totals.ContainsKey(statType) || owner.TileModifiers.Contains(statType))
-                    return totals[statType] + owner.TileModifiers[statType];
-                else
-                    return 0;
+                switch (statType.DisplayName)
+                {
+                    case "Farming Food Rate":
+                        return (Get(StatType.FoodYield) * Get(StatType.FarmingFoodPerYield)) + Get(StatType.FarmingFoodRate);
+                    case "Logging Wood Rate":
+                        return (Get(StatType.WoodYield) * Get(StatType.LoggingWoodPerYield)) + Get(StatType.LoggingWoodRate);
+                    case "Quarrying Stone Rate":
+                        return (Get(StatType.StoneYield) * Get(StatType.QuarryingStonePerYield)) + Get(StatType.QuarryingStoneRate);
+                    default:
+                        return Get(statType);
+
+                }
             }
+        }
+
+        protected int Get(StatType statType)
+        {
+            if (totals.ContainsKey(statType) || owner.TileModifiers.Contains(statType))
+                return totals[statType] + owner.TileModifiers[statType];
+            else
+                return 0;
         }
 
         public override List<StatType> Types
@@ -65,6 +87,24 @@ namespace DaleranGames.TBSFramework
             mods.AddRange(owner.TileModifiers.GetAll());
 
             return mods;
+        }
+
+        protected override void RaiseStatModified(IStatCollection<StatType> stats, StatType statType)
+        {
+            base.RaiseStatModified(stats, statType);
+
+            if (statType == StatType.FoodYield)
+                base.RaiseStatModified(stats, StatType.FarmingFoodRate);
+            else if (statType == StatType.FarmingFoodPerYield)
+                base.RaiseStatModified(stats, StatType.FarmingFoodRate);
+            else if (statType == StatType.WoodYield)
+                base.RaiseStatModified(stats, StatType.LoggingWoodRate);
+            else if (statType == StatType.LoggingWoodPerYield)
+                base.RaiseStatModified(stats, StatType.LoggingWoodRate);
+            else if (statType == StatType.StoneYield)
+                base.RaiseStatModified(stats, StatType.QuarryingStoneRate);
+            else if (statType == StatType.QuarryingStonePerYield)
+                base.RaiseStatModified(stats, StatType.QuarryingStoneRate);
         }
 
     }

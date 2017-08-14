@@ -69,7 +69,7 @@ namespace DaleranGames.TBSFramework
             tileModifiers.Add(new Modifier(StatType.DefenseBonus, Int32.Parse(entry["defenseBonus"]), name));
             tileModifiers.Add(new Modifier(StatType.MovementCost, Int32.Parse(entry["movementCost"]), name));
             tileModifiers.Add(new Modifier(StatType.MaxCondition, Int32.Parse(entry["maxCondition"]), name));
-            tileModifiers.Add(new Modifier(StatType.FarmingRate, Int32.Parse(entry["farmFoodRate"]), name));
+            tileModifiers.Add(new Modifier(StatType.FarmingFoodPerYield, Int32.Parse(entry["farmFoodRate"]), name));
 
         }
 
@@ -130,7 +130,7 @@ namespace DaleranGames.TBSFramework
                 tile.TerrainGraphics.Remove(TileLayers.Improvements);
                 tile.TerrainGraphics.Add(TileLayers.Improvements, harvestGraphic);
                 tile.Owner.Goods.AddFuture(cultivateLaborCost.ModifiedTransaction(tile.Owner.Stats));
-                tile.Owner.Goods.AddFuture(new Transaction(GoodType.Food, tile.Stats[StatType.FarmingRate] * tile.Stats[StatType.FoodYield], name));
+                tile.Owner.Goods.AddFuture(new Transaction(GoodType.Food, tile.Stats[StatType.FarmingFoodRate], name));
 
             }else if (tile.Counters[cycleTime.ModifiedBy] < cycleTime.ModifiedValue(tile.Owner.Stats)-1 && tile.Counters[cycleTime.ModifiedBy] > growingTime.ModifiedValue(tile.Owner.Stats))
             {
@@ -167,8 +167,7 @@ namespace DaleranGames.TBSFramework
 
             tile.Counters.RemoveCounter(cycleTime.ModifiedBy);
 
-            tile.Stats.Remove(TileModifiers);
-            tile.OwnerModifiers.Remove(OwnerModifiers);
+
 
             tile.TerrainGraphics.Remove(TileLayers.Improvements);
             tile.TerrainGraphics.Add(TileLayers.Improvements, fallowGraphic);
@@ -176,7 +175,10 @@ namespace DaleranGames.TBSFramework
             tile.Owner.Goods.RemoveFuture(cultivateLaborCost.ModifiedTransaction(tile.Owner.Stats));
             tile.Owner.Goods.ProcessNow(cultivateLaborCost.ReverseModifiedTransaction(tile.Owner.Stats));
 
-            tile.Owner.Goods.RemoveFuture(new Transaction(GoodType.Food, tile.Stats[StatType.FarmingRate] * tile.Stats[StatType.FoodYield], name));
+            tile.Owner.Goods.RemoveFuture(new Transaction(GoodType.Food, tile.Stats[StatType.FarmingFoodRate], name));
+
+            tile.Stats.Remove(TileModifiers);
+            tile.OwnerModifiers.Remove(OwnerModifiers);
 
             tile.Paused = true;
 
