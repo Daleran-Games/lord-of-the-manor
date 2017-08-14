@@ -37,7 +37,6 @@ namespace DaleranGames.TBSFramework
             buildTimeCost = new Cost(GoodType.Turns, StatType.BuildTime, Int32.Parse(entry["buildTime"]), name);
 
             initialBuildCosts = new CostCollection(
-                new Cost(GoodType.Labor,StatType.BuildLaborCost,Int32.Parse(entry["buildLaborCost"]),name),
                 new Cost(GoodType.Wood, StatType.BuildWoodCost, Int32.Parse(entry["buildWoodCost"]), name),
                 new Cost(GoodType.Stone, StatType.BuildStoneCost, Int32.Parse(entry["buildStoneCost"]), name),
                 new Cost(GoodType.Gold, StatType.BuildGoldCost, Int32.Parse(entry["buildGoldCost"]), name)
@@ -73,11 +72,13 @@ namespace DaleranGames.TBSFramework
             if (buildTimeCost.ModifiedValue(tile.Owner.Stats) < 1)
             {
                 tile.Owner.Goods.ProcessNow(initialBuildCosts.GetAllCostsAsTransaction(tile.Owner.Stats));
+                tile.Owner.Goods.ProcessNow(perTurnBuildCosts.GetAllCostsAsTransaction(tile.Owner.Stats));
                 OnBuildCompleted(tile);
             } else
             {
                 tile.TerrainGraphics.Add(TileLayers.Building, buildGraphic);
                 tile.Owner.Goods.ProcessNow(initialBuildCosts.GetAllCostsAsTransaction(tile.Owner.Stats));
+                tile.Owner.Goods.ProcessNow(perTurnBuildCosts.GetAllCostsAsTransaction(tile.Owner.Stats));
                 tile.Owner.Goods.AddFuture(perTurnBuildCosts.GetAllCostsAsTransaction(tile.Owner.Stats));
                 tile.Counters.AddCounter(buildTimeCost.ModifiedBy);
                 RaiseWorkIconChangeEvent(tile, GetWorkIcon(tile));
@@ -143,6 +144,8 @@ namespace DaleranGames.TBSFramework
         public void CancelWithNoFeatureSwitch(HexTile tile)
         {
             tile.Owner.Goods.ProcessNow(initialBuildCosts.GetAllReverseCostsAsTransaction(tile.Owner.Stats));
+            tile.Owner.Goods.ProcessNow(perTurnBuildCosts.GetAllReverseCostsAsTransaction(tile.Owner.Stats));
+            tile.Owner.Goods.RemoveFuture(perTurnBuildCosts.GetAllCostsAsTransaction(tile.Owner.Stats));
             RaiseWorkIconChangeEvent(tile, GetWorkIcon(tile));
         }
 
@@ -154,8 +157,8 @@ namespace DaleranGames.TBSFramework
         public void Pause(HexTile tile)
         {
             tile.Counters.PauseCounter(true, buildTimeCost.ModifiedBy);
-            tile.Owner.Goods.RemoveFuture(initialBuildCosts.GetAllReverseCostsAsTransaction(tile.Owner.Stats));
-            tile.Owner.Goods.ProcessNow(initialBuildCosts.GetAllReverseCostsAsTransaction(tile.Owner.Stats));
+            tile.Owner.Goods.RemoveFuture(perTurnBuildCosts.GetAllCostsAsTransaction(tile.Owner.Stats));
+            tile.Owner.Goods.ProcessNow(perTurnBuildCosts.GetAllReverseCostsAsTransaction(tile.Owner.Stats));
             tile.Paused = true;
             RaiseWorkIconChangeEvent(tile, GetWorkIcon(tile));
         }
@@ -171,10 +174,7 @@ namespace DaleranGames.TBSFramework
 
         public bool CanResume(HexTile tile)
         {
-            if (tile.Owner.Goods.CanProcessNow(perTurnBuildCosts.GetAllCostsAsTransaction(tile.Owner.Stats)))
-                return true;
-            else
-                return false;
+            return true;
         }
 
         public override TileGraphic GetWorkIcon(HexTile tile)

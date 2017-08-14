@@ -21,18 +21,6 @@ namespace DaleranGames.TBSFramework
         string description;
         public string Description { get { return description; } }
 
-        [SerializeField]
-        StatType modifiedBy;
-        public StatType ModifiedBy { get { return modifiedBy; } }
-
-        IStatCollection<StatType> statCollection;
-
-        public Transaction(GoodType type, int amount)
-        {
-            this.type = type;
-            this.value = amount;
-            description = "";
-        }
 
         public Transaction(GoodType type, int amount, string description)
         {

@@ -204,7 +204,7 @@ namespace DaleranGames.TBSFramework
 
         public bool CanResume(HexTile tile)
         {
-            if (tile.Owner.Goods.CanProcessNow(cultivateLaborCost.ModifiedTransaction(tile.Owner.Stats)) && (TurnManager.Instance.CurrentTurn == TurnManager.Instance.Spring || TurnManager.Instance.CurrentTurn == TurnManager.Instance.Fall))
+            if ((TurnManager.Instance.CurrentTurn == TurnManager.Instance.Spring || TurnManager.Instance.CurrentTurn == TurnManager.Instance.Fall))
                 return true;
             else
                 return false;
@@ -220,7 +220,7 @@ namespace DaleranGames.TBSFramework
 
         public bool CanPlace(HexTile tile)
         {
-            if (tile.Owner.Goods.CanProcessNow(buildLaborCost.ModifiedTransaction(tile.Owner.Stats)) && validLands.Contains(tile.Land) && (TurnManager.Instance.CurrentTurn == TurnManager.Instance.Spring || TurnManager.Instance.CurrentTurn == TurnManager.Instance.Fall))
+            if (validLands.Contains(tile.Land) && (TurnManager.Instance.CurrentTurn == TurnManager.Instance.Spring || TurnManager.Instance.CurrentTurn == TurnManager.Instance.Fall))
             {
                 return true;
             }
