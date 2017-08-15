@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace DaleranGames.TBSFramework
 {
@@ -9,15 +10,31 @@ namespace DaleranGames.TBSFramework
         protected string name;
         public string Name { get { return name; } }
 
+        protected bool home;
+        public bool Home {
+            get { return home; }
+            set
+            {
+                home = value;
+
+                if (HomeChanged != null)
+                HomeChanged(home);
+            }
+        }
+        public event Action<bool> HomeChanged;
+
         public static readonly Group Null = new NullGroup("NullGroup", GroupType.NullGroupType);
+        WorkUtilities workUtils;
 
         public Group (string name, GroupType type)
         {
             this.name = name;
-
+            Home = false;
+            OwnedTiles = new List<HexTile>();
             Goods = new GroupGoods(this);
             Stats = new GroupStats(this);
             TileModifiers = new StatCollection();
+            workUtils = new WorkUtilities();
 
             GroupType = type;
         }
@@ -68,6 +85,10 @@ namespace DaleranGames.TBSFramework
         public GroupStats Stats;
         public StatCollection TileModifiers;
         public GroupGoods Goods;
+
+        [NonSerialized]
+        [HideInInspector]
+        public List<HexTile> OwnedTiles;
         #endregion
 
 
@@ -123,6 +144,7 @@ namespace DaleranGames.TBSFramework
         public virtual void OnTurnStart(BaseTurn turn)
         {
             GroupType.OnTurnStart(turn, this);
+           workUtils.OptimizeLabor(this);
         }
 
         protected virtual void SetUpNextTurn()

@@ -28,7 +28,6 @@ namespace DaleranGames.TBSFramework
 
         public static readonly StatType GroupFoodRatePerPop = new StatType(14, "Food Use Per Turn Per Population","FD/T/P");
         public static readonly StatType GroupFoodRate = new StatType(15, "Food Use Per Turn", "FD/T");
-        public static readonly StatType GroupWoodRatePerPop = new StatType(16, "Wood Use In Winter Per Population", "WD/W/P");
         public static readonly StatType GroupWoodRate = new StatType(17, "Wood Use In Winter", "WD/W");
         public static readonly StatType GroupLaborPerPop = new StatType(18, "Labor Per Turn Per Population", "L/T/P");
         public static readonly StatType GroupLaborRate = new StatType(19, "Labor Per Turn", "L/T");

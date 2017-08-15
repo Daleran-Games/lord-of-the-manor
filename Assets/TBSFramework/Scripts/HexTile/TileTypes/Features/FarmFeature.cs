@@ -7,7 +7,7 @@ using System;
 namespace DaleranGames.TBSFramework
 {
     [System.Serializable]
-    public class FarmFeature : FeatureType, IWorkable, IPlaceable
+    public class FarmFeature : FeatureType, IWorkable, IPlaceable, ICancelable
     {
         [SerializeField]
         string sowingGraphicName;
@@ -210,6 +210,16 @@ namespace DaleranGames.TBSFramework
                 return false;
         }
 
+        public int GetWorkUtility(HexTile tile)
+        {
+            return 9 * tile.Stats[StatType.QuarryingStoneRate];
+        }
+
+        public int GetLaborWorkCosts(HexTile tile)
+        {
+            return cultivateLaborCost.ModifiedValue(tile.Owner.Stats);
+        }
+
         public override TileGraphic GetWorkIcon(HexTile tile)
         {
             if (tile.Paused)
@@ -231,6 +241,17 @@ namespace DaleranGames.TBSFramework
         public void Place(HexTile tile)
         {
             tile.Feature = this;
+        }
+
+        public bool CanCancel(HexTile tile)
+        {
+            return true;
+        }
+
+        public void Cancel(HexTile tile)
+        {
+            tile.Owner.Goods.ProcessNow(cultivateLaborCost.ModifiedTransaction(tile.Owner.Stats));
+            tile.Feature = FeatureType.Null;
         }
     }
 }

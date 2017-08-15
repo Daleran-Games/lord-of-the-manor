@@ -32,9 +32,16 @@ namespace DaleranGames.TBSFramework
             IWorkable workable = tile.Feature as IWorkable;
 
             if (tile.Paused)
+            {
                 workable.Resume(tile);
+                tile.PausedOverride = false;
+            }
             else
+            {
                 workable.Pause(tile);
+                tile.PausedOverride = true;
+            }
+               
 
         }
 

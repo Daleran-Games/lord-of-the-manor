@@ -5,7 +5,7 @@ using DaleranGames.IO;
 
 namespace DaleranGames.TBSFramework
 {
-    public class CommandMediator : MonoBehaviour
+    public class CommandMediator : Singleton<CommandMediator>
     {
         [SerializeField]
         bool activeMode = false;
@@ -81,6 +81,20 @@ namespace DaleranGames.TBSFramework
             }
         }
 
+        public void ExitCommandMode()
+        {
+            mouse.HexTileEntered -= OnTileEnter;
+            mouse.HexTileLMBClicked -= OnLeftTileClick;
+            InputManager.Instance.RMBClick.MouseButtonUp -= OnRightClick;
+            mouse.CursorUIIcon = TileGraphic.Clear;
+            mouse.CursorTerrainIcon = TileGraphic.Clear;
+            mouse.CursorMode = HexCursor.HexCursorMode.Ring;
+            currentCommand = Command.Null;
+            activeOwner = Group.Null;
+            activeMode = false;
+
+        }
+
         public void PreformCommandOnTile(Command activity, HexTile tile, Group owner)
         {
             if (activeMode == true && activity.IsValidCommand(tile,owner))
@@ -107,29 +121,25 @@ namespace DaleranGames.TBSFramework
 
         void OnRightClick()
         {
-            activeMode = false;
-            currentCommand = Command.Null;
-            activeOwner = Group.Null;
-            mouse.CursorUIIcon = TileGraphic.Clear;
-            mouse.CursorTerrainIcon = TileGraphic.Clear;
-            mouse.CursorMode = HexCursor.HexCursorMode.Ring;
-            mouse.HexTileLMBClicked -= OnLeftTileClick;
-            mouse.HexTileEntered -= OnTileEnter;
-            InputManager.Instance.RMBClick.MouseButtonUp -= OnRightClick;
+            ExitCommandMode();
         }
 
         void UpdateCursor (HexTile tile)
         {
-            if (mouse.CurrentTile != null)
+            if (mouse.CurrentTile != null && activeMode)
             {
                 mouse.CursorUIIcon = currentCommand.GetUIIcon(tile);
                 mouse.CursorTerrainIcon = currentCommand.GetTerrainIcon(tile);
-                
 
                 if (currentCommand.IsValidCommand(tile, activeOwner))
                     mouse.CursorMode = HexCursor.HexCursorMode.Positive;
                 else
                     mouse.CursorMode = HexCursor.HexCursorMode.Negative;
+            } else if (!activeMode)
+            {
+                mouse.CursorUIIcon = TileGraphic.Clear;
+                mouse.CursorTerrainIcon = TileGraphic.Clear;
+                mouse.CursorMode = HexCursor.HexCursorMode.Ring;
             }
         }
     }

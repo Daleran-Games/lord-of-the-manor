@@ -182,7 +182,15 @@ namespace DaleranGames.TBSFramework
             return true;
         }
 
+        public int GetWorkUtility(HexTile tile)
+        {
+            return 3 * tile.Stats[StatType.QuarryingStoneRate];
+        }
 
+        public int GetLaborWorkCosts(HexTile tile)
+        {
+            return quarryLaborCost.ModifiedValue(tile.Owner.Stats);
+        }
 
         public override TileGraphic GetWorkIcon(HexTile tile)
         {
@@ -206,6 +214,7 @@ namespace DaleranGames.TBSFramework
         {
             tile.Feature = this;
         }
+
 
     }
 }

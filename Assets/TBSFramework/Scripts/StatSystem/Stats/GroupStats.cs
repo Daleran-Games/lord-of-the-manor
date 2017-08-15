@@ -28,8 +28,6 @@ namespace DaleranGames.TBSFramework
                         return (base[StatType.StrengthPerPop] * group.Goods.Population.Value) + base[StatType.Strength];
                     case "Food Use Per Turn":
                         return (base[StatType.GroupFoodRatePerPop] * group.Goods.Population.Value) + base[StatType.GroupFoodRate];
-                    case "Wood Use In Winter":
-                        return (base[StatType.GroupWoodRatePerPop] * group.Goods.Population.Value) + base[StatType.GroupWoodRate];
                     case "Labor Per Turn":
                         return (base[StatType.GroupLaborPerPop] * group.Goods.Population.Value) + base[StatType.GroupLaborRate];
                     default:
@@ -47,8 +45,6 @@ namespace DaleranGames.TBSFramework
                 base.RaiseStatModified(stats, StatType.Strength);
             else if (statType == StatType.GroupFoodRatePerPop)
                 base.RaiseStatModified(stats, StatType.GroupFoodRate);
-            else if (statType == StatType.GroupWoodRatePerPop)
-                base.RaiseStatModified(stats, StatType.GroupWoodRate);
             else if (statType == StatType.GroupLaborPerPop)
                 base.RaiseStatModified(stats, StatType.GroupLaborRate);
 
@@ -60,7 +56,6 @@ namespace DaleranGames.TBSFramework
             {
                 RaiseStatModified(this, StatType.Strength);
                 RaiseStatModified(this, StatType.GroupFoodRate);
-                RaiseStatModified(this, StatType.GroupWoodRate);
                 RaiseStatModified(this, StatType.GroupLaborRate);
             }
         }

@@ -59,8 +59,7 @@ namespace DaleranGames.TBSFramework
 
             ownerModifiers.Add(new Modifier(StatType.MaxPopulation, Int32.Parse(entry["maxPopulation"]), name));
             ownerModifiers.Add(new Modifier(StatType.MaxFood, Int32.Parse(entry["maxFood"]), name));
-            ownerModifiers.Add(new Modifier(StatType.MaxWood, Int32.Parse(entry["maxWood"]), name));
-            ownerModifiers.Add(new Modifier(StatType.MaxStone, Int32.Parse(entry["maxStone"]), name));
+            ownerModifiers.Add(new Modifier(StatType.GroupWoodRate, Int32.Parse(entry["woodRate"]), name));
         }
 
         public override TileGraphic GetMainGraphic(HexTile tile)
@@ -84,6 +83,7 @@ namespace DaleranGames.TBSFramework
             tile.Stats.Add(TileModifiers);
             tile.OwnerModifiers.Add(OwnerModifiers);
             RaiseWorkIconChangeEvent(tile, TileGraphic.Clear);
+            tile.Owner.Home = true;
         }
 
         public override void OnTurnEnd(BaseTurn turn, HexTile tile)
@@ -107,6 +107,7 @@ namespace DaleranGames.TBSFramework
             tile.Stats.Remove(TileModifiers);
             tile.OwnerModifiers.Remove(OwnerModifiers);
             RaiseWorkIconChangeEvent(tile, TileGraphic.Clear);
+            tile.Owner.Home = false;
         }
 
 
@@ -150,6 +151,7 @@ namespace DaleranGames.TBSFramework
         public void Place(HexTile tile)
         {
             buildFeature.Place(tile);
+            CommandMediator.Instance.ExitCommandMode();
         }
     }
 }

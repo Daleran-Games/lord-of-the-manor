@@ -123,6 +123,16 @@ namespace DaleranGames.TBSFramework
             RaiseWorkIconChangeEvent(tile, GetWorkIcon(tile));
         }
 
+        public int GetWorkUtility(HexTile tile)
+        {
+            return 99;
+        }
+
+        public int GetLaborWorkCosts(HexTile tile)
+        {
+            return razeLaborCost.ModifiedValue(tile.Owner.Stats);
+        }
+
         public bool CanResume(HexTile tile)
         {
             return true;

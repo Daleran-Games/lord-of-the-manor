@@ -32,7 +32,7 @@ namespace DaleranGames.TBSFramework
 
         public override void PreformCommand(HexTile tile, Group owner)
         {
-            placeable.Place(tile); 
+            placeable.Place(tile);
         }
 
         public override TileGraphic GetTerrainIcon(HexTile tile)

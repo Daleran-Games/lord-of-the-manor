@@ -106,6 +106,16 @@ namespace DaleranGames.TBSFramework
             upgradedBuildFeature.Resume(tile);
         }
 
+        public int GetWorkUtility(HexTile tile)
+        {
+            return upgradedBuildFeature.GetWorkUtility(tile);
+        }
+
+        public int GetLaborWorkCosts(HexTile tile)
+        {
+            return upgradedBuildFeature.GetLaborWorkCosts(tile);
+        }
+
         public bool CanResume(HexTile tile)
         {
             return upgradedBuildFeature.CanResume(tile);

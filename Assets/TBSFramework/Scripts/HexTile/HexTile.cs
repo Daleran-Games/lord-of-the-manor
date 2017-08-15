@@ -126,7 +126,11 @@ namespace DaleranGames.TBSFramework
 
         [SerializeField]
         protected bool paused = false;
-        public bool Paused { get { return paused; } set { paused = value; } } 
+        public bool Paused { get { return paused; } set { paused = value; } }
+
+        [SerializeField]
+        protected bool pausedOverride = false;
+        public bool PausedOverride { get { return pausedOverride; } set { pausedOverride = value; } }
 
         void OnTurnEnd(BaseTurn turn)
         {
@@ -154,7 +158,7 @@ namespace DaleranGames.TBSFramework
             set
             {
                 Group oldOwner = owner;
-
+                oldOwner.OwnedTiles.Remove(this);
                 if (value == null || value == Group.Null)
                 {
                     owner = Group.Null;
@@ -164,8 +168,9 @@ namespace DaleranGames.TBSFramework
                 {
                     owner = value;
                     UIGraphics.Add(TileLayers.Border, GameDatabase.Instance.TileGraphics["UIAtlas_Border_Test"]);
+                    owner.OwnedTiles.Add(this);
                 }
-
+                
                 Stats.Owner = owner;
                 OwnerModifiers.Owner = owner;
             }

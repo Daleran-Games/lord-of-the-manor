@@ -175,6 +175,16 @@ namespace DaleranGames.TBSFramework
             return true;
         }
 
+        public int GetWorkUtility(HexTile tile)
+        {
+            return 1 * tile.Stats[StatType.QuarryingStoneRate];
+        }
+
+        public int GetLaborWorkCosts(HexTile tile)
+        {
+            return loggingLaborCost.ModifiedValue(tile.Owner.Stats);
+        }
+
         public override TileGraphic GetWorkIcon(HexTile tile)
         {
             if (tile.Paused)
