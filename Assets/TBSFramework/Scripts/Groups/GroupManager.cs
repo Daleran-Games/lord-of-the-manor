@@ -21,6 +21,17 @@ namespace DaleranGames.TBSFramework
             TurnManager.Instance.TurnEnded += OnTurnEnd;
             TurnManager.Instance.TurnSetUp += OnTurnSetUp;
             TurnManager.Instance.TurnStart += OnTurnStart;
+
+            List<HexCoordinates> playerTiles = HexCoordinates.GetCoordinatesInRange(HexGrid.Instance.Center, HexGrid.Instance.Generator.PlayerTerritory);
+            //Debug.Log("playerTiles count: " + playerTiles.Length);
+            for (int i = 0; i < playerTiles.Count; i++)
+            {
+                if (HexGrid.Instance.IsCoordinateValid(playerTiles[i]))
+                {
+                    HexGrid.Instance[playerTiles[i]].Owner = PlayerGroup;
+                }
+            }
+
         }
 
         public virtual void OnGameStart(GameState state)

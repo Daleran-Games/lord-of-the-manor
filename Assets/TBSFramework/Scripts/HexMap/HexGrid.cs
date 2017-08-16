@@ -21,6 +21,8 @@ namespace DaleranGames.TBSFramework
         public virtual int Width { get { return Generator.Width ; } }
         public virtual int Height { get { return Generator.Height ; } }
 
+        public virtual HexCoordinates Center { get { return HexCoordinates.CartesianToHex(Width / 2, Height / 2); } }
+
         public event Action MapGenerationComplete;
         public event Action MeshBuildComplete;
 
@@ -56,6 +58,52 @@ namespace DaleranGames.TBSFramework
             {
                 tiles[HexCoordinates.ToCartesianX(q,r), r] = value;
             }
+        }
+
+        public virtual HexTile this[HexCoordinates coord]
+        {
+            get { return this[coord.Q, coord.R, coord.S]; }
+            set
+            {
+                this[coord.Q, coord.R, coord.S] = value;
+            }
+        }
+
+        public virtual bool IsCoordinateValid(int x, int y)
+        {
+            if (x >= 0 && x < Width && y >= 0 && y < Height)
+                return true;
+            else
+                return false;
+        }
+
+        public virtual bool IsCoordinateValid (Vector2Int coord)
+        {
+            return IsCoordinateValid(coord.x, coord.y);
+        }
+
+        public virtual bool IsCoordinateValid(int q, int r, int s)
+        {
+            return IsCoordinateValid(HexCoordinates.HexToCartesian(q,r,s));
+        }
+
+        public virtual bool IsCoordinateValid(HexCoordinates coord)
+        {
+            return IsCoordinateValid(coord.Q, coord.R, coord.S);
+        }
+
+        public virtual List<HexTile> GetTilesInRange (HexCoordinates center, int range)
+        {
+            List<HexCoordinates> playerTiles = HexCoordinates.GetCoordinatesInRange(HexGrid.Instance.Center, HexGrid.Instance.Generator.PlayerTerritory);
+            List<HexTile> tiles = new List<HexTile>();
+            for (int i = 0; i < playerTiles.Count; i++)
+            {
+                if (HexGrid.Instance.IsCoordinateValid(playerTiles[i]))
+                {
+                    tiles.Add(HexGrid.Instance[playerTiles[i]]);
+                }
+            }
+            return tiles;
         }
 
         public HexMeshChunk GetUIMesh (Vector2Int chunkID)

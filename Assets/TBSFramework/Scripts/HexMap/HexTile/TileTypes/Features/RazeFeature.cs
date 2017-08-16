@@ -143,7 +143,7 @@ namespace DaleranGames.TBSFramework
             if (tile.Paused)
                 return GameDatabase.Instance.TileGraphics["UIAtlas_SmallIcon_Sleep"];
             else
-                return GameDatabase.Instance.TileGraphics["UIAtlas_SmallIcon_Cancel"];
+                return GameDatabase.Instance.TileGraphics["UIAtlas_SmallIcon_Raze"];
         }
 
         public bool CanPlace(HexTile tile)

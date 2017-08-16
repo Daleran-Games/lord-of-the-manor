@@ -6,7 +6,7 @@ namespace UnityEngine
 {
 
     [System.Serializable]
-    public struct Vector2Int : IFormattable, IEquatable<Vector2Int>, IComparable<Vector2Int>, IComparable
+    public struct Vector2Int : IFormattable, IEquatable<Vector2Int>
     {
         [SerializeField]
         public int x;
@@ -63,23 +63,6 @@ namespace UnityEngine
             return obj.GetType() == typeof(Vector2Int) && Equals((Vector2Int)obj);
         }
 
-        public int CompareTo(Vector2Int other)
-        {
-
-            if (other.sqrMagnitude() > sqrMagnitude())
-                return 1;
-            else if (Equals(this,other))
-                return 0;
-            else
-                return -1;
-
-        }
-
-        public int CompareTo(object obj)
-        {
-            return CompareTo(obj);        
-
-        }
 
         public override int GetHashCode()
         {
@@ -109,6 +92,11 @@ namespace UnityEngine
             return new Vector2Int(l.x - r.x, l.y - r.y);
         }
 
+        public static Vector2Int operator -(Vector2Int l)
+        {
+            return new Vector2Int(-l.x,-l.y);
+        }
+
         public static Vector2Int operator *(Vector2Int l, int r)
         {
             return new Vector2Int(l.x * r, l.y * r);
@@ -117,26 +105,6 @@ namespace UnityEngine
         public static Vector2Int operator /(Vector2Int l, int r)
         {
             return new Vector2Int(l.x / r, l.y / r);
-        }
-
-        public static bool operator > (Vector2Int l, Vector2Int r)
-        {
-            return l.CompareTo(r) == 1;
-        }
-
-        public static bool operator < (Vector2Int l, Vector2Int r)
-        {
-            return l.CompareTo(r) == -1;
-        }
-
-        public static bool operator >=(Vector2Int l, Vector2Int r)
-        {
-            return l.CompareTo(r) >= 0;
-        }
-
-        public static bool operator <=(Vector2Int l, Vector2Int r)
-        {
-            return l.CompareTo(r) <= 0;
         }
 
         static public explicit operator Vector2(Vector2Int v2)

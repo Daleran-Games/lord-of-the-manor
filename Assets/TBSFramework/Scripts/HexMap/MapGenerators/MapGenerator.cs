@@ -17,6 +17,10 @@ namespace DaleranGames.TBSFramework
         [Range(1,96)]
         protected int height = 10;
         public virtual int Height { get { return height; } }
+        [SerializeField]
+        [Range(1, 32)]
+        protected int playerTerritory = 5;
+        public virtual int PlayerTerritory { get { return playerTerritory; } }
 
         [Header("Terrain Details")]
         [SerializeField]

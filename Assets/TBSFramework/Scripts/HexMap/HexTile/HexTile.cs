@@ -10,7 +10,6 @@ namespace DaleranGames.TBSFramework
     [System.Serializable]
     public class HexTile : IDisposable
     {
-
         public HexTile(HexCoordinates coor, Vector2Int gcoord, Vector3 pos, int id, TileAtlas atlas)
         {
             HexPosition = coor;
