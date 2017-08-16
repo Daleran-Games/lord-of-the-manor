@@ -12,12 +12,12 @@ namespace DaleranGames.IO
         public readonly string Name;
         public CSVEntry this[int id] { get { return entries[id]; } }
         public int Entries { get { return entries.Count; } }
-        public string[][] RawData { get { return csvArray; } }
+        public List<string[]> RawData { get { return csvArray; } }
 
-        string[][] csvArray;
+        List<string[]> csvArray;
         List<CSVEntry> entries;
 
-        public CSVData(string name, string[][] csvArray)
+        public CSVData(string name, List<string[]> csvArray)
         {
             Name = name;
             this.csvArray = csvArray;
@@ -25,33 +25,33 @@ namespace DaleranGames.IO
 
         }
 
-        public CSVData(string name, string[][] csvArray, List<string> multipleHeaders)
+        public CSVData(string name, List<string[]> csvArray, List<string> multipleHeaders)
         {
             Name = name;
             this.csvArray = csvArray;
             entries = ParseMultipleHeaders(csvArray, multipleHeaders);
         }
 
-        List<CSVEntry> ParseOneHeader (string[][] csvArray)
+        List<CSVEntry> ParseOneHeader (List<string[]> csvArray)
         {
             string[] header = csvArray[0];
             List<CSVEntry> newEntries = new List<CSVEntry>();
 
 
-            for (int i=1;i<csvArray.Length;i++)
+            for (int i=1;i<csvArray.Count;i++)
             {
                 newEntries.Add(new CSVEntry(i-1,PadJAggedStringArray(header,csvArray[i]),header));
             }
             return newEntries;
         }
 
-        List<CSVEntry> ParseMultipleHeaders(string[][] csvArray, List<string> multipleHeaders)
+        List<CSVEntry> ParseMultipleHeaders(List<string[]> csvArray, List<string> multipleHeaders)
         {
             string[] header = csvArray[1];
             bool headerNext = false;
             int currentID = 0;
             List<CSVEntry> newEntries = new List<CSVEntry>();
-            for (int i = 0; i < csvArray.Length; i++)
+            for (int i = 0; i < csvArray.Count; i++)
             {
                 if (multipleHeaders.Contains(csvArray[i][0]))
                 {

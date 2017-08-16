@@ -17,21 +17,22 @@ namespace DaleranGames.IO
         static char[] trimChars = { '\"' };
         const string listSplit = @";";
 
-        public static string[][] ParseCSVToArray(string csv)
+        public static List<string[]> ParseCSVToArray(string csv)
         {
             string[] rows = Regex.Split(csv, rowSplit);
             if (rows.Length <= 1)
             {
-                string[][] zero = new string[0][];
+                List<string[]> zero = new List<string[]>();
                 return zero;
             }
-            string[][] output = new string[rows.Length][];
+            List<string[]> output = new List<string[]>();
+
             for (int i=0; i < rows.Length; i++)
             {
                 string[] row = Regex.Split(rows[i], columnSplit);
-                if (row.Length == 0 || row[0] == "")
+                if (row.Length == 0 || string.IsNullOrEmpty(row[0]) || row[0] == " " )
                     continue;
-                output[i] = row;
+                output.Add(row);
             }
             return output;
         }

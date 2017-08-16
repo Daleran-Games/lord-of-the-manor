@@ -46,6 +46,15 @@ namespace DaleranGames.TBSFramework
             tileModifiers.Add(new Modifier(StatType.WoodYield, Int32.Parse(entry["woodYield"]), name));
             tileModifiers.Add(new Modifier(StatType.StoneYield, Int32.Parse(entry["stoneYield"]), name));
             tileModifiers.Add(new Modifier(StatType.GoldYield, Int32.Parse(entry["goldYield"]), name));
+            tileModifiers.Add(new Modifier(StatType.LandValue, CalculateLandValue(Int32.Parse(entry["foodYield"]), Int32.Parse(entry["woodYield"]), Int32.Parse(entry["stoneYield"]), Int32.Parse(entry["goldYield"])) , name));
+        }
+
+        int CalculateLandValue(int food, int wood, int stone, int gold)
+        {
+            return ((food*GameplayMetrics.FoodValue 
+                + wood*GameplayMetrics.WoodValue
+                + stone*GameplayMetrics.StoneValue
+                + gold*GameplayMetrics.GoldFactor) * GameplayMetrics.LandValueFactor)+GameplayMetrics.MinimumLandValue;
         }
 
 
@@ -72,6 +81,7 @@ namespace DaleranGames.TBSFramework
 
             tile.Stats.Add(TileModifiers);
             tile.OwnerModifiers.Add(OwnerModifiers);
+
         }
 
         public virtual void OnDeactivation(HexTile tile)
@@ -80,6 +90,7 @@ namespace DaleranGames.TBSFramework
 
             tile.Stats.Remove(TileModifiers);
             tile.OwnerModifiers.Remove(OwnerModifiers);
+
         }
 
         #endregion

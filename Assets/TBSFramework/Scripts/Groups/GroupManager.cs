@@ -22,7 +22,7 @@ namespace DaleranGames.TBSFramework
             TurnManager.Instance.TurnSetUp += OnTurnSetUp;
             TurnManager.Instance.TurnStart += OnTurnStart;
 
-            List<HexCoordinates> playerTiles = HexCoordinates.GetCoordinatesInRange(HexGrid.Instance.Center, HexGrid.Instance.Generator.PlayerTerritory);
+            List<HexCoordinates> playerTiles = HexCoordinates.GetCoordinatesInRange(HexGrid.Instance.Generator.PlayerStart, HexGrid.Instance.Generator.PlayerTerritory);
             //Debug.Log("playerTiles count: " + playerTiles.Length);
             for (int i = 0; i < playerTiles.Count; i++)
             {

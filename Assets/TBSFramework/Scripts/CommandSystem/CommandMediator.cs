@@ -54,11 +54,28 @@ namespace DaleranGames.TBSFramework
             EnterCommandMode(currentCommand);
         }
 
+        public void EnterBuyLandMode()
+        {
+            currentCommand = new BuyLandCommand();
+            activeOwner = GroupManager.Instance.PlayerGroup;
+            EnterCommandMode(currentCommand);
+        }
+
         public void EnterCheatStealLandMode()
         {
             currentCommand = new CheatStealLandCommand();
             activeOwner = GroupManager.Instance.PlayerGroup;
             EnterCommandMode(currentCommand);
+        }
+
+        public void BuyCommand(GoodType good)
+        {
+            PreformImmediateCommand(new BuyCommand(good), GroupManager.Instance.PlayerGroup);
+        }
+
+        public void SellCommand(GoodType good)
+        {
+            PreformImmediateCommand(new SellCommand(good), GroupManager.Instance.PlayerGroup);
         }
 
         public void EnterCommandMode (Command command, Group owner)
@@ -68,9 +85,9 @@ namespace DaleranGames.TBSFramework
             EnterCommandMode(currentCommand);
         }
 
-        protected void EnterCommandMode(Command activity)
+        protected void EnterCommandMode(Command command)
         {
-            if (activity != null)
+            if (command != null)
             {
                 activeMode = true;
                 lastClickTime = Time.time;
@@ -95,10 +112,16 @@ namespace DaleranGames.TBSFramework
 
         }
 
-        public void PreformCommandOnTile(Command activity, HexTile tile, Group owner)
+        public void PreformCommandOnTile(Command command, HexTile tile, Group owner)
         {
-            if (activeMode == true && activity.IsValidCommand(tile,owner))
-                activity.PreformCommand(tile,owner);
+            if (activeMode == true && command.IsValidCommand(tile,owner))
+                command.PreformCommand(tile,owner);
+        }
+
+        public void PreformImmediateCommand(Command command, Group group)
+        {
+            if (command.IsValidCommand(null, group))
+                command.PreformCommand(null, group);
         }
 
         void OnTileEnter(HexTile tile)

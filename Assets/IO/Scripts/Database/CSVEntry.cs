@@ -30,8 +30,15 @@ namespace DaleranGames.IO
             Dictionary<string, string> result = new Dictionary<string, string>();
             for (int i=0; i<csvHeader.Length; i++)
             {
-                result.Add(csvHeader[i], csvLine[i]);
-                //Debug.Log("Adding "+csvHeader[i]+" "+csvLine[i]);
+                //Debug.Log("Adding:" + csvHeader[i] + "," + csvLine[i]);
+
+                if (!string.IsNullOrEmpty(csvHeader[i]))
+                {
+                    result.Add(csvHeader[i], csvLine[i]);
+                    //Debug.Log("Added");
+                }
+                    
+                
             }
             return result;
         }

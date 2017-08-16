@@ -37,11 +37,13 @@ namespace DaleranGames.TBSFramework
         public static readonly StatType GroupStarvationRate = new StatType(22, "Starvation Rate", "SR");
         public static readonly StatType GroupFreezeRate = new StatType(23, "Freeze Rate", "FR");
         public static readonly StatType StartingGold = new StatType(24, "Starting Gold");
+        public static readonly StatType LandCostModifier = new StatType(25, "Land Cost Modifier");
 
 
         //Tile Stats
         public static readonly StatType DefenseBonus = new StatType(30, "Defense Bonus", "DB");
         public static readonly StatType MovementCost = new StatType(31, "Movement Cost", "MC");
+        public static readonly StatType LandValue = new StatType(33, "Land Value");
 
 
         //Land Stats

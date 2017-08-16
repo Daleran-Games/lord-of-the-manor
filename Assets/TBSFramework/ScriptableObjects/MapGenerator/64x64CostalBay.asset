@@ -9,10 +9,14 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: dc03847c1ad5b8c4187690f32da14051, type: 3}
-  m_Name: 96x96CostalBay 1
+  m_Name: 64x64CostalBay
   m_EditorClassIdentifier: 
   width: 64
   height: 64
+  playerTerritory: 5
+  playerStart:
+    q: 12
+    r: 32
   atlas: {fileID: 11400000, guid: 922081251dba41d43b85034f5ddea963, type: 2}
   terrainCutoffs:
   - tileName: Deep Water

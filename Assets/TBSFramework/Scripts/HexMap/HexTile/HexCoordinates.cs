@@ -185,6 +185,18 @@ namespace DaleranGames.TBSFramework
             return other.Q == Q && other.R == R && other.S == S;
         }
 
+        public override bool Equals(object obj)
+        {
+            if (ReferenceEquals(null, obj)) return false;
+            if (ReferenceEquals(this, obj)) return true;
+            return obj.GetType() == typeof(HexCoordinates) && Equals((HexCoordinates)obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return q & (int)0xFFFF | r << 16;
+        }
+
         public static bool operator ==(HexCoordinates l, HexCoordinates r)
         {
             return Equals(l, r);
