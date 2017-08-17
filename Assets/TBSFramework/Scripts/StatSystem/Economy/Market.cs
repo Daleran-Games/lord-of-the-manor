@@ -63,17 +63,13 @@ namespace DaleranGames.TBSFramework
             switch (type)
             {
                 case GoodType.Food:
-                    return Food.Value;
+                    return (group.Goods[GoodType.Gold] >= ((CurrentPrices.FoodBuyPrice * StackSize) + BaseTaxAmountPerStack) && group.Goods[GoodType.Labor] >= BaseLaborCostPerStack * GameplayMetrics.FoodLaborMultiplier);
                 case GoodType.Wood:
-                    return Wood.Value;
+                    return (group.Goods[GoodType.Gold] >= ((CurrentPrices.WoodBuyPrice * StackSize) + BaseTaxAmountPerStack) && group.Goods[GoodType.Labor] >= BaseLaborCostPerStack * GameplayMetrics.WoodLaborMultiplier);
                 case GoodType.Stone:
-                    return Stone.Value;
-                case GoodType.Gold:
-                    return Gold.Value;
-                case GoodType.Population:
-                    return Population.Value;
+                    return (group.Goods[GoodType.Gold] >= ((CurrentPrices.StoneBuyPrice * StackSize) + BaseTaxAmountPerStack) && group.Goods[GoodType.Labor] >= BaseLaborCostPerStack * GameplayMetrics.StoneLaborMultiplier);
                 case GoodType.Labor:
-                    return Labor.Value;
+                    return (group.Goods[GoodType.Gold] >= (CurrentPrices.LaborBuyPrice * StackSize));
                 default:
                     return false;
             }
@@ -84,40 +80,65 @@ namespace DaleranGames.TBSFramework
             switch (type)
             {
                 case GoodType.Food:
-                    food = value;
-                    OnGoodChanged(this, Food.Type);
+                    group.Goods.ProcessNow(new Transaction(GoodType.Food, StackSize, "Bought"));
+                    group.Goods.ProcessNow(new Transaction(GoodType.Gold, -(CurrentPrices.FoodBuyPrice * StackSize), "Purchased Food"));
+                    group.Goods.ProcessNow(new Transaction(GoodType.Gold, -BaseTaxAmountPerStack, "Taxes"));
+                    group.Goods.ProcessNow(new Transaction(GoodType.Labor, -BaseLaborCostPerStack * GameplayMetrics.FoodLaborMultiplier, "Transporting to Market"));
                     break;
                 case GoodType.Wood:
-                    wood = value;
-                    OnGoodChanged(this, Wood.Type);
+                    group.Goods.ProcessNow(new Transaction(GoodType.Wood, StackSize, "Bought"));
+                    group.Goods.ProcessNow(new Transaction(GoodType.Gold, -(CurrentPrices.WoodBuyPrice * StackSize), "Purchased Wood"));
+                    group.Goods.ProcessNow(new Transaction(GoodType.Gold, -BaseTaxAmountPerStack, "Taxes"));
+                    group.Goods.ProcessNow(new Transaction(GoodType.Labor, -BaseLaborCostPerStack * GameplayMetrics.WoodLaborMultiplier, "Transporting to Market"));
                     break;
                 case GoodType.Stone:
-                    stone = value;
-                    OnGoodChanged(this, Stone.Type);
-                    break;
-                case GoodType.Gold:
-                    gold = value;
-                    OnGoodChanged(this, Gold.Type);
-                    break;
-                case GoodType.Population:
-                    population = value;
-                    OnGoodChanged(this, Population.Type);
+                    group.Goods.ProcessNow(new Transaction(GoodType.Stone, StackSize, "Bought"));
+                    group.Goods.ProcessNow(new Transaction(GoodType.Gold, -(CurrentPrices.StoneBuyPrice * StackSize), "Purchased Stone"));
+                    group.Goods.ProcessNow(new Transaction(GoodType.Gold, -BaseTaxAmountPerStack, "Taxes"));
+                    group.Goods.ProcessNow(new Transaction(GoodType.Labor, -BaseLaborCostPerStack * GameplayMetrics.StoneLaborMultiplier, "Transporting to Market"));
                     break;
                 case GoodType.Labor:
-                    labor = value;
-                    OnGoodChanged(this, Labor.Type);
+                    group.Goods.ProcessNow(new Transaction(GoodType.Labor, StackSize, "Bought"));
+                    group.Goods.ProcessNow(new Transaction(GoodType.Gold, -(CurrentPrices.FoodBuyPrice * StackSize), "Purchased Labor"));
                     break;
             }
         }
 
         public bool CanSell(GoodType type, Group group)
         {
-            return false;
+            switch (type)
+            {
+                case GoodType.Food:
+                    return (group.Goods[GoodType.Food] >= StackSize && group.Goods[GoodType.Labor] >= BaseLaborCostPerStack * GameplayMetrics.FoodLaborMultiplier);
+                case GoodType.Wood:
+                    return (group.Goods[GoodType.Wood] >= StackSize && group.Goods[GoodType.Labor] >= BaseLaborCostPerStack * GameplayMetrics.WoodLaborMultiplier);
+                case GoodType.Stone:
+                    return (group.Goods[GoodType.Stone] >= StackSize && group.Goods[GoodType.Labor] >= BaseLaborCostPerStack * GameplayMetrics.StoneLaborMultiplier);
+                default:
+                    return false;
+            }
         }
 
         public void Sell(GoodType type, Group group)
         {
-
+            switch (type)
+            {
+                case GoodType.Food:
+                    group.Goods.ProcessNow(new Transaction(GoodType.Food, -StackSize, "Sold"));
+                    group.Goods.ProcessNow(new Transaction(GoodType.Gold, (CurrentPrices.FoodSellPrice * StackSize), "Sold Food"));
+                    group.Goods.ProcessNow(new Transaction(GoodType.Labor, -BaseLaborCostPerStack * GameplayMetrics.FoodLaborMultiplier, "Transporting to Market"));
+                    break;
+                case GoodType.Wood:
+                    group.Goods.ProcessNow(new Transaction(GoodType.Wood, -StackSize, "Sold"));
+                    group.Goods.ProcessNow(new Transaction(GoodType.Gold, (CurrentPrices.WoodSellPrice * StackSize), "Sold Wood"));
+                    group.Goods.ProcessNow(new Transaction(GoodType.Labor, -BaseLaborCostPerStack * GameplayMetrics.WoodLaborMultiplier, "Transporting to Market"));
+                    break;
+                case GoodType.Stone:
+                    group.Goods.ProcessNow(new Transaction(GoodType.Stone, -StackSize, "Sold"));
+                    group.Goods.ProcessNow(new Transaction(GoodType.Gold, (CurrentPrices.StoneSellPrice * StackSize), "Sold Stone"));
+                    group.Goods.ProcessNow(new Transaction(GoodType.Labor, -BaseLaborCostPerStack * GameplayMetrics.StoneLaborMultiplier, "Transporting to Market"));
+                    break;
+            }
         }
 
         public void SetTurnPrices (BaseTurn turn)

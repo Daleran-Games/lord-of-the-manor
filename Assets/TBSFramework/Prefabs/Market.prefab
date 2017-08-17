@@ -56,53 +56,53 @@ MonoBehaviour:
   BaseTaxAmountPerStack: 1
   StackSize: 10
   SpringPrices:
-    FoodSellPrice: 0
-    FoodBuyPrice: 0
-    FoodQuantitiy: 0
-    WoodSellPrice: 0
-    WoodBuyPrice: 0
-    WoodQuantitiy: 0
-    StoneSellPrice: 0
-    StoneBuyPrice: 0
-    StoneQuantity: 0
-    LaborSellPrice: 0
-    LaborQuantitiy: 0
+    FoodSellPrice: 5
+    FoodBuyPrice: 8
+    FoodQuantitiy: 40
+    WoodSellPrice: 10
+    WoodBuyPrice: 18
+    WoodQuantitiy: 20
+    StoneSellPrice: 20
+    StoneBuyPrice: 32
+    StoneQuantity: 10
+    LaborBuyPrice: 2
+    LaborQuantitiy: 10
   SummerPrices:
-    FoodSellPrice: 0
-    FoodBuyPrice: 0
-    FoodQuantitiy: 0
-    WoodSellPrice: 0
-    WoodBuyPrice: 0
-    WoodQuantitiy: 0
-    StoneSellPrice: 0
-    StoneBuyPrice: 0
-    StoneQuantity: 0
-    LaborSellPrice: 0
-    LaborQuantitiy: 0
+    FoodSellPrice: 6
+    FoodBuyPrice: 10
+    FoodQuantitiy: 20
+    WoodSellPrice: 10
+    WoodBuyPrice: 18
+    WoodQuantitiy: 20
+    StoneSellPrice: 20
+    StoneBuyPrice: 32
+    StoneQuantity: 10
+    LaborBuyPrice: 4
+    LaborQuantitiy: 20
   FallPrices:
-    FoodSellPrice: 0
-    FoodBuyPrice: 0
-    FoodQuantitiy: 0
-    WoodSellPrice: 0
-    WoodBuyPrice: 0
-    WoodQuantitiy: 0
-    StoneSellPrice: 0
-    StoneBuyPrice: 0
-    StoneQuantity: 0
-    LaborSellPrice: 0
-    LaborQuantitiy: 0
+    FoodSellPrice: 4
+    FoodBuyPrice: 7
+    FoodQuantitiy: 30
+    WoodSellPrice: 14
+    WoodBuyPrice: 22
+    WoodQuantitiy: 10
+    StoneSellPrice: 20
+    StoneBuyPrice: 32
+    StoneQuantity: 10
+    LaborBuyPrice: 6
+    LaborQuantitiy: 10
   WinterPrices:
-    FoodSellPrice: 0
-    FoodBuyPrice: 0
-    FoodQuantitiy: 0
-    WoodSellPrice: 0
-    WoodBuyPrice: 0
-    WoodQuantitiy: 0
-    StoneSellPrice: 0
-    StoneBuyPrice: 0
-    StoneQuantity: 0
-    LaborSellPrice: 0
-    LaborQuantitiy: 0
+    FoodSellPrice: 7
+    FoodBuyPrice: 13
+    FoodQuantitiy: 10
+    WoodSellPrice: 18
+    WoodBuyPrice: 24
+    WoodQuantitiy: 10
+    StoneSellPrice: 20
+    StoneBuyPrice: 32
+    StoneQuantity: 10
+    LaborBuyPrice: 2
+    LaborQuantitiy: 30
   CurrentPrices:
     FoodSellPrice: 0
     FoodBuyPrice: 0
@@ -113,5 +113,5 @@ MonoBehaviour:
     StoneSellPrice: 0
     StoneBuyPrice: 0
     StoneQuantity: 0
-    LaborSellPrice: 0
+    LaborBuyPrice: 0
     LaborQuantitiy: 0

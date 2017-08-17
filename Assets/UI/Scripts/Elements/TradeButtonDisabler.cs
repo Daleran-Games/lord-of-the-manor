@@ -33,7 +33,7 @@ namespace DaleranGames.UI
 
         void OnValueChange(GoodsCollection goods, GoodType type)
         {
-            if (type == goodType)
+            if (type == goodType || type == GoodType.Gold || type == GoodType.Labor)
             {
                 CheckConditions();
             }
@@ -42,15 +42,27 @@ namespace DaleranGames.UI
 
         void CheckConditions()
         {
-            if (GroupManager.Instance.PlayerGroup.Goods[goodType] < threshold)
-                button.interactable = false;
-            else
-                button.interactable = true;
+            if (buy)
+            {
+                if (Market.Instance.CanBuy(goodType,GroupManager.Instance.PlayerGroup))
+                    button.interactable = true;
+                else
+                    button.interactable = false;
+            } else
+            {
+                if (Market.Instance.CanSell(goodType, GroupManager.Instance.PlayerGroup))
+                    button.interactable = true;
+                else
+                    button.interactable = false;
+            }
+
+
         }
 
         private void OnDestroy()
         {
             TurnManager.Instance.TurnStart -= OnSeasonStart;
+            GroupManager.Instance.PlayerGroup.Goods.GoodChanged -= OnValueChange;
         }
     }
 }

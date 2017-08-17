@@ -15,12 +15,12 @@ namespace DaleranGames.TBSFramework
 
         public override bool IsValidCommand(HexTile tile, Group owner)
         {
-            return false;
+            return Market.Instance.CanSell(good, owner);
         }
 
         public override void PreformCommand(HexTile tile, Group owner)
         {
-
+            Market.Instance.Sell(good, owner);
         }
     }
 }

@@ -68,14 +68,14 @@ namespace DaleranGames.TBSFramework
             EnterCommandMode(currentCommand);
         }
 
-        public void BuyCommand(GoodType good)
+        public void BuyCommand(int good)
         {
-            PreformImmediateCommand(new BuyCommand(good), GroupManager.Instance.PlayerGroup);
+            PreformImmediateCommand(new BuyCommand((GoodType)good), GroupManager.Instance.PlayerGroup);
         }
 
-        public void SellCommand(GoodType good)
+        public void SellCommand(int good)
         {
-            PreformImmediateCommand(new SellCommand(good), GroupManager.Instance.PlayerGroup);
+            PreformImmediateCommand(new SellCommand((GoodType)good), GroupManager.Instance.PlayerGroup);
         }
 
         public void EnterCommandMode (Command command, Group owner)

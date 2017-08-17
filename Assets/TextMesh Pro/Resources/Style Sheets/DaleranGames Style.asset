@@ -11,4 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: -1936749209, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
   m_Name: DaleranGames Style
   m_EditorClassIdentifier: 
-  m_StyleList: []
+  m_StyleList:
+  - m_Name: H1
+    m_HashCode: 2425
+    m_OpeningDefinition: <size=125%><b>
+    m_ClosingDefinition: </b></size>
+    m_OpeningTagArray: 3c00000073000000690000007a000000650000003d000000310000003200000035000000250000003e0000003c000000620000003e000000
+    m_ClosingTagArray: 3c0000002f000000620000003e0000003c0000002f00000073000000690000007a000000650000003e000000
