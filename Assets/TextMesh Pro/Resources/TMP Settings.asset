@@ -28,10 +28,10 @@ MonoBehaviour:
   m_autoSizeTextContainer: 0
   m_fallbackFontAssets: []
   m_matchMaterialPreset: 1
-  m_defaultSpriteAsset: {fileID: 11400000, guid: 8c8c2f43034ea7c459dd4d198dc68a42,
+  m_defaultSpriteAsset: {fileID: 11400000, guid: fc19a0d50113e3d4ca565c78153ce552,
     type: 2}
   m_defaultSpriteAssetPath: Sprite Assets/
-  m_enableEmojiSupport: 0
+  m_enableEmojiSupport: 1
   m_defaultStyleSheet: {fileID: 11400000, guid: f7dbdbb5c7823914e9077dd95c146597,
     type: 2}
   m_leadingCharacters: {fileID: 4900000, guid: 8d713940fcbede142ae4a33ea0062b33, type: 3}

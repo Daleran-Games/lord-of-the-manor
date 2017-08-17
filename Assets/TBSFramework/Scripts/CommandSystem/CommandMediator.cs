@@ -93,7 +93,7 @@ namespace DaleranGames.TBSFramework
                 lastClickTime = Time.time;
                 mouse.HexTileLMBClicked += OnLeftTileClick;
                 mouse.HexTileEntered += OnTileEnter;
-                InputManager.Instance.RMBClick.MouseButtonUp += OnRightClick;
+                MouseCursor.Instance.RMBClick.MouseButtonUp += OnRightClick;
                 UpdateCursor(mouse.CurrentTile);
             }
         }
@@ -102,7 +102,7 @@ namespace DaleranGames.TBSFramework
         {
             mouse.HexTileEntered -= OnTileEnter;
             mouse.HexTileLMBClicked -= OnLeftTileClick;
-            InputManager.Instance.RMBClick.MouseButtonUp -= OnRightClick;
+            MouseCursor.Instance.RMBClick.MouseButtonUp -= OnRightClick;
             mouse.CursorUIIcon = TileGraphic.Clear;
             mouse.CursorTerrainIcon = TileGraphic.Clear;
             mouse.CursorMode = HexCursor.HexCursorMode.Ring;
