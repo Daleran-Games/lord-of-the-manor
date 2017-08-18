@@ -7,7 +7,7 @@ using DaleranGames.TBSFramework;
 
 namespace DaleranGames.UI
 {
-    public class TradeButtonDisabler : MonoBehaviour
+    public class TradeButton : MonoBehaviour
     {
         [SerializeField]
         Button button;
@@ -55,8 +55,6 @@ namespace DaleranGames.UI
                 else
                     button.interactable = false;
             }
-
-
         }
 
         private void OnDestroy()

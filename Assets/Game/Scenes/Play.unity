@@ -164,7 +164,7 @@ Prefab:
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -14
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
@@ -802,18 +802,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1888037938550442, guid: d441f949931b64847a4109e8dfc3d00e,
     type: 2}
   m_PrefabInternal: {fileID: 657980357}
---- !u!114 &138780830
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 138780829}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39082386cecae6e4dbfd974ea612e823, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TrackedGood: 1
 --- !u!114 &138780831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -847,22 +835,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 138780829}
---- !u!114 &138780833
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 138780829}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa3b62488aa953140b05639fb19f2020, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  text: '<b>Wood</b>
-
-    Wood is used for for construction and heating dwelling in the winter. If you do
-    not have enough wood to heat your dwelling, there is a 25% chance a clan member
-    will die. Larger dwellings require more wood to heat effectively.'
 --- !u!1 &141856918
 GameObject:
   m_ObjectHideFlags: 0
@@ -2095,7 +2067,7 @@ Prefab:
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -14
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
@@ -2873,18 +2845,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1888037938550442, guid: d441f949931b64847a4109e8dfc3d00e,
     type: 2}
   m_PrefabInternal: {fileID: 2130543844}
---- !u!114 &564424145
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 564424144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cbfca05580c2a0449da27cbe35ffa14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TrackedGood: 5
 --- !u!114 &564424146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2918,22 +2878,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 564424144}
---- !u!114 &564424148
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 564424144}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa3b62488aa953140b05639fb19f2020, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  text: '<b>Clan Members</b>
-
-    This is the current number of clan members in your household and the maximum number
-    of members you can support. Upgrade your dwelling to increase the amount clan
-    members you can supprot.'
 --- !u!1 &565208037
 GameObject:
   m_ObjectHideFlags: 0
@@ -3481,7 +3425,7 @@ Prefab:
     - target: {fileID: 224493796718695112, guid: d441f949931b64847a4109e8dfc3d00e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -84
       objectReference: {fileID: 0}
     - target: {fileID: 224493796718695112, guid: d441f949931b64847a4109e8dfc3d00e,
         type: 2}
@@ -3678,6 +3622,30 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d441f949931b64847a4109e8dfc3d00e, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &657980358 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114035397060202354, guid: d441f949931b64847a4109e8dfc3d00e,
+    type: 2}
+  m_PrefabInternal: {fileID: 657980357}
+  m_Script: {fileID: 1453722849, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
+--- !u!1 &657980359 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1447562598144744, guid: d441f949931b64847a4109e8dfc3d00e,
+    type: 2}
+  m_PrefabInternal: {fileID: 657980357}
+--- !u!114 &657980360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 657980359}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39082386cecae6e4dbfd974ea612e823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TrackedGood: 1
+  label: {fileID: 657980358}
 --- !u!1 &676615711
 GameObject:
   m_ObjectHideFlags: 0
@@ -3801,7 +3769,7 @@ Prefab:
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -14
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
@@ -5123,7 +5091,7 @@ Prefab:
     - target: {fileID: 224493796718695112, guid: d441f949931b64847a4109e8dfc3d00e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -52
       objectReference: {fileID: 0}
     - target: {fileID: 224493796718695112, guid: d441f949931b64847a4109e8dfc3d00e,
         type: 2}
@@ -5320,6 +5288,30 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d441f949931b64847a4109e8dfc3d00e, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &897552740 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114035397060202354, guid: d441f949931b64847a4109e8dfc3d00e,
+    type: 2}
+  m_PrefabInternal: {fileID: 897552739}
+  m_Script: {fileID: 1453722849, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
+--- !u!1 &897552741 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1447562598144744, guid: d441f949931b64847a4109e8dfc3d00e,
+    type: 2}
+  m_PrefabInternal: {fileID: 897552739}
+--- !u!114 &897552742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 897552741}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39082386cecae6e4dbfd974ea612e823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TrackedGood: 0
+  label: {fileID: 897552740}
 --- !u!1001 &913254086
 Prefab:
   m_ObjectHideFlags: 0
@@ -5375,7 +5367,7 @@ Prefab:
     - target: {fileID: 224493796718695112, guid: d441f949931b64847a4109e8dfc3d00e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 224493796718695112, guid: d441f949931b64847a4109e8dfc3d00e,
         type: 2}
@@ -5551,6 +5543,30 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d441f949931b64847a4109e8dfc3d00e, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &913254087 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114035397060202354, guid: d441f949931b64847a4109e8dfc3d00e,
+    type: 2}
+  m_PrefabInternal: {fileID: 913254086}
+  m_Script: {fileID: 1453722849, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
+--- !u!1 &913254088 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1447562598144744, guid: d441f949931b64847a4109e8dfc3d00e,
+    type: 2}
+  m_PrefabInternal: {fileID: 913254086}
+--- !u!114 &913254089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 913254088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39082386cecae6e4dbfd974ea612e823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TrackedGood: 2
+  label: {fileID: 913254087}
 --- !u!224 &968297653 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
@@ -5611,7 +5627,7 @@ Prefab:
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -14
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
@@ -6068,7 +6084,7 @@ Prefab:
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -14
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
@@ -6539,7 +6555,6 @@ GameObject:
   - component: {fileID: 1178604481}
   - component: {fileID: 1178604480}
   - component: {fileID: 1178604483}
-  - component: {fileID: 1178604484}
   m_Layer: 5
   m_Name: Buy Button
   m_TagString: Untagged
@@ -6667,20 +6682,6 @@ MonoBehaviour:
   button: {fileID: 1178604480}
   goodType: 0
   buy: 1
---- !u!114 &1178604484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1178604478}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa3b62488aa953140b05639fb19f2020, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  text: '<b>Buy Food</b>
-
-    Buy 10 food for '
 --- !u!1 &1182331944
 GameObject:
   m_ObjectHideFlags: 0
@@ -7637,7 +7638,7 @@ Prefab:
     - target: {fileID: 224493796718695112, guid: d441f949931b64847a4109e8dfc3d00e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -116
       objectReference: {fileID: 0}
     - target: {fileID: 224493796718695112, guid: d441f949931b64847a4109e8dfc3d00e,
         type: 2}
@@ -7834,23 +7835,35 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d441f949931b64847a4109e8dfc3d00e, type: 2}
   m_IsPrefabParent: 0
---- !u!1 &1416414061 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1888037938550442, guid: d441f949931b64847a4109e8dfc3d00e,
+--- !u!114 &1414838441 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114035397060202354, guid: d441f949931b64847a4109e8dfc3d00e,
     type: 2}
-  m_PrefabInternal: {fileID: 1548312782}
---- !u!114 &1416414062
+  m_PrefabInternal: {fileID: 1414838440}
+  m_Script: {fileID: 1453722849, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
+--- !u!1 &1414838442 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1447562598144744, guid: d441f949931b64847a4109e8dfc3d00e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1414838440}
+--- !u!114 &1414838443
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1416414061}
+  m_GameObject: {fileID: 1414838442}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 39082386cecae6e4dbfd974ea612e823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  TrackedGood: 4
+  TrackedGood: 3
+  label: {fileID: 1414838441}
+--- !u!1 &1416414061 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1888037938550442, guid: d441f949931b64847a4109e8dfc3d00e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1548312782}
 --- !u!114 &1416414063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7884,23 +7897,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1416414061}
---- !u!114 &1416414065
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1416414061}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa3b62488aa953140b05639fb19f2020, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  text: '<b>Labor</b>
-
-    Labor represents the amount work your populace can do each turn. Basic laborers
-    produce 6 labor a season representing 6 days of work per week for an entire season.
-    Everyone get''s sundays off. It is reset every turn, so if you find you are too
-    short on labor to advance, try turning some worked tiles to idle.'
 --- !u!1 &1438151926
 GameObject:
   m_ObjectHideFlags: 0
@@ -8124,7 +8120,7 @@ Prefab:
     - target: {fileID: 224493796718695112, guid: d441f949931b64847a4109e8dfc3d00e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -148
       objectReference: {fileID: 0}
     - target: {fileID: 224493796718695112, guid: d441f949931b64847a4109e8dfc3d00e,
         type: 2}
@@ -8321,6 +8317,30 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d441f949931b64847a4109e8dfc3d00e, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &1548312783 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114035397060202354, guid: d441f949931b64847a4109e8dfc3d00e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1548312782}
+  m_Script: {fileID: 1453722849, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
+--- !u!1 &1548312784 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1447562598144744, guid: d441f949931b64847a4109e8dfc3d00e,
+    type: 2}
+  m_PrefabInternal: {fileID: 1548312782}
+--- !u!114 &1548312785
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1548312784}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39082386cecae6e4dbfd974ea612e823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TrackedGood: 4
+  label: {fileID: 1548312783}
 --- !u!1 &1549773917
 GameObject:
   m_ObjectHideFlags: 0
@@ -8638,7 +8658,7 @@ Prefab:
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -14
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
@@ -8783,18 +8803,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1888037938550442, guid: d441f949931b64847a4109e8dfc3d00e,
     type: 2}
   m_PrefabInternal: {fileID: 913254086}
---- !u!114 &1676963059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1676963058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39082386cecae6e4dbfd974ea612e823, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TrackedGood: 2
 --- !u!114 &1676963060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8828,21 +8836,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1676963058}
---- !u!114 &1676963062
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1676963058}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa3b62488aa953140b05639fb19f2020, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  text: '<b>Gold</b>
-
-    Gold is used for the purchasing of new tiles, goods, and labor. You can also sell
-    certain goods to recieve gold. Some building require gold to upgrade and build.'
 --- !u!1001 &1686010781
 Prefab:
   m_ObjectHideFlags: 0
@@ -8898,7 +8891,7 @@ Prefab:
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -14
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
@@ -9108,7 +9101,7 @@ Prefab:
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -14
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
@@ -9909,18 +9902,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1888037938550442, guid: d441f949931b64847a4109e8dfc3d00e,
     type: 2}
   m_PrefabInternal: {fileID: 1414838440}
---- !u!114 &1922830465
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1922830464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39082386cecae6e4dbfd974ea612e823, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TrackedGood: 3
 --- !u!114 &1922830466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9954,21 +9935,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1922830464}
---- !u!114 &1922830468
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1922830464}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa3b62488aa953140b05639fb19f2020, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  text: '<b>Stone</b>
-
-    Stone us used in advanced construction projects. Stone is expensive to buy, and
-    requires a lot of labor to mine and move.'
 --- !u!224 &1928870396 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224493796718695112, guid: d441f949931b64847a4109e8dfc3d00e,
@@ -10021,18 +9987,6 @@ GameObject:
   m_PrefabParentObject: {fileID: 1888037938550442, guid: d441f949931b64847a4109e8dfc3d00e,
     type: 2}
   m_PrefabInternal: {fileID: 897552739}
---- !u!114 &1977950674
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1977950673}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39082386cecae6e4dbfd974ea612e823, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TrackedGood: 0
 --- !u!114 &1977950675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10066,21 +10020,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1977950673}
---- !u!114 &1977950677
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1977950673}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa3b62488aa953140b05639fb19f2020, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  text: '<b>Food</b>
-
-    Every turn, each member of your clan requires one food to survive. If a clan member
-    does not recieve any food for a turn, there is a 50% chance they will die.'
 --- !u!1 &1984084733
 GameObject:
   m_ObjectHideFlags: 0
@@ -10427,7 +10366,7 @@ Prefab:
     - target: {fileID: 224493796718695112, guid: d441f949931b64847a4109e8dfc3d00e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: -180
       objectReference: {fileID: 0}
     - target: {fileID: 224493796718695112, guid: d441f949931b64847a4109e8dfc3d00e,
         type: 2}
@@ -10624,3 +10563,27 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d441f949931b64847a4109e8dfc3d00e, type: 2}
   m_IsPrefabParent: 0
+--- !u!114 &2130543845 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114035397060202354, guid: d441f949931b64847a4109e8dfc3d00e,
+    type: 2}
+  m_PrefabInternal: {fileID: 2130543844}
+  m_Script: {fileID: 1453722849, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
+--- !u!1 &2130543846 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1447562598144744, guid: d441f949931b64847a4109e8dfc3d00e,
+    type: 2}
+  m_PrefabInternal: {fileID: 2130543844}
+--- !u!114 &2130543847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2130543846}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cbfca05580c2a0449da27cbe35ffa14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TrackedGood: 5
+  label: {fileID: 2130543845}

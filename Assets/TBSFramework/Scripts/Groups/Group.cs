@@ -144,7 +144,7 @@ namespace DaleranGames.TBSFramework
         public virtual void OnTurnStart(BaseTurn turn)
         {
             GroupType.OnTurnStart(turn, this);
-           workUtils.OptimizeLabor(this);
+            //workUtils.OptimizeLabor(this);
         }
 
         protected virtual void SetUpNextTurn()

@@ -10,6 +10,7 @@ namespace DaleranGames.UI
     {
         public GoodType TrackedGood = GoodType.Food;
         
+        [SerializeField]
         protected TextMeshProUGUI label;
         protected Group player;
 
@@ -18,7 +19,6 @@ namespace DaleranGames.UI
     
         protected virtual void Start()
         {
-            label = GetComponentInChildren<TextMeshProUGUI>();
             GameManager.Instance.Play.StateEnabled += OnGameStart;
 
             //Debug.Log(posColor);
