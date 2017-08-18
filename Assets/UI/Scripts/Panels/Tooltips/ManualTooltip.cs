@@ -14,7 +14,7 @@ namespace DaleranGames.UI
         [SerializeField]
         [TextArea(3, 8)]
         string text;
-        public override string Text { get { return text; } }
+        public override string ObjectInfo { get { return text; } }
 
     }
 }

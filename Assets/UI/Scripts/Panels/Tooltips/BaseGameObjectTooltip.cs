@@ -6,23 +6,30 @@ using TMPro;
 using DaleranGames.TBSFramework;
 using DaleranGames.IO;
 using UnityEngine.EventSystems;
+using System;
 
 namespace DaleranGames.UI
 {
-    public abstract class BaseGameObjectTooltip : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
+    public abstract class BaseGameObjectTooltip : MonoBehaviour, ITooltipableGameObject
     {
 
-        public abstract string Text { get; }
+        public abstract string ObjectInfo { get; }
 
-        public void OnPointerEnter(PointerEventData eventData)
+        public virtual void OnInfoUpdate(string newInfo)
         {
-            TooltipManager.Instance.ShowTooltip(Text);
+            
         }
 
-        public void OnPointerExit(PointerEventData eventData)
+        public virtual void OnPointerEnter(PointerEventData eventData)
+        {
+            TooltipManager.Instance.ShowTooltip(ObjectInfo);
+        }
+
+        public virtual void OnPointerExit(PointerEventData eventData)
         {
             TooltipManager.Instance.HideTooltip();
         }
+
 
 
     }

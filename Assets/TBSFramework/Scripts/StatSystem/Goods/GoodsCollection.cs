@@ -120,6 +120,8 @@ namespace DaleranGames.TBSFramework
             return new Good(type, total);
         }
 
+
+
         public virtual void ProcessAllPendingTransactions()
         {
             for (int i=0;i < pendingTransactions.Count; i++)

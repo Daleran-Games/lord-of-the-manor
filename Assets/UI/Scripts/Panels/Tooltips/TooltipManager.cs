@@ -98,6 +98,14 @@ namespace DaleranGames.UI
             tooltipText.text = text;
         }
 
+        public void UpdateText(string text)
+        {
+            if (isActive)
+            {
+                tooltipText.text = text;
+            }
+        }
+
         public void HideTooltip()
         {
             isActive = false;

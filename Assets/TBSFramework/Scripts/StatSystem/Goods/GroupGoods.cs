@@ -10,6 +10,8 @@ namespace DaleranGames.TBSFramework
     {
         protected Group owner;
 
+        //Consider repacing the getters with ints instead of goods. I think int and stat classes might go away entirely.
+
         [SerializeField]
         protected int food;
         public virtual Good Food { get { return new Good(GoodType.Food, food); } }
@@ -33,7 +35,6 @@ namespace DaleranGames.TBSFramework
         [SerializeField]
         protected int labor;
         public virtual Good Labor { get { return new Good(GoodType.Labor, labor); } }
-
 
         public GroupGoods (Group unit) : base()
         {

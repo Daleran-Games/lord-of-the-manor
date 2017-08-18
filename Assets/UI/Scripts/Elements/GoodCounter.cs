@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using DaleranGames.TBSFramework;
+using UnityEngine.EventSystems;
+using System;
 
 namespace DaleranGames.UI
 {
-    public class GoodCounter : MonoBehaviour
+    public class GoodCounter : MonoBehaviour, ITooltipableGameObject
     {
         public GoodType TrackedGood = GoodType.Food;
         
@@ -14,9 +16,6 @@ namespace DaleranGames.UI
         protected TextMeshProUGUI label;
         protected Group player;
 
-        protected string posColor;
-        protected string negColor;
-    
         protected virtual void Start()
         {
             GameManager.Instance.Play.StateEnabled += OnGameStart;
@@ -29,9 +28,6 @@ namespace DaleranGames.UI
         
         protected virtual void OnGameStart (GameState state)
         {
-            posColor = ColorUtility.ToHtmlStringRGB(UIManager.Instance.Style.StatIncreaseColor);
-            negColor = ColorUtility.ToHtmlStringRGB(UIManager.Instance.Style.StatDecreaseColor);
-
             player = GroupManager.Instance.PlayerGroup;
             player.Goods.GoodChanged += OnGoodChanged;
             player.Goods.FutureTransactionsChanged += OnPendingTransactionsChanged;
@@ -56,12 +52,13 @@ namespace DaleranGames.UI
             int nextTurn = player.Goods.GetAllPendingTransactionsOfType(TrackedGood).Value;
 
             if (nextTurn > 0)
-                label.text = player.Goods[TrackedGood] + " <color=#"+posColor+">(+" + nextTurn +")</color>";
+                label.text = player.Goods[TrackedGood] + " <style=\"PosColor\">(+" + nextTurn +")</style>";
             else if (nextTurn == 0)
                 label.text = player.Goods[TrackedGood] + " (0)";
             else
-                label.text = player.Goods[TrackedGood] + " <color=#" + negColor + ">(" + nextTurn + ")</color>";
+                label.text = player.Goods[TrackedGood] + " <style=\"NegColor\">(" + nextTurn + ")</style>";
 
+            OnInfoUpdate(ObjectInfo);
             //Canvas.ForceUpdateCanvases();
         }
 
@@ -70,6 +67,28 @@ namespace DaleranGames.UI
             player.Goods.GoodChanged -= OnGoodChanged;
             player.Goods.FutureTransactionsChanged -= OnPendingTransactionsChanged;
             GameManager.Instance.Play.StateEnabled -= OnGameStart;
+        }
+
+        protected virtual string GenerateTooltipText()
+        {
+            return "";
+        }
+
+        public virtual string ObjectInfo { get { return GenerateTooltipText(); } }
+
+        public virtual void OnPointerEnter(PointerEventData eventData)
+        {
+            TooltipManager.Instance.ShowTooltip(ObjectInfo);
+        }
+
+        public virtual void OnPointerExit(PointerEventData eventData)
+        {
+            TooltipManager.Instance.HideTooltip();
+        }
+
+        public void OnInfoUpdate(string newInfo)
+        {
+            TooltipManager.Instance.UpdateText(newInfo);
         }
     }
 }
