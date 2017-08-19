@@ -136,13 +136,11 @@ namespace DaleranGames.IO
             get { return currentTile; }
             protected set
             {
-                if (HexTileExited != null && CurrentTile != null)
+                if (CurrentTile != null)
                     HexTileExited(CurrentTile);
 
                 currentTile = value;
-
-                if (HexTileEntered != null)
-                    HexTileEntered(CurrentTile);
+                HexTileEntered(CurrentTile);
             }
         }
 

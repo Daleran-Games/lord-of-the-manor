@@ -164,7 +164,7 @@ Prefab:
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -14
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
@@ -802,6 +802,19 @@ GameObject:
   m_PrefabParentObject: {fileID: 1888037938550442, guid: d441f949931b64847a4109e8dfc3d00e,
     type: 2}
   m_PrefabInternal: {fileID: 657980357}
+--- !u!114 &138780830
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 138780829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39082386cecae6e4dbfd974ea612e823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TrackedGood: 1
+  label: {fileID: 657980358}
 --- !u!114 &138780831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1884,6 +1897,7 @@ GameObject:
   - component: {fileID: 391840292}
   - component: {fileID: 391840291}
   - component: {fileID: 391840290}
+  - component: {fileID: 391840294}
   m_Layer: 5
   m_Name: Farm Land
   m_TagString: Untagged
@@ -2012,6 +2026,23 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 391840288}
+--- !u!114 &391840294
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 391840288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa3b62488aa953140b05639fb19f2020, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: '<b>Build Farm</b>
+
+    Build a farm on a plain or moor. Farms can only be built during spring or fall,
+    the two planting seasons. They take <b>2 turns</b> to mature and yield their crop
+    on the <b>3rd turn</b>. They yield <b>3 times the tile''s food yield</b>. Check
+    the Tile Yield Overlay to see all the yields.'
 --- !u!1001 &410707537
 Prefab:
   m_ObjectHideFlags: 0
@@ -2067,7 +2098,7 @@ Prefab:
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -14
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
@@ -2845,6 +2876,19 @@ GameObject:
   m_PrefabParentObject: {fileID: 1888037938550442, guid: d441f949931b64847a4109e8dfc3d00e,
     type: 2}
   m_PrefabInternal: {fileID: 2130543844}
+--- !u!114 &564424145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 564424144}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8cbfca05580c2a0449da27cbe35ffa14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TrackedGood: 5
+  label: {fileID: 2130543845}
 --- !u!114 &564424146
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3114,6 +3158,7 @@ GameObject:
   - component: {fileID: 585471361}
   - component: {fileID: 585471360}
   - component: {fileID: 585471359}
+  - component: {fileID: 585471362}
   m_Layer: 5
   m_Name: Work
   m_TagString: Untagged
@@ -3226,6 +3271,21 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 585471357}
+--- !u!114 &585471362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 585471357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa3b62488aa953140b05639fb19f2020, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: '<b>Work / Idle</b>
+
+    Toggle the tile to work or idle. Some tiles, like farms, will cancel their progress
+    when paused and can only be resumed on the appropriate season.'
 --- !u!224 &604564900 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224493796718695112, guid: d441f949931b64847a4109e8dfc3d00e,
@@ -3425,7 +3485,7 @@ Prefab:
     - target: {fileID: 224493796718695112, guid: d441f949931b64847a4109e8dfc3d00e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -84
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224493796718695112, guid: d441f949931b64847a4109e8dfc3d00e,
         type: 2}
@@ -3619,6 +3679,16 @@ Prefab:
       propertyPath: m_fontColor32.rgba
       value: 4282132549
       objectReference: {fileID: 0}
+    - target: {fileID: 114761160074472846, guid: d441f949931b64847a4109e8dfc3d00e,
+        type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114035397060202354, guid: d441f949931b64847a4109e8dfc3d00e,
+        type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d441f949931b64847a4109e8dfc3d00e, type: 2}
   m_IsPrefabParent: 0
@@ -3628,24 +3698,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 657980357}
   m_Script: {fileID: 1453722849, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
---- !u!1 &657980359 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1447562598144744, guid: d441f949931b64847a4109e8dfc3d00e,
-    type: 2}
-  m_PrefabInternal: {fileID: 657980357}
---- !u!114 &657980360
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 657980359}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39082386cecae6e4dbfd974ea612e823, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TrackedGood: 1
-  label: {fileID: 657980358}
 --- !u!1 &676615711
 GameObject:
   m_ObjectHideFlags: 0
@@ -3769,7 +3821,7 @@ Prefab:
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -14
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
@@ -4568,6 +4620,7 @@ GameObject:
   - component: {fileID: 819151978}
   - component: {fileID: 819151977}
   - component: {fileID: 819151976}
+  - component: {fileID: 819151979}
   m_Layer: 5
   m_Name: Cancel
   m_TagString: Untagged
@@ -4680,6 +4733,21 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 819151974}
+--- !u!114 &819151979
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 819151974}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa3b62488aa953140b05639fb19f2020, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: '<b>Cancel or Raze</b>
+
+    Cancel a construction or raze structure. Some tiles, like quarrys and logging
+    camps cannot be raze, only paused.'
 --- !u!1001 &844181055
 Prefab:
   m_ObjectHideFlags: 0
@@ -4733,6 +4801,7 @@ GameObject:
   - component: {fileID: 854778999}
   - component: {fileID: 854778998}
   - component: {fileID: 854778997}
+  - component: {fileID: 854779000}
   m_Layer: 5
   m_Name: ClearForest
   m_TagString: Untagged
@@ -4845,6 +4914,22 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 854778995}
+--- !u!114 &854779000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 854778995}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa3b62488aa953140b05639fb19f2020, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: '<b>Clear Forest</b>
+
+    Build a logging camp on a parkland or forest. Forests yeild their wood yield every
+    turn for <b>12 turns</b>. They cost <b>12 labor</b> a turn. Check the Tile Yield
+    Overlay to see all the yields.'
 --- !u!1 &857257018
 GameObject:
   m_ObjectHideFlags: 0
@@ -4856,6 +4941,7 @@ GameObject:
   - component: {fileID: 857257022}
   - component: {fileID: 857257021}
   - component: {fileID: 857257020}
+  - component: {fileID: 857257023}
   m_Layer: 5
   m_Name: Upgrade
   m_TagString: Untagged
@@ -4968,6 +5054,20 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 857257018}
+--- !u!114 &857257023
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 857257018}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa3b62488aa953140b05639fb19f2020, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: '<b>Upgrade</b>
+
+    Upgrade a structure to the next level.'
 --- !u!1 &865525545
 GameObject:
   m_ObjectHideFlags: 0
@@ -5091,7 +5191,7 @@ Prefab:
     - target: {fileID: 224493796718695112, guid: d441f949931b64847a4109e8dfc3d00e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -52
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224493796718695112, guid: d441f949931b64847a4109e8dfc3d00e,
         type: 2}
@@ -5285,6 +5385,16 @@ Prefab:
       propertyPath: m_fontColor32.rgba
       value: 4282132549
       objectReference: {fileID: 0}
+    - target: {fileID: 114761160074472846, guid: d441f949931b64847a4109e8dfc3d00e,
+        type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114035397060202354, guid: d441f949931b64847a4109e8dfc3d00e,
+        type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d441f949931b64847a4109e8dfc3d00e, type: 2}
   m_IsPrefabParent: 0
@@ -5294,24 +5404,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 897552739}
   m_Script: {fileID: 1453722849, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
---- !u!1 &897552741 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1447562598144744, guid: d441f949931b64847a4109e8dfc3d00e,
-    type: 2}
-  m_PrefabInternal: {fileID: 897552739}
---- !u!114 &897552742
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 897552741}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39082386cecae6e4dbfd974ea612e823, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TrackedGood: 0
-  label: {fileID: 897552740}
 --- !u!1001 &913254086
 Prefab:
   m_ObjectHideFlags: 0
@@ -5367,7 +5459,7 @@ Prefab:
     - target: {fileID: 224493796718695112, guid: d441f949931b64847a4109e8dfc3d00e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -20
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224493796718695112, guid: d441f949931b64847a4109e8dfc3d00e,
         type: 2}
@@ -5540,6 +5632,16 @@ Prefab:
       propertyPath: m_fontColor32.rgba
       value: 4282132549
       objectReference: {fileID: 0}
+    - target: {fileID: 114761160074472846, guid: d441f949931b64847a4109e8dfc3d00e,
+        type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114035397060202354, guid: d441f949931b64847a4109e8dfc3d00e,
+        type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d441f949931b64847a4109e8dfc3d00e, type: 2}
   m_IsPrefabParent: 0
@@ -5549,24 +5651,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 913254086}
   m_Script: {fileID: 1453722849, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
---- !u!1 &913254088 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1447562598144744, guid: d441f949931b64847a4109e8dfc3d00e,
-    type: 2}
-  m_PrefabInternal: {fileID: 913254086}
---- !u!114 &913254089
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 913254088}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39082386cecae6e4dbfd974ea612e823, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TrackedGood: 2
-  label: {fileID: 913254087}
 --- !u!224 &968297653 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
@@ -5627,7 +5711,7 @@ Prefab:
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -14
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
@@ -6084,7 +6168,7 @@ Prefab:
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -14
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
@@ -6363,6 +6447,7 @@ GameObject:
   - component: {fileID: 1146974980}
   - component: {fileID: 1146974979}
   - component: {fileID: 1146974978}
+  - component: {fileID: 1146974981}
   m_Layer: 5
   m_Name: Quarry
   m_TagString: Untagged
@@ -6475,6 +6560,22 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1146974976}
+--- !u!114 &1146974981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1146974976}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa3b62488aa953140b05639fb19f2020, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: '<b>Quarry</b>
+
+    Build a quarry on a hill or mountain. Quarries yield their stone yield every turn
+    for <b>80 turns</b>. They cost <b>18 labor</b> a turn. Check the Tile Yield Overlay
+    to see all the yields.'
 --- !u!1 &1165835804
 GameObject:
   m_ObjectHideFlags: 0
@@ -7392,6 +7493,7 @@ GameObject:
   - component: {fileID: 1335198221}
   - component: {fileID: 1335198220}
   - component: {fileID: 1335198219}
+  - component: {fileID: 1335198223}
   m_Layer: 5
   m_Name: Build Dwelling
   m_TagString: Untagged
@@ -7515,6 +7617,22 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1335198217}
+--- !u!114 &1335198223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1335198217}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa3b62488aa953140b05639fb19f2020, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: '<b>Site Dwelling</b>
+
+    Build a small camp on a cleared plain or hill. Each clan can have one dwelling
+    that represents the household of the camp. Upgrade the camp to allow more people
+    to live in your household and increase the defense.'
 --- !u!1 &1347011205
 GameObject:
   m_ObjectHideFlags: 0
@@ -7638,7 +7756,7 @@ Prefab:
     - target: {fileID: 224493796718695112, guid: d441f949931b64847a4109e8dfc3d00e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -116
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224493796718695112, guid: d441f949931b64847a4109e8dfc3d00e,
         type: 2}
@@ -7832,6 +7950,16 @@ Prefab:
       propertyPath: m_fontColor32.rgba
       value: 4282132549
       objectReference: {fileID: 0}
+    - target: {fileID: 114761160074472846, guid: d441f949931b64847a4109e8dfc3d00e,
+        type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114035397060202354, guid: d441f949931b64847a4109e8dfc3d00e,
+        type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d441f949931b64847a4109e8dfc3d00e, type: 2}
   m_IsPrefabParent: 0
@@ -7841,29 +7969,24 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1414838440}
   m_Script: {fileID: 1453722849, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
---- !u!1 &1414838442 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1447562598144744, guid: d441f949931b64847a4109e8dfc3d00e,
-    type: 2}
-  m_PrefabInternal: {fileID: 1414838440}
---- !u!114 &1414838443
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1414838442}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39082386cecae6e4dbfd974ea612e823, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TrackedGood: 3
-  label: {fileID: 1414838441}
 --- !u!1 &1416414061 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1888037938550442, guid: d441f949931b64847a4109e8dfc3d00e,
     type: 2}
   m_PrefabInternal: {fileID: 1548312782}
+--- !u!114 &1416414062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1416414061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39082386cecae6e4dbfd974ea612e823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TrackedGood: 4
+  label: {fileID: 1548312783}
 --- !u!114 &1416414063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8120,7 +8243,7 @@ Prefab:
     - target: {fileID: 224493796718695112, guid: d441f949931b64847a4109e8dfc3d00e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -148
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224493796718695112, guid: d441f949931b64847a4109e8dfc3d00e,
         type: 2}
@@ -8314,6 +8437,16 @@ Prefab:
       propertyPath: m_fontColor32.rgba
       value: 4282132549
       objectReference: {fileID: 0}
+    - target: {fileID: 114761160074472846, guid: d441f949931b64847a4109e8dfc3d00e,
+        type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114035397060202354, guid: d441f949931b64847a4109e8dfc3d00e,
+        type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d441f949931b64847a4109e8dfc3d00e, type: 2}
   m_IsPrefabParent: 0
@@ -8323,24 +8456,6 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1548312782}
   m_Script: {fileID: 1453722849, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
---- !u!1 &1548312784 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1447562598144744, guid: d441f949931b64847a4109e8dfc3d00e,
-    type: 2}
-  m_PrefabInternal: {fileID: 1548312782}
---- !u!114 &1548312785
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1548312784}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 39082386cecae6e4dbfd974ea612e823, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TrackedGood: 4
-  label: {fileID: 1548312783}
 --- !u!1 &1549773917
 GameObject:
   m_ObjectHideFlags: 0
@@ -8658,7 +8773,7 @@ Prefab:
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -14
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
@@ -8803,6 +8918,19 @@ GameObject:
   m_PrefabParentObject: {fileID: 1888037938550442, guid: d441f949931b64847a4109e8dfc3d00e,
     type: 2}
   m_PrefabInternal: {fileID: 913254086}
+--- !u!114 &1676963059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1676963058}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39082386cecae6e4dbfd974ea612e823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TrackedGood: 2
+  label: {fileID: 913254087}
 --- !u!114 &1676963060
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8891,7 +9019,7 @@ Prefab:
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -14
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
@@ -9101,7 +9229,7 @@ Prefab:
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -14
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
@@ -9416,6 +9544,7 @@ GameObject:
   - component: {fileID: 1755373331}
   - component: {fileID: 1755373330}
   - component: {fileID: 1755373329}
+  - component: {fileID: 1755373332}
   m_Layer: 5
   m_Name: BuyLand
   m_TagString: Untagged
@@ -9528,6 +9657,21 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1755373327}
+--- !u!114 &1755373332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1755373327}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aa3b62488aa953140b05639fb19f2020, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  text: '<b>Buy Land</b>
+
+    Buy land for the cost of it''s value. Check the Land Value Overlay to see all
+    the land values at one time.'
 --- !u!1 &1829006824
 GameObject:
   m_ObjectHideFlags: 0
@@ -9902,6 +10046,19 @@ GameObject:
   m_PrefabParentObject: {fileID: 1888037938550442, guid: d441f949931b64847a4109e8dfc3d00e,
     type: 2}
   m_PrefabInternal: {fileID: 1414838440}
+--- !u!114 &1922830465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1922830464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39082386cecae6e4dbfd974ea612e823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TrackedGood: 3
+  label: {fileID: 1414838441}
 --- !u!114 &1922830466
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9987,6 +10144,19 @@ GameObject:
   m_PrefabParentObject: {fileID: 1888037938550442, guid: d441f949931b64847a4109e8dfc3d00e,
     type: 2}
   m_PrefabInternal: {fileID: 897552739}
+--- !u!114 &1977950674
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1977950673}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39082386cecae6e4dbfd974ea612e823, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TrackedGood: 0
+  label: {fileID: 897552740}
 --- !u!114 &1977950675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10147,7 +10317,7 @@ MonoBehaviour:
   m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 32, y: 32}
+  m_CellSize: {x: 48, y: 48}
   m_Spacing: {x: 4, y: 4}
   m_Constraint: 0
   m_ConstraintCount: 2
@@ -10307,7 +10477,7 @@ MonoBehaviour:
   m_ChildAlignment: 4
   m_StartCorner: 0
   m_StartAxis: 0
-  m_CellSize: {x: 32, y: 32}
+  m_CellSize: {x: 48, y: 48}
   m_Spacing: {x: 4, y: 4}
   m_Constraint: 0
   m_ConstraintCount: 2
@@ -10366,7 +10536,7 @@ Prefab:
     - target: {fileID: 224493796718695112, guid: d441f949931b64847a4109e8dfc3d00e,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -180
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 224493796718695112, guid: d441f949931b64847a4109e8dfc3d00e,
         type: 2}
@@ -10560,6 +10730,16 @@ Prefab:
       propertyPath: m_fontColor32.rgba
       value: 4282132549
       objectReference: {fileID: 0}
+    - target: {fileID: 114761160074472846, guid: d441f949931b64847a4109e8dfc3d00e,
+        type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 114035397060202354, guid: d441f949931b64847a4109e8dfc3d00e,
+        type: 2}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: d441f949931b64847a4109e8dfc3d00e, type: 2}
   m_IsPrefabParent: 0
@@ -10569,21 +10749,3 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 2130543844}
   m_Script: {fileID: 1453722849, guid: 89f0137620f6af44b9ba852b4190e64e, type: 3}
---- !u!1 &2130543846 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1447562598144744, guid: d441f949931b64847a4109e8dfc3d00e,
-    type: 2}
-  m_PrefabInternal: {fileID: 2130543844}
---- !u!114 &2130543847
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 2130543846}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cbfca05580c2a0449da27cbe35ffa14, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  TrackedGood: 5
-  label: {fileID: 2130543845}

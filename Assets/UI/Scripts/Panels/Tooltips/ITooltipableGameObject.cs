@@ -6,9 +6,8 @@ using System;
 
 namespace DaleranGames.UI
 {
-    public interface ITooltipableGameObject : IPointerEnterHandler, IPointerExitHandler
+    public interface ITooltipableGameObject : IPointerEnterHandler, IPointerExitHandler, ITooltipable
     {
-        string ObjectInfo { get; }
         void OnInfoUpdate(string newInfo);
     }
 }

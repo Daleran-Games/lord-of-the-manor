@@ -28,7 +28,7 @@ namespace DaleranGames.UI
         protected override void UpdateLabel()
         {
             if (player.Goods[TrackedGood] > player.Stats[StatType.MaxPopulation] || player.Goods[TrackedGood] <= 0)
-                label.text = " < style=\"NegColor\">" + player.Goods[TrackedGood] + "</style> / " + player.Stats[StatType.MaxPopulation];
+                label.text = player.Goods[TrackedGood].ToString().ToNegativeColor() + " / " + player.Stats[StatType.MaxPopulation];
             else
                 label.text = player.Goods[TrackedGood] + "/" + player.Stats[StatType.MaxPopulation];
         }

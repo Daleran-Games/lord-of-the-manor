@@ -13,7 +13,7 @@ namespace DaleranGames.UI
     public abstract class BaseGameObjectTooltip : MonoBehaviour, ITooltipableGameObject
     {
 
-        public abstract string ObjectInfo { get; }
+        public abstract string Info { get; }
 
         public virtual void OnInfoUpdate(string newInfo)
         {
@@ -22,7 +22,7 @@ namespace DaleranGames.UI
 
         public virtual void OnPointerEnter(PointerEventData eventData)
         {
-            TooltipManager.Instance.ShowTooltip(ObjectInfo);
+            TooltipManager.Instance.ShowTooltip(Info);
         }
 
         public virtual void OnPointerExit(PointerEventData eventData)

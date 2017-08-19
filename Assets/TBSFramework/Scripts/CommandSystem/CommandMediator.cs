@@ -9,6 +9,7 @@ namespace DaleranGames.TBSFramework
     {
         [SerializeField]
         bool activeMode = false;
+        public bool ActiveMode { get { return activeMode; } }
         [SerializeField]
         float timeSkip = 0.1f;
         float lastClickTime;
@@ -17,6 +18,7 @@ namespace DaleranGames.TBSFramework
 
         [SerializeField]
         Command currentCommand = Command.Null;
+        public Command CurrentCommand { get { return currentCommand; } }
 
         [SerializeField]
         Group activeOwner = Group.Null;

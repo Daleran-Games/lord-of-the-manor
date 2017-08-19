@@ -10,19 +10,19 @@ using UnityEngine.EventSystems;
 namespace DaleranGames.UI
 {
     [System.Serializable]
-    public class TooltipData
+    public class InfoData
     {
         public string Title;
         public string[] BasicInfo;
         public bool hasExpanded;
         public string[] ExpandedInfo;
 
-        public TooltipData(string title, string[] basic)
+        public InfoData(string title, string[] basic)
         {
 
         }
 
-        public TooltipData(string title, string[] basic, string expanded)
+        public InfoData(string title, string[] basic, string expanded)
         {
 
         }

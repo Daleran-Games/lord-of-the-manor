@@ -49,16 +49,10 @@ namespace DaleranGames.UI
 
         protected virtual void UpdateLabel()
         {
-            int nextTurn = player.Goods.GetAllPendingTransactionsOfType(TrackedGood).Value;
+            int nextTurn = player.Goods.GetTotalPendingTransactionsOfType(TrackedGood).Value;
 
-            if (nextTurn > 0)
-                label.text = player.Goods[TrackedGood] + " <style=\"PosColor\">(+" + nextTurn +")</style>";
-            else if (nextTurn == 0)
-                label.text = player.Goods[TrackedGood] + " (0)";
-            else
-                label.text = player.Goods[TrackedGood] + " <style=\"NegColor\">(" + nextTurn + ")</style>";
-
-            OnInfoUpdate(ObjectInfo);
+            label.text = player.Goods[TrackedGood] + " ("+TextUtilities.ColorBasedOnNumber(nextTurn.ToString(),nextTurn,true)+")";
+            OnInfoUpdate(Info);
             //Canvas.ForceUpdateCanvases();
         }
 
@@ -71,14 +65,50 @@ namespace DaleranGames.UI
 
         protected virtual string GenerateTooltipText()
         {
-            return "";
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            sb.Append((TrackedGood.ToString()+TextUtilities.GetGoodTypeIcon(TrackedGood)).ToHeaderStyle());
+            sb.Append(" "+ player.Goods[TrackedGood]);
+
+            if (TrackedGood == GoodType.Food)
+                sb.AppendLine("/"+player.Stats[StatType.MaxFood]);
+            else if (TrackedGood == GoodType.Population)
+                sb.AppendLine("/" + player.Stats[StatType.MaxPopulation]);
+            else
+                sb.AppendLine();
+
+            List<Transaction> current = player.Goods.GetAllCurrentTransactionsOfType(TrackedGood, true);
+
+            if (current.Count > 0)
+            {
+                sb.AppendLine("<u>This Turn</u>");
+                for (int i = 0; i < current.Count; i++)
+                {
+                    sb.AppendLine(TextUtilities.ColorBasedOnNumber(current[i].Value.ToString(), current[i].Value, true) + " " + current[i].Description);
+                }
+            }
+
+            List<Transaction> pending = player.Goods.GetAllPendingTransactionsOfType(TrackedGood, true);
+
+            if (pending.Count > 0)
+            {
+                sb.AppendLine("<u>Next Turn</u>");
+                for (int i = 0; i < pending.Count; i++)
+                {
+                    sb.AppendLine(TextUtilities.ColorBasedOnNumber(pending[i].Value.ToString(), pending[i].Value, true) + " " + pending[i].Description);
+                }
+            }
+
+            sb.AppendLine(TextUtilities.GetGoodTypeDescription(TrackedGood).ToFootnoteStyle());
+
+            return sb.ToString();
         }
 
-        public virtual string ObjectInfo { get { return GenerateTooltipText(); } }
+        public virtual string Info { get { return GenerateTooltipText(); } }
 
         public virtual void OnPointerEnter(PointerEventData eventData)
         {
-            TooltipManager.Instance.ShowTooltip(ObjectInfo);
+            if(eventData.pointerEnter == this.gameObject)
+                TooltipManager.Instance.ShowTooltip(Info);
         }
 
         public virtual void OnPointerExit(PointerEventData eventData)

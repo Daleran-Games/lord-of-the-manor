@@ -33,7 +33,29 @@ namespace DaleranGames.UI
         void Start()
         {
             tooltipRect.gameObject.SetActive(false);
+            isActive = false;
+            hexCursorOverride = false;
+
+            GameManager.Instance.Play.StateEnabled += OnGameStart;
+
+            if (GameManager.Instance.CurrentState == GameManager.Instance.Play)
+                OnGameStart(GameManager.Instance.CurrentState);
         }
+
+        void OnGameStart(GameState state)
+        {
+            HexCursor.Instance.HexTileEntered += OnHexTileEnter;
+            HexCursor.Instance.HexTileExited += OnHexTileExit;
+        }
+
+        protected override void OnDestroy()
+        {
+            HexCursor.Instance.HexTileEntered -= OnHexTileEnter;
+            HexCursor.Instance.HexTileExited -= OnHexTileExit;
+            GameManager.Instance.Play.StateEnabled -= OnGameStart;
+        }
+
+
 
         // Update is called once per frame
         void Update()
@@ -74,20 +96,27 @@ namespace DaleranGames.UI
                     tooltipRect.anchoredPosition = new Vector2(offset.x, -offset.y);
                 }
             }
-
-
-
-
         }
 
         void OnHexTileEnter(HexTile tile)
         {
+            // Think about adding a delay 0.3-0.5s delay
+            if (!HexCursorOverride && tile != null)
+            {
+                isActive = true;
+                tooltipRect.gameObject.SetActive(true);
 
+                if (CommandMediator.Instance.ActiveMode && CommandMediator.Instance.CurrentCommand != null)
+                    tooltipText.text = CommandMediator.Instance.CurrentCommand.Info;
+                else
+                    tooltipText.text = tile.Info;
+            }
         }
 
         void OnHexTileExit(HexTile tile)
         {
-
+            isActive = false;
+            tooltipRect.gameObject.SetActive(false);
         }
 
         public void ShowTooltip(string text)
@@ -96,6 +125,7 @@ namespace DaleranGames.UI
             HexCursorOverride = true;
             tooltipRect.gameObject.SetActive(true);
             tooltipText.text = text;
+
         }
 
         public void UpdateText(string text)

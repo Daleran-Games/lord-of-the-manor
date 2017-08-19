@@ -123,7 +123,7 @@ namespace DaleranGames.TBSFramework
             Goods[GoodType.Gold] = Stats[StatType.StartingGold];
             Goods[GoodType.Population] = Stats[StatType.MaxPopulation];
             Goods[GoodType.Labor] = Stats[StatType.GroupLaborRate];
-            Goods.AddFuture(new Transaction(GoodType.Labor, Stats[StatType.GroupLaborRate], "Work"));
+            Goods.AddFuture(new Transaction(GoodType.Labor, Stats[StatType.GroupLaborRate], "Labor from your Clan"));
         }
 
         public virtual void OnTurnEnd(BaseTurn turn)

@@ -158,7 +158,7 @@ namespace DaleranGames.TBSFramework
                 this[GoodType.Food] = 0;
             } else if (food > owner.Stats[StatType.MaxFood])
             {
-                AddFuture(new Transaction(GoodType.Food, owner.Stats[StatType.MaxFood] - food, "Spoilage from improper storage"));
+                AddFuture(new Transaction(GoodType.Food, owner.Stats[StatType.MaxFood] - food, "Spoilage: Not enough storage"));
             }
         }
 
@@ -196,7 +196,7 @@ namespace DaleranGames.TBSFramework
                 this[GoodType.Population] = 0;
             else if (population > owner.Stats[StatType.MaxPopulation])
             {
-                AddFuture(new Transaction(GoodType.Population, owner.Stats[StatType.MaxPopulation] - population, "Emigration from overpopulation"));
+                AddFuture(new Transaction(GoodType.Population, owner.Stats[StatType.MaxPopulation] - population, "Overpopulation"));
             } else
             {
                 int births = 0;
@@ -222,7 +222,7 @@ namespace DaleranGames.TBSFramework
 
         void CheckWork ()
         {
-            AddFuture(new Transaction(GoodType.Labor, owner.Stats[StatType.GroupLaborRate], "Work"));
+            AddFuture(new Transaction(GoodType.Labor, owner.Stats[StatType.GroupLaborRate], "Labor from your Clan"));
         }
     }
 }

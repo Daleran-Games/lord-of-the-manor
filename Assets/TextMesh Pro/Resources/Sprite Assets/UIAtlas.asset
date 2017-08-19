@@ -847,10 +847,10 @@ MonoBehaviour:
     y: 64
     width: 16
     height: 16
-    xOffset: -8
-    yOffset: 8
+    xOffset: 0
+    yOffset: 12
     xAdvance: 16
-    scale: 1
+    scale: 1.25
     name: UIAtlas_Icon_Food
     hashCode: -741001282
     unicode: 0
@@ -861,10 +861,10 @@ MonoBehaviour:
     y: 64
     width: 16
     height: 16
-    xOffset: -8
-    yOffset: 8
+    xOffset: 0
+    yOffset: 12
     xAdvance: 16
-    scale: 1
+    scale: 1.25
     name: UIAtlas_Icon_Wood
     hashCode: -741607857
     unicode: 0
@@ -875,10 +875,10 @@ MonoBehaviour:
     y: 64
     width: 16
     height: 16
-    xOffset: -8
-    yOffset: 8
+    xOffset: 0
+    yOffset: 12
     xAdvance: 16
-    scale: 1
+    scale: 1.25
     name: UIAtlas_Icon_Stone
     hashCode: 1302221247
     unicode: 0
@@ -889,10 +889,10 @@ MonoBehaviour:
     y: 64
     width: 16
     height: 16
-    xOffset: -8
-    yOffset: 8
+    xOffset: 0
+    yOffset: 12
     xAdvance: 16
-    scale: 1
+    scale: 1.25
     name: UIAtlas_Icon_Coins
     hashCode: 1320173060
     unicode: 0
@@ -904,7 +904,7 @@ MonoBehaviour:
     width: 16
     height: 16
     xOffset: -8
-    yOffset: 8
+    yOffset: 12
     xAdvance: 16
     scale: 1
     name: UIAtlas_Icon_Herd
@@ -918,7 +918,7 @@ MonoBehaviour:
     width: 16
     height: 16
     xOffset: -8
-    yOffset: 8
+    yOffset: 12
     xAdvance: 16
     scale: 1
     name: UIAtlas_Icon_Hunting
@@ -931,10 +931,10 @@ MonoBehaviour:
     y: 64
     width: 16
     height: 16
-    xOffset: -8
-    yOffset: 8
+    xOffset: 0
+    yOffset: 12
     xAdvance: 16
-    scale: 1
+    scale: 1.25
     name: UIAtlas_Icon_Hammer
     hashCode: 128480066
     unicode: 0
@@ -1099,10 +1099,10 @@ MonoBehaviour:
     y: 63
     width: 16
     height: 16
-    xOffset: -8
-    yOffset: 8
+    xOffset: 0
+    yOffset: 12
     xAdvance: 16
-    scale: 1
+    scale: 1.25
     name: UIAtlas_Icon_House
     hashCode: 1305457976
     unicode: 0

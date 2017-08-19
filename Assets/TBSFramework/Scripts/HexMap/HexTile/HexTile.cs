@@ -3,12 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DaleranGames.IO;
+using DaleranGames.UI;
 
 namespace DaleranGames.TBSFramework
 {
 
     [System.Serializable]
-    public class HexTile : IDisposable
+    public class HexTile : IDisposable, ITooltipable
     {
         public HexTile(HexCoordinates coor, Vector2Int gcoord, Vector3 pos, int id, TileAtlas atlas)
         {
@@ -57,6 +58,23 @@ namespace DaleranGames.TBSFramework
         [ReadOnly]
         protected Vector3 position = Vector3.zero;
         public Vector3 Position { get { return position; } protected set { position = value; } }
+
+        public string Info
+        {
+            get
+            {
+                return "Test Tile Tooltip";
+            }
+        }
+
+        public string GenerateTooltip()
+        {
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            sb.AppendLine(Land.Name.ToHeaderStyle());
+            
+
+            return sb.ToString();
+        }
 
         #endregion
 

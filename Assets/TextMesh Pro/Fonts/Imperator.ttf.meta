@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 9edc71aca05a5724ba5c2bc7d52a7848
+timeCreated: 1503109444
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Imperator
+  fontNames:
+  - Imperator
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
