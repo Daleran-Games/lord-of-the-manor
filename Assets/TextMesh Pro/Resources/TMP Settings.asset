@@ -28,7 +28,7 @@ MonoBehaviour:
   m_autoSizeTextContainer: 0
   m_fallbackFontAssets: []
   m_matchMaterialPreset: 1
-  m_defaultSpriteAsset: {fileID: 11400000, guid: fc19a0d50113e3d4ca565c78153ce552,
+  m_defaultSpriteAsset: {fileID: 11400000, guid: d924d0ce2a2025d4799ca806e96e413d,
     type: 2}
   m_defaultSpriteAssetPath: Sprite Assets/
   m_enableEmojiSupport: 1

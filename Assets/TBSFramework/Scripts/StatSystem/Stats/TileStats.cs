@@ -32,7 +32,7 @@ namespace DaleranGames.TBSFramework
         {
             get
             {
-                switch (statType.DisplayName)
+                switch (statType.Name)
                 {
                     case "Farming Food Rate":
                         return (Get(StatType.FoodYield) * Get(StatType.FarmingFoodPerYield)) + Get(StatType.FarmingFoodRate);

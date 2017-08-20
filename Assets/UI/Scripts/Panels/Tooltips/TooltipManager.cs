@@ -126,6 +126,11 @@ namespace DaleranGames.UI
             
         }
 
+        public void ForceHexTileTooltipUpdate()
+        {
+            OnHexTileEnter(HexCursor.Instance.CurrentTile);
+        }
+
         void OnHexTileEnter(HexTile tile)
         {
             // Think about adding a delay 0.3-0.5s delay

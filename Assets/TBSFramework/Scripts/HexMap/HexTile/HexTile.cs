@@ -184,7 +184,7 @@ namespace DaleranGames.TBSFramework
                 else
                 {
                     owner = value;
-                    UIGraphics.Add(TileLayers.Border, GameDatabase.Instance.TileGraphics["UIAtlas_Border_Test"]);
+                    UIGraphics.Add(TileLayers.Border, GameDatabase.Instance.TileGraphics["Border_2px_All"]);
                     owner.OwnedTiles.Add(this);
                 }
                 

@@ -37,7 +37,7 @@ namespace DaleranGames.TBSFramework
 
         public static Modifier ParseCSV(List<string> csvLine, int startingIndex)
         {
-            return new Modifier(Enumeration.FromDisplayName<StatType>(csvLine[startingIndex]),Int32.Parse(csvLine[startingIndex+1]),csvLine[startingIndex+2]);
+            return new Modifier(Enumeration.FromName<StatType>(csvLine[startingIndex]),Int32.Parse(csvLine[startingIndex+1]),csvLine[startingIndex+2]);
         }
 
         public static List<Modifier> ParseCSVList (List<string> csvList)

@@ -50,10 +50,13 @@ namespace DaleranGames.TBSFramework
                 return (("Tile Not Upgradeable").ToNegativeColor());
             } else
             {
-                if (!upgradeable.CanUpgrade(tile) || !(group == tile.Owner))
-                    return ("Cannot Upgrade " + tile.Feature.Name).ToNegativeColor();
-                else
-                    return ("Upgrade " + tile.Feature.Name).ToPositiveColor();
+                if (!upgradeable.CanUpgrade(tile))
+                    return ("Cannot afford to upgrade " + tile.Feature.Name).ToNegativeColor();
+
+                if (group != tile.Owner)
+                    return ("You do not own " + tile.Feature.Name).ToNegativeColor();
+
+                return ("Upgrade " + tile.Feature.Name).ToPositiveColor().ToHeaderStyle();
             }
         }
     }

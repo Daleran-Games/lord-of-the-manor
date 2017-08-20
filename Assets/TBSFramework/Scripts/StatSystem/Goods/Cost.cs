@@ -52,7 +52,7 @@ namespace DaleranGames.TBSFramework
 
         public static Cost ParseCSV(List<string> csvLine, int startingIndex)
         {
-            return new Cost((GoodType)Enum.Parse(typeof(GoodType), csvLine[startingIndex]), Enumeration.FromDisplayName<StatType>(csvLine[startingIndex+1]), Int32.Parse(csvLine[startingIndex + 2]), csvLine[startingIndex + 3]);
+            return new Cost((GoodType)Enum.Parse(typeof(GoodType), csvLine[startingIndex]), Enumeration.FromName<StatType>(csvLine[startingIndex+1]), Int32.Parse(csvLine[startingIndex + 2]), csvLine[startingIndex + 3]);
         }
 
         public static List<Cost> ParseCSVList(List<string> csvList)

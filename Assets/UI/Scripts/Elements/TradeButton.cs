@@ -71,11 +71,18 @@ namespace DaleranGames.UI
             {
                 sb.AppendLine(TextUtilities.ToHeaderStyle("Buy " + goodType));
                 sb.AppendLine("Buy <b>" + Market.Instance.StackSize + "</b> " + TextUtilities.GetGoodTypeIcon(goodType) + " for " +Market.Instance.GetGoldCost(goodType).ToString().ToNegativeColor()+ TextUtilities.GetGoodTypeIcon(GoodType.Gold) + " and "+Market.Instance.GetLaborCost(goodType).ToString().ToNegativeColor() + TextUtilities.GetGoodTypeIcon(GoodType.Labor) + ".");
+
+                if (!Market.Instance.CanBuy(goodType, GroupManager.Instance.PlayerGroup))
+                    sb.AppendLine("You cannot afford to buy this.".ToNegativeColor());
             }
             else
             {
                 sb.AppendLine(TextUtilities.ToHeaderStyle("Sell " + goodType));
                 sb.AppendLine("Sell <b>" + Market.Instance.StackSize + "</b> " + TextUtilities.GetGoodTypeIcon(goodType) + " for " + Market.Instance.GetSellPrice(goodType).ToString().ToPositiveColor() + TextUtilities.GetGoodTypeIcon(GoodType.Gold) + " and " + Market.Instance.GetLaborCost(goodType).ToString().ToNegativeColor() + TextUtilities.GetGoodTypeIcon(GoodType.Labor) + ".");
+
+                if (!Market.Instance.CanSell(goodType, GroupManager.Instance.PlayerGroup))
+                    sb.AppendLine("You cannot sell this.".ToNegativeColor());
+
             }
                 
             return sb.ToString();

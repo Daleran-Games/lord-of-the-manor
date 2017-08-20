@@ -76,17 +76,17 @@ namespace DaleranGames.UI
             switch (type)
             {
                 case GoodType.Food:
-                    return "<sprite name=\"UIAtlas_Icon_Food\">";
+                    return "<sprite name=\"Icon_16px_Good_Food\">";
                 case GoodType.Wood:
-                    return "<sprite name=\"UIAtlas_Icon_Wood\">";
+                    return "<sprite name=\"Icon_16px_Good_Wood\">";
                 case GoodType.Stone:
-                    return "<sprite name=\"UIAtlas_Icon_Stone\">";
+                    return "<sprite name=\"Icon_16px_Good_Stone\">";
                 case GoodType.Gold:
-                    return "<sprite name=\"UIAtlas_Icon_Coins\">";
+                    return "<sprite name=\"Icon_16px_Good_Gold\">";
                 case GoodType.Population:
-                    return "<sprite name=\"UIAtlas_Icon_House\">";
+                    return "<sprite name=\"Icon_16px_Good_Population\">";
                 case GoodType.Labor:
-                    return "<sprite name=\"UIAtlas_Icon_Hammer\">";
+                    return "<sprite name=\"Icon_16px_Good_Labor\">";
                 default:
                     return "";
             }

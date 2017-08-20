@@ -22,7 +22,7 @@ namespace DaleranGames.TBSFramework
             get
             {
                 
-                switch (statType.DisplayName)
+                switch (statType.Name)
                 {
                     case "Strength":
                         return (base[StatType.StrengthPerPop] * group.Goods.Population.Value) + base[StatType.Strength];

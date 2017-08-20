@@ -1,46 +1,46 @@
 fileFormatVersion: 2
 guid: 2cd13286f6099a242a1fd4a55f0bfb71
-timeCreated: 1502907304
+timeCreated: 1503266152
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
-    21300000: UIAtlas_Text_0
-    21300002: UIAtlas_Text_1
-    21300004: UIAtlas_Text_2
-    21300006: UIAtlas_Text_3
-    21300008: UIAtlas_Text_4
-    21300010: UIAtlas_Text_5
-    21300012: UIAtlas_Text_6
-    21300014: UIAtlas_Text_7
-    21300016: UIAtlas_Text_8
-    21300018: UIAtlas_Text_9
-    21300020: UIAtlas_Text_-
-    21300022: UIAtlas_Icon_Gear
-    21300024: UIAtlas_Icon_Menu
+    21300000: Text_10px_0
+    21300002: Text_10px_1
+    21300004: Text_10px_2
+    21300006: Text_10px_3
+    21300008: Text_10px_4
+    21300010: Text_10px_5
+    21300012: Text_10px_6
+    21300014: Text_10px_7
+    21300016: Text_10px_8
+    21300018: Text_10px_9
+    21300020: Text_10px_-
+    21300022: Icon_16px_Good_Food
+    21300024: Icon_16px_Good_Wood
     21300026: UIAtlas_13
-    21300028: UIAtlas_Icon_YellowBox
-    21300030: UIAtlas_Icon_RedBox
-    21300032: UIAtlas_Icon_BlueBox
-    21300034: UIAtlas_Icon_Zone
+    21300028: Icon_16px_Good_Gold
+    21300030: Icon_16px_Good_Labor
+    21300032: Icon_16px_Good_Population
+    21300034: Icon_16px_Good_Stone
     21300036: UIAtlas_18
-    21300038: UIAtlas_Icon_Food
-    21300040: UIAtlas_Icon_Wood
-    21300042: UIAtlas_Icon_Stone
-    21300044: UIAtlas_Icon_Coins
-    21300046: UIAtlas_Icon_Herd
-    21300048: UIAtlas_Icon_Hunting
-    21300050: UIAtlas_Icon_Hammer
-    21300052: UIAtlas_Icon_House
-    21300054: UIAtlas_Icon_Weapons
-    21300056: UIAtlas_Icon_Shield
-    21300058: UIAtlas_Icon_Tower
+    21300038: Modifier_16px_DownArrow
+    21300040: Modifier_16px_UpArrow
+    21300042: Modifier_16px_Plus
+    21300044: Modifier_16px_Minus
+    21300046: Modifier_16px_Turns
+    21300048: Modifier_16px_Max
+    21300050: Icon_16px_Settings
+    21300052: Icon_16px_Menu
+    21300054: Icon_16px_Border
+    21300056: Icon_16px_YellowToggle
+    21300058: Icon_16px_RedToggle
     21300060: UIAtlas_Icon_Mountain
-    21300062: UIAtlas_Icon_Drop
-    21300064: UIAtlas_Icon_Compass
-    21300066: UIAtlas_Icon_MoveSpeed
-    21300068: UIAtlas_Icon_Spring
-    21300070: UIAtlas_Icon_Summer
-    21300072: UIAtlas_Icon_Fall
+    21300062: Icon_16px_BlueToggle
+    21300064: Icon_16px_Question
+    21300066: Icon_16px_Spring
+    21300068: Icon_16px_Summer
+    21300070: Icon_16px_Fall
+    21300072: Icon_16px_Winter
     21300074: UIAtlas_Icon_Winter
     21300076: UIAtlas_Cursor_Ring
     21300078: UIAtlas_Cursor_Positive
@@ -48,7 +48,7 @@ TextureImporter:
     21300082: UIAtlas_Cursor_Light
     21300084: UIAtlas_Cursor_Dark
     21300086: UIAtlas_Cursor_Fog
-    21300088: UIAtlas_Text_+
+    21300088: Text_10px_+
     21300090: UIAtlas_Cursor_Cross
     21300092: UIAtlas_Cursor_Highlight
     21300094: UIAtlas_Icon_PlayerTerritory
@@ -56,51 +56,72 @@ TextureImporter:
     21300098: UIAtlas_Icon_CommonPasture
     21300100: UIAtlas_Icon_HousingArea
     21300102: UIAtlas_Icon_VassalTerritory
-    21300104: UIAtlas_Icon_Cancel
-    21300106: UIAtlas_Icon_FarmLand
-    21300108: UIAtlas_Icon_ClearForest
-    21300110: UIAtlas_Icon_Upgrade
-    21300112: UIAtlas_Icon_AnvilTool
-    21300114: UIAtlas_Highlight_Ring
-    21300116: UIAtlas_Highlight_Positive
-    21300118: UIAtlas_Highlight_Negative
-    21300120: UIAtlas_Highlight_Light
-    21300122: UIAtlas_Highlight_Dark
-    21300124: UIAtlas_Highlight_Fog
-    21300126: UIAtlas_Highlight_Cross
-    21300128: UIAtlas_Highlight_White
-    21300130: UIAtlas_Icon_Quarry
-    21300132: UIAtlas_Icon_WorkForest
-    21300134: UIAtlas_Icon_WorkStone
-    21300136: UIAtlas_Icon_WorkFarm
-    21300138: UIAtlas_Icon_TileFood1
-    21300140: UIAtlas_Icon_TileFood2
-    21300142: UIAtlas_Icon_TileFood3
-    21300144: UIAtlas_Icon_TileWood1
-    21300146: UIAtlas_Icon_TileWood2
-    21300148: UIAtlas_Icon_TileWood3
-    21300150: UIAtlas_Icon_TileStone1
-    21300152: UIAtlas_Icon_TileStone2
-    21300154: UIAtlas_Icon_TileStone3
-    21300156: UIAtlas_Icon_TileGold1
-    21300158: UIAtlas_Icon_TileGold2
-    21300160: UIAtlas_Icon_TileGold3
-    21300162: UIAtlas_Icon_ClearWork
-    21300164: UIAtlas_Icon_WorkImpr
-    21300166: UIAtlas_Icon_Hourglass
-    21300168: UIAtlas_Icon_Cancel2
-    21300170: UIAtlas_SmallIcon_Upgrade
-    21300172: UIAtlas_SmallIcon_Cancel
-    21300174: UIAtlas_SmallIcon_Sleep
+    21300104: Icon_16px_Cancel
+    21300106: Icon_16px_Sleep
+    21300108: Icon_16px_Upgrade
+    21300110: Icon_16px_Raze
+    21300112: Icon_32px_ClearForest
+    21300114: Highlight_Selector
+    21300116: Highlight_Positive
+    21300118: Highlight_Negative
+    21300120: Highlight_Light
+    21300122: Highlight_Dark
+    21300124: Highlight_Fog
+    21300126: Highlight_Cross
+    21300128: Highlight_White
+    21300130: Icon_32px_Farm
+    21300132: Icon_16px_Good_Turns
+    21300134: Icon_16px_Good_Condition
+    21300136: Icon_16px_Good_AP
+    21300138: Icon_16px_TileFood1
+    21300140: Icon_16px_TileFood2
+    21300142: Icon_16px_TileFood3
+    21300144: Icon_16px_TileWood1
+    21300146: Icon_16px_TileWood2
+    21300148: Icon_16px_TileWood3
+    21300150: Icon_16px_TileStone1
+    21300152: Icon_16px_TileStone2
+    21300154: Icon_16px_TileStone3
+    21300156: Icon_16px_TileGold1
+    21300158: Icon_16px_TileGold2
+    21300160: Icon_16px_TileGold3
+    21300162: Icon_16px_Moisture
+    21300164: Icon_16px_Compass
+    21300166: Icon_16px_Movement
+    21300168: Icon_32px_LandValue
+    21300170: Icon_16px_Tile
+    21300172: Icon_16px_Herd
+    21300174: Icon_16px_Bow
     21300176: UIAtlas_Border_Test
-    21300178: UIAtlas_Icon_LargeHammer
-    21300180: UIAtlas_Icon_BuyTile
-    21300182: UIAtlas_Icon_Cancel3
-    21300184: UIAtlas_SmallIcon_Tile
-    21300186: UIAtlas_SmallIcon_Raze
-    21300188: UIAtlas_Tiny_DownArrow
-    21300190: UIAtlas_Tiny_UpArrow
+    21300178: Icon_32px_Quarry
+    21300180: Icon_16px_Farm
+    21300182: Icon_16px_Anvil
+    21300184: Icon_16px_CombatPower
+    21300186: Icon_16px_Happiness
+    21300188: Icon_16px_TileDefense
+    21300190: Icon_16px_Elevation
     21300192: UIAtlas_Small_BuyTile
+    21300194: Icon_32px_Cancel
+    21300196: Icon_32px_Work
+    21300198: Icon_32px_Upgrade
+    21300200: Icon_32px_Raze
+    21300202: Icon_16px_LandValue
+    21300204: Icon_16px_ClearForest
+    21300206: Icon_16px_Quarry
+    21300208: Border_2px_All
+    21300210: Border_2px_NW
+    21300212: Border_2px_NE
+    21300214: Border_2px_E
+    21300216: Border_2px_SE
+    21300218: Border_2px_SW
+    21300220: Border_2px_W
+    21300222: Border_1px_
+    21300224: Border_1px_NW
+    21300226: Border_1px_NE
+    21300228: Border_1px_E
+    21300230: Border_1px_SE
+    21300232: Border_1px_SW
+    21300234: Border_1px_W
   serializedVersion: 4
   mipmaps:
     mipMapMode: 0
@@ -172,11 +193,11 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: UIAtlas_Text_0
+      name: Text_10px_0
       rect:
         serializedVersion: 2
         x: 20
-        y: 307
+        y: 547
         width: 8
         height: 10
       alignment: 0
@@ -186,11 +207,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Text_1
+      name: Text_10px_1
       rect:
         serializedVersion: 2
         x: 68
-        y: 307
+        y: 547
         width: 8
         height: 10
       alignment: 0
@@ -200,11 +221,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Text_2
+      name: Text_10px_2
       rect:
         serializedVersion: 2
         x: 116
-        y: 307
+        y: 547
         width: 8
         height: 10
       alignment: 0
@@ -214,11 +235,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Text_3
+      name: Text_10px_3
       rect:
         serializedVersion: 2
         x: 164
-        y: 307
+        y: 547
         width: 8
         height: 10
       alignment: 0
@@ -228,11 +249,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Text_4
+      name: Text_10px_4
       rect:
         serializedVersion: 2
         x: 212
-        y: 307
+        y: 547
         width: 8
         height: 10
       alignment: 0
@@ -242,11 +263,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Text_5
+      name: Text_10px_5
       rect:
         serializedVersion: 2
         x: 260
-        y: 307
+        y: 547
         width: 8
         height: 10
       alignment: 0
@@ -256,11 +277,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Text_6
+      name: Text_10px_6
       rect:
         serializedVersion: 2
         x: 308
-        y: 307
+        y: 547
         width: 8
         height: 10
       alignment: 0
@@ -270,11 +291,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Text_7
+      name: Text_10px_7
       rect:
         serializedVersion: 2
         x: 356
-        y: 307
+        y: 547
         width: 8
         height: 10
       alignment: 0
@@ -284,11 +305,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Text_8
+      name: Text_10px_8
       rect:
         serializedVersion: 2
         x: 404
-        y: 307
+        y: 547
         width: 8
         height: 10
       alignment: 0
@@ -298,11 +319,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Text_9
+      name: Text_10px_9
       rect:
         serializedVersion: 2
         x: 452
-        y: 307
+        y: 547
         width: 8
         height: 10
       alignment: 0
@@ -312,11 +333,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Text_-
+      name: Text_10px_-
       rect:
         serializedVersion: 2
         x: 500
-        y: 307
+        y: 547
         width: 8
         height: 10
       alignment: 0
@@ -326,7 +347,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Icon_Gear
+      name: Icon_16px_Good_Food
       rect:
         serializedVersion: 2
         x: 16
@@ -340,7 +361,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Icon_Menu
+      name: Icon_16px_Good_Wood
       rect:
         serializedVersion: 2
         x: 64
@@ -354,7 +375,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Icon_YellowBox
+      name: Icon_16px_Good_Gold
       rect:
         serializedVersion: 2
         x: 160
@@ -368,7 +389,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Icon_RedBox
+      name: Icon_16px_Good_Labor
       rect:
         serializedVersion: 2
         x: 208
@@ -382,7 +403,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Icon_BlueBox
+      name: Icon_16px_Good_Population
       rect:
         serializedVersion: 2
         x: 256
@@ -396,7 +417,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Icon_Zone
+      name: Icon_16px_Good_Stone
       rect:
         serializedVersion: 2
         x: 112
@@ -410,7 +431,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Icon_Food
+      name: Modifier_16px_DownArrow
       rect:
         serializedVersion: 2
         x: 16
@@ -424,7 +445,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Icon_Wood
+      name: Modifier_16px_UpArrow
       rect:
         serializedVersion: 2
         x: 64
@@ -438,7 +459,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Icon_Stone
+      name: Modifier_16px_Plus
       rect:
         serializedVersion: 2
         x: 112
@@ -452,7 +473,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Icon_Coins
+      name: Modifier_16px_Minus
       rect:
         serializedVersion: 2
         x: 160
@@ -466,7 +487,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Icon_Herd
+      name: Modifier_16px_Turns
       rect:
         serializedVersion: 2
         x: 208
@@ -480,7 +501,7 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Icon_Hunting
+      name: Modifier_16px_Max
       rect:
         serializedVersion: 2
         x: 256
@@ -494,11 +515,81 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Icon_Hammer
+      name: Icon_16px_Settings
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon_16px_Menu
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon_16px_Border
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon_16px_YellowToggle
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon_16px_RedToggle
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 16
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon_16px_BlueToggle
       rect:
         serializedVersion: 2
         x: 304
-        y: 64
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -508,11 +599,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Icon_House
+      name: Icon_16px_Question
       rect:
         serializedVersion: 2
         x: 352
-        y: 63
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -522,11 +613,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Icon_Weapons
+      name: Icon_16px_Spring
       rect:
         serializedVersion: 2
         x: 400
-        y: 64
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -536,11 +627,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Icon_Shield
+      name: Icon_16px_Summer
       rect:
         serializedVersion: 2
         x: 448
-        y: 64
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -550,11 +641,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Icon_Tower
+      name: Icon_16px_Fall
       rect:
         serializedVersion: 2
         x: 496
-        y: 64
+        y: 16
         width: 16
         height: 16
       alignment: 0
@@ -564,11 +655,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Icon_Mountain
+      name: Icon_16px_Winter
       rect:
         serializedVersion: 2
         x: 544
-        y: 64
+        y: 15
         width: 16
         height: 16
       alignment: 0
@@ -578,109 +669,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Icon_Drop
+      name: Highlight_Selector
       rect:
         serializedVersion: 2
-        x: 592
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UIAtlas_Icon_Compass
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UIAtlas_Icon_MoveSpeed
-      rect:
-        serializedVersion: 2
-        x: 688
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UIAtlas_Icon_Spring
-      rect:
-        serializedVersion: 2
-        x: 737
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UIAtlas_Icon_Summer
-      rect:
-        serializedVersion: 2
-        x: 784
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UIAtlas_Icon_Fall
-      rect:
-        serializedVersion: 2
-        x: 832
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UIAtlas_Icon_Winter
-      rect:
-        serializedVersion: 2
-        x: 880
-        y: 64
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UIAtlas_Highlight_Ring
-      rect:
-        serializedVersion: 2
-        x: 54
-        y: 6
+        x: 6
+        y: 582
         width: 36
         height: 36
       alignment: 0
@@ -690,11 +683,25 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Highlight_Positive
+      name: Highlight_Positive
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 584
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Highlight_Negative
       rect:
         serializedVersion: 2
         x: 104
-        y: 8
+        y: 584
         width: 32
         height: 32
       alignment: 0
@@ -704,11 +711,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Highlight_Negative
+      name: Highlight_Light
       rect:
         serializedVersion: 2
         x: 152
-        y: 8
+        y: 584
         width: 32
         height: 32
       alignment: 0
@@ -718,11 +725,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Highlight_Light
+      name: Highlight_Dark
       rect:
         serializedVersion: 2
         x: 200
-        y: 8
+        y: 584
         width: 32
         height: 32
       alignment: 0
@@ -732,11 +739,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Highlight_Dark
+      name: Highlight_Fog
       rect:
         serializedVersion: 2
         x: 248
-        y: 8
+        y: 584
         width: 32
         height: 32
       alignment: 0
@@ -746,25 +753,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Highlight_Fog
-      rect:
-        serializedVersion: 2
-        x: 296
-        y: 8
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UIAtlas_Text_+
+      name: Text_10px_+
       rect:
         serializedVersion: 2
         x: 548
-        y: 307
+        y: 547
         width: 8
         height: 10
       alignment: 0
@@ -774,165 +767,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Highlight_Cross
-      rect:
-        serializedVersion: 2
-        x: 344
-        y: 8
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UIAtlas_Highlight_White
-      rect:
-        serializedVersion: 2
-        x: 392
-        y: 8
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UIAtlas_Icon_PlayerTerritory
-      rect:
-        serializedVersion: 2
-        x: 8
-        y: 440
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UIAtlas_Icon_CommonForest
-      rect:
-        serializedVersion: 2
-        x: 56
-        y: 440
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UIAtlas_Icon_CommonPasture
-      rect:
-        serializedVersion: 2
-        x: 104
-        y: 440
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UIAtlas_Icon_HousingArea
-      rect:
-        serializedVersion: 2
-        x: 152
-        y: 440
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UIAtlas_Icon_VassalTerritory
-      rect:
-        serializedVersion: 2
-        x: 200
-        y: 440
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UIAtlas_Icon_Cancel
-      rect:
-        serializedVersion: 2
-        x: 8
-        y: 392
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UIAtlas_Icon_FarmLand
-      rect:
-        serializedVersion: 2
-        x: 56
-        y: 392
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UIAtlas_Icon_ClearForest
-      rect:
-        serializedVersion: 2
-        x: 104
-        y: 392
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UIAtlas_Icon_Upgrade
-      rect:
-        serializedVersion: 2
-        x: 152
-        y: 392
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UIAtlas_Icon_AnvilTool
+      name: Highlight_Cross
       rect:
         serializedVersion: 2
         x: 296
-        y: 392
+        y: 584
         width: 32
         height: 32
       alignment: 0
@@ -942,11 +781,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Icon_Quarry
+      name: Highlight_White
       rect:
         serializedVersion: 2
-        x: 248
-        y: 392
+        x: 344
+        y: 584
         width: 32
         height: 32
       alignment: 0
@@ -956,53 +795,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Icon_WorkForest
-      rect:
-        serializedVersion: 2
-        x: 303
-        y: 112
-        width: 18
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UIAtlas_Icon_WorkStone
-      rect:
-        serializedVersion: 2
-        x: 352
-        y: 112
-        width: 17
-        height: 17
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UIAtlas_Icon_WorkFarm
-      rect:
-        serializedVersion: 2
-        x: 399
-        y: 112
-        width: 17
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UIAtlas_Icon_TileFood1
+      name: Icon_16px_Cancel
       rect:
         serializedVersion: 2
         x: 16
-        y: 160
+        y: 400
         width: 16
         height: 16
       alignment: 0
@@ -1012,13 +809,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Icon_TileFood2
+      name: Icon_16px_Sleep
       rect:
         serializedVersion: 2
-        x: 64
-        y: 160
-        width: 16
-        height: 16
+        x: 62
+        y: 398
+        width: 20
+        height: 20
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1026,235 +823,11 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Icon_TileFood3
+      name: Icon_16px_Upgrade
       rect:
         serializedVersion: 2
-        x: 112
-        y: 160
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UIAtlas_Icon_TileWood1
-      rect:
-        serializedVersion: 2
-        x: 160
-        y: 160
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UIAtlas_Icon_TileWood2
-      rect:
-        serializedVersion: 2
-        x: 208
-        y: 160
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UIAtlas_Icon_TileWood3
-      rect:
-        serializedVersion: 2
-        x: 256
-        y: 160
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UIAtlas_Icon_TileStone1
-      rect:
-        serializedVersion: 2
-        x: 304
-        y: 160
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UIAtlas_Icon_TileStone2
-      rect:
-        serializedVersion: 2
-        x: 351
-        y: 160
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UIAtlas_Icon_TileStone3
-      rect:
-        serializedVersion: 2
-        x: 400
-        y: 160
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UIAtlas_Icon_TileGold1
-      rect:
-        serializedVersion: 2
-        x: 448
-        y: 160
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UIAtlas_Icon_TileGold2
-      rect:
-        serializedVersion: 2
-        x: 496
-        y: 160
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UIAtlas_Icon_TileGold3
-      rect:
-        serializedVersion: 2
-        x: 544
-        y: 160
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UIAtlas_Icon_ClearWork
-      rect:
-        serializedVersion: 2
-        x: 447
-        y: 112
-        width: 19
-        height: 17
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UIAtlas_Icon_WorkImpr
-      rect:
-        serializedVersion: 2
-        x: 495
-        y: 112
-        width: 18
-        height: 17
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UIAtlas_Icon_Hourglass
-      rect:
-        serializedVersion: 2
-        x: 544
-        y: 112
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UIAtlas_Icon_Cancel2
-      rect:
-        serializedVersion: 2
-        x: 200
-        y: 392
-        width: 32
-        height: 32
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UIAtlas_SmallIcon_Upgrade
-      rect:
-        serializedVersion: 2
-        x: 591
-        y: 112
-        width: 18
-        height: 17
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UIAtlas_SmallIcon_Cancel
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 112
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UIAtlas_SmallIcon_Sleep
-      rect:
-        serializedVersion: 2
-        x: 687
-        y: 111
+        x: 111
+        y: 398
         width: 18
         height: 18
       alignment: 0
@@ -1264,11 +837,25 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Border_Test
+      name: Icon_16px_Raze
       rect:
         serializedVersion: 2
-        x: 440
-        y: 8
+        x: 159
+        y: 398
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon_32px_ClearForest
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 440
         width: 32
         height: 32
       alignment: 0
@@ -1278,13 +865,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Icon_LargeHammer
+      name: Icon_32px_Farm
       rect:
         serializedVersion: 2
-        x: 344
-        y: 392
+        x: 248
+        y: 440
         width: 32
-        height: 32
+        height: 33
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1292,13 +879,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Icon_BuyTile
+      name: Icon_16px_Good_Turns
       rect:
         serializedVersion: 2
-        x: 392
-        y: 392
-        width: 32
-        height: 32
+        x: 304
+        y: 112
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1306,13 +893,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Icon_Cancel3
+      name: Icon_16px_Good_Condition
       rect:
         serializedVersion: 2
-        x: 440
-        y: 392
-        width: 32
-        height: 32
+        x: 352
+        y: 112
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1320,11 +907,207 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_SmallIcon_Tile
+      name: Icon_16px_Good_AP
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 112
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon_16px_TileFood1
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon_16px_TileFood2
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon_16px_TileFood3
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon_16px_TileWood1
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon_16px_TileWood2
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon_16px_TileWood3
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon_16px_TileStone1
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon_16px_TileStone2
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon_16px_TileStone3
+      rect:
+        serializedVersion: 2
+        x: 400
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon_16px_TileGold1
+      rect:
+        serializedVersion: 2
+        x: 448
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon_16px_TileGold2
+      rect:
+        serializedVersion: 2
+        x: 496
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon_16px_TileGold3
+      rect:
+        serializedVersion: 2
+        x: 544
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon_16px_Moisture
+      rect:
+        serializedVersion: 2
+        x: 688
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon_16px_Compass
       rect:
         serializedVersion: 2
         x: 736
-        y: 112
+        y: 208
         width: 16
         height: 16
       alignment: 0
@@ -1334,13 +1117,13 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_SmallIcon_Raze
+      name: Icon_16px_Movement
       rect:
         serializedVersion: 2
-        x: 783
-        y: 112
-        width: 18
-        height: 17
+        x: 784
+        y: 208
+        width: 16
+        height: 16
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1348,41 +1131,447 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Tiny_DownArrow
+      name: Icon_32px_LandValue
       rect:
         serializedVersion: 2
-        x: 592
-        y: 160
-        width: 16
-        height: 16
+        x: 200
+        y: 440
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
     - serializedVersion: 2
-      name: UIAtlas_Tiny_UpArrow
-      rect:
-        serializedVersion: 2
-        x: 640
-        y: 160
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-    - serializedVersion: 2
-      name: UIAtlas_Small_BuyTile
+      name: Icon_16px_Tile
       rect:
         serializedVersion: 2
         x: 832
-        y: 112
+        y: 208
         width: 16
         height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon_16px_Herd
+      rect:
+        serializedVersion: 2
+        x: 16
+        y: 303
+        width: 17
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon_16px_Bow
+      rect:
+        serializedVersion: 2
+        x: 63
+        y: 303
+        width: 18
+        height: 18
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon_32px_Quarry
+      rect:
+        serializedVersion: 2
+        x: 344
+        y: 441
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon_16px_Farm
+      rect:
+        serializedVersion: 2
+        x: 255
+        y: 400
+        width: 17
+        height: 15
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon_16px_Anvil
+      rect:
+        serializedVersion: 2
+        x: 397
+        y: 399
+        width: 21
+        height: 19
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon_16px_CombatPower
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 304
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon_16px_Happiness
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 304
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon_16px_TileDefense
+      rect:
+        serializedVersion: 2
+        x: 592
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon_16px_Elevation
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 208
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon_32px_Cancel
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 440
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon_32px_Work
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 440
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon_32px_Upgrade
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 440
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon_32px_Raze
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 440
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon_16px_LandValue
+      rect:
+        serializedVersion: 2
+        x: 208
+        y: 400
+        width: 16
+        height: 16
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon_16px_ClearForest
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 399
+        width: 19
+        height: 18
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Icon_16px_Quarry
+      rect:
+        serializedVersion: 2
+        x: 350
+        y: 398
+        width: 19
+        height: 19
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Border_2px_All
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 632
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Border_2px_NW
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 632
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Border_2px_NE
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 632
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Border_2px_E
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 632
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Border_2px_SE
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 632
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Border_2px_SW
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 632
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Border_2px_W
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 632
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Border_1px_
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 680
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Border_1px_NW
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 680
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Border_1px_NE
+      rect:
+        serializedVersion: 2
+        x: 104
+        y: 680
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Border_1px_E
+      rect:
+        serializedVersion: 2
+        x: 152
+        y: 680
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Border_1px_SE
+      rect:
+        serializedVersion: 2
+        x: 200
+        y: 680
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Border_1px_SW
+      rect:
+        serializedVersion: 2
+        x: 248
+        y: 680
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Border_1px_W
+      rect:
+        serializedVersion: 2
+        x: 296
+        y: 680
+        width: 32
+        height: 32
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}

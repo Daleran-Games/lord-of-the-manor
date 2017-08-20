@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DaleranGames.IO;
+using DaleranGames.UI;
 
 namespace DaleranGames.TBSFramework
 {
@@ -139,6 +140,7 @@ namespace DaleranGames.TBSFramework
                 lastClickTime = Time.time;
                 PreformCommandOnTile(currentCommand, tile, activeOwner);
                 UpdateCursor(tile);
+                TooltipManager.Instance.ForceHexTileTooltipUpdate();
                 //Debug.Log("Recieved Left Click");
             }
 
@@ -147,6 +149,8 @@ namespace DaleranGames.TBSFramework
         void OnRightClick()
         {
             ExitCommandMode();
+            TooltipManager.Instance.ForceHexTileTooltipUpdate();
+
         }
 
         void UpdateCursor (HexTile tile)

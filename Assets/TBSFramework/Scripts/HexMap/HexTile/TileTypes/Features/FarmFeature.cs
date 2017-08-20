@@ -223,9 +223,9 @@ namespace DaleranGames.TBSFramework
         public override TileGraphic GetWorkIcon(HexTile tile)
         {
             if (tile.Paused)
-                return GameDatabase.Instance.TileGraphics["UIAtlas_SmallIcon_Sleep"];
+                return GameDatabase.Instance.TileGraphics["Icon_16px_Sleep"];
             else
-                return GameDatabase.Instance.TileGraphics["UIAtlas_Icon_WorkFarm"];
+                return GameDatabase.Instance.TileGraphics["Icon_16px_Farm"];
         }
 
         public bool CanPlace(HexTile tile)

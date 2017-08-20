@@ -34,7 +34,7 @@ namespace DaleranGames.TBSFramework
 
         public override TileGraphic GetUIIcon(HexTile tile)
         {
-            return GameDatabase.Instance.TileGraphics["UIAtlas_Icon_Cancel"];
+            return GameDatabase.Instance.TileGraphics["Icon_32px_Cancel"];
         }
 
         public override string GetInfo(HexTile tile, Group group)
@@ -46,8 +46,12 @@ namespace DaleranGames.TBSFramework
             }
             else
             {
-                if (!cancelable.CanCancel(tile) || group != tile.Owner)
+                if (!cancelable.CanCancel(tile))
                     return ("Cannot Cancel " + tile.Feature.Name).ToNegativeColor();
+
+                if (group != tile.Owner)
+                    return ("You do not own " + tile.Feature.Name).ToNegativeColor();
+
                 else
                     return ("Cancel " + tile.Feature.Name).ToPositiveColor();
             }

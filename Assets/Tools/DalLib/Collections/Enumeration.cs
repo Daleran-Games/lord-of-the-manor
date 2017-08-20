@@ -13,16 +13,16 @@ namespace DaleranGames
         [SerializeField]
         int _value;
         [SerializeField]
-        string _displayName;
+        string _name;
 
         protected Enumeration()
         {
         }
 
-        protected Enumeration(int value, string displayName)
+        protected Enumeration(int value, string name)
         {
             _value = value;
-            _displayName = displayName;
+            _name = name;
         }
 
         public int Value
@@ -30,14 +30,14 @@ namespace DaleranGames
             get { return _value; }
         }
 
-        public string DisplayName
+        public string Name
         {
-            get { return _displayName; }
+            get { return _name; }
         }
 
         public override string ToString()
         {
-            return DisplayName;
+            return Name;
         }
 
         public string ToString(string format, IFormatProvider formatProvider)
@@ -94,9 +94,9 @@ namespace DaleranGames
             return matchingItem;
         }
 
-        public static T FromDisplayName<T>(string displayName) where T : Enumeration, new()
+        public static T FromName<T>(string name) where T : Enumeration, new()
         {
-            var matchingItem = parse<T, string>(displayName, "display name", item => item.DisplayName == displayName);
+            var matchingItem = parse<T, string>(name, "display name", item => item.Name == name);
             return matchingItem;
         }
 
