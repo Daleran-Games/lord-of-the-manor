@@ -95,7 +95,7 @@ namespace DaleranGames.UI
 
         public void OnInfoUpdate(string newInfo)
         {
-            TooltipManager.Instance.UpdateText(newInfo);
+            //TooltipManager.Instance.UpdateText(newInfo);
         }
     }
 }

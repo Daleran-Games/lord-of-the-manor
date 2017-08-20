@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DaleranGames.UI;
 using DaleranGames.IO;
 
 namespace DaleranGames.TBSFramework
@@ -41,8 +42,6 @@ namespace DaleranGames.TBSFramework
                 workable.Pause(tile);
                 tile.PausedOverride = true;
             }
-               
-
         }
 
         public override TileGraphic GetUIIcon(HexTile tile)
@@ -51,6 +50,27 @@ namespace DaleranGames.TBSFramework
                 return GameDatabase.Instance.TileGraphics["UIAtlas_Icon_LargeHammer"];
             else
                 return GameDatabase.Instance.TileGraphics["UIAtlas_SmallIcon_Sleep"]; 
+        }
+
+        public override string GetInfo(HexTile tile, Group group)
+        {
+            IWorkable workable = tile.Feature as IWorkable;
+            if (workable == null)
+            {
+                return (("Tile Cannot be Worked Or Paused").ToNegativeColor());
+            }
+            else
+            {
+                if (!tile.Paused)
+                    return (("Pause Tile").ToPositiveColor());
+                else
+                {
+                    if (workable.CanResume(tile))
+                        return (("Resume Tile").ToPositiveColor());
+                    else
+                        return (("Cannot Resume Tile").ToNegativeColor());
+                }
+            }
         }
     }
 }

@@ -13,7 +13,12 @@ namespace DaleranGames.UI
         protected TooltipManager( ) { }
 
         [SerializeField]
+        RectTransform canvasRect;
+        Canvas canvas;
+
+        [SerializeField]
         RectTransform tooltipRect;
+        VerticalLayoutGroup verticalLayout;
 
         [SerializeField]
         TextMeshProUGUI tooltipText;
@@ -35,6 +40,8 @@ namespace DaleranGames.UI
             tooltipRect.gameObject.SetActive(false);
             isActive = false;
             hexCursorOverride = false;
+            canvas = canvasRect.GetComponent<Canvas>();
+            verticalLayout = tooltipRect.GetComponent<VerticalLayoutGroup>();
 
             GameManager.Instance.Play.StateEnabled += OnGameStart;
 
@@ -76,26 +83,47 @@ namespace DaleranGames.UI
             {
                 if (mousePos.y >= screenHalfY) // Upper Right
                 {
-                    tooltipRect.pivot = Vector2.one;
+
+                    SetRectAnchorsAndPicot(Vector2.one);
+                    canvasRect.anchoredPosition = Vector2.zero;
                     tooltipRect.anchoredPosition = new Vector2(-offset.x, offset.y);
+                    verticalLayout.childAlignment = TextAnchor.UpperRight;
                 } else // Lower Right
                 {
-                    tooltipRect.pivot = Vector2.right;
+                    SetRectAnchorsAndPicot(Vector2.right);
+                    canvasRect.anchoredPosition = Vector2.zero;
                     tooltipRect.anchoredPosition = new Vector2(-offset.x, -offset.y);
+                    verticalLayout.childAlignment = TextAnchor.UpperRight;
                 }
             } else // Left Side
             {
                 if (mousePos.y >= screenHalfY) // Upper Left
                 {
-                    tooltipRect.pivot = Vector2.up;
+                    SetRectAnchorsAndPicot(Vector2.up);
+                    canvasRect.anchoredPosition = Vector2.zero;
                     tooltipRect.anchoredPosition = offset;
+                    verticalLayout.childAlignment = TextAnchor.UpperLeft;
                 }
                 else // Lower Left
                 {
-                    tooltipRect.pivot = Vector2.zero;
+                    SetRectAnchorsAndPicot( Vector2.zero);
+                    canvasRect.anchoredPosition = Vector2.zero;
                     tooltipRect.anchoredPosition = new Vector2(offset.x, -offset.y);
+                    verticalLayout.childAlignment = TextAnchor.UpperLeft;
                 }
             }
+
+        }
+
+        void SetRectAnchorsAndPicot (Vector2 vec)
+        {
+            canvasRect.anchorMin = vec;
+            canvasRect.anchorMax = vec;
+            canvasRect.pivot = vec;
+            tooltipRect.anchorMin = vec;
+            tooltipRect.anchorMax = vec;
+            tooltipRect.pivot = vec;
+            
         }
 
         void OnHexTileEnter(HexTile tile)
@@ -107,7 +135,7 @@ namespace DaleranGames.UI
                 tooltipRect.gameObject.SetActive(true);
 
                 if (CommandMediator.Instance.ActiveMode && CommandMediator.Instance.CurrentCommand != null)
-                    tooltipText.text = CommandMediator.Instance.CurrentCommand.Info;
+                    tooltipText.text = CommandMediator.Instance.CurrentCommand.GetInfo(tile, GroupManager.Instance.PlayerGroup);
                 else
                     tooltipText.text = tile.Info;
             }
@@ -115,32 +143,28 @@ namespace DaleranGames.UI
 
         void OnHexTileExit(HexTile tile)
         {
-            isActive = false;
-            tooltipRect.gameObject.SetActive(false);
+            if (!HexCursorOverride && isActive)
+            {
+                isActive = false;
+                tooltipRect.gameObject.SetActive(false);
+            }
+
         }
 
         public void ShowTooltip(string text)
         {
-            isActive = true;
-            HexCursorOverride = true;
-            tooltipRect.gameObject.SetActive(true);
-            tooltipText.text = text;
-
-        }
-
-        public void UpdateText(string text)
-        {
-            if (isActive)
-            {
+                isActive = true;
+                HexCursorOverride = true;
+                tooltipRect.gameObject.SetActive(true);
                 tooltipText.text = text;
-            }
         }
 
         public void HideTooltip()
         {
-            isActive = false;
-            HexCursorOverride = false;
-            tooltipRect.gameObject.SetActive(false);
+                isActive = false;
+                HexCursorOverride = false;
+                tooltipRect.gameObject.SetActive(false);
+
         }
     }
 }

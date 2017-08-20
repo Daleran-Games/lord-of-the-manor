@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-
+using DaleranGames.UI;
 using DaleranGames.IO;
 
 namespace DaleranGames.TBSFramework
@@ -40,6 +40,21 @@ namespace DaleranGames.TBSFramework
                 return upgradeable.GetUpgradeGraphic(tile);
             else
                 return TileGraphic.Clear;
+        }
+
+        public override string GetInfo(HexTile tile, Group group)
+        {
+            IUpgradeable upgradeable = tile.Feature as IUpgradeable;
+            if (upgradeable == null)
+            {
+                return (("Tile Not Upgradeable").ToNegativeColor());
+            } else
+            {
+                if (!upgradeable.CanUpgrade(tile) || !(group == tile.Owner))
+                    return ("Cannot Upgrade " + tile.Feature.Name).ToNegativeColor();
+                else
+                    return ("Upgrade " + tile.Feature.Name).ToPositiveColor();
+            }
         }
     }
 }

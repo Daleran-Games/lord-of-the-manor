@@ -52,7 +52,6 @@ namespace DaleranGames.UI
             int nextTurn = player.Goods.GetTotalPendingTransactionsOfType(TrackedGood).Value;
 
             label.text = player.Goods[TrackedGood] + " ("+TextUtilities.ColorBasedOnNumber(nextTurn.ToString(),nextTurn,true)+")";
-            OnInfoUpdate(Info);
             //Canvas.ForceUpdateCanvases();
         }
 
@@ -118,7 +117,7 @@ namespace DaleranGames.UI
 
         public void OnInfoUpdate(string newInfo)
         {
-            TooltipManager.Instance.UpdateText(newInfo);
+            //TooltipManager.Instance.UpdateText(newInfo);
         }
     }
 }

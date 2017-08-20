@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DaleranGames.UI;
+using System;
 
 namespace DaleranGames.TBSFramework
 {
@@ -12,6 +14,11 @@ namespace DaleranGames.TBSFramework
         public BuyCommand(GoodType good) : base()
         {
             this.good = good;
+        }
+
+        public override string GetInfo(HexTile tile, Group group)
+        {
+            return "Not Valid For a Tile, Something went wrong".ToNegativeColor();
         }
 
         public override bool IsValidCommand(HexTile tile, Group owner)

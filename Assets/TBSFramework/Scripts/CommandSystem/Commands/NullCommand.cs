@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DaleranGames.UI;
 
 namespace DaleranGames.TBSFramework
 {
@@ -11,6 +12,11 @@ namespace DaleranGames.TBSFramework
         public NullCommand()
         {
 
+        }
+
+        public override string GetInfo(HexTile tile, Group group)
+        {
+            return "Null Command".ToNegativeColor();
         }
 
         public override void PreformCommand(HexTile tile, Group owner)

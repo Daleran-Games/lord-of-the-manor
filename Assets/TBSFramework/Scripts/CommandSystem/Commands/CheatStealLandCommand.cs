@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DaleranGames.IO;
+using DaleranGames.UI;
 
 namespace DaleranGames.TBSFramework
 {
@@ -11,6 +12,14 @@ namespace DaleranGames.TBSFramework
         public CheatStealLandCommand()
         {
 
+        }
+
+        public override string GetInfo(HexTile tile, Group group)
+        {
+            if (tile.Owner == group)
+                return ("You alread own " + tile.Land.Name + " at " + tile.Coordinate.ToString()).ToNegativeColor();
+            else
+                return ("Steal " + tile.Land.Name + " at " + tile.Coordinate.ToString()).ToPositiveColor();
         }
 
         public override void PreformCommand(HexTile tile, Group owner)

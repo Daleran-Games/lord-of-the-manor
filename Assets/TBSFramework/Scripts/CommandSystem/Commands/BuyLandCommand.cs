@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DaleranGames.IO;
+using System;
+using DaleranGames.UI;
 
 namespace DaleranGames.TBSFramework
 {
@@ -39,5 +41,23 @@ namespace DaleranGames.TBSFramework
             return TileGraphic.Clear;
         }
 
+        public override string GetInfo(HexTile tile, Group group)
+        {
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            sb.AppendLine(("Buy "+tile.Land.Name).ToHeaderStyle());
+            sb.AppendLine("Land Value: " + tile.Stats[StatType.LandValue] + TextUtilities.GetGoodTypeIcon(GoodType.Gold));
+
+            if (tile.Owner == group)
+                sb.AppendLine(("You already own " + tile.Land.Name).ToNegativeColor());
+            else if (group.Goods.Gold.Value < tile.Stats[StatType.LandValue])
+            {
+                int neededGold = tile.Stats[StatType.LandValue] - tile.Owner.Goods.Gold.Value;
+                sb.AppendLine(("You need " + neededGold + TextUtilities.GetGoodTypeIcon(GoodType.Gold)).ToNegativeColor());
+            }
+            else
+                sb.AppendLine(("Buy tile for "+ tile.Stats[StatType.LandValue] + TextUtilities.GetGoodTypeIcon(GoodType.Gold)).ToPositiveColor());
+
+            return sb.ToString();
+        }
     }
 }

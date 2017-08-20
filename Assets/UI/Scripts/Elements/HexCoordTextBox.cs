@@ -28,7 +28,7 @@ namespace DaleranGames.UI
         void OnTileChange (HexTile tile)
         {
             if (tile != null)
-                label.text = tile.HexPosition.ToString();
+                label.text = tile.Coordinate.ToString();
         }
     }
 }

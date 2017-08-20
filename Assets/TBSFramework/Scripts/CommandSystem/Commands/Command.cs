@@ -8,12 +8,12 @@ using DaleranGames.UI;
 namespace DaleranGames.TBSFramework
 {
     [System.Serializable]
-    public abstract class Command : ITooltipable
+    public abstract class Command 
     {
 
         public static readonly Command Null = new NullCommand();
 
-        public string Info { get { return "Test Command Tooltip"; } }
+        public abstract string GetInfo(HexTile tile, Group group);
 
         public virtual bool IsValidCommand(HexTile tile, Group owner)
         {

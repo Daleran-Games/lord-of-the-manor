@@ -13,7 +13,7 @@ namespace DaleranGames.TBSFramework
     {
         public HexTile(HexCoordinates coor, Vector2Int gcoord, Vector3 pos, int id, TileAtlas atlas)
         {
-            HexPosition = coor;
+            Coordinate = coor;
             Position = pos;
             GridPosition = gcoord;
             ID = id;
@@ -46,8 +46,8 @@ namespace DaleranGames.TBSFramework
 
         [SerializeField]
         [ReadOnly]
-        protected HexCoordinates hexPosition;
-        public HexCoordinates HexPosition { get { return hexPosition; } protected set { hexPosition = value; } }
+        protected HexCoordinates coordinate;
+        public HexCoordinates Coordinate { get { return coordinate; } protected set { coordinate = value; } }
 
         [SerializeField]
         [ReadOnly]
