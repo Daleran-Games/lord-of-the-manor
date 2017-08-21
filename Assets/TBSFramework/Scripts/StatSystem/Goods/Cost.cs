@@ -44,7 +44,7 @@ namespace DaleranGames.TBSFramework
             return new Transaction(good, Value + stats[ModifiedBy], Description);
         }
 
-        //If anything changes the modified value when canceling something with costs, then tehy will get back a different amount of money. An undo system would probably be better.
+        //If anything changes the modified value when canceling something with costs, then they will get back a different amount of money. An undo system would probably be better.
         public Transaction ReverseModifiedTransaction(IStatCollection<StatType> stats)
         {
             return new Transaction(good, -Value - stats[ModifiedBy], Description);
@@ -52,7 +52,7 @@ namespace DaleranGames.TBSFramework
 
         public static Cost ParseCSV(List<string> csvLine, int startingIndex)
         {
-            return new Cost((GoodType)Enum.Parse(typeof(GoodType), csvLine[startingIndex]), Enumeration.FromName<StatType>(csvLine[startingIndex+1]), Int32.Parse(csvLine[startingIndex + 2]), csvLine[startingIndex + 3]);
+            return new Cost(Enumeration.FromName<GoodType>(csvLine[startingIndex]), Enumeration.FromName<StatType>(csvLine[startingIndex+1]), Int32.Parse(csvLine[startingIndex + 2]), csvLine[startingIndex + 3]);
         }
 
         public static List<Cost> ParseCSVList(List<string> csvList)

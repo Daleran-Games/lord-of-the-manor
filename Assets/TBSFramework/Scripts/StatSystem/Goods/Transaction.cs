@@ -31,7 +31,7 @@ namespace DaleranGames.TBSFramework
 
         public static Transaction ParseCSV(List<string> csvLine, int startingIndex)
         {
-            return new Transaction((GoodType)Enum.Parse(typeof(GoodType), csvLine[startingIndex]), Int32.Parse(csvLine[startingIndex + 1]), csvLine[startingIndex + 2]);
+            return new Transaction(Enumeration.FromName<GoodType>(csvLine[startingIndex]), Int32.Parse(csvLine[startingIndex + 1]), csvLine[startingIndex + 2]);
         }
 
         public static List<Transaction> ParseCSVList(List<string> csvList)
