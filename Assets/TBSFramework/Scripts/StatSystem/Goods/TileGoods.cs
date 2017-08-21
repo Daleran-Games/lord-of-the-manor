@@ -23,9 +23,9 @@ namespace DaleranGames.TBSFramework
         {
             get
             {
-                switch (type)
+                switch (type.Value)
                 {
-                    case GoodType.Condition:
+                    case 7:
                         return Condition.Value;
                     default:
                         return 0;
@@ -33,9 +33,9 @@ namespace DaleranGames.TBSFramework
             }
             set
             {
-                switch (type)
+                switch (type.Value)
                 {
-                    case GoodType.Condition:
+                    case 7:
                         condition = value;
                         OnGoodChanged(this, Condition.Type);
                         break;

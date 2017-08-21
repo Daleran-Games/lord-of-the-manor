@@ -10,7 +10,9 @@ namespace DaleranGames.UI
 {
     public class GoodCounter : MonoBehaviour, ITooltipableGameObject
     {
-        public GoodType TrackedGood = GoodType.Food;
+        public int TrackedGoodID = 0;
+
+        protected GoodType TrackedGood = GoodType.Food;
         
         [SerializeField]
         protected TextMeshProUGUI label;
@@ -19,6 +21,7 @@ namespace DaleranGames.UI
         protected virtual void Start()
         {
             GameManager.Instance.Play.StateEnabled += OnGameStart;
+            TrackedGood = GoodType.FromValue<GoodType>(TrackedGoodID);
 
             //Debug.Log(posColor);
 
@@ -65,7 +68,7 @@ namespace DaleranGames.UI
         protected virtual string GenerateTooltipText()
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
-            sb.Append((TrackedGood.ToString()+TextUtilities.GetGoodTypeIcon(TrackedGood)).ToHeaderStyle());
+            sb.Append((TrackedGood.Name+TrackedGood.Icon).ToHeaderStyle());
             sb.Append(" "+ player.Goods[TrackedGood]);
 
             if (TrackedGood == GoodType.Food)
@@ -97,7 +100,7 @@ namespace DaleranGames.UI
                 }
             }
 
-            sb.AppendLine(TextUtilities.GetGoodTypeDescription(TrackedGood).ToFootnoteStyle());
+            sb.AppendLine(TrackedGood.Description.ToFootnoteStyle());
 
             return sb.ToString();
         }

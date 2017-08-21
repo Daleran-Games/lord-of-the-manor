@@ -45,17 +45,17 @@ namespace DaleranGames.TBSFramework
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             sb.AppendLine(("Buy "+tile.Land.Name).ToHeaderStyle());
-            sb.AppendLine("Land Value: " + tile.Stats[StatType.LandValue] + TextUtilities.GetGoodTypeIcon(GoodType.Gold));
+            sb.AppendLine("Land Value: " + tile.Stats[StatType.LandValue] + GoodType.Gold.Icon);
 
             if (tile.Owner == group)
                 sb.AppendLine(("You already own " + tile.Land.Name).ToNegativeColor());
             else if (group.Goods.Gold.Value < tile.Stats[StatType.LandValue])
             {
                 int neededGold = tile.Stats[StatType.LandValue] - tile.Owner.Goods.Gold.Value;
-                sb.AppendLine(("You need " + neededGold + TextUtilities.GetGoodTypeIcon(GoodType.Gold)).ToNegativeColor());
+                sb.AppendLine(("You need " + neededGold + GoodType.Gold.Icon).ToNegativeColor());
             }
             else
-                sb.AppendLine(("Buy tile for "+ tile.Stats[StatType.LandValue] + TextUtilities.GetGoodTypeIcon(GoodType.Gold)).ToPositiveColor());
+                sb.AppendLine(("Buy tile for "+ tile.Stats[StatType.LandValue] + GoodType.Gold.Icon).ToPositiveColor());
 
             return sb.ToString();
         }

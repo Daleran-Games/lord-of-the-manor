@@ -51,19 +51,19 @@ namespace DaleranGames.TBSFramework
         {
             get
             {
-                switch(type)
+                switch(type.Value)
                 {
-                    case GoodType.Food:
+                    case 0:
                         return Food.Value;
-                    case GoodType.Wood:
+                    case 1:
                         return Wood.Value;
-                    case GoodType.Stone:
+                    case 2:
                         return Stone.Value;
-                    case GoodType.Gold:
+                    case 3:
                         return Gold.Value;
-                    case GoodType.Population:
+                    case 5:
                         return Population.Value;
-                    case GoodType.Labor:
+                    case 4:
                         return Labor.Value;
                     default:
                         return 0;
@@ -72,29 +72,29 @@ namespace DaleranGames.TBSFramework
 
             set
             {
-                switch (type)
+                switch (type.Value)
                 {
-                    case GoodType.Food:
+                    case 0:
                         food = value;
                         OnGoodChanged(this, Food.Type);
                         break;
-                    case GoodType.Wood:
+                    case 1:
                         wood = value;
                         OnGoodChanged(this, Wood.Type);
                         break;
-                    case GoodType.Stone:
+                    case 2:
                         stone = value;
                         OnGoodChanged(this, Stone.Type);
                         break;
-                    case GoodType.Gold:
+                    case 3:
                         gold = value;
                         OnGoodChanged(this, Gold.Type);
                         break;
-                    case GoodType.Population:
+                    case 5:
                         population = value;
                         OnGoodChanged(this, Population.Type);
                         break;
-                    case GoodType.Labor:
+                    case 4:
                         labor = value;
                         OnGoodChanged(this, Labor.Type);
                         break;

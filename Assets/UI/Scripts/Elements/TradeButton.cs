@@ -12,7 +12,7 @@ namespace DaleranGames.UI
         [SerializeField]
         Button button;
 
-        [SerializeField]
+        public int GoodTypeID=0;
         GoodType goodType;
 
         [SerializeField]
@@ -21,6 +21,7 @@ namespace DaleranGames.UI
 
         void Start()
         {
+            goodType = GoodType.FromValue<GoodType>(GoodTypeID);
             TurnManager.Instance.TurnStart += OnSeasonStart;
             GroupManager.Instance.PlayerGroup.Goods.GoodChanged += OnValueChange;
             OnSeasonStart(TurnManager.Instance.CurrentTurn);
@@ -70,7 +71,7 @@ namespace DaleranGames.UI
             if(buy)
             {
                 sb.AppendLine(TextUtilities.ToHeaderStyle("Buy " + goodType));
-                sb.AppendLine("Buy <b>" + Market.Instance.StackSize + "</b> " + TextUtilities.GetGoodTypeIcon(goodType) + " for " +Market.Instance.GetGoldCost(goodType).ToString().ToNegativeColor()+ TextUtilities.GetGoodTypeIcon(GoodType.Gold) + " and "+Market.Instance.GetLaborCost(goodType).ToString().ToNegativeColor() + TextUtilities.GetGoodTypeIcon(GoodType.Labor) + ".");
+                sb.AppendLine("Buy <b>" + Market.Instance.StackSize + "</b> " + goodType.Icon + " for " +Market.Instance.GetGoldCost(goodType).ToString().ToNegativeColor()+ GoodType.Gold.Icon + " and "+Market.Instance.GetLaborCost(goodType).ToString().ToNegativeColor() + GoodType.Labor.Icon + ".");
 
                 if (!Market.Instance.CanBuy(goodType, GroupManager.Instance.PlayerGroup))
                     sb.AppendLine("You cannot afford to buy this.".ToNegativeColor());
@@ -78,7 +79,7 @@ namespace DaleranGames.UI
             else
             {
                 sb.AppendLine(TextUtilities.ToHeaderStyle("Sell " + goodType));
-                sb.AppendLine("Sell <b>" + Market.Instance.StackSize + "</b> " + TextUtilities.GetGoodTypeIcon(goodType) + " for " + Market.Instance.GetSellPrice(goodType).ToString().ToPositiveColor() + TextUtilities.GetGoodTypeIcon(GoodType.Gold) + " and " + Market.Instance.GetLaborCost(goodType).ToString().ToNegativeColor() + TextUtilities.GetGoodTypeIcon(GoodType.Labor) + ".");
+                sb.AppendLine("Sell <b>" + Market.Instance.StackSize + "</b> " + goodType.Icon + " for " + Market.Instance.GetSellPrice(goodType).ToString().ToPositiveColor() + GoodType.Gold.Icon + " and " + Market.Instance.GetLaborCost(goodType).ToString().ToNegativeColor() + GoodType.Labor.Icon + ".");
 
                 if (!Market.Instance.CanSell(goodType, GroupManager.Instance.PlayerGroup))
                     sb.AppendLine("You cannot sell this.".ToNegativeColor());

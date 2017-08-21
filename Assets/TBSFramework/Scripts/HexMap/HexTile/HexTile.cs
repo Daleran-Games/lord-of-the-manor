@@ -63,7 +63,7 @@ namespace DaleranGames.TBSFramework
         {
             get
             {
-                return "Test Tile Tooltip";
+                return "Test Tile Tooltip" + StatType.GroupWoodRate.Icon;
             }
         }
 
