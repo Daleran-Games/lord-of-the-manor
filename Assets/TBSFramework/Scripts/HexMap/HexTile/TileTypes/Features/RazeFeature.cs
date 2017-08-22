@@ -54,7 +54,7 @@ namespace DaleranGames.TBSFramework
             {
                 tile.Owner.Goods.ProcessNow(razeLaborCost.ModifiedTransaction(tile.Owner.Stats));
                 tile.Owner.Goods.AddFuture(razeLaborCost.ModifiedTransaction(tile.Owner.Stats));
-                tile.Counters.AddCounter(razeTimeCost.ModifiedBy);
+                tile.Counters.AddCounter(razeTimeCost.ModifiedBy, razeTimeCost.ModifiedValue(tile.Owner.Stats));
                 RaiseWorkIconChangeEvent(tile,GetWorkIcon(tile));
             }
 

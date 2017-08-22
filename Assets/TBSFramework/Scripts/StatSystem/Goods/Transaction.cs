@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using DaleranGames.IO;
+using DaleranGames.UI;
 
 namespace DaleranGames.TBSFramework
 {
@@ -20,6 +21,19 @@ namespace DaleranGames.TBSFramework
         [SerializeField]
         string description;
         public string Description { get { return description; } }
+
+        public string Info
+        {
+            get
+            {
+                if (Value > 0)
+                    return ("+" + Value.ToString()).ToPositiveColor() + Type.Icon  + " " + Description;
+                else if (Value < 0)
+                    return Value.ToString().ToNegativeColor() + Type.Icon  + " " + Description;
+                else
+                    return Value.ToString() + Type.Icon + " " + Description;
+            }
+        }
 
 
         public Transaction(GoodType type, int amount, string description)

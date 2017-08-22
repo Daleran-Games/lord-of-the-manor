@@ -59,19 +59,41 @@ namespace DaleranGames.TBSFramework
         protected Vector3 position = Vector3.zero;
         public Vector3 Position { get { return position; } protected set { position = value; } }
 
+
         public string Info
         {
             get
             {
-                return "Test Tile Tooltip" + StatType.GroupWoodRate.Icon;
+                return GenerateTooltip();
             }
         }
 
         public string GenerateTooltip()
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
-            sb.AppendLine(Land.Name.ToHeaderStyle());
-            
+            sb.Append(Land.Name.ToHeaderStyle());
+
+            if (Feature != FeatureType.Null && Feature != null)
+                sb.AppendLine(" - <b>" + Feature.Name + "</b>");
+            else
+                sb.AppendLine("");
+
+
+            sb.AppendLine("<b>Tile Stats</b>");
+            sb.AppendLine(Stats.Info);
+
+            if (OwnerModifiers.Count > 0)
+            {
+                sb.AppendLine("<b>Owner Modifiers</b>");
+                sb.AppendLine(OwnerModifiers.Info);
+            }
+
+            if (Counters.Count > 0)
+            {
+                sb.AppendLine("<b>Timers</b>");
+                sb.AppendLine(Counters.Info);
+            }
+
 
             return sb.ToString();
         }

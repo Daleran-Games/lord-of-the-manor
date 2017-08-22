@@ -80,7 +80,7 @@ namespace DaleranGames.TBSFramework
                 tile.Owner.Goods.ProcessNow(initialBuildCosts.GetAllCostsAsTransaction(tile.Owner.Stats));
                 tile.Owner.Goods.ProcessNow(perTurnBuildCosts.GetAllCostsAsTransaction(tile.Owner.Stats));
                 tile.Owner.Goods.AddFuture(perTurnBuildCosts.GetAllCostsAsTransaction(tile.Owner.Stats));
-                tile.Counters.AddCounter(buildTimeCost.ModifiedBy);
+                tile.Counters.AddCounter(buildTimeCost.ModifiedBy,buildTimeCost.ModifiedValue(tile.Owner.Stats));
                 RaiseWorkIconChangeEvent(tile, GetWorkIcon(tile));
             }
 

@@ -96,7 +96,7 @@ namespace DaleranGames.TBSFramework
         {
             tile.TerrainGraphics.Add(TileLayers.Improvements, sowingGraphic);
 
-            tile.Counters.AddCounter(cycleTime.ModifiedBy);
+            tile.Counters.AddCounter(cycleTime.ModifiedBy,cycleTime.ModifiedValue(tile.Owner.Stats));
 
             tile.Stats.Add(TileModifiers);
             tile.OwnerModifiers.Add(OwnerModifiers);
@@ -115,7 +115,7 @@ namespace DaleranGames.TBSFramework
         {
             if (tile.Counters[cycleTime.ModifiedBy] == 0)
             {
-                tile.Counters.AddCounter(cycleTime.ModifiedBy);
+                tile.Counters.AddCounter(cycleTime.ModifiedBy, cycleTime.ModifiedValue(tile.Owner.Stats));
 
                 tile.TerrainGraphics.Remove(TileLayers.Improvements);
                 tile.TerrainGraphics.Add(TileLayers.Improvements, sowingGraphic);
@@ -190,7 +190,7 @@ namespace DaleranGames.TBSFramework
             tile.TerrainGraphics.Remove(TileLayers.Improvements);
             tile.TerrainGraphics.Add(TileLayers.Improvements, sowingGraphic);
 
-            tile.Counters.AddCounter(cycleTime.ModifiedBy);
+            tile.Counters.AddCounter(cycleTime.ModifiedBy,cycleTime.ModifiedValue(tile.Owner.Stats));
 
             tile.Stats.Add(TileModifiers);
             tile.OwnerModifiers.Add(OwnerModifiers);

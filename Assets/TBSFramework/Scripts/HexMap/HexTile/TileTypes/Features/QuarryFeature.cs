@@ -83,7 +83,7 @@ namespace DaleranGames.TBSFramework
         {
             tile.TerrainGraphics.Add(TileLayers.Improvements, quarryGraphic);
 
-            tile.Counters.AddCounter(quarryTime.ModifiedBy);
+            tile.Counters.AddCounter(quarryTime.ModifiedBy,quarryTime.ModifiedValue(tile.Owner.Stats));
             tile.Stats.Add(TileModifiers);
             tile.OwnerModifiers.Add(OwnerModifiers);
 

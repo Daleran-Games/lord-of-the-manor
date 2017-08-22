@@ -81,7 +81,7 @@ namespace DaleranGames.TBSFramework
         public override void OnActivation(HexTile tile)
         {
             tile.TerrainGraphics.Add(TileLayers.Improvements, loggingGraphic);
-            tile.Counters.AddCounter(loggingTime.ModifiedBy);
+            tile.Counters.AddCounter(loggingTime.ModifiedBy,loggingTime.ModifiedValue(tile.Owner.Stats));
             tile.Stats.Add(TileModifiers);
             tile.OwnerModifiers.Add(OwnerModifiers);
 

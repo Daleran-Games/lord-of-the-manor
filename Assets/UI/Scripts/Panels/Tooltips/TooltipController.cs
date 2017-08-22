@@ -8,9 +8,9 @@ using DaleranGames.IO;
 
 namespace DaleranGames.UI
 {
-    public class TooltipManager : Singleton<TooltipManager>
+    public class TooltipController : Singleton<TooltipController>
     {
-        protected TooltipManager( ) { }
+        protected TooltipController( ) { }
 
         [SerializeField]
         RectTransform canvasRect;
@@ -77,7 +77,7 @@ namespace DaleranGames.UI
         {
             Vector3 mousePos = MouseCursor.Instance.Position;
             float screenHalfX = Screen.width - tooltipRect.rect.width;
-            float screenHalfY = tooltipRect.rect.height*2f;
+            float screenHalfY = tooltipRect.rect.height;
 
             if (mousePos.x >= screenHalfX) // Right Side
             {

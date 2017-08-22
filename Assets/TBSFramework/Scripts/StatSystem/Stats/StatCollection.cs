@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using DaleranGames.UI;
 
 namespace DaleranGames.TBSFramework
 {
@@ -15,6 +16,8 @@ namespace DaleranGames.TBSFramework
         protected Dictionary<StatType, int> totals;
 
         public event Action<IStatCollection<StatType>, StatType> StatModified;
+
+        public int Count { get { return totals.Count; } }
 
         public static readonly NullStatCollection Null = new NullStatCollection();
 
@@ -142,6 +145,29 @@ namespace DaleranGames.TBSFramework
         {
             if (StatModified != null)
                 StatModified(stats, statType);
+        }
+
+        public virtual string Info
+        {
+            get
+            {
+                System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                bool first = true;
+
+                foreach(KeyValuePair<StatType, int> kvp in totals)
+                {
+                    if (first == true)
+                    {
+                        first = false;
+                    }
+                    else
+                        sb.AppendLine();
+
+                    sb.Append(kvp.Key.Name+kvp.Key.Icon+" "+TextUtilities.ColorBasedOnNumber(kvp.Value.ToString(),kvp.Value,false));
+                }
+
+                return sb.ToString();
+            }
         }
 
 

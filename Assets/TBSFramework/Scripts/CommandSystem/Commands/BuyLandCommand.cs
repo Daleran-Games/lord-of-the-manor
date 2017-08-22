@@ -44,18 +44,23 @@ namespace DaleranGames.TBSFramework
         public override string GetInfo(HexTile tile, Group group)
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
-            sb.AppendLine(("Buy "+tile.Land.Name).ToHeaderStyle());
-            sb.AppendLine("Land Value: " + tile.Stats[StatType.LandValue] + GoodType.Gold.Icon);
+
 
             if (tile.Owner == group)
+            {
+                sb.AppendLine(("Buy " + tile.Land.Name +" for "+ tile.Stats[StatType.LandValue] + GoodType.Gold.Icon).ToHeaderStyle().ToNegativeColor());
                 sb.AppendLine(("You already own " + tile.Land.Name).ToNegativeColor());
+            }
             else if (group.Goods.Gold.Value < tile.Stats[StatType.LandValue])
             {
-                int neededGold = tile.Stats[StatType.LandValue] - tile.Owner.Goods.Gold.Value;
-                sb.AppendLine(("You need " + neededGold + GoodType.Gold.Icon).ToNegativeColor());
+                sb.AppendLine(("Buy " + tile.Land.Name + " for " + tile.Stats[StatType.LandValue] + GoodType.Gold.Icon).ToHeaderStyle().ToNegativeColor());
+                sb.AppendLine(("You have " + group.Goods[GoodType.Gold] + GoodType.Gold.Icon).ToNegativeColor());
+
             }
             else
-                sb.AppendLine(("Buy tile for "+ tile.Stats[StatType.LandValue] + GoodType.Gold.Icon).ToPositiveColor());
+            {
+                sb.AppendLine(("Buy " + tile.Land.Name + " for " + tile.Stats[StatType.LandValue] + GoodType.Gold.Icon).ToHeaderStyle().ToPositiveColor());
+            }
 
             return sb.ToString();
         }

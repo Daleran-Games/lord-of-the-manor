@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using DaleranGames.IO;
+using DaleranGames.UI;
 
 namespace DaleranGames.TBSFramework
 {
@@ -58,6 +59,19 @@ namespace DaleranGames.TBSFramework
         public string ToString(string format, IFormatProvider formatProvider)
         {
             return ToString();
+        }
+
+        public string Info
+        {
+            get
+            {
+                if (Value > 0)
+                    return Type.ToString() +": "+("+" + Value.ToString()).ToPositiveColor() + Type.Icon +" "+ Description.ToPositiveColor();
+                else if (Value < 0)
+                    return Type.ToString() + ": " + Value.ToString().ToNegativeColor() + Type.Icon +" "+ Description.ToNegativeColor();
+                else
+                    return Type.ToString() + ": " + Value.ToString() + Type.Icon + " " + Description;
+            }
         }
 
         public bool Equals(Modifier other)

@@ -140,7 +140,7 @@ namespace DaleranGames.TBSFramework
                 lastClickTime = Time.time;
                 PreformCommandOnTile(currentCommand, tile, activeOwner);
                 UpdateCursor(tile);
-                TooltipManager.Instance.ForceHexTileTooltipUpdate();
+                TooltipController.Instance.ForceHexTileTooltipUpdate();
                 //Debug.Log("Recieved Left Click");
             }
 
@@ -149,7 +149,7 @@ namespace DaleranGames.TBSFramework
         void OnRightClick()
         {
             ExitCommandMode();
-            TooltipManager.Instance.ForceHexTileTooltipUpdate();
+            TooltipController.Instance.ForceHexTileTooltipUpdate();
 
         }
 

@@ -93,12 +93,12 @@ namespace DaleranGames.UI
 
         public virtual void OnPointerEnter(PointerEventData eventData)
         {
-                TooltipManager.Instance.ShowTooltip(Info);
+                TooltipController.Instance.ShowTooltip(Info);
         }
 
         public virtual void OnPointerExit(PointerEventData eventData)
         {
-            TooltipManager.Instance.HideTooltip();
+            TooltipController.Instance.HideTooltip();
         }
 
         public void OnInfoUpdate(string newInfo)

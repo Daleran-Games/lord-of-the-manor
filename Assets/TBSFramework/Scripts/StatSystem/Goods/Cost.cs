@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using DaleranGames.UI;
 
 namespace DaleranGames.TBSFramework
 {
@@ -25,6 +26,17 @@ namespace DaleranGames.TBSFramework
         public string Description { get { return description; } }
 
         public static readonly Cost Null = new Cost(GoodType.None,StatType.NullStat, 0, "");
+
+        public string Info
+        {
+            get
+            {
+                if (Value >= 0)
+                    return ModifiedBy.Name+": "+ Value.ToString().ToPositiveColor() + Good.Icon;
+                else
+                    return ModifiedBy.Name + ": " + Value.ToString().ToNegativeColor() + Good.Icon;
+            }
+        }
 
         public Cost(GoodType good, StatType modifiedBy, int amount, string description)
         {
