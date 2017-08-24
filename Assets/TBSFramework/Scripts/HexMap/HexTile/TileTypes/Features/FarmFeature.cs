@@ -27,8 +27,7 @@ namespace DaleranGames.TBSFramework
         [SerializeField]
         Cost cycleTime;
 
-        [SerializeField]
-        Cost buildLaborCost;
+
         [SerializeField]
         Cost cultivateLaborCost;
 
@@ -63,7 +62,6 @@ namespace DaleranGames.TBSFramework
             growingTime = new Cost(GoodType.Turns, StatType.FarmGrowTime, Int32.Parse(entry["growTime"]), name);
             cycleTime = new Cost(GoodType.Turns, StatType.FarmCycleTime, Int32.Parse(entry["cycleTime"]), name);
 
-            buildLaborCost = new Cost(GoodType.Labor, StatType.FarmLaborCost, Int32.Parse(entry["buildLaborCost"]), name);
             cultivateLaborCost = new Cost(GoodType.Labor, StatType.FarmLaborCost, Int32.Parse(entry["cultivateLaborCost"]), name);
 
             tileModifiers.Add(new Modifier(StatType.DefenseBonus, Int32.Parse(entry["defenseBonus"]), name));
@@ -101,7 +99,7 @@ namespace DaleranGames.TBSFramework
             tile.Stats.Add(TileModifiers);
             tile.OwnerModifiers.Add(OwnerModifiers);
 
-            tile.Owner.Goods.ProcessNow(buildLaborCost.ModifiedTransaction(tile.Owner.Stats));
+            tile.Owner.Goods.ProcessNow(cultivateLaborCost.ModifiedTransaction(tile.Owner.Stats));
 
             RaiseWorkIconChangeEvent(tile, GetWorkIcon(tile));
         }
@@ -120,16 +118,17 @@ namespace DaleranGames.TBSFramework
                 tile.TerrainGraphics.Remove(TileLayers.Improvements);
                 tile.TerrainGraphics.Add(TileLayers.Improvements, sowingGraphic);
             }
-            else if (tile.Counters[cycleTime.ModifiedBy] == 1)
+            else if (tile.Counters[cycleTime.ModifiedBy] == growingTime.ModifiedValue(tile.Owner.Stats)-1)
             {
                 tile.TerrainGraphics.Remove(TileLayers.Improvements);
                 tile.TerrainGraphics.Add(TileLayers.Improvements, growingGraphic);
+                tile.Owner.Goods.AddFuture(cultivateLaborCost.ModifiedTransaction(tile.Owner.Stats));
 
             } else if (tile.Counters[cycleTime.ModifiedBy] == growingTime.ModifiedValue(tile.Owner.Stats))
             {
                 tile.TerrainGraphics.Remove(TileLayers.Improvements);
                 tile.TerrainGraphics.Add(TileLayers.Improvements, harvestGraphic);
-                tile.Owner.Goods.AddFuture(cultivateLaborCost.ModifiedTransaction(tile.Owner.Stats));
+                Debug.Log("Food Rate: "+ tile.Stats[StatType.FarmingFoodRate]);
                 tile.Owner.Goods.AddFuture(new Transaction(GoodType.Food, tile.Stats[StatType.FarmingFoodRate], name));
 
             }else if (tile.Counters[cycleTime.ModifiedBy] < cycleTime.ModifiedValue(tile.Owner.Stats)-1 && tile.Counters[cycleTime.ModifiedBy] > growingTime.ModifiedValue(tile.Owner.Stats))
@@ -204,7 +203,7 @@ namespace DaleranGames.TBSFramework
 
         public bool CanResume(HexTile tile)
         {
-            if ((TurnManager.Instance.CurrentTurn == TurnManager.Instance.Spring || TurnManager.Instance.CurrentTurn == TurnManager.Instance.Fall))
+            if (TurnManager.Instance.CurrentTurn == TurnManager.Instance.Spring && tile.Owner.Goods.CanProcessNow(cultivateLaborCost.ModifiedTransaction(tile.Owner.Stats)))
                 return true;
             else
                 return false;
@@ -230,7 +229,7 @@ namespace DaleranGames.TBSFramework
 
         public bool CanPlace(HexTile tile)
         {
-            if (validLands.Contains(tile.Land) && (TurnManager.Instance.CurrentTurn == TurnManager.Instance.Spring || TurnManager.Instance.CurrentTurn == TurnManager.Instance.Fall))
+            if (validLands.Contains(tile.Land) && TurnManager.Instance.CurrentTurn == TurnManager.Instance.Spring && tile.Owner.Goods.CanProcessNow(cultivateLaborCost.ModifiedTransaction(tile.Owner.Stats)))
             {
                 return true;
             }

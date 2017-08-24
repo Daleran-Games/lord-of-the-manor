@@ -39,6 +39,29 @@ namespace DaleranGames.TBSFramework
             }
         }
 
+        public virtual string Info
+        {
+            get
+            {
+                System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                bool first = true;
+                foreach (KeyValuePair<StatType, int> kvp in totals)
+                {
+                    if (first == true)
+                    {
+                        first = false;
+                    }
+                    else
+                        sb.AppendLine();
+
+                    sb.Append(kvp.Key.Name);
+                    sb.Append(kvp.Key.Icon + " ");
+                    sb.Append(TextUtilities.ColorBasedOnNumber(kvp.Value.ToString(), kvp.Value, false));
+                }
+                return sb.ToString();
+            }
+        }
+
         public virtual List<StatType> Types
         {
             get
@@ -147,28 +170,7 @@ namespace DaleranGames.TBSFramework
                 StatModified(stats, statType);
         }
 
-        public virtual string Info
-        {
-            get
-            {
-                System.Text.StringBuilder sb = new System.Text.StringBuilder();
-                bool first = true;
 
-                foreach(KeyValuePair<StatType, int> kvp in totals)
-                {
-                    if (first == true)
-                    {
-                        first = false;
-                    }
-                    else
-                        sb.AppendLine();
-
-                    sb.Append(kvp.Key.Name+kvp.Key.Icon+" "+TextUtilities.ColorBasedOnNumber(kvp.Value.ToString(),kvp.Value,false));
-                }
-
-                return sb.ToString();
-            }
-        }
 
 
     }

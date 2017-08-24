@@ -134,15 +134,11 @@ namespace DaleranGames.UI
         void OnHexTileEnter(HexTile tile)
         {
             // Think about adding a delay 0.3-0.5s delay
-            if (!HexCursorOverride && tile != null)
+            if (!HexCursorOverride && tile != null && CommandMediator.Instance.ActiveMode && CommandMediator.Instance.CurrentCommand != null)
             {
                 isActive = true;
                 tooltipRect.gameObject.SetActive(true);
-
-                if (CommandMediator.Instance.ActiveMode && CommandMediator.Instance.CurrentCommand != null)
-                    tooltipText.text = CommandMediator.Instance.CurrentCommand.GetInfo(tile, GroupManager.Instance.PlayerGroup);
-                else
-                    tooltipText.text = tile.Info;
+                tooltipText.text = CommandMediator.Instance.CurrentCommand.GetInfo(tile, GroupManager.Instance.PlayerGroup);
             }
         }
 

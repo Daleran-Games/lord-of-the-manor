@@ -59,7 +59,6 @@ namespace DaleranGames.TBSFramework
         public override TileGraphic GetMainGraphic(HexTile tile)
         {
             return quarryGraphic;
-
         }
 
         public override void OnDatabaseInitialization()
@@ -179,7 +178,10 @@ namespace DaleranGames.TBSFramework
 
         public bool CanResume(HexTile tile)
         {
-            return true;
+            if (tile.Owner.Goods.CanProcessNow(quarryLaborCost.ModifiedTransaction(tile.Owner.Stats)))
+                return true;
+            else
+                return false;
         }
 
         public int GetWorkUtility(HexTile tile)
@@ -202,10 +204,8 @@ namespace DaleranGames.TBSFramework
 
         public bool CanPlace(HexTile tile)
         {
-            if (validLands.Contains(tile.Land))
-            {
+            if (validLands.Contains(tile.Land) && tile.Owner.Goods.CanProcessNow(quarryLaborCost.ModifiedTransaction(tile.Owner.Stats)))
                 return true;
-            }
             else
                 return false;
         }

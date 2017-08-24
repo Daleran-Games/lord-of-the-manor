@@ -135,7 +135,10 @@ namespace DaleranGames.TBSFramework
 
         public bool CanResume(HexTile tile)
         {
-            return true;
+            if (tile.Owner.Goods.CanProcessNow(razeLaborCost.ModifiedTransaction(tile.Owner.Stats)))
+                return true;
+            else
+                return false;
         }
 
         public override TileGraphic GetWorkIcon(HexTile tile)

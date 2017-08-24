@@ -141,6 +141,7 @@ namespace DaleranGames.TBSFramework
                 PreformCommandOnTile(currentCommand, tile, activeOwner);
                 UpdateCursor(tile);
                 TooltipController.Instance.ForceHexTileTooltipUpdate();
+                InfoPanel.Instance.ForceInfoPanelUpdate();
                 //Debug.Log("Recieved Left Click");
             }
 
@@ -150,7 +151,6 @@ namespace DaleranGames.TBSFramework
         {
             ExitCommandMode();
             TooltipController.Instance.ForceHexTileTooltipUpdate();
-
         }
 
         void UpdateCursor (HexTile tile)

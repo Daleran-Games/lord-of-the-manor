@@ -172,7 +172,10 @@ namespace DaleranGames.TBSFramework
 
         public bool CanResume(HexTile tile)
         {
-            return true;
+            if (tile.Owner.Goods.CanProcessNow(loggingLaborCost.ModifiedTransaction(tile.Owner.Stats)))
+                return true;
+            else
+                return false;
         }
 
         public int GetWorkUtility(HexTile tile)
@@ -195,10 +198,8 @@ namespace DaleranGames.TBSFramework
 
         public bool CanPlace(HexTile tile)
         {
-            if (validLands.Contains(tile.Land))
-            {
+            if (validLands.Contains(tile.Land) && tile.Owner.Goods.CanProcessNow(loggingLaborCost.ModifiedTransaction(tile.Owner.Stats)))
                 return true;
-            }
             else
                 return false;
         }

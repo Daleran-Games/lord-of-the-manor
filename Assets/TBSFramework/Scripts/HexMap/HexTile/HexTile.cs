@@ -71,13 +71,11 @@ namespace DaleranGames.TBSFramework
         public string GenerateTooltip()
         {
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
-            sb.Append(Land.Name.ToHeaderStyle());
 
             if (Feature != FeatureType.Null && Feature != null)
-                sb.AppendLine(" - <b>" + Feature.Name + "</b>");
-            else
-                sb.AppendLine("");
+                sb.Append(Feature.Name.ToHeaderStyle() + "-");
 
+            sb.AppendLine(Land.Name.ToHeaderStyle());
 
             sb.AppendLine("<b>Tile Stats</b>");
             sb.AppendLine(Stats.Info);

@@ -69,24 +69,24 @@ namespace DaleranGames.TBSFramework
         public static readonly StatType RazeTime = new StatType(211, "Raze Time", ("Icon_16px_Raze".ToSprite() + "Modifier_16px_Turns".ToSprite()).OverlapCharacters());
 
         //Farming Stats
-        public static readonly StatType FarmLaborCost = new StatType(220, "Farm Labor Cost", ("Icon_16px_Good_Labor".ToSprite() + "Modifier_16px_Minus".ToSprite()).OverlapCharacters());
+        public static readonly StatType FarmLaborCost = new StatType(220, "Seasonal Farm Labor", ("Icon_16px_Good_Labor".ToSprite() + "Modifier_16px_Minus".ToSprite()).OverlapCharacters());
         public static readonly StatType FarmGrowTime = new StatType(221, "Farm Grow Time", ("Icon_16px_Farm".ToSprite() + "Modifier_16px_Turns".ToSprite()).OverlapCharacters());
         public static readonly StatType FarmCycleTime = new StatType(222, "Farm Cycle Time", ("Icon_16px_Farm".ToSprite() + "Modifier_16px_Turns".ToSprite()).OverlapCharacters());
-        public static readonly StatType FarmingFoodPerYield = new StatType(223, "Farming Food Per Tile Yield", ("Icon_16px_Good_Food".ToSprite() + "Modifier_16px_Plus".ToSprite()).OverlapCharacters());
-        public static readonly StatType FarmingFoodRate = new StatType(224, "Farming Food Rate", ("Icon_16px_Good_Food".ToSprite() + "Modifier_16px_Plus".ToSprite()).OverlapCharacters());
+        public static readonly StatType FarmingFoodPerYield = new StatType(223, "Farming Good Per Yield", ("Icon_16px_Good_Food".ToSprite() + "Modifier_16px_Plus".ToSprite()).OverlapCharacters());
+        public static readonly StatType FarmingFoodRate = new StatType(224, "Farming Food Per Turn", ("Icon_16px_Good_Food".ToSprite() + "Modifier_16px_Plus".ToSprite()).OverlapCharacters());
 
 
         //Logging Stats
-        public static readonly StatType LoggingLaborCost = new StatType(230, "Logging Labor Cost", ("Icon_16px_Good_Labor".ToSprite() + "Modifier_16px_Minus".ToSprite()).OverlapCharacters());
-        public static readonly StatType LoggingTime = new StatType(231, "Logging Time", ("Icon_16px_ClearForest".ToSprite() + "Modifier_16px_Turns".ToSprite()).OverlapCharacters());
-        public static readonly StatType LoggingWoodPerYield = new StatType(232, "Logging Wood Per Tile Yield", ("Icon_16px_Good_Wood".ToSprite() + "Modifier_16px_Plus".ToSprite()).OverlapCharacters());
-        public static readonly StatType LoggingWoodRate = new StatType(233, "Logging Wood Rate", ("Icon_16px_Good_Wood".ToSprite() + "Modifier_16px_Plus".ToSprite()).OverlapCharacters());
+        public static readonly StatType LoggingLaborCost = new StatType(230, "Seasonal Logging Labor", ("Icon_16px_Good_Labor".ToSprite() + "Modifier_16px_Minus".ToSprite()).OverlapCharacters());
+        public static readonly StatType LoggingTime = new StatType(231, "Time Untill Forest Cleared", ("Icon_16px_ClearForest".ToSprite() + "Modifier_16px_Turns".ToSprite()).OverlapCharacters());
+        public static readonly StatType LoggingWoodPerYield = new StatType(232, "Logging Wood Per Yield", ("Icon_16px_Good_Wood".ToSprite() + "Modifier_16px_Plus".ToSprite()).OverlapCharacters());
+        public static readonly StatType LoggingWoodRate = new StatType(233, "Logging Wood Per Turn", ("Icon_16px_Good_Wood".ToSprite() + "Modifier_16px_Plus".ToSprite()).OverlapCharacters());
 
         //Quarrying Stats
-        public static readonly StatType QuarryLaborCost = new StatType(240, "Quarry Labor Cost", ("Icon_16px_Good_Labor".ToSprite() + "Modifier_16px_Minus".ToSprite()).OverlapCharacters());
-        public static readonly StatType QuarryTime = new StatType(241, "Quarry Time", ("Icon_16px_Quarry".ToSprite() + "Modifier_16px_Turns".ToSprite()).OverlapCharacters());
-        public static readonly StatType QuarryingStonePerYield = new StatType(242, "Quarrying Stone Per Tile Yield", ("Icon_16px_Good_Stone".ToSprite() + "Modifier_16px_Plus".ToSprite()).OverlapCharacters());
-        public static readonly StatType QuarryingStoneRate = new StatType(243, "Quarrying Stone Rate", ("Icon_16px_Good_Stone".ToSprite() + "Modifier_16px_Plus".ToSprite()).OverlapCharacters());
+        public static readonly StatType QuarryLaborCost = new StatType(240, "Seasonal Quarry Labor", ("Icon_16px_Good_Labor".ToSprite() + "Modifier_16px_Minus".ToSprite()).OverlapCharacters());
+        public static readonly StatType QuarryTime = new StatType(241, "Time untill Quarry Depeleted", ("Icon_16px_Quarry".ToSprite() + "Modifier_16px_Turns".ToSprite()).OverlapCharacters());
+        public static readonly StatType QuarryingStonePerYield = new StatType(242, "Quarry Stone Per Yield", ("Icon_16px_Good_Stone".ToSprite() + "Modifier_16px_Plus".ToSprite()).OverlapCharacters());
+        public static readonly StatType QuarryingStoneRate = new StatType(243, "Quarry Stone Per Turn", ("Icon_16px_Good_Stone".ToSprite() + "Modifier_16px_Plus".ToSprite()).OverlapCharacters());
 
         //Need to implement
 

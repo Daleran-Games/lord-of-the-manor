@@ -34,11 +34,11 @@ namespace DaleranGames.TBSFramework
             {
                 switch (statType.Name)
                 {
-                    case "Farming Food Rate":
+                    case "Farming Food Per Turn":
                         return (Get(StatType.FoodYield) * Get(StatType.FarmingFoodPerYield)) + Get(StatType.FarmingFoodRate);
-                    case "Logging Wood Rate":
+                    case "Logging Wood Per Turn":
                         return (Get(StatType.WoodYield) * Get(StatType.LoggingWoodPerYield)) + Get(StatType.LoggingWoodRate);
-                    case "Quarrying Stone Rate":
+                    case "Quarry Stone Per Turn":
                         return (Get(StatType.StoneYield) * Get(StatType.QuarryingStonePerYield)) + Get(StatType.QuarryingStoneRate);
                     default:
                         return Get(statType);
