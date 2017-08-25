@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace DaleranGames.TBSFramework
 {
-    public interface ICancelable
+    public interface ICancelable : ICommandable
     {
         bool CanCancel(HexTile tile);
         void Cancel(HexTile tile);

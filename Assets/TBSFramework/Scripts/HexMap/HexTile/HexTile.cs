@@ -27,6 +27,7 @@ namespace DaleranGames.TBSFramework
             owner = Group.Null;
             feature = FeatureType.Null;
             Counters = new TurnCounters(TurnManager.Instance);
+            work = new WorkStatus();
 
             Stats = new TileStats(owner);
             OwnerModifiers = new TileGroupModifiers(owner);
@@ -127,28 +128,25 @@ namespace DaleranGames.TBSFramework
             set
             {
                 feature.OnDeactivation(this);
-                SwitchFeatureWithNoDeactiviation(value);
+                SwitchFeatureOnly(value);
+                feature.OnActivation(this);
             }
         }
 
         public void SwitchFeatureWithNoDeactiviation (FeatureType newFeature)
         {
-            if (newFeature == null)
-            {
-                feature = FeatureType.Null;
-                debugFeatureName = "Null";
-            }
-            else
-            {
-                feature = newFeature;
-                debugFeatureName = feature.Name;
-            }
+            SwitchFeatureOnly(newFeature);
             feature.OnActivation(this);
         }
 
         public void SwitchFeatureWithNoActiviation(FeatureType newFeature)
         {
             feature.OnDeactivation(this);
+            SwitchFeatureOnly(newFeature);
+        }
+
+        public void SwitchFeatureOnly(FeatureType newFeature)
+        {
             if (newFeature == null)
             {
                 feature = FeatureType.Null;
@@ -162,28 +160,24 @@ namespace DaleranGames.TBSFramework
         }
 
         [SerializeField]
-        protected bool paused = false;
-        public bool Paused { get { return paused; } set { paused = value; } }
-
-        [SerializeField]
-        protected bool pausedOverride = false;
-        public bool PausedOverride { get { return pausedOverride; } set { pausedOverride = value; } }
+        protected WorkStatus work;
+        public WorkStatus Work { get { return work; } }
 
         void OnTurnEnd(BaseTurn turn)
         {
-            if (Feature != null && !Paused)
+            if (Feature != null && !Work.Paused)
                 Feature.OnTurnEnd(turn, this);
         }
 
         void OnTurnSetUp(BaseTurn turn)
         {
-            if (Feature != null && !Paused)
+            if (Feature != null && !Work.Paused)
                 Feature.OnTurnSetUp(turn, this);
         }
 
         void OnTurnStart(BaseTurn turn)
         {
-            if (Feature != null && !Paused)
+            if (Feature != null && !Work.Paused)
                 Feature.OnTurnStart(turn, this);
         }
 

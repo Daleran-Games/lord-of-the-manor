@@ -179,7 +179,7 @@ namespace DaleranGames.TBSFramework
             tile.Stats.Remove(TileModifiers);
             tile.OwnerModifiers.Remove(OwnerModifiers);
 
-            tile.Paused = true;
+            tile.Work.Paused = true;
 
             RaiseWorkIconChangeEvent(tile, GetWorkIcon(tile));
         }
@@ -196,7 +196,7 @@ namespace DaleranGames.TBSFramework
 
             tile.Owner.Goods.ProcessNow(cultivateLaborCost.ModifiedTransaction(tile.Owner.Stats));
 
-            tile.Paused = false;
+            tile.Work.Paused = false;
 
             RaiseWorkIconChangeEvent(tile, GetWorkIcon(tile));
         }
@@ -221,7 +221,7 @@ namespace DaleranGames.TBSFramework
 
         public override TileGraphic GetWorkIcon(HexTile tile)
         {
-            if (tile.Paused)
+            if (tile.Work.Paused)
                 return GameDatabase.Instance.TileGraphics["Icon_16px_Sleep"];
             else
                 return GameDatabase.Instance.TileGraphics["Icon_16px_Farm"];

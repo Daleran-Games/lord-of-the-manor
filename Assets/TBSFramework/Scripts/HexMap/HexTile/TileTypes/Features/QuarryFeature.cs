@@ -7,7 +7,7 @@ using System;
 namespace DaleranGames.TBSFramework
 {
     [System.Serializable]
-    public class QuarryFeature : FeatureType, IWorkable, IPlaceable
+    public class QuarryFeature : FeatureType, IPlaceable, ISeasonable
     {
         [SerializeField]
         string quarryGraphicName;
@@ -138,7 +138,7 @@ namespace DaleranGames.TBSFramework
             tile.Counters.RemoveCounter(quarryTime.ModifiedBy);
             tile.Stats.Remove(TileModifiers);
             tile.OwnerModifiers.Remove(OwnerModifiers);
-
+            tile.Work.ResetSeasons();
             RaiseWorkIconChangeEvent(tile, TileGraphic.Clear);
         }
 
@@ -154,7 +154,7 @@ namespace DaleranGames.TBSFramework
             tile.Stats.Remove(TileModifiers);
             tile.OwnerModifiers.Remove(OwnerModifiers);
 
-            tile.Paused = true;
+            tile.Work.Paused = true;
 
             RaiseWorkIconChangeEvent(tile, GetWorkIcon(tile));
         }
@@ -171,7 +171,7 @@ namespace DaleranGames.TBSFramework
 
             tile.Owner.Goods.AddFuture(new Transaction(GoodType.Stone, tile.Stats[StatType.QuarryingStoneRate], name));
 
-            tile.Paused = false;
+            tile.Work.Paused = false;
 
             RaiseWorkIconChangeEvent(tile, GetWorkIcon(tile));
         }
@@ -196,7 +196,7 @@ namespace DaleranGames.TBSFramework
 
         public override TileGraphic GetWorkIcon(HexTile tile)
         {
-            if (tile.Paused)
+            if (tile.Work.Paused)
                 return GameDatabase.Instance.TileGraphics["Icon_16px_Sleep"];
             else
                 return GameDatabase.Instance.TileGraphics["Icon_16px_Quarry"];
@@ -213,6 +213,11 @@ namespace DaleranGames.TBSFramework
         public void Place(HexTile tile)
         {
             tile.Feature = this;
+        }
+
+        public void WorkSeason(HexTile tile, Seasons season, bool work)
+        {
+            tile.Work.SetSeasonWorkable(season, work);
         }
 
 

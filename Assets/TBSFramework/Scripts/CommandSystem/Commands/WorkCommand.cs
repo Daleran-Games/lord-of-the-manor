@@ -20,9 +20,9 @@ namespace DaleranGames.TBSFramework
             IWorkable workable = tile.Feature as IWorkable;
             if (workable != null && owner == tile.Owner)
             {
-                if (tile.Paused && workable.CanResume(tile))
+                if (tile.Work.Paused && workable.CanResume(tile))
                     return true;
-                else if (!tile.Paused)
+                else if (!tile.Work.Paused)
                     return true;
             }
             return false;
@@ -32,21 +32,21 @@ namespace DaleranGames.TBSFramework
         {
             IWorkable workable = tile.Feature as IWorkable;
 
-            if (tile.Paused)
+            if (tile.Work.Paused)
             {
                 workable.Resume(tile);
-                tile.PausedOverride = false;
+                tile.Work.PausedOverride = false;
             }
             else
             {
                 workable.Pause(tile);
-                tile.PausedOverride = true;
+                tile.Work.PausedOverride = true;
             }
         }
 
         public override TileGraphic GetUIIcon(HexTile tile)
         {
-            if (tile.Paused)
+            if (tile.Work.Paused)
                 return GameDatabase.Instance.TileGraphics["Icon_32px_Work"];
             else
                 return GameDatabase.Instance.TileGraphics["Icon_16px_Sleep"]; 
@@ -61,7 +61,7 @@ namespace DaleranGames.TBSFramework
             }
             else
             {
-                if (!tile.Paused)
+                if (!tile.Work.Paused)
                     return (("Pause Tile").ToPositiveColor());
                 else
                 {

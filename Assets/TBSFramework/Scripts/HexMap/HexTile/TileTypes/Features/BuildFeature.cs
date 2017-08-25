@@ -159,7 +159,7 @@ namespace DaleranGames.TBSFramework
             tile.Counters.PauseCounter(true, buildTimeCost.ModifiedBy);
             tile.Owner.Goods.RemoveFuture(perTurnBuildCosts.GetAllCostsAsTransaction(tile.Owner.Stats));
             tile.Owner.Goods.ProcessNow(perTurnBuildCosts.GetAllReverseCostsAsTransaction(tile.Owner.Stats));
-            tile.Paused = true;
+            tile.Work.Paused = true;
             RaiseWorkIconChangeEvent(tile, GetWorkIcon(tile));
         }
 
@@ -168,7 +168,7 @@ namespace DaleranGames.TBSFramework
             tile.Counters.PauseCounter(false, buildTimeCost.ModifiedBy);
             tile.Owner.Goods.ProcessNow(perTurnBuildCosts.GetAllCostsAsTransaction(tile.Owner.Stats));
             tile.Owner.Goods.AddFuture(perTurnBuildCosts.GetAllCostsAsTransaction(tile.Owner.Stats));
-            tile.Paused = false;
+            tile.Work.Paused = false;
             RaiseWorkIconChangeEvent(tile, GetWorkIcon(tile));
         }
 
@@ -192,7 +192,7 @@ namespace DaleranGames.TBSFramework
 
         public override TileGraphic GetWorkIcon(HexTile tile)
         {
-            if (tile.Paused)
+            if (tile.Work.Paused)
                 return GameDatabase.Instance.TileGraphics["Icon_16px_Sleep"];
             else
                 return GameDatabase.Instance.TileGraphics["Icon_16px_Good_Labor"];

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace DaleranGames.TBSFramework
 {
-    public interface IBuildable
+    public interface IBuildable : ICommandable
     {
         BuildFeature Build { get; }
     }

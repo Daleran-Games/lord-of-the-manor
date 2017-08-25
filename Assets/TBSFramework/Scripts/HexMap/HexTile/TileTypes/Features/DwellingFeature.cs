@@ -103,6 +103,8 @@ namespace DaleranGames.TBSFramework
 
         public override void OnDeactivation(HexTile tile)
         {
+            Debug.Log("Deactivated");
+
             tile.TerrainGraphics.Remove(TileLayers.Improvements);
             tile.Stats.Remove(TileModifiers);
             tile.OwnerModifiers.Remove(OwnerModifiers);

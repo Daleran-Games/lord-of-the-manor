@@ -88,7 +88,8 @@ namespace DaleranGames.TBSFramework
         public void Cancel(HexTile tile)
         {
             upgradedBuildFeature.CancelWithNoFeatureSwitch(tile);
-            tile.SwitchFeatureWithNoActiviation(originalFeature);
+            upgradedBuildFeature.OnDeactivation(tile);
+            tile.SwitchFeatureOnly(originalFeature);
         }
 
         public bool CanCancel(HexTile tile)

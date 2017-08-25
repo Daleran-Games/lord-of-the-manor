@@ -453,13 +453,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 224959375}
-  m_Father: {fileID: 449787876}
+  m_Father: {fileID: 1236171575}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 24, y: 24}
+  m_SizeDelta: {x: 28, y: 28}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &55594382
 MonoBehaviour:
@@ -500,7 +500,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 55594383}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1236171578}
+        m_MethodName: BuyTile
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &55594383
@@ -544,13 +555,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 55594380}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa3b62488aa953140b05639fb19f2020, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f4c76b84f6c7ea42a4f94f9817d1393, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: '<b>Buy Land</b>
-
-    Buy land for the cost of it''s value. Check the Land Value Overlay to see all
-    the land values at one time.'
 --- !u!1 &60409168
 GameObject:
   m_ObjectHideFlags: 0
@@ -1006,8 +1013,13 @@ MonoBehaviour:
       tileModifiers: []
       ownerModifiers: []
     debugFeatureName: 
-    paused: 0
-    pausedOverride: 0
+    work:
+      paused: 0
+      pausedOverride: 0
+      workSpring: 1
+      workSummer: 1
+      workFall: 1
+      workWinter: 1
     owner:
       Stats:
         debugModifiers: []
@@ -2919,105 +2931,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 443925908}
---- !u!1 &449787875
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 449787876}
-  - component: {fileID: 449787880}
-  - component: {fileID: 449787878}
-  - component: {fileID: 449787877}
-  m_Layer: 5
-  m_Name: Options
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &449787876
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 449787875}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1631355213}
-  - {fileID: 2047712980}
-  - {fileID: 681496292}
-  - {fileID: 1772241430}
-  - {fileID: 816805705}
-  - {fileID: 1461506379}
-  - {fileID: 1153628656}
-  - {fileID: 55594381}
-  m_Father: {fileID: 1236171575}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 232, y: 32}
-  m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &449787877
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 449787875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300010, guid: f2da900aa5782934ea35e94aba249cbf, type: 3}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
---- !u!222 &449787878
-CanvasRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 449787875}
---- !u!114 &449787880
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 449787875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -405508275, guid: f70555f144d8491a825f0804e09c671c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Padding:
-    m_Left: 4
-    m_Right: 4
-    m_Top: 4
-    m_Bottom: 4
-  m_ChildAlignment: 3
-  m_Spacing: 4
-  m_ChildForceExpandWidth: 0
-  m_ChildForceExpandHeight: 0
-  m_ChildControlWidth: 0
-  m_ChildControlHeight: 0
 --- !u!114 &450808774 stripped
 MonoBehaviour:
   m_PrefabParentObject: {fileID: 114566044721169410, guid: 20421183165cad04188019ba1d0d2803,
@@ -4424,7 +4337,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 449787876}
+    m_TransformParent: {fileID: 1236171575}
     m_Modifications:
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
@@ -4469,22 +4382,22 @@ Prefab:
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 60
+      value: 62
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -16
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 24
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 24
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
@@ -4670,12 +4583,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 681496293}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa3b62488aa953140b05639fb19f2020, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f4c76b84f6c7ea42a4f94f9817d1393, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: '<b>Toggle Fall Work</b>
-
-    Toggles this tile to work or idle during the fall.'
+--- !u!114 &681496295 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114432693601360806, guid: 002b5fd1f6d45164f8d3b38827542e43,
+    type: 2}
+  m_PrefabInternal: {fileID: 681496291}
+  m_Script: {fileID: 2109663825, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &687844109
 Prefab:
   m_ObjectHideFlags: 0
@@ -5555,13 +5471,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1676797785}
-  m_Father: {fileID: 449787876}
+  m_Father: {fileID: 1236171575}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 24, y: 24}
+  m_SizeDelta: {x: 28, y: 28}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &816805706
 MonoBehaviour:
@@ -5602,7 +5518,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 816805707}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1236171578}
+        m_MethodName: ToggleWork
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &816805707
@@ -5646,13 +5573,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 816805704}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa3b62488aa953140b05639fb19f2020, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f4c76b84f6c7ea42a4f94f9817d1393, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: '<b>Work / Idle</b>
-
-    Toggle the tile to work or idle. Some tiles, like farms, will cancel their progress
-    when paused and can only be resumed on the appropriate season.'
 --- !u!1 &819151974
 GameObject:
   m_ObjectHideFlags: 0
@@ -7823,13 +7746,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 443925909}
-  m_Father: {fileID: 449787876}
+  m_Father: {fileID: 1236171575}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 24, y: 24}
+  m_SizeDelta: {x: 28, y: 28}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1153628657
 MonoBehaviour:
@@ -7870,7 +7793,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1153628658}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1236171578}
+        m_MethodName: UpgradeCommand
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1153628658
@@ -7914,12 +7848,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1153628655}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa3b62488aa953140b05639fb19f2020, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f4c76b84f6c7ea42a4f94f9817d1393, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: '<b>Upgrade</b>
-
-    Upgrade a structure to the next level.'
 --- !u!1 &1165835804
 GameObject:
   m_ObjectHideFlags: 0
@@ -8410,8 +8341,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1236171575}
   - component: {fileID: 1236171577}
-  - component: {fileID: 1236171576}
   - component: {fileID: 1236171578}
+  - component: {fileID: 1236171576}
   m_Layer: 0
   m_Name: OptionsPanel
   m_TagString: Untagged
@@ -8429,7 +8360,14 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 449787876}
+  - {fileID: 1631355213}
+  - {fileID: 2047712980}
+  - {fileID: 681496292}
+  - {fileID: 1772241430}
+  - {fileID: 816805705}
+  - {fileID: 1461506379}
+  - {fileID: 1153628656}
+  - {fileID: 55594381}
   m_Father: {fileID: 86665261}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -8446,25 +8384,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 1236171574}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: -765806418, guid: f70555f144d8491a825f0804e09c671c, type: 3}
+  m_Script: {fileID: -405508275, guid: f70555f144d8491a825f0804e09c671c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_Sprite: {fileID: 21300000, guid: f2da900aa5782934ea35e94aba249cbf, type: 3}
-  m_Type: 1
-  m_PreserveAspect: 0
-  m_FillCenter: 1
-  m_FillMethod: 4
-  m_FillAmount: 1
-  m_FillClockwise: 1
-  m_FillOrigin: 0
+  m_Padding:
+    m_Left: 2
+    m_Right: 2
+    m_Top: 2
+    m_Bottom: 2
+  m_ChildAlignment: 3
+  m_Spacing: 2
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
 --- !u!222 &1236171577
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -8482,6 +8415,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9cb3bea01e0e82c4f9752b885bc366dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  infoObjectPanel: {fileID: 1236171574}
+  springToggle: {fileID: 1631355216}
+  summerToggle: {fileID: 2047712983}
+  fallToggle: {fileID: 681496295}
+  winterToggle: {fileID: 1772241433}
+  workButton: {fileID: 816805706}
+  workIcon: {fileID: 1676797786}
+  workSprite: {fileID: 21300030, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  sleepSprite: {fileID: 21300106, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  cancelButton: {fileID: 1461506380}
+  cancelIcon: {fileID: 1378815140}
+  razeSprite: {fileID: 21300110, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  cancelSprite: {fileID: 21300104, guid: 2cd13286f6099a242a1fd4a55f0bfb71, type: 3}
+  upgradeButton: {fileID: 1153628657}
+  buyLandButton: {fileID: 55594382}
 --- !u!224 &1247125207 stripped
 RectTransform:
   m_PrefabParentObject: {fileID: 224493796718695112, guid: d441f949931b64847a4109e8dfc3d00e,
@@ -9677,18 +9625,18 @@ RectTransform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1461506378}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1378815139}
-  m_Father: {fileID: 449787876}
+  m_Father: {fileID: 1236171575}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 24, y: 24}
+  m_SizeDelta: {x: 28, y: 28}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1461506380
 MonoBehaviour:
@@ -9729,7 +9677,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1461506381}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1236171578}
+        m_MethodName: CancelCommand
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1461506381
@@ -9773,13 +9732,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 1461506378}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa3b62488aa953140b05639fb19f2020, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f4c76b84f6c7ea42a4f94f9817d1393, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: '<b>Cancel or Raze</b>
-
-    Cancel a construction or raze structure. Some tiles, like quarrys and logging
-    camps cannot be raze, only paused.'
 --- !u!20 &1467214647 stripped
 Camera:
   m_PrefabParentObject: {fileID: 20497177177912948, guid: 665864099f60a554f95cf77929a4d669,
@@ -10386,8 +10341,13 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 449787876}
+    m_TransformParent: {fileID: 1236171575}
     m_Modifications:
+    - target: {fileID: 114432693601360806, guid: 002b5fd1f6d45164f8d3b38827542e43,
+        type: 2}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_LocalPosition.x
@@ -10406,17 +10366,17 @@ Prefab:
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
@@ -10431,22 +10391,22 @@ Prefab:
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 4
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -16
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 24
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 24
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
@@ -10514,17 +10474,17 @@ Prefab:
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_LocalScale.x
-      value: 1.0000077
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_LocalScale.y
-      value: 1.0000077
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_LocalScale.z
-      value: 1.0000077
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 0}
       propertyPath: iconName
@@ -10615,6 +10575,21 @@ Prefab:
       propertyPath: m_Interactable
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 114432693601360806, guid: 002b5fd1f6d45164f8d3b38827542e43,
+        type: 2}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 114432693601360806, guid: 002b5fd1f6d45164f8d3b38827542e43,
+        type: 2}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 114432693601360806, guid: 002b5fd1f6d45164f8d3b38827542e43,
+        type: 2}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1236171574}
     m_RemovedComponents:
     - {fileID: 0}
   m_ParentPrefab: {fileID: 100100000, guid: 002b5fd1f6d45164f8d3b38827542e43, type: 2}
@@ -10637,12 +10612,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1631355214}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa3b62488aa953140b05639fb19f2020, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f4c76b84f6c7ea42a4f94f9817d1393, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: '<b>Toggle Spring Work</b>
-
-    Toggles this tile to work or idle during the spring.'
+--- !u!114 &1631355216 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114432693601360806, guid: 002b5fd1f6d45164f8d3b38827542e43,
+    type: 2}
+  m_PrefabInternal: {fileID: 1631355212}
+  m_Script: {fileID: 2109663825, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &1654390045
 Prefab:
   m_ObjectHideFlags: 0
@@ -11694,7 +11672,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 449787876}
+    m_TransformParent: {fileID: 1236171575}
     m_Modifications:
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
@@ -11739,22 +11717,22 @@ Prefab:
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 88
+      value: 92
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -16
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 24
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 24
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
@@ -11940,12 +11918,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 1772241431}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa3b62488aa953140b05639fb19f2020, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f4c76b84f6c7ea42a4f94f9817d1393, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: '<b>Toggle Winter Work</b>
-
-    Toggles this tile to work or idle during the winter.'
+--- !u!114 &1772241433 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114432693601360806, guid: 002b5fd1f6d45164f8d3b38827542e43,
+    type: 2}
+  m_PrefabInternal: {fileID: 1772241429}
+  m_Script: {fileID: 2109663825, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &1829006824
 GameObject:
   m_ObjectHideFlags: 0
@@ -12733,7 +12714,7 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 449787876}
+    m_TransformParent: {fileID: 1236171575}
     m_Modifications:
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
@@ -12783,17 +12764,17 @@ Prefab:
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_AnchoredPosition.y
-      value: -16
+      value: -20
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 24
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
       propertyPath: m_SizeDelta.y
-      value: 24
+      value: 28
       objectReference: {fileID: 0}
     - target: {fileID: 224349792213805844, guid: 002b5fd1f6d45164f8d3b38827542e43,
         type: 2}
@@ -12979,12 +12960,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 2047712981}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aa3b62488aa953140b05639fb19f2020, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f4c76b84f6c7ea42a4f94f9817d1393, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: '<b>Toggle Summer Work</b>
-
-    Toggles this tile to work or idle during the summer.'
+--- !u!114 &2047712983 stripped
+MonoBehaviour:
+  m_PrefabParentObject: {fileID: 114432693601360806, guid: 002b5fd1f6d45164f8d3b38827542e43,
+    type: 2}
+  m_PrefabInternal: {fileID: 2047712979}
+  m_Script: {fileID: 2109663825, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &2130543844
 Prefab:
   m_ObjectHideFlags: 0

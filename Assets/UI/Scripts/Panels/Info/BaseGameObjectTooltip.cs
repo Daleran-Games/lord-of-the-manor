@@ -12,6 +12,8 @@ namespace DaleranGames.UI
 {
     public abstract class BaseGameObjectTooltip : MonoBehaviour, ITooltipableGameObject
     {
+        private bool isActive = false;
+        public bool IsActive { get { return isActive; } }
 
         public abstract string Info { get; }
 
@@ -23,11 +25,13 @@ namespace DaleranGames.UI
         public virtual void OnPointerEnter(PointerEventData eventData)
         {
             TooltipController.Instance.ShowTooltip(Info);
+            isActive = true;
         }
 
         public virtual void OnPointerExit(PointerEventData eventData)
         {
             TooltipController.Instance.HideTooltip();
+            isActive = false;
         }
 
 

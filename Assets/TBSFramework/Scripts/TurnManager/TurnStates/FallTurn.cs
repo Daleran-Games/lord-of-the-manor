@@ -6,6 +6,8 @@ namespace DaleranGames.TBSFramework
 {
     public class FallTurn : BaseTurn
     {
+        public override Seasons Season { get { return Seasons.Fall; } }
+
         private void OnEnable()
         {
             if (StateEnabled != null)

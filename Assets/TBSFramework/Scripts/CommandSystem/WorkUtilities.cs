@@ -60,7 +60,7 @@ namespace DaleranGames.TBSFramework
             List<HexTile> workableTiles = new List<HexTile>();
             for (int i = 0; i < tiles.Count; i++)
             {
-                if (tiles[i].Feature is IWorkable && !tiles[i].PausedOverride && tiles[i].Paused == paused)
+                if (tiles[i].Feature is IWorkable && !tiles[i].Work.PausedOverride && tiles[i].Work.Paused == paused)
                 {
                     IWorkable work = tiles[i].Feature as IWorkable;
                     workableTiles.Add(tiles[i]);

@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace DaleranGames.TBSFramework
 {
-    public interface IWorkable
+    public interface IWorkable : ICommandable
     {
         void Pause(HexTile tile);
         bool CanResume(HexTile tile);

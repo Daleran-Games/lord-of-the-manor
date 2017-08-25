@@ -35,6 +35,9 @@ namespace DaleranGames.UI
             get { return selectedTile; }
             protected set
             {
+                if (TileDeselected != null)
+                    TileDeselected(selectedTile);
+
                 selectedTile = value;
 
                 if (TileSelected != null)
@@ -43,6 +46,7 @@ namespace DaleranGames.UI
         }
 
         public event Action<HexTile> TileSelected;
+        public event Action<HexTile> TileDeselected;
 
         [SerializeField]
         float timeSkip = 0.1f;
@@ -106,7 +110,7 @@ namespace DaleranGames.UI
 
         void OnLeftTileClick(HexTile tile)
         {
-            if (Time.time - lastClickTime > timeSkip && !CommandMediator.Instance.ActiveMode)
+            if (Time.time - lastClickTime > timeSkip && !CommandMediator.Instance.ActiveMode && tile != SelectedTile)
             {
                 if (SelectedTile != null)
                     SelectedTile.UIGraphics.Remove(TileLayers.Fog);
