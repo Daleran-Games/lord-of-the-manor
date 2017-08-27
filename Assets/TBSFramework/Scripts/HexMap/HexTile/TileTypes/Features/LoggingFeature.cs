@@ -99,6 +99,8 @@ namespace DaleranGames.TBSFramework
 
         public override void OnTurnSetUp(BaseTurn turn, HexTile tile)
         {
+            if (!tile.Work.Paused)
+            {
                 if (tile.Counters[loggingTime.ModifiedBy] < loggingTime.ModifiedValue(tile.Owner.Stats))
                 {
                     tile.Owner.Goods.AddFuture(loggingLaborCost.ModifiedTransaction(tile.Owner.Stats));
@@ -106,6 +108,14 @@ namespace DaleranGames.TBSFramework
                 }
                 else if (tile.Counters[loggingTime.ModifiedBy] >= loggingTime.ModifiedValue(tile.Owner.Stats))
                     OnLoggingComplete(tile);
+
+                if (!tile.Work.IsSeasonWorkable(TurnManager.Instance.CurrentTurn.Season))
+                    Pause(tile);
+            }
+            else if (tile.Work.Paused && !tile.Work.PausedOverride && tile.Work.IsSeasonWorkable(TurnManager.Instance.CurrentTurn.Season) && CanResume(tile))
+            {
+                Resume(tile);
+            }
         }
 
         public override void OnTurnStart(BaseTurn turn, HexTile tile)
@@ -145,8 +155,6 @@ namespace DaleranGames.TBSFramework
             tile.Owner.Goods.ProcessNow(loggingLaborCost.ReverseModifiedTransaction(tile.Owner.Stats));
             tile.Owner.Goods.RemoveFuture(new Transaction(GoodType.Wood, tile.Stats[StatType.LoggingWoodRate], name));
 
-            tile.Stats.Remove(TileModifiers);
-            tile.OwnerModifiers.Remove(OwnerModifiers);
 
             tile.Work.Paused = true;
 
@@ -157,8 +165,6 @@ namespace DaleranGames.TBSFramework
         {
             tile.Counters.PauseCounter(false, loggingTime.ModifiedBy);
 
-            tile.Stats.Add(TileModifiers);
-            tile.OwnerModifiers.Add(OwnerModifiers);
 
             tile.Owner.Goods.ProcessNow(loggingLaborCost.ModifiedTransaction(tile.Owner.Stats));
             tile.Owner.Goods.AddFuture(loggingLaborCost.ModifiedTransaction(tile.Owner.Stats));
@@ -213,10 +219,9 @@ namespace DaleranGames.TBSFramework
         {
             tile.Work.SetSeasonWorkable(season, work);
 
-            if (TurnManager.Instance.CurrentTurn.Season == season && tile.Work.Paused != work)
+            if (TurnManager.Instance.CurrentTurn.Season == season && !tile.Work.Paused && work == false)
             {
-                WorkCommand newWork = new WorkCommand();
-                 
+                Pause(tile);
             }
         }
     }

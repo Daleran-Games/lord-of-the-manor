@@ -32,6 +32,7 @@ namespace DaleranGames.TBSFramework
         public override void PreformCommand(HexTile tile, Group owner)
         {
             ISeasonable seasonable = tile.Feature as ISeasonable;
+            seasonable.WorkSeason(tile, season, work);
         }
 
         public override TileGraphic GetUIIcon(HexTile tile)

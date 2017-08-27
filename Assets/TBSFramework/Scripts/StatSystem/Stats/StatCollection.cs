@@ -9,8 +9,8 @@ namespace DaleranGames.TBSFramework
     [System.Serializable]
     public class StatCollection : IStatCollection<StatType>
     {
-        [SerializeField]
-        protected List<Modifier> debugModifiers;
+
+        //protected List<Modifier> debugModifiers;
 
         protected Dictionary<StatType, List<Modifier>> modifiers;
         protected Dictionary<StatType, int> totals;
@@ -25,7 +25,7 @@ namespace DaleranGames.TBSFramework
         {
             modifiers = new Dictionary<StatType, List<Modifier>>();
             totals = new Dictionary<StatType, int>();
-            debugModifiers = new List<Modifier>();
+            //debugModifiers = new List<Modifier>();
         }
 
         public virtual int this[StatType statType]
@@ -104,7 +104,7 @@ namespace DaleranGames.TBSFramework
                 }
                 modifiers[mod.Type].Add(mod);
                 totals[mod.Type] += mod.Value;
-                debugModifiers.Add(mod);
+                //debugModifiers.Add(mod);
 
                 RaiseStatModified(this, mod.Type);
             }
@@ -126,7 +126,7 @@ namespace DaleranGames.TBSFramework
                 {
                     modifiers[mod.Type].Remove(mod);
                     totals[mod.Type] -= mod.Value;
-                    debugModifiers.Remove(mod);
+                    //debugModifiers.Remove(mod);
 
                     RaiseStatModified(this, mod.Type);
                 }
@@ -161,7 +161,7 @@ namespace DaleranGames.TBSFramework
         {
             modifiers.Clear();
             totals.Clear();
-            debugModifiers.Clear();
+            //debugModifiers.Clear();
         }
 
         protected virtual void RaiseStatModified(IStatCollection<StatType> stats, StatType statType)

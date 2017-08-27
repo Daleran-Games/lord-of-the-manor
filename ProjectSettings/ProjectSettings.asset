@@ -625,7 +625,7 @@ PlayerSettings:
     Build: 1
     UNet: 1
   facebookSdkVersion: 7.9.1
-  apiCompatibilityLevel: 3
+  apiCompatibilityLevel: 2
   cloudProjectId: 70d95285-e930-489c-8c78-96a5ea7ea3f3
   projectName: Lord Of The Manor
   organizationId: daleran-games

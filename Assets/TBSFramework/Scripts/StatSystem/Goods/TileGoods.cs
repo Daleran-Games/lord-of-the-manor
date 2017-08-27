@@ -31,7 +31,7 @@ namespace DaleranGames.TBSFramework
                         return 0;
                 }
             }
-            set
+            protected set
             {
                 switch (type.Value)
                 {

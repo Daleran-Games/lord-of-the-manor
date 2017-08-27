@@ -70,7 +70,7 @@ namespace DaleranGames.TBSFramework
                 }
             }
 
-            set
+            protected set
             {
                 switch (type.Value)
                 {
@@ -100,6 +100,7 @@ namespace DaleranGames.TBSFramework
                         break;
                 }
             }
+
         }
 
         public override List<Good>Goods
@@ -152,7 +153,7 @@ namespace DaleranGames.TBSFramework
                 {
                     if (Random.Bool(owner.Stats[StatType.GroupStarvationRate]))
                     {
-                        this[GoodType.Population]--;
+                        ProcessNow(new Transaction(GoodType.Population, -1, "Death from lack of food"));
                     }
                 }
                 this[GoodType.Food] = 0;
@@ -171,7 +172,7 @@ namespace DaleranGames.TBSFramework
                     for (int w=wood; w <= 0; w++)
                     {
                         if (Random.Bool(owner.Stats[StatType.GroupFreezeRate]))
-                            this[GoodType.Population]--;
+                            ProcessNow(new Transaction(GoodType.Population, -1, "Death from lack of firewood"));
                     }
                     this[GoodType.Wood] = 0;
                 } else
@@ -223,6 +224,11 @@ namespace DaleranGames.TBSFramework
         void CheckWork ()
         {
             AddFuture(new Transaction(GoodType.Labor, owner.Stats[StatType.GroupLaborRate], "Labor from your Clan"));
+        }
+
+        public void ResetWork()
+        {
+            this[GoodType.Labor] = 0;
         }
     }
 }

@@ -165,19 +165,19 @@ namespace DaleranGames.TBSFramework
 
         void OnTurnEnd(BaseTurn turn)
         {
-            if (Feature != null && !Work.Paused)
+            if (Feature != null)
                 Feature.OnTurnEnd(turn, this);
         }
 
         void OnTurnSetUp(BaseTurn turn)
         {
-            if (Feature != null && !Work.Paused)
+            if (Feature != null)
                 Feature.OnTurnSetUp(turn, this);
         }
 
         void OnTurnStart(BaseTurn turn)
         {
-            if (Feature != null && !Work.Paused)
+            if (Feature != null)
                 Feature.OnTurnStart(turn, this);
         }
 

@@ -4,9 +4,6 @@ using UnityEngine;
 using DaleranGames.TBSFramework;
 using System.IO;
 using System;
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
 namespace DaleranGames.IO
 {
@@ -40,21 +37,5 @@ namespace DaleranGames.IO
             return newDB;
         }
 
-
-#if UNITY_EDITOR
-        [ContextMenu("Build Graphics")]
-        public void LoadUIGraphicsFromFolder()
-        {
-            List<TileGraphic> newGraphics = new List<TileGraphic>();
-            Sprite[] sprites = Resources.LoadAll<Sprite>(spriteFilePath);
-            int id = 0;
-            for (int i=0; i< sprites.Length;i++)
-            {
-                    newGraphics.Add(new TileGraphic(sprites[i].name, id,atlas.GetCoordFromRect(sprites[i].rect),sprites[i]));
-                    id++;
-            }
-            graphics = newGraphics;
-        }
-#endif
     }
 }

@@ -92,6 +92,9 @@ namespace DaleranGames.TBSFramework
 
             RaiseWorkIconChangeEvent(tile, GetWorkIcon(tile));
 
+            if (!tile.Work.IsSeasonWorkable(TurnManager.Instance.CurrentTurn.Season))
+                Pause(tile);
+
         }
 
         public override void OnTurnEnd(BaseTurn turn, HexTile tile)
@@ -101,7 +104,8 @@ namespace DaleranGames.TBSFramework
 
         public override void OnTurnSetUp(BaseTurn turn, HexTile tile)
         {
-
+            if (!tile.Work.Paused)
+            {
                 if (tile.Counters[quarryTime.ModifiedBy] < quarryTime.ModifiedValue(tile.Owner.Stats))
                 {
                     tile.Owner.Goods.AddFuture(quarryLaborCost.ModifiedTransaction(tile.Owner.Stats));
@@ -110,6 +114,13 @@ namespace DaleranGames.TBSFramework
                 else if (tile.Counters[quarryTime.ModifiedBy] >= quarryTime.ModifiedValue(tile.Owner.Stats))
                     OnQuarryComplete(tile);
 
+                if (!tile.Work.IsSeasonWorkable(TurnManager.Instance.CurrentTurn.Season))
+                    Pause(tile);
+
+            } else if (tile.Work.Paused && !tile.Work.PausedOverride && tile.Work.IsSeasonWorkable(TurnManager.Instance.CurrentTurn.Season) && CanResume(tile))
+            {
+                Resume(tile);
+            }
 
         }
 
@@ -151,8 +162,6 @@ namespace DaleranGames.TBSFramework
 
             tile.Owner.Goods.RemoveFuture(new Transaction(GoodType.Stone, tile.Stats[StatType.QuarryingStoneRate], name));
 
-            tile.Stats.Remove(TileModifiers);
-            tile.OwnerModifiers.Remove(OwnerModifiers);
 
             tile.Work.Paused = true;
 
@@ -162,9 +171,6 @@ namespace DaleranGames.TBSFramework
         public void Resume(HexTile tile)
         {
             tile.Counters.PauseCounter(false, quarryTime.ModifiedBy);
-
-            tile.Stats.Add(TileModifiers);
-            tile.OwnerModifiers.Add(OwnerModifiers);
 
             tile.Owner.Goods.ProcessNow(quarryLaborCost.ModifiedTransaction(tile.Owner.Stats));
             tile.Owner.Goods.AddFuture(quarryLaborCost.ModifiedTransaction(tile.Owner.Stats));
@@ -218,6 +224,11 @@ namespace DaleranGames.TBSFramework
         public void WorkSeason(HexTile tile, Seasons season, bool work)
         {
             tile.Work.SetSeasonWorkable(season, work);
+
+            if (TurnManager.Instance.CurrentTurn.Season == season && !tile.Work.Paused && work == false)
+            {
+                Pause(tile);
+            }
         }
 
 

@@ -7,7 +7,7 @@ namespace DaleranGames.TBSFramework
     [System.Serializable]
     public class GroupStats : StatCollection
     {
-
+        [System.NonSerialized]
         protected Group group;
         
         public GroupStats (Group group) : base()

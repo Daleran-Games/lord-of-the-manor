@@ -77,7 +77,7 @@ namespace DaleranGames.UI
         {
             Vector3 mousePos = MouseCursor.Instance.Position;
             float screenHalfX = Screen.width - tooltipRect.rect.width;
-            float screenHalfY = tooltipRect.rect.height;
+            float screenHalfY = tooltipRect.rect.height * 1.5f;
 
             if (mousePos.x >= screenHalfX) // Right Side
             {

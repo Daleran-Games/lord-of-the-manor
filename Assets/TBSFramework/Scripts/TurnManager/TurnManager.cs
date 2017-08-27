@@ -64,6 +64,8 @@ namespace DaleranGames.TBSFramework
         {
             currentTurn.enabled = true;
 
+            
+
             if (TurnSetUp != null)
                 TurnSetUp(currentTurn);
 

@@ -10,18 +10,18 @@ namespace DaleranGames.TBSFramework
     public abstract class GoodsCollection : IGoodsCollection
     {
 
-        [SerializeField]
+        [System.NonSerialized]
         protected List<Transaction> currentTransactions;
         public virtual List<Transaction> CurrentTransactions { get { return currentTransactions; } }
 
-        [SerializeField]
+        [System.NonSerialized]
         protected List<Transaction> pendingTransactions;
         public virtual List<Transaction> PendingTransactions { get { return pendingTransactions; } }
 
         public event Action<GoodsCollection, GoodType> FutureTransactionsChanged;
         public event Action<GoodsCollection, GoodType> GoodChanged;
 
-        public abstract int this[GoodType type] { get; set; }
+        public abstract int this[GoodType type] { get; protected set; }
         public abstract List<Good> Goods { get; }
 
         public GoodsCollection()

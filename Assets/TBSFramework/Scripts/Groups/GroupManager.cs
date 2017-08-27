@@ -15,8 +15,9 @@ namespace DaleranGames.TBSFramework
 
         public void SetUpGroupManager()
         {
-            playerGroup = new Group("Player", GameDatabase.Instance.Groups["Cheat"]);
-            
+            //playerGroup = new Group("Player", GameDatabase.Instance.Groups["Cheat"]);
+            playerGroup = new Group("Player", GameDatabase.Instance.Groups["Thegn"]);
+
             GameManager.Instance.Play.StateEnabled += OnGameStart;
             TurnManager.Instance.TurnEnded += OnTurnEnd;
             TurnManager.Instance.TurnSetUp += OnTurnSetUp;

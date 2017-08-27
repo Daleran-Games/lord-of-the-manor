@@ -111,35 +111,40 @@ namespace DaleranGames.TBSFramework
 
         public override void OnTurnSetUp(BaseTurn turn, HexTile tile)
         {
-            if (tile.Counters[cycleTime.ModifiedBy] == 0)
+            if (!tile.Work.Paused)
             {
-                tile.Counters.AddCounter(cycleTime.ModifiedBy, cycleTime.ModifiedValue(tile.Owner.Stats));
+                if (tile.Counters[cycleTime.ModifiedBy] == 0)
+                {
+                    tile.Counters.AddCounter(cycleTime.ModifiedBy, cycleTime.ModifiedValue(tile.Owner.Stats));
 
-                tile.TerrainGraphics.Remove(TileLayers.Improvements);
-                tile.TerrainGraphics.Add(TileLayers.Improvements, sowingGraphic);
-            }
-            else if (tile.Counters[cycleTime.ModifiedBy] == growingTime.ModifiedValue(tile.Owner.Stats)-1)
-            {
-                tile.TerrainGraphics.Remove(TileLayers.Improvements);
-                tile.TerrainGraphics.Add(TileLayers.Improvements, growingGraphic);
-                tile.Owner.Goods.AddFuture(cultivateLaborCost.ModifiedTransaction(tile.Owner.Stats));
+                    tile.TerrainGraphics.Remove(TileLayers.Improvements);
+                    tile.TerrainGraphics.Add(TileLayers.Improvements, sowingGraphic);
+                }
+                else if (tile.Counters[cycleTime.ModifiedBy] == growingTime.ModifiedValue(tile.Owner.Stats) - 1)
+                {
+                    tile.TerrainGraphics.Remove(TileLayers.Improvements);
+                    tile.TerrainGraphics.Add(TileLayers.Improvements, growingGraphic);
+                    tile.Owner.Goods.AddFuture(cultivateLaborCost.ModifiedTransaction(tile.Owner.Stats));
 
-            } else if (tile.Counters[cycleTime.ModifiedBy] == growingTime.ModifiedValue(tile.Owner.Stats))
-            {
-                tile.TerrainGraphics.Remove(TileLayers.Improvements);
-                tile.TerrainGraphics.Add(TileLayers.Improvements, harvestGraphic);
-                Debug.Log("Food Rate: "+ tile.Stats[StatType.FarmingFoodRate]);
-                tile.Owner.Goods.AddFuture(new Transaction(GoodType.Food, tile.Stats[StatType.FarmingFoodRate], name));
+                }
+                else if (tile.Counters[cycleTime.ModifiedBy] == growingTime.ModifiedValue(tile.Owner.Stats))
+                {
+                    tile.TerrainGraphics.Remove(TileLayers.Improvements);
+                    tile.TerrainGraphics.Add(TileLayers.Improvements, harvestGraphic);
+                    //Debug.Log("Food Rate: " + tile.Stats[StatType.FarmingFoodRate]);
+                    tile.Owner.Goods.AddFuture(new Transaction(GoodType.Food, tile.Stats[StatType.FarmingFoodRate], name));
 
-            }else if (tile.Counters[cycleTime.ModifiedBy] < cycleTime.ModifiedValue(tile.Owner.Stats)-1 && tile.Counters[cycleTime.ModifiedBy] > growingTime.ModifiedValue(tile.Owner.Stats))
-            {
-                tile.TerrainGraphics.Remove(TileLayers.Improvements);
-                tile.TerrainGraphics.Add(TileLayers.Improvements, fallowGraphic);
-            }
-            if (tile.Counters[cycleTime.ModifiedBy] >= cycleTime.ModifiedValue(tile.Owner.Stats)-1)
-            {
-                tile.Counters.RemoveCounter(cycleTime.ModifiedBy);
-                tile.Owner.Goods.AddFuture(cultivateLaborCost.ModifiedTransaction(tile.Owner.Stats));
+                }
+                else if (tile.Counters[cycleTime.ModifiedBy] < cycleTime.ModifiedValue(tile.Owner.Stats) - 1 && tile.Counters[cycleTime.ModifiedBy] > growingTime.ModifiedValue(tile.Owner.Stats))
+                {
+                    tile.TerrainGraphics.Remove(TileLayers.Improvements);
+                    tile.TerrainGraphics.Add(TileLayers.Improvements, fallowGraphic);
+                }
+                if (tile.Counters[cycleTime.ModifiedBy] >= cycleTime.ModifiedValue(tile.Owner.Stats) - 1)
+                {
+                    tile.Counters.RemoveCounter(cycleTime.ModifiedBy);
+                    tile.Owner.Goods.AddFuture(cultivateLaborCost.ModifiedTransaction(tile.Owner.Stats));
+                }
             }
         }
 
@@ -176,8 +181,6 @@ namespace DaleranGames.TBSFramework
 
             tile.Owner.Goods.RemoveFuture(new Transaction(GoodType.Food, tile.Stats[StatType.FarmingFoodRate], name));
 
-            tile.Stats.Remove(TileModifiers);
-            tile.OwnerModifiers.Remove(OwnerModifiers);
 
             tile.Work.Paused = true;
 
@@ -191,8 +194,6 @@ namespace DaleranGames.TBSFramework
 
             tile.Counters.AddCounter(cycleTime.ModifiedBy,cycleTime.ModifiedValue(tile.Owner.Stats));
 
-            tile.Stats.Add(TileModifiers);
-            tile.OwnerModifiers.Add(OwnerModifiers);
 
             tile.Owner.Goods.ProcessNow(cultivateLaborCost.ModifiedTransaction(tile.Owner.Stats));
 

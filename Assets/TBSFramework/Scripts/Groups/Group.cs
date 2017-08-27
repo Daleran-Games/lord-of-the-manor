@@ -34,7 +34,7 @@ namespace DaleranGames.TBSFramework
             Goods = new GroupGoods(this);
             Stats = new GroupStats(this);
             TileModifiers = new StatCollection();
-            workUtils = new WorkUtilities();
+            //workUtils = new WorkUtilities();
 
             GroupType = type;
         }
@@ -84,6 +84,9 @@ namespace DaleranGames.TBSFramework
 
         public GroupStats Stats;
         public StatCollection TileModifiers;
+
+        [System.NonSerialized]
+        [HideInInspector]
         public GroupGoods Goods;
 
         [NonSerialized]
@@ -117,12 +120,17 @@ namespace DaleranGames.TBSFramework
         {
             GroupType.OnGameStart(this);
 
-            Goods[GoodType.Food] = Stats[StatType.MaxFood];
-            Goods[GoodType.Wood] = Stats[StatType.MaxWood];
-            Goods[GoodType.Stone] = Stats[StatType.MaxStone];
-            Goods[GoodType.Gold] = Stats[StatType.StartingGold];
-            Goods[GoodType.Population] = Stats[StatType.MaxPopulation];
-            Goods[GoodType.Labor] = Stats[StatType.GroupLaborRate];
+           
+            Goods.ProcessNow(new Transaction(GoodType.Food, Stats[StatType.MaxFood], "Starting Food"));
+            
+            Goods.ProcessNow(new Transaction(GoodType.Wood, Stats[StatType.MaxWood], "Starting Wood"));
+            
+            Goods.ProcessNow(new Transaction(GoodType.Stone, Stats[StatType.MaxStone], "Starting Stone"));
+            
+            Goods.ProcessNow(new Transaction(GoodType.Gold, Stats[StatType.StartingGold], "Starting Gold"));
+
+            Goods.ProcessNow(new Transaction(GoodType.Population, Stats[StatType.MaxPopulation], "Starting Population"));
+            Goods.ProcessNow(new Transaction(GoodType.Labor, Stats[StatType.GroupLaborRate], "Labor from your Clan"));
             Goods.AddFuture(new Transaction(GoodType.Labor, Stats[StatType.GroupLaborRate], "Labor from your Clan"));
         }
 
@@ -130,7 +138,7 @@ namespace DaleranGames.TBSFramework
         {
             //Debug.Log("This got called");
             GroupType.OnTurnEnd(turn, this);
-            Goods[GoodType.Labor] = 0;
+            Goods.ResetWork();
             Goods.ProcessAllPendingTransactions();
             Goods.ResolveEdgeCases();
         }
