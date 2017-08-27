@@ -50,7 +50,7 @@ namespace DaleranGames.TBSFramework
                 return ("There is already something here.").ToNegativeColor();
 
            if (!placeable.CanPlace(tile))
-                return("You canno place "+feature.Name+" here.").ToNegativeColor();
+                return("You cannot place "+feature.Name+" here.").ToNegativeColor();
 
             return ("Place " + feature.Name + " here.").ToPositiveColor();
         }
