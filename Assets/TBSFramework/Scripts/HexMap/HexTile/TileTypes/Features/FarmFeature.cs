@@ -197,6 +197,7 @@ namespace DaleranGames.TBSFramework
 
             tile.Owner.Goods.ProcessNow(cultivateLaborCost.ModifiedTransaction(tile.Owner.Stats));
 
+
             tile.Work.Paused = false;
 
             RaiseWorkIconChangeEvent(tile, GetWorkIcon(tile));
