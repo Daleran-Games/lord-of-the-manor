@@ -34,7 +34,6 @@ namespace DaleranGames.TBSFramework
                 if (costs[i].Value != 0)
                     this.costs.Add(costs[i]);
             }
-
         }
 
         public List<Cost> GetAllCosts()

@@ -2,19 +2,22 @@
 using System.Collections.Generic;
 using UnityEngine;
 using System;
+using DaleranGames.UI;
 
 namespace DaleranGames.TBSFramework
 {
     [System.Serializable]
     public class StatCollection : IStatCollection<StatType>
     {
-        [SerializeField]
-        protected List<Modifier> debugModifiers;
+
+        //protected List<Modifier> debugModifiers;
 
         protected Dictionary<StatType, List<Modifier>> modifiers;
         protected Dictionary<StatType, int> totals;
 
         public event Action<IStatCollection<StatType>, StatType> StatModified;
+
+        public int Count { get { return totals.Count; } }
 
         public static readonly NullStatCollection Null = new NullStatCollection();
 
@@ -22,7 +25,7 @@ namespace DaleranGames.TBSFramework
         {
             modifiers = new Dictionary<StatType, List<Modifier>>();
             totals = new Dictionary<StatType, int>();
-            debugModifiers = new List<Modifier>();
+            //debugModifiers = new List<Modifier>();
         }
 
         public virtual int this[StatType statType]
@@ -33,6 +36,29 @@ namespace DaleranGames.TBSFramework
                     return totals[statType];
                 else
                     return 0;
+            }
+        }
+
+        public virtual string Info
+        {
+            get
+            {
+                System.Text.StringBuilder sb = new System.Text.StringBuilder();
+                bool first = true;
+                foreach (KeyValuePair<StatType, int> kvp in totals)
+                {
+                    if (first == true)
+                    {
+                        first = false;
+                    }
+                    else
+                        sb.AppendLine();
+
+                    sb.Append(kvp.Key.Name);
+                    sb.Append(kvp.Key.Icon + " ");
+                    sb.Append(TextUtilities.ColorBasedOnNumber(kvp.Value.ToString(), kvp.Value, false));
+                }
+                return sb.ToString();
             }
         }
 
@@ -78,7 +104,7 @@ namespace DaleranGames.TBSFramework
                 }
                 modifiers[mod.Type].Add(mod);
                 totals[mod.Type] += mod.Value;
-                debugModifiers.Add(mod);
+                //debugModifiers.Add(mod);
 
                 RaiseStatModified(this, mod.Type);
             }
@@ -100,7 +126,7 @@ namespace DaleranGames.TBSFramework
                 {
                     modifiers[mod.Type].Remove(mod);
                     totals[mod.Type] -= mod.Value;
-                    debugModifiers.Remove(mod);
+                    //debugModifiers.Remove(mod);
 
                     RaiseStatModified(this, mod.Type);
                 }
@@ -135,7 +161,7 @@ namespace DaleranGames.TBSFramework
         {
             modifiers.Clear();
             totals.Clear();
-            debugModifiers.Clear();
+            //debugModifiers.Clear();
         }
 
         protected virtual void RaiseStatModified(IStatCollection<StatType> stats, StatType statType)
@@ -143,6 +169,8 @@ namespace DaleranGames.TBSFramework
             if (StatModified != null)
                 StatModified(stats, statType);
         }
+
+
 
 
     }

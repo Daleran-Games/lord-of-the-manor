@@ -136,13 +136,11 @@ namespace DaleranGames.IO
             get { return currentTile; }
             protected set
             {
-                if (HexTileExited != null && CurrentTile != null)
+                if (CurrentTile != null)
                     HexTileExited(CurrentTile);
 
                 currentTile = value;
-
-                if (HexTileEntered != null)
-                    HexTileEntered(CurrentTile);
+                HexTileEntered(CurrentTile);
             }
         }
 
@@ -193,7 +191,7 @@ namespace DaleranGames.IO
         {
             if (mapBuilt)
             {
-                mousePosition = mainCamera.ScreenToWorldPoint(Input.mousePosition);
+                mousePosition = MouseCursor.Instance.WorldPosition;
                 Vector2Int tileCoord = HexCoordinates.GetCartesianFromUnity(mousePosition);
 
                 //Debug.Log(cellCoord);
@@ -223,9 +221,9 @@ namespace DaleranGames.IO
         {
             base.OnDestroy();
             grid.MapGenerationComplete -= OnMapGenerationComplete;
-            InputManager.Instance.LMBClick.MouseButtonUp -= OnLMBClick;
-            InputManager.Instance.RMBClick.MouseButtonUp -= OnRMBClick;
-            InputManager.Instance.MMBClick.MouseButtonUp -= OnMMBClick;
+            MouseCursor.Instance.LMBClick.MouseButtonUp -= OnLMBClick;
+            MouseCursor.Instance.RMBClick.MouseButtonUp -= OnRMBClick;
+            MouseCursor.Instance.MMBClick.MouseButtonUp -= OnMMBClick;
         }
 
         void OnLMBClick ()
@@ -259,22 +257,10 @@ namespace DaleranGames.IO
         {
             mapBuilt = true;
 
-            InputManager.Instance.LMBClick.MouseButtonUp += OnLMBClick;
-            InputManager.Instance.RMBClick.MouseButtonUp += OnRMBClick;
-            InputManager.Instance.MMBClick.MouseButtonUp += OnMMBClick;
+            MouseCursor.Instance.LMBClick.MouseButtonUp += OnLMBClick;
+            MouseCursor.Instance.RMBClick.MouseButtonUp += OnRMBClick;
+            MouseCursor.Instance.MMBClick.MouseButtonUp += OnMMBClick;
 
-        }
-
-        bool IsClickOnUIElement ()
-        {
-            Ray ray = mainCamera.ScreenPointToRay(Input.mousePosition);
-
-            if (Physics.Raycast(ray, 100f, LayerMask.NameToLayer("UI")))
-            {
-                return true;
-            }
-            else
-                return false;
         }
 
         void BuildQuads()
@@ -287,9 +273,6 @@ namespace DaleranGames.IO
             highlightQuad = InstantiateHexQuad(selectionPos, atlas.UIAtlas);
             uiIconQuad = InstantiateHexQuad(uiIconPos, atlas.UIAtlas);
             terrainIconQuad = InstantiateHexQuad(terrainIconPos, atlas.SpringAtlas);
-
-
-
         }
 
         HexQuad InstantiateHexQuad(Vector3 position, Material mat)

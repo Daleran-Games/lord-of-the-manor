@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DaleranGames.TBSFramework;
+using DaleranGames.UI;
+
 
 namespace DaleranGames
 {
@@ -14,7 +16,10 @@ namespace DaleranGames
                 StateEnabled(this);
 
             TurnManager.Instance.enabled = true;
+            
         }
+
+
 
 
     }

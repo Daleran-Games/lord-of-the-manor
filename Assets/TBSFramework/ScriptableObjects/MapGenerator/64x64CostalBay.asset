@@ -1,0 +1,87 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc03847c1ad5b8c4187690f32da14051, type: 3}
+  m_Name: 64x64CostalBay
+  m_EditorClassIdentifier: 
+  width: 64
+  height: 64
+  playerTerritory: 5
+  playerStart:
+    q: 12
+    r: 32
+  atlas: {fileID: 11400000, guid: 922081251dba41d43b85034f5ddea963, type: 2}
+  terrainCutoffs:
+  - tileName: Deep Water
+    elevationCutoff: 0
+    moistureCutoff: 0
+  - tileName: Shallow Water
+    elevationCutoff: 38
+    moistureCutoff: 0
+  - tileName: Moor
+    elevationCutoff: 87
+    moistureCutoff: 0
+  - tileName: Plains
+    elevationCutoff: 70
+    moistureCutoff: 37
+  - tileName: Fen
+    elevationCutoff: 70
+    moistureCutoff: 198
+  - tileName: Parkland
+    elevationCutoff: 153
+    moistureCutoff: 47
+  - tileName: Forest
+    elevationCutoff: 175
+    moistureCutoff: 56
+  - tileName: Moor Hills
+    elevationCutoff: 211
+    moistureCutoff: 0
+  - tileName: Hills
+    elevationCutoff: 211
+    moistureCutoff: 30
+  - tileName: Wooded Hills
+    elevationCutoff: 211
+    moistureCutoff: 57
+  - tileName: Moor Mountains
+    elevationCutoff: 229
+    moistureCutoff: 0
+  - tileName: Mountains
+    elevationCutoff: 229
+    moistureCutoff: 40
+  - tileName: Wooded Mountains
+    elevationCutoff: 229
+    moistureCutoff: 92
+  initalElevation: 255
+  initialMoisture: 0
+  antSpawners:
+  - positionX: 0.93
+    positionY: 0.507
+    minLifespan: 16
+    maxLifespan: 18
+    minAntCount: 275
+    maxAntCount: 325
+    minPower: -2
+    maxPower: -1
+    minTurnChance: 0.37
+    maxTurnCHance: 0.86
+    food: 0
+    dieOnBorder: 0
+  - positionX: 0.96
+    positionY: 0.057
+    minLifespan: 14
+    maxLifespan: 18
+    minAntCount: 400
+    maxAntCount: 500
+    minPower: 1
+    maxPower: 3
+    minTurnChance: 0.28
+    maxTurnCHance: 0.89
+    food: 1
+    dieOnBorder: 0

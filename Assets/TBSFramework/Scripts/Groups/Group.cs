@@ -1,5 +1,6 @@
 ﻿using System;
 using UnityEngine;
+using System.Collections.Generic;
 
 namespace DaleranGames.TBSFramework
 {
@@ -9,15 +10,31 @@ namespace DaleranGames.TBSFramework
         protected string name;
         public string Name { get { return name; } }
 
+        protected bool home;
+        public bool Home {
+            get { return home; }
+            set
+            {
+                home = value;
+
+                if (HomeChanged != null)
+                HomeChanged(home);
+            }
+        }
+        public event Action<bool> HomeChanged;
+
         public static readonly Group Null = new NullGroup("NullGroup", GroupType.NullGroupType);
+        WorkUtilities workUtils;
 
         public Group (string name, GroupType type)
         {
             this.name = name;
-
+            Home = false;
+            OwnedTiles = new List<HexTile>();
             Goods = new GroupGoods(this);
             Stats = new GroupStats(this);
             TileModifiers = new StatCollection();
+            //workUtils = new WorkUtilities();
 
             GroupType = type;
         }
@@ -67,7 +84,14 @@ namespace DaleranGames.TBSFramework
 
         public GroupStats Stats;
         public StatCollection TileModifiers;
+
+        [System.NonSerialized]
+        [HideInInspector]
         public GroupGoods Goods;
+
+        [NonSerialized]
+        [HideInInspector]
+        public List<HexTile> OwnedTiles;
         #endregion
 
 
@@ -96,20 +120,25 @@ namespace DaleranGames.TBSFramework
         {
             GroupType.OnGameStart(this);
 
-            Goods[GoodType.Food] = Stats[StatType.MaxFood];
-            Goods[GoodType.Wood] = Stats[StatType.MaxWood];
-            Goods[GoodType.Stone] = Stats[StatType.MaxStone];
-            Goods[GoodType.Gold] = Stats[StatType.StartingGold];
-            Goods[GoodType.Population] = Stats[StatType.MaxPopulation];
-            Goods[GoodType.Labor] = Stats[StatType.GroupLaborRate];
-            Goods.AddFuture(new Transaction(GoodType.Labor, Stats[StatType.GroupLaborRate], "Work"));
+           
+            Goods.ProcessNow(new Transaction(GoodType.Food, Stats[StatType.MaxFood], "Starting Food"));
+            
+            Goods.ProcessNow(new Transaction(GoodType.Wood, Stats[StatType.MaxWood], "Starting Wood"));
+            
+            Goods.ProcessNow(new Transaction(GoodType.Stone, Stats[StatType.MaxStone], "Starting Stone"));
+            
+            Goods.ProcessNow(new Transaction(GoodType.Gold, Stats[StatType.StartingGold], "Starting Gold"));
+
+            Goods.ProcessNow(new Transaction(GoodType.Population, Stats[StatType.MaxPopulation], "Starting Population"));
+            Goods.ProcessNow(new Transaction(GoodType.Labor, Stats[StatType.GroupLaborRate], "Labor from your Clan"));
+            Goods.AddFuture(new Transaction(GoodType.Labor, Stats[StatType.GroupLaborRate], "Labor from your Clan"));
         }
 
         public virtual void OnTurnEnd(BaseTurn turn)
         {
             //Debug.Log("This got called");
             GroupType.OnTurnEnd(turn, this);
-            Goods[GoodType.Labor] = 0;
+            Goods.ResetWork();
             Goods.ProcessAllPendingTransactions();
             Goods.ResolveEdgeCases();
         }
@@ -123,6 +152,7 @@ namespace DaleranGames.TBSFramework
         public virtual void OnTurnStart(BaseTurn turn)
         {
             GroupType.OnTurnStart(turn, this);
+            //workUtils.OptimizeLabor(this);
         }
 
         protected virtual void SetUpNextTurn()

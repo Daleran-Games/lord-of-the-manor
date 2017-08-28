@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using DaleranGames.IO;
+using DaleranGames.UI;
 
 namespace DaleranGames.TBSFramework
 {
@@ -37,7 +38,7 @@ namespace DaleranGames.TBSFramework
 
         public static Modifier ParseCSV(List<string> csvLine, int startingIndex)
         {
-            return new Modifier(Enumeration.FromDisplayName<StatType>(csvLine[startingIndex]),Int32.Parse(csvLine[startingIndex+1]),csvLine[startingIndex+2]);
+            return new Modifier(Enumeration.FromName<StatType>(csvLine[startingIndex]),Int32.Parse(csvLine[startingIndex+1]),csvLine[startingIndex+2]);
         }
 
         public static List<Modifier> ParseCSVList (List<string> csvList)
@@ -60,11 +61,24 @@ namespace DaleranGames.TBSFramework
             return ToString();
         }
 
+        public string Info
+        {
+            get
+            {
+                if (Value > 0)
+                    return Type.ToString() +": "+("+" + Value.ToString()).ToPositiveColor() + Type.Icon +" "+ Description.ToPositiveColor();
+                else if (Value < 0)
+                    return Type.ToString() + ": " + Value.ToString().ToNegativeColor() + Type.Icon +" "+ Description.ToNegativeColor();
+                else
+                    return Type.ToString() + ": " + Value.ToString() + Type.Icon + " " + Description;
+            }
+        }
+
         public bool Equals(Modifier other)
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
-            return other.type == type && other.value == value  && other.Description == Description;
+            return other.Type == Type && other.Value == Value  && other.Description == Description;
         }
 
         public override bool Equals(object obj)

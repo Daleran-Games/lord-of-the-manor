@@ -1,0 +1,21 @@
+fileFormatVersion: 2
+guid: 641acb45759e4684da9db77763e3d1fd
+timeCreated: 1503109444
+licenseType: Free
+TrueTypeFontImporter:
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Oldstyle Small Caps
+  fontNames:
+  - Oldstyle Small Caps
+  fallbackFontReferences: []
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

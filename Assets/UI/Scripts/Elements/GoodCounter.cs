@@ -3,23 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using DaleranGames.TBSFramework;
+using UnityEngine.EventSystems;
+using System;
 
 namespace DaleranGames.UI
 {
-    public class GoodCounter : MonoBehaviour
+    public class GoodCounter : MonoBehaviour, ITooltipableGameObject
     {
-        public GoodType TrackedGood = GoodType.Food;
+        public int TrackedGoodID = 0;
+
+        protected GoodType TrackedGood = GoodType.Food;
         
+        [SerializeField]
         protected TextMeshProUGUI label;
         protected Group player;
 
-        protected string posColor;
-        protected string negColor;
-    
         protected virtual void Start()
         {
-            label = GetComponentInChildren<TextMeshProUGUI>();
             GameManager.Instance.Play.StateEnabled += OnGameStart;
+            TrackedGood = GoodType.FromValue<GoodType>(TrackedGoodID);
 
             //Debug.Log(posColor);
 
@@ -29,9 +31,6 @@ namespace DaleranGames.UI
         
         protected virtual void OnGameStart (GameState state)
         {
-            posColor = ColorUtility.ToHtmlStringRGB(UIManager.Instance.Style.StatIncreaseColor);
-            negColor = ColorUtility.ToHtmlStringRGB(UIManager.Instance.Style.StatDecreaseColor);
-
             player = GroupManager.Instance.PlayerGroup;
             player.Goods.GoodChanged += OnGoodChanged;
             player.Goods.FutureTransactionsChanged += OnPendingTransactionsChanged;
@@ -53,15 +52,9 @@ namespace DaleranGames.UI
 
         protected virtual void UpdateLabel()
         {
-            int nextTurn = player.Goods.GetAllPendingTransactionsOfType(TrackedGood).Value;
+            int nextTurn = player.Goods.GetTotalPendingTransactionsOfType(TrackedGood).Value;
 
-            if (nextTurn > 0)
-                label.text = player.Goods[TrackedGood] + " <color=#"+posColor+">(+" + nextTurn +")</color>";
-            else if (nextTurn == 0)
-                label.text = player.Goods[TrackedGood] + " (0)";
-            else
-                label.text = player.Goods[TrackedGood] + " <color=#" + negColor + ">(" + nextTurn + ")</color>";
-
+            label.text = player.Goods[TrackedGood] + " ("+TextUtilities.ColorBasedOnNumber(nextTurn.ToString(),nextTurn,true)+")";
             //Canvas.ForceUpdateCanvases();
         }
 
@@ -70,6 +63,64 @@ namespace DaleranGames.UI
             player.Goods.GoodChanged -= OnGoodChanged;
             player.Goods.FutureTransactionsChanged -= OnPendingTransactionsChanged;
             GameManager.Instance.Play.StateEnabled -= OnGameStart;
+        }
+
+        protected virtual string GenerateTooltipText()
+        {
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            sb.Append((TrackedGood.Name+TrackedGood.Icon).ToHeaderStyle());
+            sb.Append(" "+ player.Goods[TrackedGood]);
+
+            if (TrackedGood == GoodType.Food)
+                sb.AppendLine("/"+player.Stats[StatType.MaxFood]);
+            else if (TrackedGood == GoodType.Population)
+                sb.AppendLine("/" + player.Stats[StatType.MaxPopulation]);
+            else
+                sb.AppendLine();
+
+            List<Transaction> current = player.Goods.GetAllCurrentTransactionsOfType(TrackedGood, true);
+
+            if (current.Count > 0)
+            {
+                sb.AppendLine("<u>This Turn</u>");
+                for (int i = 0; i < current.Count; i++)
+                {
+                    sb.AppendLine(TextUtilities.ColorBasedOnNumber(current[i].Value.ToString(), current[i].Value, true) + " " + current[i].Description);
+                }
+            }
+
+            List<Transaction> pending = player.Goods.GetAllPendingTransactionsOfType(TrackedGood, true);
+
+            if (pending.Count > 0)
+            {
+                sb.AppendLine("<u>Next Turn</u>");
+                for (int i = 0; i < pending.Count; i++)
+                {
+                    sb.AppendLine(TextUtilities.ColorBasedOnNumber(pending[i].Value.ToString(), pending[i].Value, true) + " " + pending[i].Description);
+                }
+            }
+
+            sb.AppendLine(TrackedGood.Description.ToFootnoteStyle());
+
+            return sb.ToString();
+        }
+
+        public virtual string Info { get { return GenerateTooltipText(); } }
+
+        public virtual void OnPointerEnter(PointerEventData eventData)
+        {
+            if(eventData.pointerEnter == this.gameObject)
+                TooltipController.Instance.ShowTooltip(Info);
+        }
+
+        public virtual void OnPointerExit(PointerEventData eventData)
+        {
+            TooltipController.Instance.HideTooltip();
+        }
+
+        public void OnInfoUpdate(string newInfo)
+        {
+            //TooltipManager.Instance.UpdateText(newInfo);
         }
     }
 }

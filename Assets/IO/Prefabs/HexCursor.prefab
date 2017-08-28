@@ -102,6 +102,7 @@ MonoBehaviour:
     atlasCoord:
       x: 0
       y: 0
+    sprite: {fileID: 0}
   cursorTerrainIcon:
     name: Clear
     type: TileGraphic
@@ -109,17 +110,18 @@ MonoBehaviour:
     atlasCoord:
       x: 0
       y: 0
-  ringName: UIAtlas_Highlight_Ring
-  darkName: UIAtlas_Highlight_Dark
-  whiteName: UIAtlas_Highlight_White
-  positiveName: UIAtlas_Highlight_Positive
-  negativeName: UIAtlas_Highlight_Negative
-  crossName: UIAtlas_Highlight_Cross
+    sprite: {fileID: 0}
+  ringName: Highlight_Selector
+  darkName: Highlight_Dark
+  whiteName: Highlight_White
+  positiveName: Highlight_Positive
+  negativeName: Highlight_Negative
+  crossName: Highlight_Cross
   currentTile:
     id: 0
-    hexPosition:
-      r: 0
+    coordinate:
       q: 0
+      r: 0
     gridPos:
       x: 0
       y: 0
@@ -136,102 +138,41 @@ MonoBehaviour:
         atlasCoord:
           x: 0
           y: 0
-      defenseBonus: 0
-      movementCost: 0
-      foodYield: 0
-      woodYield: 0
-      stoneYield: 0
-      goldYield: 0
-      clearable: 0
-      clearedLandName: 
-      clearLandTurns: 0
-      clearLandWork: 0
-      clearFoodBonus: 0
-      clearWoodBonus: 0
-      clearStoneBonus: 0
-      clearGoldBonus: 0
+        sprite: {fileID: 0}
+      tileModifiers: []
       ownerModifiers: []
-    improvement:
-      name: 
-      id: 0
-      type: 
-      iconName: 
-      iconGraphic:
-        name: 
-        type: 
-        id: 0
-        atlasCoord:
-          x: 0
-          y: 0
-      defenseBonus: 0
-      movementCost: 0
-      maxCondition: 0
-      buildWorkCost: 0
-      buildWoodCost: 0
-      builtTime: 0
-      validLand: []
-      upgradeable: 0
-      upgradeName: 
-      razeWorkCost: 0
-      razeTime: 0
-      razeRecoveryPercentage: 0
-      ownerModifiers: []
+    debugFeatureName: 
+    paused: 0
+    pausedOverride: 0
     owner:
+      Stats:
+        debugModifiers: []
+      TileModifiers:
+        debugModifiers: []
       Goods:
+        currentTransactions: []
         pendingTransactions: []
         food: 0
         wood: 0
         stone: 0
         gold: 0
         population: 0
-        work: 0
+        labor: 0
       groupType:
         name: 
         type: 
         rank: 0
         culture: 0
-        maxActionPoints: 0
-        strengthPerPop: 0
-        attackCost: 0
-        levyPercent: 0
-        foodPerPopPerTurn: 0
-        woodPerPopPerWinter: 0
-        workPerPop: 0
-        maxFood: 0
-        maxWood: 0
-        maxStone: 0
-        startingGold: 0
-        maxPopulation: 0
-        groupTypeModifiers: []
-    occupier:
-      Goods:
-        pendingTransactions: []
-        food: 0
-        wood: 0
-        stone: 0
-        gold: 0
-        population: 0
-        work: 0
-      groupType:
-        name: 
-        type: 
-        rank: 0
-        culture: 0
-        maxActionPoints: 0
-        strengthPerPop: 0
-        attackCost: 0
-        levyPercent: 0
-        foodPerPopPerTurn: 0
-        woodPerPopPerWinter: 0
-        workPerPop: 0
-        maxFood: 0
-        maxWood: 0
-        maxStone: 0
-        startingGold: 0
-        maxPopulation: 0
-        groupTypeModifiers: []
+        groupModifiers: []
+        tileModifiers: []
     elevation: 0
     moisture: 0
+    Stats:
+      debugModifiers: []
+    OwnerModifiers:
+      debugModifiers: []
+    Counters:
+      counters: []
     UIGraphics:
       atlas: {fileID: 0}
       meshDirty: 0

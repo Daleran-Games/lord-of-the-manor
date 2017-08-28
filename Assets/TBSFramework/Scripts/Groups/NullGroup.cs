@@ -26,8 +26,6 @@ namespace DaleranGames.TBSFramework
             }
         }
 
-
-
         protected override void Dispose(bool disposing)
         {
             if (!disposedValue)

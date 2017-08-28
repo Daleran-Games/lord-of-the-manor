@@ -7,7 +7,7 @@ namespace DaleranGames.TBSFramework
     {
         event Action<GoodsCollection, GoodType> FutureTransactionsChanged;
         event Action<GoodsCollection, GoodType> GoodChanged;
-        int this[GoodType type] { get; set; }
+        int this[GoodType type] { get; }
         List<Good> Goods { get; }
         List<Transaction> PendingTransactions { get; }
 

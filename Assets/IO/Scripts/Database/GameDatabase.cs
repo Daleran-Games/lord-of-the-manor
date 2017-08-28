@@ -18,8 +18,6 @@ namespace DaleranGames.IO
 #pragma warning disable 0649
         [Header("Database Loaders")]
         [SerializeField]
-        SpriteDatabaseLoader spriteLoader;
-        [SerializeField]
         GraphicsDatabaseLoader graphicsLoader;
         [SerializeField]
         LandDatabaseLoader landsLoader;
@@ -30,13 +28,12 @@ namespace DaleranGames.IO
 
 #pragma warning restore 0649
 
-        public Dictionary<string, Sprite> Sprites;
         public Database<TileGraphic> TileGraphics;
         public Database<LandType> Lands;
         public Database<FeatureType> Features;
         public Database<GroupType> Groups;
 
-        public static readonly string SpritePath = "Assets/Graphics/Sprites/";
+        //public static readonly string SpritePath = "Assets/Graphics/Sprites/";
         public static string GameDataPath { get { return Application.streamingAssetsPath + "/GameData/"; } }
 
 
@@ -50,7 +47,6 @@ namespace DaleranGames.IO
             System.Diagnostics.Stopwatch timer = new System.Diagnostics.Stopwatch();
             timer.Start();
 
-            Sprites = spriteLoader.GenerateDatabase();
             TileGraphics = graphicsLoader.GenerateDatabase();
             Lands = landsLoader.GenerateDatabase();
             Features = featuresLoader.GenerateDatabase();

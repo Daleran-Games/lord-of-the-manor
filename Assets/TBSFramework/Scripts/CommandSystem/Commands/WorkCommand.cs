@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DaleranGames.UI;
 using DaleranGames.IO;
 
 namespace DaleranGames.TBSFramework
@@ -19,9 +20,9 @@ namespace DaleranGames.TBSFramework
             IWorkable workable = tile.Feature as IWorkable;
             if (workable != null && owner == tile.Owner)
             {
-                if (tile.Paused && workable.CanResume(tile))
+                if (tile.Work.Paused && workable.CanResume(tile))
                     return true;
-                else if (!tile.Paused)
+                else if (!tile.Work.Paused)
                     return true;
             }
             return false;
@@ -31,16 +32,45 @@ namespace DaleranGames.TBSFramework
         {
             IWorkable workable = tile.Feature as IWorkable;
 
-            if (tile.Paused)
+            if (tile.Work.Paused)
+            {
                 workable.Resume(tile);
+                tile.Work.PausedOverride = false;
+            }
             else
+            {
                 workable.Pause(tile);
-
+                tile.Work.PausedOverride = true;
+            }
         }
 
         public override TileGraphic GetUIIcon(HexTile tile)
         {
-            return GameDatabase.Instance.TileGraphics["UIAtlas_Icon_AnvilTool"];
+            if (tile.Work.Paused)
+                return GameDatabase.Instance.TileGraphics["Icon_32px_Work"];
+            else
+                return GameDatabase.Instance.TileGraphics["Icon_16px_Sleep"]; 
+        }
+
+        public override string GetInfo(HexTile tile, Group group)
+        {
+            IWorkable workable = tile.Feature as IWorkable;
+            if (workable == null)
+            {
+                return (("Tile Not Capable be Worked Or Paused").ToNegativeColor());
+            }
+            else
+            {
+                if (!tile.Work.Paused)
+                    return (("Pause Tile").ToPositiveColor());
+                else
+                {
+                    if (workable.CanResume(tile))
+                        return (("Resume Tile").ToPositiveColor());
+                    else
+                        return (("Cannot Resume Tile").ToNegativeColor());
+                }
+            }
         }
     }
 }

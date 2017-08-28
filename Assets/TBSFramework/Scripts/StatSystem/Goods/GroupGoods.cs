@@ -10,6 +10,8 @@ namespace DaleranGames.TBSFramework
     {
         protected Group owner;
 
+        //Consider repacing the getters with ints instead of goods. I think int and stat classes might go away entirely.
+
         [SerializeField]
         protected int food;
         public virtual Good Food { get { return new Good(GoodType.Food, food); } }
@@ -34,7 +36,6 @@ namespace DaleranGames.TBSFramework
         protected int labor;
         public virtual Good Labor { get { return new Good(GoodType.Labor, labor); } }
 
-
         public GroupGoods (Group unit) : base()
         {
             owner = unit;
@@ -50,54 +51,56 @@ namespace DaleranGames.TBSFramework
         {
             get
             {
-                switch(type)
+                switch(type.Value)
                 {
-                    case GoodType.Food:
+                    case 0:
                         return Food.Value;
-                    case GoodType.Wood:
+                    case 1:
                         return Wood.Value;
-                    case GoodType.Stone:
+                    case 2:
                         return Stone.Value;
-                    case GoodType.Gold:
+                    case 3:
                         return Gold.Value;
-                    case GoodType.Population:
+                    case 5:
                         return Population.Value;
-                    case GoodType.Labor:
+                    case 4:
                         return Labor.Value;
                     default:
                         return 0;
                 }
             }
-            set
+
+            protected set
             {
-                switch (type)
+                switch (type.Value)
                 {
-                    case GoodType.Food:
+                    case 0:
                         food = value;
                         OnGoodChanged(this, Food.Type);
                         break;
-                    case GoodType.Wood:
+                    case 1:
                         wood = value;
                         OnGoodChanged(this, Wood.Type);
                         break;
-                    case GoodType.Stone:
+                    case 2:
                         stone = value;
                         OnGoodChanged(this, Stone.Type);
                         break;
-                    case GoodType.Gold:
+                    case 3:
                         gold = value;
                         OnGoodChanged(this, Gold.Type);
                         break;
-                    case GoodType.Population:
+                    case 5:
                         population = value;
                         OnGoodChanged(this, Population.Type);
                         break;
-                    case GoodType.Labor:
+                    case 4:
                         labor = value;
                         OnGoodChanged(this, Labor.Type);
                         break;
                 }
             }
+
         }
 
         public override List<Good>Goods
@@ -150,13 +153,13 @@ namespace DaleranGames.TBSFramework
                 {
                     if (Random.Bool(owner.Stats[StatType.GroupStarvationRate]))
                     {
-                        this[GoodType.Population]--;
+                        ProcessNow(new Transaction(GoodType.Population, -1, "Death from lack of food"));
                     }
                 }
                 this[GoodType.Food] = 0;
             } else if (food > owner.Stats[StatType.MaxFood])
             {
-                AddFuture(new Transaction(GoodType.Food, owner.Stats[StatType.MaxFood] - food, "Spoilage from not enoguh storage"));
+                AddFuture(new Transaction(GoodType.Food, owner.Stats[StatType.MaxFood] - food, "Spoilage: Not enough storage"));
             }
         }
 
@@ -169,25 +172,18 @@ namespace DaleranGames.TBSFramework
                     for (int w=wood; w <= 0; w++)
                     {
                         if (Random.Bool(owner.Stats[StatType.GroupFreezeRate]))
-                            this[GoodType.Population]--;
+                            ProcessNow(new Transaction(GoodType.Population, -1, "Death from lack of firewood"));
                     }
                     this[GoodType.Wood] = 0;
                 } else
                     this[GoodType.Wood] = 0;
-            } else if (wood > owner.Stats[StatType.MaxWood])
-            {
-                AddFuture(new Transaction(GoodType.Wood, owner.Stats[StatType.MaxWood] - wood, "Waste from not enoguh storage"));
-            }
+            } 
         }
 
         void CheckStone ()
         {
             if (stone < 0)
                 this[GoodType.Stone] = 0;
-            else if (stone > owner.Stats[StatType.MaxStone])
-            {
-                AddFuture(new Transaction(GoodType.Stone, owner.Stats[StatType.MaxStone] - stone, "Waste from not enoguh storage"));
-            }
         }
 
         void CheckGold()
@@ -201,7 +197,7 @@ namespace DaleranGames.TBSFramework
                 this[GoodType.Population] = 0;
             else if (population > owner.Stats[StatType.MaxPopulation])
             {
-                AddFuture(new Transaction(GoodType.Population, owner.Stats[StatType.MaxPopulation] - population, "Emigration from overpopulation"));
+                AddFuture(new Transaction(GoodType.Population, owner.Stats[StatType.MaxPopulation] - population, "Overpopulation"));
             } else
             {
                 int births = 0;
@@ -227,7 +223,12 @@ namespace DaleranGames.TBSFramework
 
         void CheckWork ()
         {
-            AddFuture(new Transaction(GoodType.Labor, owner.Stats[StatType.GroupLaborRate], "Work"));
+            AddFuture(new Transaction(GoodType.Labor, owner.Stats[StatType.GroupLaborRate], "Labor from your Clan"));
+        }
+
+        public void ResetWork()
+        {
+            this[GoodType.Labor] = 0;
         }
     }
 }

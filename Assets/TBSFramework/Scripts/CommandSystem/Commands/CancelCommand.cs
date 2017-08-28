@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DaleranGames.UI;
 using DaleranGames.IO;
 
 namespace DaleranGames.TBSFramework
@@ -33,7 +34,27 @@ namespace DaleranGames.TBSFramework
 
         public override TileGraphic GetUIIcon(HexTile tile)
         {
-            return GameDatabase.Instance.TileGraphics["UIAtlas_Icon_Cancel"];
+            return GameDatabase.Instance.TileGraphics["Icon_32px_Cancel"];
+        }
+
+        public override string GetInfo(HexTile tile, Group group)
+        {
+            ICancelable cancelable = tile.Feature as ICancelable;
+            if (cancelable == null)
+            {
+                return (("Tile Cannot be Canceled").ToNegativeColor());
+            }
+            else
+            {
+                if (!cancelable.CanCancel(tile))
+                    return ("Cannot Cancel " + tile.Feature.Name).ToNegativeColor();
+
+                if (group != tile.Owner)
+                    return ("You do not own " + tile.Feature.Name).ToNegativeColor();
+
+                else
+                    return ("Cancel " + tile.Feature.Name).ToPositiveColor();
+            }
         }
 
     }

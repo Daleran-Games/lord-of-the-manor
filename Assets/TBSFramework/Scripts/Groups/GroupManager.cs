@@ -15,12 +15,24 @@ namespace DaleranGames.TBSFramework
 
         public void SetUpGroupManager()
         {
+            //playerGroup = new Group("Player", GameDatabase.Instance.Groups["Cheat"]);
             playerGroup = new Group("Player", GameDatabase.Instance.Groups["Thegn"]);
-            
+
             GameManager.Instance.Play.StateEnabled += OnGameStart;
             TurnManager.Instance.TurnEnded += OnTurnEnd;
             TurnManager.Instance.TurnSetUp += OnTurnSetUp;
             TurnManager.Instance.TurnStart += OnTurnStart;
+
+            List<HexCoordinates> playerTiles = HexCoordinates.GetCoordinatesInRange(HexGrid.Instance.Generator.PlayerStart, HexGrid.Instance.Generator.PlayerTerritory);
+            //Debug.Log("playerTiles count: " + playerTiles.Length);
+            for (int i = 0; i < playerTiles.Count; i++)
+            {
+                if (HexGrid.Instance.IsCoordinateValid(playerTiles[i]))
+                {
+                    HexGrid.Instance[playerTiles[i]].Owner = PlayerGroup;
+                }
+            }
+
         }
 
         public virtual void OnGameStart(GameState state)

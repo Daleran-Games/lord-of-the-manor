@@ -38,14 +38,13 @@ namespace DaleranGames.TBSFramework
             groupModifiers = Modifier.ParseCSVList(entry.ParseList("groupModifiers"));
 
             groupModifiers.Add(new Modifier(StatType.GroupFoodRatePerPop, Int32.Parse(entry["foodPerTurn"]), name));
-            groupModifiers.Add(new Modifier(StatType.GroupWoodRatePerPop, Int32.Parse(entry["woodPerWinter"]), name));
+            groupModifiers.Add(new Modifier(StatType.GroupWoodRate, Int32.Parse(entry["woodPerWinter"]), name));
             groupModifiers.Add(new Modifier(StatType.GroupLaborPerPop, Int32.Parse(entry["laborPerPop"]), name));
             groupModifiers.Add(new Modifier(StatType.MaxFood, Int32.Parse(entry["maxFood"]), name));
             groupModifiers.Add(new Modifier(StatType.MaxWood, Int32.Parse(entry["maxWood"]), name));
             groupModifiers.Add(new Modifier(StatType.MaxStone, Int32.Parse(entry["maxStone"]), name));
             groupModifiers.Add(new Modifier(StatType.StartingGold, Int32.Parse(entry["startingGold"]), name));
             groupModifiers.Add(new Modifier(StatType.MaxPopulation, Int32.Parse(entry["maxPopulation"]), name));
-
             groupModifiers.Add(new Modifier(StatType.GroupBirthRate,GameplayMetrics.DefaultBirthRate,name));
             groupModifiers.Add(new Modifier(StatType.GroupDeathRate, GameplayMetrics.DefaultDeathRate, name));
             groupModifiers.Add(new Modifier(StatType.GroupStarvationRate, GameplayMetrics.DefaultStarvationRate, name));

@@ -5,7 +5,7 @@ using UnityEditor;
 
 namespace DaleranGames.TBSFramework
 {
-    [CustomPropertyDrawer(typeof(StatType))]
+    [CustomPropertyDrawer(typeof(Enumeration))]
     public class StatTypeDrawer : PropertyDrawer
     {
         SerializedProperty t;

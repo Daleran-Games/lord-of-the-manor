@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using DaleranGames.IO;
+using DaleranGames.UI;
 
 namespace DaleranGames.TBSFramework
 {
     [System.Serializable]
-    public struct Transaction : IFormattable, IEquatable<Transaction>, IComparable<Transaction>, IComparable
+    public class Transaction : IFormattable, IEquatable<Transaction>, IComparable<Transaction>, IComparable
     {
         [SerializeField]
         GoodType type;
@@ -21,12 +22,19 @@ namespace DaleranGames.TBSFramework
         string description;
         public string Description { get { return description; } }
 
-        public Transaction(GoodType type, int amount)
+        public string Info
         {
-            this.type = type;
-            this.value = amount;
-            description = "None";
+            get
+            {
+                if (Value > 0)
+                    return ("+" + Value.ToString()).ToPositiveColor() + Type.Icon  + " " + Description;
+                else if (Value < 0)
+                    return Value.ToString().ToNegativeColor() + Type.Icon  + " " + Description;
+                else
+                    return Value.ToString() + Type.Icon + " " + Description;
+            }
         }
+
 
         public Transaction(GoodType type, int amount, string description)
         {
@@ -37,7 +45,7 @@ namespace DaleranGames.TBSFramework
 
         public static Transaction ParseCSV(List<string> csvLine, int startingIndex)
         {
-            return new Transaction((GoodType)Enum.Parse(typeof(GoodType), csvLine[startingIndex]), Int32.Parse(csvLine[startingIndex + 1]), csvLine[startingIndex + 2]);
+            return new Transaction(Enumeration.FromName<GoodType>(csvLine[startingIndex]), Int32.Parse(csvLine[startingIndex + 1]), csvLine[startingIndex + 2]);
         }
 
         public static List<Transaction> ParseCSVList(List<string> csvList)
@@ -64,7 +72,7 @@ namespace DaleranGames.TBSFramework
         {
             if (ReferenceEquals(null, other)) return false;
             if (ReferenceEquals(this, other)) return true;
-            return other.type == type && other.value == value && other.Description == Description;
+            return other.Type == Type && other.Value == Value && other.Description == Description;
         }
 
         public override bool Equals(object obj)

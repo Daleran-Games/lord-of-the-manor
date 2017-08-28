@@ -64,6 +64,8 @@ namespace DaleranGames.TBSFramework
         {
             currentTurn.enabled = true;
 
+            
+
             if (TurnSetUp != null)
                 TurnSetUp(currentTurn);
 
@@ -116,6 +118,8 @@ namespace DaleranGames.TBSFramework
             else
                 return "Error";
         }
+
+
 
     }
 }

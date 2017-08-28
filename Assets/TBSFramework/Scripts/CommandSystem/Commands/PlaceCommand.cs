@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using DaleranGames.IO;
+using DaleranGames.UI;
 
 namespace DaleranGames.TBSFramework
 {
@@ -32,12 +33,26 @@ namespace DaleranGames.TBSFramework
 
         public override void PreformCommand(HexTile tile, Group owner)
         {
-            placeable.Place(tile); 
+            placeable.Place(tile);
         }
 
         public override TileGraphic GetTerrainIcon(HexTile tile)
         {
             return feature.GetMainGraphic(tile);
+        }
+
+        public override string GetInfo(HexTile tile, Group group)
+        {
+            if (tile.Owner != group)
+                return ("You do not own "+tile.Land.Name).ToNegativeColor();
+
+            if (tile.Feature != FeatureType.Null && tile.Feature != null)
+                return ("There is already something here.").ToNegativeColor();
+
+           if (!placeable.CanPlace(tile))
+                return("You cannot place "+feature.Name+" here.").ToNegativeColor();
+
+            return ("Place " + feature.Name + " here.").ToPositiveColor();
         }
 
     }
