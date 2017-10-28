@@ -11,7 +11,7 @@ namespace DaleranGames
         [SerializeField]
         protected List<T> eventList;
 
-        public event Action ListModified;
+        public event Action<EventList<T>> ListModified;
 
         public EventList()
         {
@@ -91,7 +91,7 @@ namespace DaleranGames
         protected virtual void FireAction ()
         {
             if (ListModified != null)
-                ListModified(); 
+                ListModified(this); 
         }
     }
 
