@@ -30,11 +30,14 @@ namespace DaleranGames.UI
 
         public virtual void OnPointerExit(PointerEventData eventData)
         {
+            CloseTooltip();
+        }
+
+        public virtual void CloseTooltip()
+        {
             TooltipController.Instance.HideTooltip();
             isActive = false;
         }
-
-
 
     }
 }

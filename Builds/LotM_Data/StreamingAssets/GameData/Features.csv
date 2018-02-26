@@ -1,0 +1,16 @@
+DwellingType,,,,,,,,,,,,,,,,,,,,,
+name,type,iconName,movementCost,defenseBonus,maxCondition,groupModifiers,tileModifiers,buildGraphic,validLand,buildTime,buildLaborCost,buildWoodCost,buildStoneCost,buildGoldCost,upgradeable,upgradeName,razeTime,razeLaborCost,maxPopulation,maxFood,woodRate
+Tent,DwellingType,Spring_I_Tent,0,0,2,,,Spring_I_SmallHouse_Constr,Plains;Moor;Hills;Moor Hills,0,-4,-4,0,0,TRUE,Small House,0,-1,4,30,-2
+Small House,DwellingType,Spring_I_SmallHouse,0,1,3,,,Spring_I_SmallHouse_Constr,Plains;Moor;Hills;Moor Hills,2,-6,-14,0,0,TRUE,Round House,1,-4,8,60,-4
+Round House,DwellingType,Spring_I_RoundHouse,0,2,4,,,Spring_I_RoundHouse_Contr,Plains;Moor;Hills;Moor Hills,3,-6,-20,0,0,TRUE,Large House,1,-6,12,100,-8
+Large House,DwellingType,Spring_I_LargeHouse,0,3,5,,,Spring_I_LargeHouse_Contr,Plains;Moor;Hills;Moor Hills,4,-6,-30,-5,-5,TRUE,Hall,2,-6,20,140,-10
+Hall,DwellingType,Spring_I_Hall,0,4,6,,,Spring_I_Hall_Constr,Plains;Moor;Hills;Moor Hills,8,-12,-65,-10,-10,FALSE,,2,-6,30,200,-14
+FarmType,,,,,,,,,,,,,,,,,,,,,
+name,type,iconName,movementCost,defenseBonus,maxCondition,groupModifiers,tileModifiers,validLand,buildLaborCost,cultivateLaborCost,growTime,cycleTime,farmFoodRate,sowingGraphic,growingGraphic,harvestGraphic,fallowGraphic,,,,
+Farm,FarmType,Spring_I_FarmSowing,0,-1,1,,,Plains;Moor,-12,-6,2,8,4,Spring_I_FarmSowing,Spring_I_FarmGrowing,Spring_I_FarmHarvest,Spring_I_FarmFallow,,,,
+LoggingType,,,,,,,,,,,,,,,,,,,,,
+name,type,iconName,movementCost,defenseBonus,maxCondition,groupModifiers,tileModifiers,startLand,endLand,loggingLaborCost,loggingTime,loggingWoodRate,,,,,,,,,
+Logging Camp,LoggingType,Spring_I_LoggingSite,0,0,1,,,Parkland;Forest;Wooded Hills;Wooded Mountains,Plains;Moor;Hills;Mountains,-12,16,1,,,,,,,,,
+QuarryType,,,,,,,,,,,,,,,,,,,,,
+name,type,iconName,movementCost,defenseBonus,maxCondition,groupModifiers,tileModifiers,startLand,endLand,quarryLaborCost,quarryTime,quarryStoneRate,,,,,,,,,
+Quarry,QuarryType,Spring_I_Quarry,0,0,1,,,Hills;Mountains;Moor Hills;Moor Mountains,Moor;Hills;Moor;Moor Hills,-18,80,1,,,,,,,,,
